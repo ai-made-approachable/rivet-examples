@@ -8,6 +8,7 @@ Just press on "Code" and "Download Zip" or go to a specific file and press on "D
 There is a corresponding video tutorial on Youtube for each file:
 | Video title | Youtube Link | File/Link |
 | -- | -- | -- |
+| Rivet: Create A Teachable Agent With Long Term Memory That Learns From You! - No code Tutorial | https://youtu.be/g7dhLpDAnW4 | Teachable Agent.rivet-project |
 | Rivet: How To Run Your Project/Graph As A Node.js Application - Low Code Tutorial | https://youtu.be/YC2zYA7cZJ4 | https://github.com/ai-made-approachable/rivet-node-basic-example |
 | Rivet: How To Use Function Calling And Extend ChatGPTs Abilities! - No Code Tutorial | https://youtu.be/gQzl503DKrk | Function calling example.rivet-project |
 | Rivet: Empower Your Chatbot With Semantic Routing! - no code tutorial | https://youtu.be/80YbWznN-qY | Semantic segmentation.rivet-project |
