@@ -1,0 +1,447 @@
+version: 4
+data:
+  attachedData:
+    trivet:
+      testSuites: []
+      version: 1
+  graphs:
+    OcoUnYDdxrPhmo4KajHrV:
+      metadata:
+        description: ""
+        id: OcoUnYDdxrPhmo4KajHrV
+        name: Tutorials/#1. Grocery shopping (loop)/Main graph
+      nodes:
+        '[-8AQJtbG1EYVOhn1vqW1K]:array "Array"':
+          data:
+            flatten: true
+            flattenDeep: false
+          outgoingConnections:
+            - output->"Loop Controller" 5Pq3Sd09wJxYjmZMo0EGQ/input2
+          visualData: 2564.770817184339/698.7454866714495/230/44//
+        '[02FF_ENakqwxFnIf_Kmz3]:comment "Comment"':
+          data:
+            backgroundColor: rgba(0,0,0,0.05)
+            color: rgba(255,255,255,1)
+            height: 376.21338194185944
+            text: "#### Add items to the shopping cart"
+          visualData: 2077.680527122261/587.3877020763072/857.9053901696398/46//
+        '[3mKT27RCoppUIRewDr4K_]:number "Number"':
+          data:
+            round: false
+            roundTo: 0
+            value: 0
+          outgoingConnections:
+            - value->"Compare" wP_lE-gjUd5PhaBhBeqVM/b
+          visualData: 2112.003628051423/126.08522558836108/230/30//
+        '[5Pq3Sd09wJxYjmZMo0EGQ]:loopController "Loop Controller"':
+          data:
+            maxIterations: 100
+          outgoingConnections:
+            - break->"Graph Output" l0FRa9XVn7R7gN1k1Anhy/value
+            - output1->"Pop" NMecwhzCvpWqzNMw1PLx_/array
+            - output2->"Array" -8AQJtbG1EYVOhn1vqW1K/input1
+          visualData: 1292.6706177632013/367.6704472275364/280/47//
+        '[DfEGBAvG6fkURN2qkwtUl]:array "Array"':
+          data:
+            flatten: true
+            flattenDeep: false
+          outgoingConnections:
+            - output->"Loop Controller" 5Pq3Sd09wJxYjmZMo0EGQ/input2Default
+          visualData: 832.0385196382551/678.0795682799993/230/45//
+        '[NMecwhzCvpWqzNMw1PLx_]:pop "Pop"':
+          data:
+            fromFront: true
+          outgoingConnections:
+            - lastItem->"Text" m7ELMdO18AYioNzoF6iu7/item
+            - restOfArray->"Array" _jW42xuoZJniNgkyRYBli/input1
+            - restOfArray->"Loop Controller" 5Pq3Sd09wJxYjmZMo0EGQ/input1
+          visualData: 1693.1460050926503/464.54408069293174/230/42//
+        '[P4FbxfRjLVdUBamDSE7rN]:text "Text"':
+          data:
+            text: bread
+          outgoingConnections:
+            - output->"Array" WPhPIhk090YaK3hO6DkEm/input2
+          visualData: 359.5736796977111/290.77894317097747/330/40//
+        '[PXoYIFUsyrj3IhTko4nT6]:comment "Comment"':
+          data:
+            backgroundColor: rgba(0,0,0,0.05)
+            color: rgba(255,255,255,1)
+            height: 581.938605574976
+            text: "#### Continue if items left to be bought"
+          visualData: 2077.6805271222606/-11.20717812828954/859.745848074333/29//
+        '[RnRaYyuq13IHwQ5xQ2lTw]:comment "Comment"':
+          data:
+            backgroundColor: rgba(0,0,0,0.05)
+            color: rgba(255,255,255,1)
+            height: 901.7153916200366
+            text: "#### Inputs"
+          visualData: 338.908787166581/22.44383570210755/844.4930518832248/40//
+        '[WPhPIhk090YaK3hO6DkEm]:array "Array"':
+          data:
+            flatten: true
+            flattenDeep: false
+          outgoingConnections:
+            - output->"Loop Controller" 5Pq3Sd09wJxYjmZMo0EGQ/input1Default
+          visualData: 831.2947856640553/348.5890241794509/230/40//
+        '[ZJ320Yg3d7XB7ynmnVkna]:text "Text"':
+          data:
+            text: apples
+          outgoingConnections:
+            - output->"Array" WPhPIhk090YaK3hO6DkEm/input1
+          visualData: 361.9853236049203/128.74465904885517/330/51//
+        '[_jW42xuoZJniNgkyRYBli]:array "Array"':
+          data:
+            flatten: true
+            flattenDeep: false
+          outgoingConnections:
+            - length->"Compare" wP_lE-gjUd5PhaBhBeqVM/a
+          visualData: 2112.003628051423/283.97148986250926/230/34//
+        '[gyKl9qx0l2iYMzdo45HxJ]:text "Text"':
+          data:
+            text: eggs
+          outgoingConnections:
+            - output->"Array" WPhPIhk090YaK3hO6DkEm/input4
+          visualData: 355.9061259632761/590.7869267808921/330/40//
+        '[j3bdKaSeqjs2x2gKLRfG7]:text "Text"':
+          data:
+            text: milk
+          outgoingConnections:
+            - output->"Array" WPhPIhk090YaK3hO6DkEm/input3
+          visualData: 361.908787166581/440.44915810871737/330/40//
+        '[l0FRa9XVn7R7gN1k1Anhy]:graphOutput "Graph Output"':
+          data:
+            dataType: string
+            id: output
+          visualData: 1478.0475082163064/19.22033608787764/330/43//
+        '[m7ELMdO18AYioNzoF6iu7]:text "Text"':
+          data:
+            text: Added {{item}} to the cart.
+          outgoingConnections:
+            - output->"Array" -8AQJtbG1EYVOhn1vqW1K/input2
+          visualData: 2132.5974886089207/731.5447259787904/330/27//
+        '[ugNFHlot0aK2KvE9S3_pm]:text "Text"':
+          data:
+            text: cheese
+          outgoingConnections:
+            - output->"Array" WPhPIhk090YaK3hO6DkEm/input5
+          visualData: 355.2385722288412/748.1273566563718/330/40//
+        '[wP_lE-gjUd5PhaBhBeqVM]:compare "Compare"':
+          data:
+            comparisonFunction: ">"
+          outgoingConnections:
+            - output->"Loop Controller" 5Pq3Sd09wJxYjmZMo0EGQ/continue
+          visualData: 2482.69311808638/185.12095918652082/190/32//
+    P2lWE6Bs7o2MFJWfOwsp9:
+      metadata:
+        description: ""
+        id: P2lWE6Bs7o2MFJWfOwsp9
+        name: Tutorials/#3. Grocery shopping (budget)/Subgraph
+      nodes:
+        '[3WnE743_mqkDnQjQ8eiEZ]:comment "Comment"':
+          data:
+            backgroundColor: rgba(0,0,0,0.05)
+            color: rgba(255,255,255,1)
+            height: 605.0043616172173
+            text: "#### 1. Get price for list item"
+          visualData: 566.6739618468484/136.00974664101463/420.1701030714787/158//
+        '[5oezEszUxV5J08S5uQSEL]:comment "Comment"':
+          data:
+            backgroundColor: rgba(0,0,0,0.05)
+            color: rgba(255,255,255,1)
+            height: 603.1990304405888
+            text: "#### 2. Get total sum from a global variable"
+          visualData: 1011.0511305100138/134.5257165653954/497.63349492656835/159//
+        '[5zOJ0fVBAa2-osmMLU5_0]:graphInput "Graph Input"':
+          data:
+            dataType: object
+            id: price_list
+            useDefaultValueInput: false
+          outgoingConnections:
+            - data->"Extract Object Path" lCWg6BiQef06kwVXPpWcj/object
+          visualData: 146.29022496175213/360.1607188211678/330/135/var(--node-color-3)/var(--grey-darkish)
+        '[7sWXQCVEyAYr9xz6WpsRM]:text "Text"':
+          data:
+            text: $.{{item}}
+          outgoingConnections:
+            - output->"Extract Object Path" lCWg6BiQef06kwVXPpWcj/path
+          visualData: 617.0308860876955/267.7356773738927/330/164//
+        '[DT42jfYpT-pX2vXU96GzQ]:getGlobal "Get Global"':
+          data:
+            dataType: number
+            id: total_cost
+            onDemand: false
+            useIdInput: false
+            wait: false
+          outgoingConnections:
+            - value->"Evaluate" OmnTV0dWkVQjhV3OwbBtw/a
+            - value->"If/Else" U4gMpqQUmTbHY65OXi1Ai/false
+          visualData: 1138.6874483975103/246.35350783336443/230/160//
+        '[IfFEM97AFRqFR5gAyeJ9C]:text "Text"':
+          data:
+            text: Did not add "{{item}}" to the cart. Budget exceeded.
+          outgoingConnections:
+            - output->"If/Else" wLWX_fzUPr6Fkh3sAaeYs/false
+          visualData: 2330.9103047092212/491.7014344884674/330/157//
+        '[OmnTV0dWkVQjhV3OwbBtw]:evaluate "Evaluate"':
+          data:
+            operation: +
+          outgoingConnections:
+            - output->"Compare" w1wyaRNCRCBxnw8811u2w/a
+            - output->"If/Else" U4gMpqQUmTbHY65OXi1Ai/true
+          visualData: 1152.4824074860949/505.1420738400899/205/161//
+        '[P-6hOtuMPR4UXSo7ZbFsx]:comment "Comment"':
+          data:
+            backgroundColor: rgba(0,0,0,0.05)
+            color: rgba(255,255,255,1)
+            height: 608.9320405874516
+            text: "#### 4. Create result, based on budget exceeded/not exceeded"
+          visualData: 2314.3538258441395/135.86029740884123/754.7330101468624/157//
+        '[SHu5imx2OtKcjl-OT2mGc]:graphOutput "Graph Output"':
+          data:
+            dataType: string
+            id: output
+          visualData: 3123.2021095192827/244.24150845823704/330/163/var(--node-color-4)/var(--grey-darkish)
+        '[T-96kiziz33Chzkt8YZMC]:graphInput "Graph Input"':
+          data:
+            dataType: any
+            id: item
+            useDefaultValueInput: false
+          outgoingConnections:
+            - data->"Text" 7sWXQCVEyAYr9xz6WpsRM/item
+            - data->"Text" IfFEM97AFRqFR5gAyeJ9C/item
+            - data->"Text" i52KKYf0UI5Yml3RSpVuE/item
+          visualData: 145.41186486160322/136.82825435919364/330/135/var(--node-color-3)/var(--grey-darkish)
+        '[U4gMpqQUmTbHY65OXi1Ai]:ifElse "If/Else"':
+          data:
+            unconnectedControlFlowExcluded: true
+          outgoingConnections:
+            - output->"Set Global" _TbKrB9G_e25KSEzudVdJ/value
+            - output->"Text" i52KKYf0UI5Yml3RSpVuE/total_cost
+          visualData: 1622.3481994939698/496.7250337798025/205/156//
+        '[WPouGua8MpaNola_Xgnrk]:graphInput "Graph Input"':
+          data:
+            dataType: number
+            id: budget
+            useDefaultValueInput: false
+          outgoingConnections:
+            - data->"Compare" w1wyaRNCRCBxnw8811u2w/b
+          visualData: 144.35111858512155/600.7545558168739/330/146/var(--node-color-3)/var(--grey-darkish)
+        '[_TbKrB9G_e25KSEzudVdJ]:setGlobal "Set Global"':
+          data:
+            dataType: number
+            id: total_cost
+            useIdInput: false
+          visualData: 1917.5069585760602/319.5750650261991/230/156//
+        '[i52KKYf0UI5Yml3RSpVuE]:text "Text"':
+          data:
+            text: 'Added "{{item}}" to the cart. Total cost: {{total_cost}}$'
+          outgoingConnections:
+            - output->"If/Else" wLWX_fzUPr6Fkh3sAaeYs/true
+          visualData: 2334.6090698117787/246.5764465478328/330/157//
+        '[lCWg6BiQef06kwVXPpWcj]:extractObjectPath "Extract Object Path"':
+          data:
+            path: ""
+            usePathInput: true
+          outgoingConnections:
+            - match->"Evaluate" OmnTV0dWkVQjhV3OwbBtw/b
+          visualData: 640.8133655413482/471.5770128028906/280/138//
+        '[w1wyaRNCRCBxnw8811u2w]:compare "Compare"':
+          data:
+            comparisonFunction: <=
+          outgoingConnections:
+            - output->"If/Else" U4gMpqQUmTbHY65OXi1Ai/if
+            - output->"If/Else" wLWX_fzUPr6Fkh3sAaeYs/if
+          visualData: 1620.0126038230965/263.65823306424977/190/156//
+        '[wLWX_fzUPr6Fkh3sAaeYs]:ifElse "If/Else"':
+          data:
+            unconnectedControlFlowExcluded: true
+          outgoingConnections:
+            - output->"Graph Output" SHu5imx2OtKcjl-OT2mGc/value
+          visualData: 2801.891351631043/272.7253350121871/205/157//
+        '[x5liMIebd6J2yzpXOUH43]:comment "Comment"':
+          data:
+            backgroundColor: rgba(0,0,0,0.05)
+            color: rgba(255,255,255,1)
+            height: 607.0995152202944
+            text: "#### 3. Check if item still fits the budget and save current budget in
+              global variable"
+          visualData: 1536.2600159644805/135.05221338328653/750.8640811749035/162//
+    i3aMcWUCcaIEGy-eTHAVb:
+      metadata:
+        description: ""
+        id: i3aMcWUCcaIEGy-eTHAVb
+        name: Tutorials/#3. Grocery shopping (budget)/Main graph
+      nodes:
+        '[Gse1z_e_9O_SyrCSQTMPL]:object "Object"':
+          data:
+            jsonTemplate: |-
+              {
+                "pasta": 1.8,
+                "tomatoes": 2.3,
+                "flour": 1.0,
+                "chocolate": 2.5,
+                "bananas": 1.2,
+                "milk": 2.5,
+                "cheese": 3.0,
+                "bread": 2.0,
+                "eggs": 1.2,
+                "apples": 1.5
+              }
+          outgoingConnections:
+            - output->"Subgraph" v6wpyQKLqikT_QOLrWl8Z/price_list
+          visualData: 690.9202644080034/617.7674712554965/230/99//
+        '[LlccN8X844q967K93SUIe]:comment "Comment"':
+          data:
+            backgroundColor: rgba(0,0,0,0.05)
+            color: rgba(255,255,255,1)
+            height: 866.0357990550144
+            text: "#### Inputs"
+          visualData: 646.2790731573001/101.21095671523754/364.8436758268624/72//
+        '[_aEitGvtw5oJICBCG-S8C]:graphOutput "Graph Output"':
+          data:
+            dataType: string
+            id: output
+          visualData: 1498.3713910065371/418.4477683651122/375.28245577470443/97//
+        '[dOVs11kj534qWPMnshiQE]:number "Number"':
+          data:
+            round: false
+            roundTo: 0
+            value: 10
+          outgoingConnections:
+            - value->"Subgraph" v6wpyQKLqikT_QOLrWl8Z/budget
+          visualData: 690.727474402306/458.70406727048135/230/101//
+        '[lQatNS_-vKDc4PF0Bia_e]:object "Object"':
+          data:
+            jsonTemplate: |-
+              [
+                "apples",
+                "bread",
+                "milk",
+                "eggs",
+                "cheese"
+              ]
+          outgoingConnections:
+            - output->"Subgraph" v6wpyQKLqikT_QOLrWl8Z/item
+          visualData: 691.041678072782/193.63131636500927/230/102//
+        '[v6wpyQKLqikT_QOLrWl8Z]:subGraph "Subgraph"':
+          data:
+            graphId: P2lWE6Bs7o2MFJWfOwsp9
+            useAsGraphPartialOutput: false
+            useErrorOutput: false
+          isSplitRun: true
+          outgoingConnections:
+            - output->"Graph Output" _aEitGvtw5oJICBCG-S8C/value
+          visualData: 1088.585009448464/416.17276858413607/330/95/var(--node-color-6)/var(--grey-darkish)
+    qwkM3MarYB18YWBjDEiiQ:
+      metadata:
+        description: ""
+        id: qwkM3MarYB18YWBjDEiiQ
+        name: Tutorials/#2. Grocery shopping (no loop)/Main graph
+      nodes:
+        '[08ZRHGbET0c5HqLsGNHX-]:text "Text"':
+          data:
+            text: apples
+          outgoingConnections:
+            - output->"Array" yVb1P6ZpDCde65OAEJvyH/input1
+          visualData: 362.0765364383393/223.30082334674762/330/45//
+        '[K_HjQ0Ys_Zyt5pFUHb6r5]:graphOutput "Graph Output"':
+          data:
+            dataType: string
+            id: output
+          visualData: 1681.2317177153905/428.2067181288658/330/64/var(--node-color-4)/var(--grey-darkish)
+        '[KypfI9QFK_eGCHbStWIeN]:text "Text"':
+          data:
+            text: bread
+          outgoingConnections:
+            - output->"Array" yVb1P6ZpDCde65OAEJvyH/input2
+          visualData: 362.51568351034206/383.9097119792639/330/49//
+        '[VpJHaSra5-2Y_YFHAkaLm]:comment "Comment"':
+          data:
+            backgroundColor: rgba(0,0,0,0.05)
+            color: rgba(255,255,255,1)
+            height: 898.1492090207882
+            text: "#### Inputs"
+          visualData: 339/117/812.6412992286687/41//
+        '[ehvXjKOAIYtc62N-chuEw]:text "Text"':
+          data:
+            text: cheese
+          outgoingConnections:
+            - output->"Array" yVb1P6ZpDCde65OAEJvyH/input5
+          visualData: 358.1805760414721/841.2581254646582/330/46//
+        '[fSJ3iT47UNzzlBGKliBsk]:object "Object"':
+          data:
+            jsonTemplate: |-
+              [
+                "apples",
+                "bread",
+                "milk",
+                "eggs",
+                "cheese"
+              ]
+          visualData: 833.2247580026495/725.1527765348587/230/62//
+        '[gyixYUH7xLlhivIZgtuVM]:text "Text"':
+          data:
+            text: eggs
+          outgoingConnections:
+            - output->"Array" yVb1P6ZpDCde65OAEJvyH/input4
+          visualData: 360.273525265513/685.3430910787846/330/47//
+        '[hK_bXonDUrEDyxcOMC_5o]:subGraph "Subgraph"':
+          data:
+            graphId: zjI1X1MeHc0fPKEuBg3VD
+            useAsGraphPartialOutput: false
+            useErrorOutput: false
+          isSplitRun: true
+          outgoingConnections:
+            - output->"Graph Output" K_HjQ0Ys_Zyt5pFUHb6r5/value
+          splitRunMax: 10
+          visualData: 1237.6166402383608/427.9752219187663/330/63/var(--node-color-6)/var(--grey-darkish)
+        '[yVb1P6ZpDCde65OAEJvyH]:array "Array"':
+          data:
+            flatten: true
+            flattenDeep: false
+          outgoingConnections:
+            - output->"Subgraph" hK_bXonDUrEDyxcOMC_5o/item
+          visualData: 834.2492929263016/390.96554172172443/230/65//
+        '[zmg_jGxaB6MLDW98sdCsG]:text "Text"':
+          data:
+            text: milk
+          outgoingConnections:
+            - output->"Array" yVb1P6ZpDCde65OAEJvyH/input3
+          visualData: 362/535.0053224066098/330/48//
+    zjI1X1MeHc0fPKEuBg3VD:
+      metadata:
+        description: ""
+        id: zjI1X1MeHc0fPKEuBg3VD
+        name: Tutorials/#2. Grocery shopping (no loop)/Subgraph
+      nodes:
+        '[L38HRU4qSz39ZLHj6OqCX]:text "Text"':
+          data:
+            text: Added {{item}} to the cart.
+          outgoingConnections:
+            - output->"Graph Output" PnH9ZZJWMeAoyb5YSPIic/value
+          visualData: 842.6976685379051/464.47880105868273/330/55//
+        '[PnH9ZZJWMeAoyb5YSPIic]:graphOutput "Graph Output"':
+          data:
+            dataType: string
+            id: output
+          visualData: 1422.0735851919285/449.3740285574604/330/56/var(--node-color-4)/var(--grey-darkish)
+        '[a_64auLK-3A0xF25zSqcv]:graphInput "Graph Input"':
+          data:
+            dataType: string
+            id: item
+            useDefaultValueInput: false
+          outgoingConnections:
+            - data->"Text" L38HRU4qSz39ZLHj6OqCX/item
+          visualData: 316.3196446332541/448.60543839242064/330/48/var(--node-color-3)/var(--grey-darkish)
+        '[n_EIP4YTi6lEybmWdyq6G]:comment "Comment"':
+          data:
+            backgroundColor: rgba(0,0,0,0.05)
+            color: rgba(255,255,255,1)
+            height: 357.65849053423017
+            text: "#### Add items to the shopping cart"
+          visualData: 755.5274651841253/331.89082084805494/504.19567086430993/57//
+  metadata:
+    description: Several examples how to use the splitting function to create for-loops
+    id: m1YQwtBMXm_5rxD6P0PGg
+    title: How splitting works
+  plugins: []

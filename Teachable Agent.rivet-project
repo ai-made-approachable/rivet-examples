@@ -1,0 +1,1340 @@
+version: 4
+data:
+  attachedData:
+    trivet:
+      testSuites: []
+      version: 1
+  graphs:
+    -_004RQ16xMYLJPRxLCcS:
+      metadata:
+        description: ""
+        id: -_004RQ16xMYLJPRxLCcS
+        name: Subgraphs/storage/get_memos
+      nodes:
+        '[1lL9ptCYL6J_Hg9oR_Hnn]:getEmbedding "Get Embedding"':
+          data:
+            integration: openai
+            useIntegrationInput: false
+          outgoingConnections:
+            - embedding->"KNN Dataset" mTlPpNu3zFumWlsd9pqUy/embedding
+          visualData: 834.7408277585336/433.88495359686186/280/180//
+        '[OXlzUkG0gj_xGY6yT9HDi]:loadDataset "Load Dataset"':
+          data:
+            datasetId: ""
+            useDatasetIdInput: true
+          outgoingConnections:
+            - dataset->"Code" rWYNBXisv2S3R6YtvtrEa/output
+          visualData: 1275.8149437379827/388.19226449747555/280/200//
+        '[RIgneaBgRmMrnCdkVHZDa]:comment "Comment"':
+          data:
+            backgroundColor: rgba(0,0,0,0.05)
+            color: rgba(255,255,255,1)
+            height: 796.3879224063469
+            text: "#### Map outputs to inputs"
+          visualData: 1226.3270713242894/266.4303099667689/378.15421360070536/193//
+        '[StZeA54b6G5PmEqJGpS4j]:text "Text"':
+          data:
+            text: >-
+              Please create a summary
+
+              When I'm summarizing an abstract, I try to make the summary contain just three short bullet points:  the title, the innovation, and the key empirical results.
+
+
+              AutoGen: Enabling Next-Gen LLM Applications via Multi-Agent Conversation
+
+              Qingyun Wu, Gagan Bansal, Jieyu Zhang, Yiran Wu, Beibin Li, Erkang Zhu, Li Jiang, Xiaoyun Zhang, Shaokun Zhang, Jiale Liu, Ahmed Hassan Awadallah, Ryen W White, Doug Burger, Chi Wang
+
+              AutoGen is an open-source framework that allows developers to build LLM applications via multiple agents that can converse with each other to accomplish tasks. AutoGen agents are customizable, conversable, and can operate in various modes that employ combinations of LLMs, human inputs, and tools. Using AutoGen, developers can also flexibly define agent interaction behaviors. Both natural language and computer code can be used to program flexible conversation patterns for different applications. AutoGen serves as a generic infrastructure to build diverse applications of various complexities and LLM capacities. Empirical studies demonstrate the effectiveness of the framework in many example applications, with domains ranging from mathematics, coding, question answering, operations research, online decision-making, entertainment, etc.
+          visualData: -12.79952684388386/399.10591222753493/330/172//
+        '[Tstd7Cz0Vhv4EfDoB3cFZ]:subGraph "Subgraph"':
+          data:
+            graphId: 6_GsW4EXeLkphMKNqj613
+            useAsGraphPartialOutput: false
+            useErrorOutput: false
+          outgoingConnections:
+            - dataset_inputs->"KNN Dataset" mTlPpNu3zFumWlsd9pqUy/datasetId
+            - dataset_outputs->"Load Dataset" OXlzUkG0gj_xGY6yT9HDi/datasetId
+          visualData: 408.3755428234506/629.6780753797399/330/190/var(--node-color-6)/var(--grey-darkish)
+        '[Ve7YV6Oz2e-GiZ7MA4Wwm]:graphOutput "Graph Output"':
+          data:
+            dataType: object
+            id: datasets
+          visualData: 1677.2413766035945/474.4281959469414/330/202/var(--node-color-4)/var(--grey-darkish)
+        '[WlBmZ50PvaNVQz8BOJhn3]:text "Text"':
+          data:
+            text: Hey there! My name is Tim. Please remember that!
+          outgoingConnections:
+            - output->"Graph Input" j_Tam5fM63_bWXsK_9aZV/default
+          visualData: -12.837291538398809/657.309523750739/330/172//
+        '[j_Tam5fM63_bWXsK_9aZV]:graphInput "Graph Input"':
+          data:
+            dataType: string
+            id: user_query
+            useDefaultValueInput: true
+          outgoingConnections:
+            - data->"Get Embedding" 1lL9ptCYL6J_Hg9oR_Hnn/input
+          visualData: 413.9069122575419/417.41045568052095/330/3/var(--node-color-3)/var(--grey-darkish)
+        '[mTlPpNu3zFumWlsd9pqUy]:datasetNearestNeighbors "KNN Dataset"':
+          data:
+            datasetId: ""
+            k: 10
+            useDatasetIdInput: true
+          outgoingConnections:
+            - nearestNeighbors->"Code" rWYNBXisv2S3R6YtvtrEa/input
+          visualData: 833.4527151152251/616.7969489466558/280/194//
+        '[rVcbqlNdPwjGo0XhH7-yn]:comment "Comment"':
+          data:
+            backgroundColor: rgba(0,0,0,0.05)
+            color: rgba(255,255,255,1)
+            height: 618.2726494270242
+            text: "#### Match inputs (e.g. question or task) by vector search"
+          visualData: 783.2163220261973/269.0065352533857/427.5817780715663/191//
+        '[rWYNBXisv2S3R6YtvtrEa]:code "Code"':
+          data:
+            code: >
+              // Create a map of the input array for quick lookup
+
+              const inputMap = inputs.input.value.reduce((map, item) => {
+                  map[item.id] = item;
+                  return map;
+              }, {});
+
+
+              // Map over the output array and merge with corresponding input item
+
+              const merged = inputs.output.value.map(item => {
+                  const inputItem = inputMap[item.id];
+                  if (inputItem) {
+                      return {
+                          id: item.id,
+                          distance: inputItem.distance,
+                          input: inputItem.data[0],
+                          output: item.data[0]
+                      };
+                  }
+                  return null;
+              }).filter(item => item !== null); // Filter out any null items
+
+
+              return {
+                  output: {
+                      type: 'object[]',
+                      value: merged
+                  }
+              };
+            inputNames:
+              - input
+              - output
+            outputNames:
+              - output
+          outgoingConnections:
+            - output->"Graph Output" Ve7YV6Oz2e-GiZ7MA4Wwm/value
+          visualData: 1293.580818379832/614.7314307616316/230/201//
+    0lVj_Q7g0OseLI-Wbw14r:
+      metadata:
+        description: ""
+        id: 0lVj_Q7g0OseLI-Wbw14r
+        name: Subgraphs/text_analyzer/#1.1 copy_advice
+      nodes:
+        '[BO7OP15LyM2XiTpeViY3x]:chat "Chat"':
+          data:
+            cache: true
+            enableFunctionUse: false
+            frequencyPenalty: 0
+            headers: []
+            maxTokens: 1024
+            model: gpt-3.5-turbo
+            presencePenalty: 0
+            stop: ""
+            temperature: 0
+            top_p: 1
+            useAsGraphPartialOutput: true
+            useFrequencyPenaltyInput: false
+            useMaxTokensInput: false
+            useModelInput: false
+            usePresencePenaltyInput: false
+            useStop: false
+            useStopInput: false
+            useTemperatureInput: false
+            useTopP: false
+            useTopPInput: false
+            useUseTopPInput: false
+            useUserInput: false
+          outgoingConnections:
+            - response->"Graph Output" d2C3oUwiltu0_TZRVrziw/value
+          visualData: 1118.349006203378/491.3139203240464/230/106//
+        '[GKXlUbHeRuKe_AK01EhjE]:text "Task (Text)"':
+          data:
+            text: Briefly copy any advice from the TEXT that may be useful for a similar but
+              different task in the future. But if no advice is present, just
+              respond with 'none'.
+          outgoingConnections:
+            - output->"Text" GbbEny_YpcU4HUUFWuYSM/instructions
+          visualData: 609/275/600.4857099563387/106//
+        '[GbbEny_YpcU4HUUFWuYSM]:text "Text"':
+          data:
+            text: |-
+              # INSTRUCTIONS
+              {{instructions}}
+
+              # TEXT
+              {{text}}
+
+              # INSTRUCTIONS
+              {{instructions}}
+          outgoingConnections:
+            - output->"Chat" BO7OP15LyM2XiTpeViY3x/prompt
+          visualData: 661.0927918626575/471.85925816174574/330/106//
+        '[ShqLHpQz7azUfQYOzL95A]:graphInput "Graph Input"':
+          data:
+            dataType: string
+            id: system_prompt
+            useDefaultValueInput: false
+          outgoingConnections:
+            - data->"Chat" BO7OP15LyM2XiTpeViY3x/systemPrompt
+          visualData: 247/433/330/106/var(--node-color-3)/var(--grey-darkish)
+        '[ZeZW02KK4C3t_4LFaElds]:graphInput "Graph Input"':
+          data:
+            dataType: string
+            id: user_input
+            useDefaultValueInput: false
+          outgoingConnections:
+            - data->"Text" GbbEny_YpcU4HUUFWuYSM/text
+          visualData: 251/598/330/106/var(--node-color-3)/var(--grey-darkish)
+        '[d2C3oUwiltu0_TZRVrziw]:graphOutput "Graph Output"':
+          data:
+            dataType: string
+            id: output
+          visualData: 1486/524/330/106/var(--node-color-4)/var(--grey-darkish)
+    6_GsW4EXeLkphMKNqj613:
+      metadata:
+        description: ""
+        id: 6_GsW4EXeLkphMKNqj613
+        name: Subgraphs/storage/create_datasets
+      nodes:
+        '[3EC1y-ikv8-TY7ff3shbm]:text "Text"':
+          data:
+            text: teachable_agent_inputs
+          outgoingConnections:
+            - output->"Create Dataset" Uho_l5uHq7WVj9mgzOx_j/datasetId
+            - output->"Create Dataset" Uho_l5uHq7WVj9mgzOx_j/datasetName
+          visualData: 591.7709952404231/536.7983155827185/330/24//
+        '[75ArNIMi4q8zqYQo4hTSa]:graphOutput "Graph Output"':
+          data:
+            dataType: string
+            id: dataset_inputs
+          visualData: 1469.0112982250769/499.4194414018884/330/56/var(--node-color-3)/var(--grey-darkish)
+        '[JTLMb5CncJ2IaQmRR5ZnG]:createDataset "Create Dataset"':
+          outgoingConnections:
+            - datasetId_out->"Graph Output" kwuAt05ZPfmp3emJmF5pX/value
+          visualData: 1048.504005004797/707.0587432297854/280/49//
+        '[LPFPS4nOB6gLePM_7OprJ]:text "Text"':
+          data:
+            text: teachable_agent_outputs
+          outgoingConnections:
+            - output->"Create Dataset" JTLMb5CncJ2IaQmRR5ZnG/datasetId
+            - output->"Create Dataset" JTLMb5CncJ2IaQmRR5ZnG/datasetName
+          visualData: 591.4878113780734/708.7055289851188/330/48//
+        '[Uho_l5uHq7WVj9mgzOx_j]:createDataset "Create Dataset"':
+          outgoingConnections:
+            - datasetId_out->"Graph Output" 75ArNIMi4q8zqYQo4hTSa/value
+          visualData: 1051.0003423471787/532.3720086226533/280/24//
+        '[kwuAt05ZPfmp3emJmF5pX]:graphOutput "Graph Output"':
+          data:
+            dataType: string
+            id: dataset_outputs
+          visualData: 1466.6831946300395/673.8103018564755/330/55/var(--node-color-3)/var(--grey-darkish)
+        '[y8X98liStSXnZsKccqvi1]:comment "Comment"':
+          data:
+            backgroundColor: rgba(0,0,0,0.05)
+            color: rgba(255,255,255,1)
+            height: 541.8109028899012
+            text: >-
+              #### Creates two datasets
+
+              1. teachable_agent_inputs is used as a vector database (for searching)
+
+              2. teachable_agent_outputs stores the output and will be used like a relational database
+
+
+              Note: Replace internal storage of Rivet by Chroma or something else for more than protoyping
+          visualData: 563/352/819.7795212047317/25//
+    BDFMQO7XUR0iQgylPCe9e:
+      metadata:
+        description: ""
+        id: BDFMQO7XUR0iQgylPCe9e
+        name: Main Graph
+      nodes:
+        '[5sQip6QmekFCBfguUIwum]:comment "Comment"':
+          data:
+            backgroundColor: rgba(0,0,0,0.05)
+            color: rgba(255,255,255,1)
+            height: 862.1105217589775
+            text: "#### Inputs"
+          visualData: -481.62739386331265/31.652197054474854/412/69//
+        '[9lPBh1bcnbJWDkFtqynN5]:subGraph "Subgraph"':
+          data:
+            graphId: LB-VfWN6qjEupRldUqQKy
+            useAsGraphPartialOutput: false
+            useErrorOutput: false
+          outgoingConnections:
+            - memos->"Chat" FWnHtA91rxllFrDmPxoGs/systemPrompt
+          visualData: 765.6554939784504/210.3736666755358/330/100/var(--node-color-6)/var(--grey-darkish)
+        '[FWnHtA91rxllFrDmPxoGs]:chat "Chat"':
+          data:
+            cache: false
+            enableFunctionUse: false
+            frequencyPenalty: 0
+            headers: []
+            maxTokens: 1024
+            model: gpt-4-1106-preview
+            presencePenalty: 0
+            stop: ""
+            temperature: 0.5
+            top_p: 1
+            useAsGraphPartialOutput: true
+            useFrequencyPenaltyInput: false
+            useMaxTokensInput: false
+            useModelInput: false
+            usePresencePenaltyInput: false
+            useStop: false
+            useStopInput: false
+            useTemperatureInput: false
+            useTopP: false
+            useTopPInput: false
+            useUseTopPInput: false
+            useUserInput: false
+          outgoingConnections:
+            - all-messages->"Loop Controller" TVwEvIs4MgEu30Cs1uTnB/input2
+            - response->"Loop Controller" TVwEvIs4MgEu30Cs1uTnB/input1
+          visualData: 830.5124782154793/401.26397148967936/230/78//
+        '[LgIqkH-ZMsIPmnNOlZrZ7]:text "Default Message (Text)"':
+          data:
+            text: Enter your message...
+          outgoingConnections:
+            - output->"Loop Controller" TVwEvIs4MgEu30Cs1uTnB/input1Default
+          visualData: -444.11403985878417/416.67939380906364/330/96//
+        '[NuLUWIzS3GK2-juFL50fi]:abortGraph "Abort Graph"':
+          data:
+            errorMessage: ""
+            successfully: true
+          visualData: 414.3700894240048/-116.21115109191797/230/102/var(--node-color-5)/var(--grey-darkish)
+        '[TVwEvIs4MgEu30Cs1uTnB]:loopController "Loop Controller"':
+          data:
+            maxIterations: 100
+          outgoingConnections:
+            - break->"Abort Graph" NuLUWIzS3GK2-juFL50fi/data
+            - output1->"User Input" ZKQba6NXdVnd5gcVsl4wN/questions
+            - output2->"Assemble Prompt" qpyygslCPgBLiZ6I9Q6dU/message1
+          visualData: -3.237030787405697/190.21390090200816/280/10/var(--node-color-2)/var(--grey-darkish)
+        '[ZKQba6NXdVnd5gcVsl4wN]:userInput "User Input"':
+          data:
+            prompt: This is an example question?
+            useInput: true
+          outgoingConnections:
+            - output->"Prompt" lSSyF_m8AodtYxmieQqci/input
+            - output->"Subgraph" 9lPBh1bcnbJWDkFtqynN5/user_query
+            - output->"Subgraph" chwpm83mVVlYwvHE77O7d/user_input
+          visualData: 409.82409067956957/206.49765682538217/280/92//
+        '[c0z21glEZWFsgYRoP5_4m]:boolean "Teachable (Bool)"':
+          data:
+            text: ""
+            value: true
+          outgoingConnections:
+            - value->"Subgraph" chwpm83mVVlYwvHE77O7d/teachable
+          visualData: -442.42968958904595/201.72422900059462/317.9972956218734/97/var(--node-color-1)/var(--node-color-1)
+        '[c3DykmfwnANnBzWpvuuni]:comment "Comment"':
+          data:
+            backgroundColor: rgba(0,0,0,0.05)
+            color: rgba(255,255,255,1)
+            height: 236.71056189971222
+            text: >-
+              #### Instructions
+
+              This project heavily borrows ideas from the "teachable" agent skill in Autogen: https://github.com/microsoft/autogen/
+
+
+              1. Set "Teachable" input to true
+
+              2. Explain the AI how you want to solve a certain task
+
+              3. Set "Teachable" input to false and ask it to perform the task without offering the how-to
+          visualData: -480.977817634294/-214.97979509111593/591.187875670356/87//
+        '[chwpm83mVVlYwvHE77O7d]:subGraph "Subgraph"':
+          data:
+            graphId: dWNVKVsn3WlKBHf6CwnS4
+            useAsGraphPartialOutput: false
+            useErrorOutput: false
+          visualData: -10.03003410796903/709.2493417292532/330/77/var(--node-color-6)/var(--grey-darkish)
+        '[lSSyF_m8AodtYxmieQqci]:prompt "Prompt"':
+          data:
+            enableFunctionCall: false
+            promptText: "{{input}}"
+            type: user
+            useTypeInput: false
+          outgoingConnections:
+            - output->"Assemble Prompt" qpyygslCPgBLiZ6I9Q6dU/message2
+          visualData: 410.5887596587254/436.7342007102506/280/65//
+        '[qpyygslCPgBLiZ6I9Q6dU]:assemblePrompt "Assemble Prompt"':
+          outgoingConnections:
+            - prompt->"Chat" FWnHtA91rxllFrDmPxoGs/prompt
+          visualData: 411.0204251756351/655.2019456157259/280/91//
+        '[u-SeKcjGsKkz5Cva2zAxS]:comment "Comment"':
+          data:
+            backgroundColor: rgba(0,0,0,0.05)
+            color: rgba(255,255,255,1)
+            height: 864.8712508544409
+            text: |-
+              #### Chat Loop
+              - Input (Data 1): last_response
+              - Input (Data 2): chat_history
+          visualData: -65.8350046249283/32.043307139007894/1218/98//
+    Cs4fA6m7OIo78iTxRrhDv:
+      metadata:
+        description: ""
+        id: Cs4fA6m7OIo78iTxRrhDv
+        name: Subgraphs/text_analyzer/#1.1.2 generalize_task
+      nodes:
+        '[6xEwjpIdJho6j7F0rZthL]:graphInput "Graph Input"':
+          data:
+            dataType: string
+            id: system_prompt
+            useDefaultValueInput: false
+          outgoingConnections:
+            - data->"Chat" s52s24yNQW0f6-sMSVbhn/systemPrompt
+          visualData: 247/433/330/106/var(--node-color-3)/var(--grey-darkish)
+        '[9NqweDaWs39er7ka9Wxke]:graphOutput "Graph Output"':
+          data:
+            dataType: string
+            id: output
+          visualData: 1486/524/330/106/var(--node-color-4)/var(--grey-darkish)
+        '[_3YsuJqo1vNyUuWejpiZu]:text "Task (Text)"':
+          data:
+            text: Summarize very briefly, in general terms, the type of task described in
+              the TEXT. Leave out details that might not appear in a similar
+              problem.
+          outgoingConnections:
+            - output->"Text" kb-HZl3LywGfUB14VItEx/instructions
+          visualData: 609/275/600.4857099563387/107//
+        '[kb-HZl3LywGfUB14VItEx]:text "Text"':
+          data:
+            text: |-
+              # INSTRUCTIONS
+              {{instructions}}
+
+              # TEXT
+              {{text}}
+
+              # INSTRUCTIONS
+              {{instructions}}
+          outgoingConnections:
+            - output->"Chat" s52s24yNQW0f6-sMSVbhn/prompt
+          visualData: 661.0927918626575/471.85925816174574/330/106//
+        '[s52s24yNQW0f6-sMSVbhn]:chat "Chat"':
+          data:
+            cache: true
+            enableFunctionUse: false
+            frequencyPenalty: 0
+            headers: []
+            maxTokens: 1024
+            model: gpt-3.5-turbo
+            presencePenalty: 0
+            stop: ""
+            temperature: 0
+            top_p: 1
+            useAsGraphPartialOutput: true
+            useFrequencyPenaltyInput: false
+            useMaxTokensInput: false
+            useModelInput: false
+            usePresencePenaltyInput: false
+            useStop: false
+            useStopInput: false
+            useTemperatureInput: false
+            useTopP: false
+            useTopPInput: false
+            useUseTopPInput: false
+            useUserInput: false
+          outgoingConnections:
+            - response->"Graph Output" 9NqweDaWs39er7ka9Wxke/value
+          visualData: 1118.349006203378/491.3139203240464/230/106//
+        '[wmIw2dY9pIQVUPKt2Y8D5]:graphInput "Graph Input"':
+          data:
+            dataType: string
+            id: user_input
+            useDefaultValueInput: false
+          outgoingConnections:
+            - data->"Text" kb-HZl3LywGfUB14VItEx/text
+          visualData: 251/598/330/106/var(--node-color-3)/var(--grey-darkish)
+    HM41P79DuJHUIicTZ8PXx:
+      metadata:
+        description: ""
+        id: HM41P79DuJHUIicTZ8PXx
+        name: Subgraphs/storage/store_memo
+      nodes:
+        '[4yAzTZ6aDZA1jgecZdY52]:extractObjectPath "Extract Object Path"':
+          data:
+            path: $.id
+            usePathInput: false
+          outgoingConnections:
+            - match->"Append to Dataset" C9zaUa77QQNqBVBOu60I2/id
+          visualData: 1722.029539578501/393.2685863273281/280/46//
+        '[5PmBUSoDQWXqBsg12o3rO]:subGraph "Subgraph"':
+          data:
+            graphId: 6_GsW4EXeLkphMKNqj613
+            useAsGraphPartialOutput: false
+            useErrorOutput: false
+          outgoingConnections:
+            - dataset_inputs->"Append to Dataset" TZRN2HbNh_84r7ZYbLglp/datasetId
+            - dataset_outputs->"Append to Dataset"
+              C9zaUa77QQNqBVBOu60I2/datasetId
+          visualData: 530.2500169183568/156.67061527700386/330/50/var(--node-color-6)/var(--grey-darkish)
+        '[C9zaUa77QQNqBVBOu60I2]:appendToDataset "Append to Dataset"':
+          data:
+            datasetId: ""
+            useDatasetIdInput: true
+          visualData: 1357.3303392216276/614.6771517477664/280/46//
+        '[TZRN2HbNh_84r7ZYbLglp]:appendToDataset "Append to Dataset"':
+          data:
+            datasetId: ""
+            useDatasetIdInput: true
+          outgoingConnections:
+            - dataset->"Extract Object Path" 4yAzTZ6aDZA1jgecZdY52/object
+          visualData: 1359.6308152411505/350.35281340892357/280/46//
+        '[XJUbyIV68dmqqxzd5hNKg]:graphInput "Graph Input"':
+          data:
+            dataType: string
+            id: question_or_general_task
+            useDefaultValueInput: false
+          outgoingConnections:
+            - data->"Append to Dataset" TZRN2HbNh_84r7ZYbLglp/data
+            - data->"Get Embedding" fqsu4DEONf1po5Henglhz/input
+          visualData: 532.1431230977155/363.8662826417466/330/46/var(--node-color-3)/var(--grey-darkish)
+        '[fqsu4DEONf1po5Henglhz]:getEmbedding "Get Embedding"':
+          data:
+            integration: openai
+            useIntegrationInput: false
+          outgoingConnections:
+            - embedding->"Append to Dataset" TZRN2HbNh_84r7ZYbLglp/embedding
+          visualData: 986.7144538556646/379.5890376201533/280/46//
+        '[sw-fBI1YT_v8e0CgH-1Ph]:graphInput "Graph Input"':
+          data:
+            dataType: string
+            id: advice_answer
+            useDefaultValueInput: false
+          outgoingConnections:
+            - data->"Append to Dataset" C9zaUa77QQNqBVBOu60I2/data
+          visualData: 528.8233928776667/609.235928982414/330/46/var(--node-color-3)/var(--grey-darkish)
+    HylV_l0kOds-0wAG66bzs:
+      metadata:
+        description: ""
+        id: HylV_l0kOds-0wAG66bzs
+        name: Subgraphs/text_analyzer/#2. check_if_information
+      nodes:
+        '[2u1M0dAbBmszI10E4gsdc]:chat "Chat"':
+          data:
+            cache: true
+            enableFunctionUse: false
+            frequencyPenalty: 0
+            headers: []
+            maxTokens: 1024
+            model: gpt-3.5-turbo
+            presencePenalty: 0
+            stop: ""
+            temperature: 0
+            top_p: 1
+            useAsGraphPartialOutput: true
+            useFrequencyPenaltyInput: false
+            useMaxTokensInput: false
+            useModelInput: false
+            usePresencePenaltyInput: false
+            useStop: false
+            useStopInput: false
+            useTemperatureInput: false
+            useTopP: false
+            useTopPInput: false
+            useUseTopPInput: false
+            useUserInput: false
+          outgoingConnections:
+            - response->"Graph Output" YGiJn7hmPpqK2_SRReeLD/value
+          visualData: 1014.3490062033779/458.3139203240464/230/105//
+        '[FdxHi6CUGyumeTJp9C6Ag]:text "Task (Text)"':
+          data:
+            text: Does the TEXT contain information that could be committed to memory?
+              Answer with just one word, yes or no.
+          outgoingConnections:
+            - output->"Text" PZ3toIMJClhRAdeEWm-6S/instructions
+          visualData: 505/242/600.4857099563387/104//
+        '[Oie2mUp-FiWXSTN6sMelq]:graphInput "Graph Input"':
+          data:
+            dataType: string
+            id: user_input
+            useDefaultValueInput: false
+          outgoingConnections:
+            - data->"Text" PZ3toIMJClhRAdeEWm-6S/text
+          visualData: 147/565/330/103/var(--node-color-3)/var(--grey-darkish)
+        '[PZ3toIMJClhRAdeEWm-6S]:text "Text"':
+          data:
+            text: |-
+              # INSTRUCTIONS
+              {{instructions}}
+
+              # TEXT
+              {{text}}
+
+              # INSTRUCTIONS
+              {{instructions}}
+          outgoingConnections:
+            - output->"Chat" 2u1M0dAbBmszI10E4gsdc/prompt
+          visualData: 557.0927918626575/438.85925816174574/330/91//
+        '[YGiJn7hmPpqK2_SRReeLD]:graphOutput "Graph Output"':
+          data:
+            dataType: string
+            id: output
+          visualData: 1382/491/330/102/var(--node-color-4)/var(--grey-darkish)
+        '[fc8IxZW78TFF8zQ-7XUpH]:graphInput "Graph Input"':
+          data:
+            dataType: string
+            id: system_prompt
+            useDefaultValueInput: false
+          outgoingConnections:
+            - data->"Chat" 2u1M0dAbBmszI10E4gsdc/systemPrompt
+          visualData: 143/400/330/103/var(--node-color-3)/var(--grey-darkish)
+    LB-VfWN6qjEupRldUqQKy:
+      metadata:
+        description: ""
+        id: LB-VfWN6qjEupRldUqQKy
+        name: Subgraphs/consider_memo_retrieval
+      nodes:
+        '[-qE4K5nXrR6Em70ZeZ1_T]:comment "Comment"':
+          data:
+            backgroundColor: rgba(0,0,0,0.05)
+            color: rgba(255,255,255,1)
+            height: 603.2495566247363
+            text: "#### Check if task/advice is included in user_query + retrieval for task"
+          visualData: 152.41139414788233/174.0615869935266/1231.5842413000898/189//
+        '[0VSnADr3pp82Q2LfZmuZ6]:code "Code"':
+          data:
+            code: |
+              let uniqueArray = [];
+              let ids = new Set();
+
+              inputs.input.value.forEach(item => {
+                  if (!ids.has(item.id)) {
+                      ids.add(item.id);
+                      uniqueArray.push(item);
+                  }
+              });
+
+              return {
+                  output: {
+                      type: 'object[]',
+                      value: uniqueArray
+                  }
+              };
+            inputNames:
+              - input
+            outputNames:
+              - output
+          outgoingConnections:
+            - output->"Destructure" DltR_oPFFFr_qrg7EqYet/object
+          visualData: 1073.874555037338/880.5730259915356/230/219//
+        '[0Xrvpc2CzWbX-JIuHI0y9]:array "Array"':
+          data:
+            flatten: true
+            flattenDeep: false
+          outgoingConnections:
+            - output->"Code" 0VSnADr3pp82Q2LfZmuZ6/input
+          visualData: 733.391036477273/1061.8571170867936/230/251//
+        '[0tvjeB9vDnEssebGPJx1H]:comment "Comment"':
+          data:
+            backgroundColor: rgba(0,0,0,0.05)
+            color: rgba(255,255,255,1)
+            height: 1128.9982264989453
+            text: >-
+              #### Format/restructure the output
+
+              Note: Rivet states KNN seaerch datasets have "distance" attribute, but it is a bug and in reality it returns "similarity"
+          visualData: 1391.261937720376/175.17764964725916/459.24955662473644/250//
+        '[1tuvQd_1Tht9UHe9RyPq9]:comment "Comment"':
+          data:
+            backgroundColor: rgba(0,0,0,0.05)
+            color: rgba(255,255,255,1)
+            height: 516.7078793499554
+            text: "#### Merge results and deduplicate"
+          visualData: 681.5137748701178/789.3553923857805/699.2495566247364/216//
+        '[4EiOwE7XZoX9nrW56CCH3]:text "System prompt (Text)"':
+          data:
+            text: >-
+              You are an expert in text analysis.
+
+              The user will give you TEXT to analyze.
+
+              The user will give you analysis INSTRUCTIONS copied twice, at both the beginning and the end.
+
+              You will follow these INSTRUCTIONS in analyzing the TEXT, then give the results of your expert analysis in the format requested."""
+          outgoingConnections:
+            - output->"Subgraph" Q8SP-hiq_x1fHvr1MnCuN/system_prompt
+            - output->"Subgraph" aTr_8---clseXWGXG0ATN/system_prompt
+            - output->"Subgraph" zR1wdrvGDi6WGEDLtI8Lc/system_prompt
+          visualData: -283.32830905270663/585.7577979871094/330/256//
+        '[Bq25mYZcasGguO-34i6-s]:subGraph "Subgraph"':
+          data:
+            graphId: -_004RQ16xMYLJPRxLCcS
+            useAsGraphPartialOutput: false
+            useErrorOutput: false
+          outgoingConnections:
+            - datasets->"If/Else" VYX6ldGI5u9QCbQO_TwPb/if
+            - datasets->"If/Else" VYX6ldGI5u9QCbQO_TwPb/true
+          visualData: 987.6551479305284/585.6776625537522/330/213/var(--node-color-6)/var(--grey-darkish)
+        '[DltR_oPFFFr_qrg7EqYet]:destructure "Destructure"':
+          data:
+            paths:
+              - $.input
+              - $.output
+              - $.distance
+          isSplitRun: true
+          outgoingConnections:
+            - match_0->"Text" xH6bD5nDzGs5d9BzryAPU/input
+            - match_1->"Text" xH6bD5nDzGs5d9BzryAPU/output
+            - match_2->"Text" xH6bD5nDzGs5d9BzryAPU/similarity
+          visualData: 1447.4919858335122/339.5150074806875/280/242//
+        '[EtH3ha6Z0xQzwHKwMS-Dc]:text "Text"':
+          data:
+            text: >-
+              Please create a summary
+
+              When I'm summarizing an abstract, I try to make the summary contain just three short bullet points:  the title, the innovation, and the key empirical results.
+
+
+              AutoGen: Enabling Next-Gen LLM Applications via Multi-Agent Conversation
+
+              Qingyun Wu, Gagan Bansal, Jieyu Zhang, Yiran Wu, Beibin Li, Erkang Zhu, Li Jiang, Xiaoyun Zhang, Shaokun Zhang, Jiale Liu, Ahmed Hassan Awadallah, Ryen W White, Doug Burger, Chi Wang
+
+              AutoGen is an open-source framework that allows developers to build LLM applications via multiple agents that can converse with each other to accomplish tasks. AutoGen agents are customizable, conversable, and can operate in various modes that employ combinations of LLMs, human inputs, and tools. Using AutoGen, developers can also flexibly define agent interaction behaviors. Both natural language and computer code can be used to program flexible conversation patterns for different applications. AutoGen serves as a generic infrastructure to build diverse applications of various complexities and LLM capacities. Empirical studies demonstrate the effectiveness of the framework in many example applications, with domains ranging from mathematics, coding, question answering, operations research, online decision-making, entertainment, etc.
+          visualData: -713.5859201231061/292.6116603027084/330/173//
+        '[FDtdW7-eZXEwNTYvXY_Om]:text "Text"':
+          data:
+            text: >-
+              You are a helpful assistant. You can learn new things from the
+              user (how to do certain tasks) as well as about the user. Always
+              check "# Memories that might help" before you answer any question
+              or try to solve a task.
+
+
+              # Memories that might help
+
+              {{memories}}
+          outgoingConnections:
+            - output->"Graph Output" slu6qqC1jmmwR-VdJHdCY/value
+          visualData: 1439.0288540810573/1016.5756115039495/330/246//
+        '[Q8SP-hiq_x1fHvr1MnCuN]:subGraph "Subgraph"':
+          data:
+            graphId: Cs4fA6m7OIo78iTxRrhDv
+            useAsGraphPartialOutput: false
+            useErrorOutput: false
+          outgoingConnections:
+            - output->"Subgraph" Bq25mYZcasGguO-34i6-s/user_query
+          visualData: 989.6496370111548/323.33513963285435/330/206//
+        '[QTBkWQxFJjOkJA1BALl6T]:comment "Comment"':
+          data:
+            backgroundColor: rgba(0,0,0,0.05)
+            color: rgba(255,255,255,1)
+            height: 518.4583227252187
+            text: "#### General retrieval for user query"
+          visualData: 159.19910573031552/786.8562791363078/516/207//
+        '[VYX6ldGI5u9QCbQO_TwPb]:ifElse "If/Else"':
+          data:
+            unconnectedControlFlowExcluded: true
+          outgoingConnections:
+            - output->"Array" 0Xrvpc2CzWbX-JIuHI0y9/input2
+          visualData: 744.6360680748431/888.6668615109663/205/252//
+        '[ZNnCq0zP8nvlC6vFq11XO]:object "Object"':
+          data:
+            jsonTemplate: "[]"
+          outgoingConnections:
+            - output->"If/Else" VYX6ldGI5u9QCbQO_TwPb/false
+          visualData: 302.8263375124852/921.6846705565517/230/255//
+        '[aTr_8---clseXWGXG0ATN]:subGraph "Subgraph"':
+          data:
+            graphId: SkELOxEIPxw-kU26Ru_6z
+            useAsGraphPartialOutput: false
+            useErrorOutput: false
+          outgoingConnections:
+            - output->"Subgraph" Q8SP-hiq_x1fHvr1MnCuN/user_input
+          visualData: 577.894385656074/565.7122880218062/330/202/var(--node-color-6)/var(--grey-darkish)
+        '[aoWJIlEEin_hx0jbqdCZs]:text "Text"':
+          data:
+            text: Hey there! My name is Tim. Please remember that!
+          outgoingConnections:
+            - output->"Graph Input" bSl7v_5W9z2lxJnufvSTO/default
+          visualData: -713.6236848176211/550.8152718259125/330/173//
+        '[bSl7v_5W9z2lxJnufvSTO]:graphInput "Graph Input"':
+          data:
+            dataType: string
+            id: user_query
+            useDefaultValueInput: true
+          outgoingConnections:
+            - data->"Match" u3gsvJZN34jWqGAe-FNBx/value
+            - data->"Subgraph" ccJcdivy_Eqg9O9LydxZX/user_query
+            - data->"Subgraph" zR1wdrvGDi6WGEDLtI8Lc/user_input
+          visualData: -283.59350305458435/355.3516260310542/330/177/var(--node-color-3)/var(--grey-darkish)
+        '[ccJcdivy_Eqg9O9LydxZX]:subGraph "Subgraph"':
+          data:
+            graphId: -_004RQ16xMYLJPRxLCcS
+            useAsGraphPartialOutput: false
+            useErrorOutput: false
+          outgoingConnections:
+            - datasets->"Array" 0Xrvpc2CzWbX-JIuHI0y9/input1
+          visualData: 244.21027957358024/1089.4300095533767/330/253/var(--node-color-6)/var(--grey-darkish)
+        '[slu6qqC1jmmwR-VdJHdCY]:graphOutput "Graph Output"':
+          data:
+            dataType: string
+            id: memos
+          visualData: 1916.0406363385493/651.2781354360918/330/248/var(--node-color-4)/var(--grey-darkish)
+        '[u3gsvJZN34jWqGAe-FNBx]:match "Match"':
+          data:
+            cases:
+              - (yes|Yes|YES)
+          outgoingConnections:
+            - case1->"Subgraph" aTr_8---clseXWGXG0ATN/user_input
+          visualData: 607.0344661973883/331.7673060451357/280/201//
+        '[xH6bD5nDzGs5d9BzryAPU]:text "Text"':
+          data:
+            text: |-
+              ## Input
+              {{input}}
+
+              ## Output
+              {{output}}
+
+              ## Similarity
+              {{similarity}}
+              ---
+          isSplitRun: true
+          outgoingConnections:
+            - output->"Text" FDtdW7-eZXEwNTYvXY_Om/memories
+          visualData: 1437.4884952845018/599.5330403933956/330/249//
+        '[zR1wdrvGDi6WGEDLtI8Lc]:subGraph "Subgraph"':
+          data:
+            graphId: bJG7IgPHwbetXk4Ojgxfc
+            useAsGraphPartialOutput: false
+            useErrorOutput: false
+          outgoingConnections:
+            - output->"Match" u3gsvJZN34jWqGAe-FNBx/input
+          visualData: 189.57040514668984/333.1312215022651/330/184/var(--node-color-6)/var(--grey-darkish)
+    R6OHlTA_-RagD-7Ph0EYE:
+      metadata:
+        description: ""
+        id: R6OHlTA_-RagD-7Ph0EYE
+        name: Subgraphs/text_analyzer/#2.2 extract_information
+      nodes:
+        '[92hsKdAWkZtVgrLLHNC2a]:graphInput "Graph Input"':
+          data:
+            dataType: string
+            id: user_input
+            useDefaultValueInput: false
+          outgoingConnections:
+            - data->"Text" JAaZtRHquZ7iOypaZKwHl/text
+          visualData: 147/565/330/103/var(--node-color-3)/var(--grey-darkish)
+        '[BG-g-xFuCuj88ERSlalRX]:text "Task (Text)"':
+          data:
+            text: Copy the information from the TEXT that should be committed to memory. Add
+              no explanation.
+          outgoingConnections:
+            - output->"Text" JAaZtRHquZ7iOypaZKwHl/instructions
+          visualData: 505/242/600.4857099563387/104//
+        '[JAaZtRHquZ7iOypaZKwHl]:text "Text"':
+          data:
+            text: |-
+              # INSTRUCTIONS
+              {{instructions}}
+
+              # TEXT
+              {{text}}
+
+              # INSTRUCTIONS
+              {{instructions}}
+          outgoingConnections:
+            - output->"Chat" ikrPOW8BQVWSbG6C8e3Kt/prompt
+          visualData: 557.0927918626575/438.85925816174574/330/91//
+        '[ikrPOW8BQVWSbG6C8e3Kt]:chat "Chat"':
+          data:
+            cache: true
+            enableFunctionUse: false
+            frequencyPenalty: 0
+            headers: []
+            maxTokens: 1024
+            model: gpt-3.5-turbo
+            presencePenalty: 0
+            stop: ""
+            temperature: 0
+            top_p: 1
+            useAsGraphPartialOutput: true
+            useFrequencyPenaltyInput: false
+            useMaxTokensInput: false
+            useModelInput: false
+            usePresencePenaltyInput: false
+            useStop: false
+            useStopInput: false
+            useTemperatureInput: false
+            useTopP: false
+            useTopPInput: false
+            useUseTopPInput: false
+            useUserInput: false
+          outgoingConnections:
+            - response->"Graph Output" qiQ3pxXUEJC_cRbykgBox/value
+          visualData: 1014.3490062033779/458.3139203240464/230/105//
+        '[nsl_4WIAZGxHYMCwy1Pv_]:graphInput "Graph Input"':
+          data:
+            dataType: string
+            id: system_prompt
+            useDefaultValueInput: false
+          outgoingConnections:
+            - data->"Chat" ikrPOW8BQVWSbG6C8e3Kt/systemPrompt
+          visualData: 143/400/330/103/var(--node-color-3)/var(--grey-darkish)
+        '[qiQ3pxXUEJC_cRbykgBox]:graphOutput "Graph Output"':
+          data:
+            dataType: string
+            id: output
+          visualData: 1382/491/330/102/var(--node-color-4)/var(--grey-darkish)
+    SkELOxEIPxw-kU26Ru_6z:
+      metadata:
+        description: ""
+        id: SkELOxEIPxw-kU26Ru_6z
+        name: Subgraphs/text_analyzer/#1.1.1 copy_task
+      nodes:
+        '[27Dt68Znt5SdgHdngO1Kw]:graphOutput "Graph Output"':
+          data:
+            dataType: string
+            id: output
+          visualData: 1486/524/330/106/var(--node-color-4)/var(--grey-darkish)
+        '[7CgEeVtWOr3LYwITcVOYN]:text "Text"':
+          data:
+            text: |-
+              # INSTRUCTIONS
+              {{instructions}}
+
+              # TEXT
+              {{text}}
+
+              # INSTRUCTIONS
+              {{instructions}}
+          outgoingConnections:
+            - output->"Chat" UEOC9V3sbVvOhqqPeY8h6/prompt
+          visualData: 661.0927918626575/471.85925816174574/330/106//
+        '[9XjGExDOPcI4Id6q3X399]:text "Task (Text)"':
+          data:
+            text: Briefly copy just the task from the TEXT, then stop. Don't solve it, and
+              don't include any advice.
+          outgoingConnections:
+            - output->"Text" 7CgEeVtWOr3LYwITcVOYN/instructions
+          visualData: 609/275/600.4857099563387/107//
+        '[UEOC9V3sbVvOhqqPeY8h6]:chat "Chat"':
+          data:
+            cache: true
+            enableFunctionUse: false
+            frequencyPenalty: 0
+            headers: []
+            maxTokens: 1024
+            model: gpt-3.5-turbo
+            presencePenalty: 0
+            stop: ""
+            temperature: 0
+            top_p: 1
+            useAsGraphPartialOutput: true
+            useFrequencyPenaltyInput: false
+            useMaxTokensInput: false
+            useModelInput: false
+            usePresencePenaltyInput: false
+            useStop: false
+            useStopInput: false
+            useTemperatureInput: false
+            useTopP: false
+            useTopPInput: false
+            useUseTopPInput: false
+            useUserInput: false
+          outgoingConnections:
+            - response->"Graph Output" 27Dt68Znt5SdgHdngO1Kw/value
+          visualData: 1118.349006203378/491.3139203240464/230/106//
+        '[ghX9MDKkBD-s2CoNnQiBP]:graphInput "Graph Input"':
+          data:
+            dataType: string
+            id: system_prompt
+            useDefaultValueInput: false
+          outgoingConnections:
+            - data->"Chat" UEOC9V3sbVvOhqqPeY8h6/systemPrompt
+          visualData: 247/433/330/106/var(--node-color-3)/var(--grey-darkish)
+        '[ymNdimMn0ViOb4G3dr2M-]:graphInput "Graph Input"':
+          data:
+            dataType: string
+            id: user_input
+            useDefaultValueInput: false
+          outgoingConnections:
+            - data->"Text" 7CgEeVtWOr3LYwITcVOYN/text
+          visualData: 251/598/330/106/var(--node-color-3)/var(--grey-darkish)
+    bJG7IgPHwbetXk4Ojgxfc:
+      metadata:
+        description: ""
+        id: bJG7IgPHwbetXk4Ojgxfc
+        name: Subgraphs/text_analyzer/#1 check_if_task_or_problem
+      nodes:
+        '[87BnqjbHjC0KMb_Hi0MpR]:chat "Chat"':
+          data:
+            cache: true
+            enableFunctionUse: false
+            frequencyPenalty: 0
+            headers: []
+            maxTokens: 1024
+            model: gpt-3.5-turbo
+            presencePenalty: 0
+            stop: ""
+            temperature: 0
+            top_p: 1
+            useAsGraphPartialOutput: true
+            useFrequencyPenaltyInput: false
+            useMaxTokensInput: false
+            useModelInput: false
+            usePresencePenaltyInput: false
+            useStop: false
+            useStopInput: false
+            useTemperatureInput: false
+            useTopP: false
+            useTopPInput: false
+            useUseTopPInput: false
+            useUserInput: false
+          outgoingConnections:
+            - response->"Graph Output" hz4GY_uycfTBdGVjaQKhg/value
+          visualData: 1014.3490062033779/458.3139203240464/230/105//
+        '[_i6PnIstBnEIlYQGmjrlG]:text "Text"':
+          data:
+            text: |-
+              # INSTRUCTIONS
+              {{instructions}}
+
+              # TEXT
+              {{text}}
+
+              # INSTRUCTIONS
+              {{instructions}}
+          outgoingConnections:
+            - output->"Chat" 87BnqjbHjC0KMb_Hi0MpR/prompt
+          visualData: 557.0927918626575/438.85925816174574/330/91//
+        '[hz4GY_uycfTBdGVjaQKhg]:graphOutput "Graph Output"':
+          data:
+            dataType: string
+            id: output
+          visualData: 1382/491/330/102/var(--node-color-4)/var(--grey-darkish)
+        '[jVY0owcCMMn-8L9RRhQUB]:text "Task (Text)"':
+          data:
+            text: >-
+              Does any part of the TEXT ask the agent to perform a task or solve
+              a problem?
+
+              Answer with just one word, yes or no.
+          outgoingConnections:
+            - output->"Text" _i6PnIstBnEIlYQGmjrlG/instructions
+          visualData: 505/242/600.4857099563387/104//
+        '[nfaY2pRZmOX9tf-bTsH-Z]:graphInput "Graph Input"':
+          data:
+            dataType: string
+            id: system_prompt
+            useDefaultValueInput: false
+          outgoingConnections:
+            - data->"Chat" 87BnqjbHjC0KMb_Hi0MpR/systemPrompt
+          visualData: 143/400/330/103/var(--node-color-3)/var(--grey-darkish)
+        '[z9tkRIIc3VGNimcIWgFlL]:graphInput "Graph Input"':
+          data:
+            dataType: string
+            id: user_input
+            useDefaultValueInput: false
+          outgoingConnections:
+            - data->"Text" _i6PnIstBnEIlYQGmjrlG/text
+          visualData: 147/565/330/103/var(--node-color-3)/var(--grey-darkish)
+    dWNVKVsn3WlKBHf6CwnS4:
+      metadata:
+        description: ""
+        id: dWNVKVsn3WlKBHf6CwnS4
+        name: Subgraphs/consider_memo_storage
+      nodes:
+        '[-HGn9Gs6OwXiuis903No5]:graphInput "Graph Input"':
+          data:
+            dataType: boolean
+            id: teachable
+            useDefaultValueInput: true
+          outgoingConnections:
+            - data->"If" GidLzGa7R5yY2oThd93Yg/if
+          visualData: 457.3469132859683/95.58247615800016/330/45/var(--node-color-3)/var(--grey-darkish)
+        '[1FR2zavTs3BTPP3MrZopr]:comment "Comment"':
+          data:
+            backgroundColor: rgba(0,0,0,0.05)
+            color: rgba(255,255,255,1)
+            height: 738.6207517625996
+            text: "#### Store results"
+          visualData: 3597.8049119140455/19.316699285473845/753.5885669787822/157//
+        '[34M2kpkiGDWc4gOKx-7Lj]:subGraph "Subgraph"':
+          data:
+            graphId: bJG7IgPHwbetXk4Ojgxfc
+            useAsGraphPartialOutput: false
+            useErrorOutput: false
+          outgoingConnections:
+            - output->"Match" qP8DidhZ5na1ahIwSmS-D/input
+          visualData: 1161.9092894141952/95.58247615800029/330/102/var(--node-color-6)/var(--grey-darkish)
+        '[7nqbhekQ_Io8NJSL7Ti7f]:match "Match"':
+          data:
+            cases:
+              - (yes|Yes|YES)
+          outgoingConnections:
+            - case1->"Subgraph" ccTJqYJxm90B6IN8CL263/user_input
+            - case1->"Subgraph" uKuyxQxigqGYzISdfr8Yc/user_input
+          visualData: 2368.01182495543/489.37944920571465/280/145//
+        '[AmuA5RcFHrzba7aXV7bXH]:coalesce "Coalesce"':
+          outgoingConnections:
+            - output->"Subgraph" Z0mLN9ozILFnx5MVswlYN/advice_answer
+          visualData: 3655.832988570016/194.6776174538826/180/168//
+        '[BVDWHuxoKehLWmsfW_grd]:subGraph "Subgraph"':
+          data:
+            graphId: Cs4fA6m7OIo78iTxRrhDv
+            useAsGraphPartialOutput: false
+            useErrorOutput: false
+          outgoingConnections:
+            - output->"Coalesce" dBk8Hv88XidF_4QqHHrIW/input1
+          visualData: 3181.776460020365/103.4305781535659/330/137/var(--node-color-6)/var(--grey-darkish)
+        '[CSWUWwLmOnp9oE0hh7Z0l]:text "Text"':
+          data:
+            text: Hey there! My name is Tim. Please remember that!
+          visualData: 74.05818575247268/540.8951436126931/330/170//
+        '[GfkmBL_F27RrOIh3XIC2w]:match "Match"':
+          data:
+            cases:
+              - (none|None|NONE)
+          outgoingConnections:
+            - unmatched->"Subgraph" IBrYtgdad98MASYyGVybT/user_input
+          visualData: 2363.7278495033265/99.45120036509263/280/137//
+        '[GidLzGa7R5yY2oThd93Yg]:if "If"':
+          data:
+            unconnectedControlFlowExcluded: true
+          outgoingConnections:
+            - output->"Match" qP8DidhZ5na1ahIwSmS-D/value
+            - output->"Subgraph" 34M2kpkiGDWc4gOKx-7Lj/user_input
+          visualData: 852.2115416655242/107.19614169857537/155/97//
+        '[IBrYtgdad98MASYyGVybT]:subGraph "Subgraph"':
+          data:
+            graphId: SkELOxEIPxw-kU26Ru_6z
+            useAsGraphPartialOutput: false
+            useErrorOutput: false
+          outgoingConnections:
+            - output->"Subgraph" BVDWHuxoKehLWmsfW_grd/user_input
+          visualData: 2746.444997836296/114.76296456934887/330/137/var(--node-color-6)/var(--grey-darkish)
+        '[ItxS3CNGbXl7GzXJdxc42]:comment "Comment"':
+          data:
+            backgroundColor: rgba(0,0,0,0.05)
+            color: rgba(255,255,255,1)
+            height: 788
+            text: "#### Iterate through branching tasks"
+          visualData: 1128.3587000747561/-21.84458653003759/3258.1395458275892/88//
+        '[J5yBTdk0PFi_yRMmsLMXM]:boolean "Bool"':
+          data:
+            value: true
+          outgoingConnections:
+            - value->"Graph Input" -HGn9Gs6OwXiuis903No5/default
+          visualData: 182.49016215902256/109.77695626314754/160/40//
+        '[Pq7Q6nh1OMNkEpmelzn-y]:comment "Comment"':
+          data:
+            backgroundColor: rgba(0,0,0,0.05)
+            color: rgba(255,255,255,1)
+            height: 779.3929153071205
+            text: "#### Only do smth. if teachable is true"
+          visualData: 818.6609523260848/-21.84458653003773/306.6428622006192/87//
+        '[V0wdvqk_jOjFtqs-rqlKI]:text "System prompt (Text)"':
+          data:
+            text: >-
+              You are an expert in text analysis.
+
+              The user will give you TEXT to analyze.
+
+              The user will give you analysis INSTRUCTIONS copied twice, at both the beginning and the end.
+
+              You will follow these INSTRUCTIONS in analyzing the TEXT, then give the results of your expert analysis in the format requested."""
+          outgoingConnections:
+            - output->"Subgraph" 34M2kpkiGDWc4gOKx-7Lj/system_prompt
+            - output->"Subgraph" BVDWHuxoKehLWmsfW_grd/system_prompt
+            - output->"Subgraph" IBrYtgdad98MASYyGVybT/system_prompt
+            - output->"Subgraph" ccTJqYJxm90B6IN8CL263/system_prompt
+            - output->"Subgraph" fehq5ep_NFS5Yh_GkWHnF/system_prompt
+            - output->"Subgraph" hMlEAqM3gP2eQsrx93sxt/system_prompt
+            - output->"Subgraph" uKuyxQxigqGYzISdfr8Yc/system_prompt
+          visualData: 1163.8952757298996/380.9051676476559/330/151//
+        '[Z0mLN9ozILFnx5MVswlYN]:subGraph "Subgraph"':
+          data:
+            graphId: HM41P79DuJHUIicTZ8PXx
+            useAsGraphPartialOutput: false
+            useErrorOutput: false
+          visualData: 3929.7772046101345/345.97653723541674/330/169/var(--node-color-6)/var(--grey-darkish)
+        '[ZaXoTrxUu7WHN3sMLjR0u]:comment "Comment"':
+          data:
+            backgroundColor: rgba(0,0,0,0.05)
+            color: rgba(255,255,255,1)
+            height: 358.94119798561724
+            text: "#### No: Check for information"
+          visualData: 1897.7843092120656/389.2055705426269/1687.279126690572/139//
+        '[ccTJqYJxm90B6IN8CL263]:subGraph "Subgraph"':
+          data:
+            graphId: rS34yKaM-UeqfnayJIPK8
+            useAsGraphPartialOutput: false
+            useErrorOutput: false
+          outgoingConnections:
+            - output->"Coalesce" dBk8Hv88XidF_4QqHHrIW/input2
+          visualData: 2745.3390644546516/491.90499068466363/330/152/var(--node-color-6)/var(--grey-darkish)
+        '[dBk8Hv88XidF_4QqHHrIW]:coalesce "Coalesce"':
+          outgoingConnections:
+            - output->"Subgraph" Z0mLN9ozILFnx5MVswlYN/question_or_general_task
+          visualData: 3655.8329885700155/445.7007966607619/180/167//
+        '[fehq5ep_NFS5Yh_GkWHnF]:subGraph "Subgraph"':
+          data:
+            graphId: HylV_l0kOds-0wAG66bzs
+            useAsGraphPartialOutput: false
+            useErrorOutput: false
+          outgoingConnections:
+            - output->"Match" 7nqbhekQ_Io8NJSL7Ti7f/input
+          visualData: 1945.4464449549087/493.2350149363869/330/146/var(--node-color-6)/var(--grey-darkish)
+        '[hMlEAqM3gP2eQsrx93sxt]:subGraph "Subgraph"':
+          data:
+            graphId: 0lVj_Q7g0OseLI-Wbw14r
+            useAsGraphPartialOutput: false
+            useErrorOutput: false
+          outgoingConnections:
+            - output->"Coalesce" AmuA5RcFHrzba7aXV7bXH/input1
+            - output->"Match" GfkmBL_F27RrOIh3XIC2w/input
+            - output->"Match" GfkmBL_F27RrOIh3XIC2w/value
+          visualData: 1946.9262973249067/112.35527318795391/330/137/var(--node-color-6)/var(--grey-darkish)
+        '[hyPHxCzIunYUtAuTllhLT]:text "Text"':
+          data:
+            text: >-
+              Please create a summary
+
+              When I'm summarizing an abstract, I try to make the summary contain just three short bullet points:  the title, the innovation, and the key empirical results.
+
+
+              AutoGen: Enabling Next-Gen LLM Applications via Multi-Agent Conversation
+
+              Qingyun Wu, Gagan Bansal, Jieyu Zhang, Yiran Wu, Beibin Li, Erkang Zhu, Li Jiang, Xiaoyun Zhang, Shaokun Zhang, Jiale Liu, Ahmed Hassan Awadallah, Ryen W White, Doug Burger, Chi Wang
+
+              AutoGen is an open-source framework that allows developers to build LLM applications via multiple agents that can converse with each other to accomplish tasks. AutoGen agents are customizable, conversable, and can operate in various modes that employ combinations of LLMs, human inputs, and tools. Using AutoGen, developers can also flexibly define agent interaction behaviors. Both natural language and computer code can be used to program flexible conversation patterns for different applications. AutoGen serves as a generic infrastructure to build diverse applications of various complexities and LLM capacities. Empirical studies demonstrate the effectiveness of the framework in many example applications, with domains ranging from mathematics, coding, question answering, operations research, online decision-making, entertainment, etc.
+          outgoingConnections:
+            - output->"Graph Input" pZsZrAg6Ji25Eo7UbFDay/default
+          visualData: 74.09595044698763/282.69153208948904/330/171//
+        '[j-UOBvaSws024MTtpdtgz]:comment "Comment"':
+          data:
+            backgroundColor: rgba(0,0,0,0.05)
+            color: rgba(255,255,255,1)
+            height: 362.5147005035957
+            text: "#### Yes: Task/advice included"
+          visualData: 1896.3256965294709/14.342111115840495/1694.1909236689976/138//
+        '[pZsZrAg6Ji25Eo7UbFDay]:graphInput "Graph Input"':
+          data:
+            dataType: string
+            id: user_input
+            useDefaultValueInput: true
+          outgoingConnections:
+            - data->"If" GidLzGa7R5yY2oThd93Yg/value
+          visualData: 457.2575563062832/275.73456644110667/330/44/var(--node-color-3)/var(--grey-darkish)
+        '[qP8DidhZ5na1ahIwSmS-D]:match "Match"':
+          data:
+            cases:
+              - (yes|Yes|YES)
+              - (no|No|NO)
+          outgoingConnections:
+            - case1->"Subgraph" hMlEAqM3gP2eQsrx93sxt/user_input
+            - case2->"Match" 7nqbhekQ_Io8NJSL7Ti7f/value
+            - case2->"Subgraph" fehq5ep_NFS5Yh_GkWHnF/user_input
+          visualData: 1582.5820634394738/81.38799605285271/280/106//
+        '[uKuyxQxigqGYzISdfr8Yc]:subGraph "Subgraph"':
+          data:
+            graphId: R6OHlTA_-RagD-7Ph0EYE
+            useAsGraphPartialOutput: false
+            useErrorOutput: false
+          outgoingConnections:
+            - output->"Coalesce" AmuA5RcFHrzba7aXV7bXH/input2
+          visualData: 3183.934116146746/494.0016382236265/330/155/var(--node-color-6)/var(--grey-darkish)
+    rS34yKaM-UeqfnayJIPK8:
+      metadata:
+        description: ""
+        id: rS34yKaM-UeqfnayJIPK8
+        name: Subgraphs/text_analyzer/#2.1 question_answered
+      nodes:
+        '[3qPwIQ6RFLMufd3a6Qlj9]:chat "Chat"':
+          data:
+            cache: true
+            enableFunctionUse: false
+            frequencyPenalty: 0
+            headers: []
+            maxTokens: 1024
+            model: gpt-3.5-turbo
+            presencePenalty: 0
+            stop: ""
+            temperature: 0
+            top_p: 1
+            useAsGraphPartialOutput: true
+            useFrequencyPenaltyInput: false
+            useMaxTokensInput: false
+            useModelInput: false
+            usePresencePenaltyInput: false
+            useStop: false
+            useStopInput: false
+            useTemperatureInput: false
+            useTopP: false
+            useTopPInput: false
+            useUseTopPInput: false
+            useUserInput: false
+          outgoingConnections:
+            - response->"Graph Output" f0w1yfoSSZebdS8ebX8Fp/value
+          visualData: 1014.3490062033779/458.3139203240464/230/105//
+        '[f0w1yfoSSZebdS8ebX8Fp]:graphOutput "Graph Output"':
+          data:
+            dataType: string
+            id: output
+          visualData: 1382/491/330/102/var(--node-color-4)/var(--grey-darkish)
+        '[fIIhPGAbVmGljBxf_Xwb2]:graphInput "Graph Input"':
+          data:
+            dataType: string
+            id: system_prompt
+            useDefaultValueInput: false
+          outgoingConnections:
+            - data->"Chat" 3qPwIQ6RFLMufd3a6Qlj9/systemPrompt
+          visualData: 143/400/330/103/var(--node-color-3)/var(--grey-darkish)
+        '[muvuiVoUDt1Mi2BD5BWOU]:text "Task (Text)"':
+          data:
+            text: Imagine that the user forgot this information in the TEXT. How would they
+              ask you for this information? Include no other text in your
+              response.
+          outgoingConnections:
+            - output->"Text" tfhyF1SUtfeKpy7NvY4jg/instructions
+          visualData: 505/242/600.4857099563387/104//
+        '[n0oeyT7yExmrgmcTMTPJv]:graphInput "Graph Input"':
+          data:
+            dataType: string
+            id: user_input
+            useDefaultValueInput: false
+          outgoingConnections:
+            - data->"Text" tfhyF1SUtfeKpy7NvY4jg/text
+          visualData: 147/565/330/103/var(--node-color-3)/var(--grey-darkish)
+        '[tfhyF1SUtfeKpy7NvY4jg]:text "Text"':
+          data:
+            text: |-
+              # INSTRUCTIONS
+              {{instructions}}
+
+              # TEXT
+              {{text}}
+
+              # INSTRUCTIONS
+              {{instructions}}
+          outgoingConnections:
+            - output->"Chat" 3qPwIQ6RFLMufd3a6Qlj9/prompt
+          visualData: 557.0927918626575/438.85925816174574/330/91//
+  metadata:
+    description: ""
+    id: oSZc1pEbH1cy9P2uKXKX3
+    mainGraphId: BDFMQO7XUR0iQgylPCe9e
+    title: Teachable Agent
+  plugins: []

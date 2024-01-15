@@ -1,0 +1,340 @@
+version: 4
+data:
+  attachedData:
+    trivet:
+      testSuites: []
+      version: 1
+  graphs:
+    -ZMgRgyGrzgDHvDYNK3x6:
+      metadata:
+        description: ""
+        id: -ZMgRgyGrzgDHvDYNK3x6
+        name: Main Graph
+      nodes:
+        '[26BCa2DNZbL7rFVtdscZT]:text "Prompt (Text)"':
+          data:
+            text: Talk about Tesla cars
+          outgoingConnections:
+            - output->"Subgraph" 9EugXiJiZnRFS_N7k6vmV/user_prompt
+          visualData: 905.5475628962433/426.2179870567691/330/129//
+        '[2xvpWFnIyHP6oCCQUS0LZ]:text "Text"':
+          data:
+            text: dolphin2.2-mistral:latest
+          outgoingConnections:
+            - output->"Array" ztEbxJxbKs2wc43MFmLE1/input1
+          visualData: 877.998493659853/909.5280068483793/330/138//
+        '[50OL86l807dMTwFKVZFeL]:comment "Comment"':
+          data:
+            backgroundColor: rgba(0,0,0,0.05)
+            color: rgba(255,255,255,1)
+            height: 631.7650987875986
+            text: "#### Run local LLMs"
+          visualData: 1250.2483624396766/631.9498216398177/940.6103186742253/114//
+        '[9EugXiJiZnRFS_N7k6vmV]:subGraph "Subgraph"':
+          data:
+            graphId: qk8Ud3diRFmGYwxvhXvrc
+            useAsGraphPartialOutput: false
+            useErrorOutput: false
+          isSplitRun: true
+          visualData: 1762.3709097543087/771.5893245952681/330/132/var(--node-color-6)/var(--grey-darkish)
+        '[BTggZSwh8BGictlr5mpob]:comment "Comment"':
+          data:
+            backgroundColor: rgba(0,0,0,0.05)
+            color: rgba(255,255,255,1)
+            height: 532
+            text: >-
+              #### How to use
+
+              1. Use "Get new model" graph to download models you want to use (List of available models: https://ollama.ai/library) OR go to "List models" graph to see what you already have installed
+
+              2. Change instructions/prompts as desired
+
+              3. Add model/models below
+
+              4. Compare the results
+          visualData: 1445.4117351220552/93.92628525044717/738.9769343567791/113//
+        '[aC6U0msO7fvIIvIWlKUTg]:comment "Comment"':
+          data:
+            backgroundColor: rgba(0,0,0,0.05)
+            color: rgba(255,255,255,1)
+            height: 531.2136059148638
+            text: "#### Instructions + Prompt"
+          visualData: 852.1666575779857/98.29380790506596/583.5078495662674/112//
+        '[bNHYdbqwy5HtOKF-OMvcE]:text "Text"':
+          data:
+            text: orca2:latest
+          outgoingConnections:
+            - output->"Array" ztEbxJxbKs2wc43MFmLE1/input2
+          visualData: 876.6895109134546/733.0896962835538/330/138//
+        '[geyJW9yHaHIWTy6jRB5_r]:text "Instructions (Text)"':
+          data:
+            text: |-
+              You are a professional writer
+              - Write something about the topic the user tells you about
+              - Answer in 50 words maximum
+          outgoingConnections:
+            - output->"Subgraph" 9EugXiJiZnRFS_N7k6vmV/system_prompt
+          visualData: 903.8533941033704/211.80845813152482/330/130//
+        '[oRXNEqSCsdj893UULHrhg]:comment "Comment"':
+          data:
+            backgroundColor: rgba(0,0,0,0.05)
+            color: rgba(255,255,255,1)
+            height: 639.7699544751108
+            text: "#### Models to use"
+          visualData: 849.3923668864536/630.3398593590231/394.9578148053149/135//
+        '[ycK_bOSDj2xUTUATMmbCC]:text "Model (Text)"':
+          data:
+            text: phi:latest
+          outgoingConnections:
+            - output->"Array" ztEbxJxbKs2wc43MFmLE1/input3
+          visualData: 876.7775867507868/1084.1413221112914/330/138//
+        '[ztEbxJxbKs2wc43MFmLE1]:array "Array"':
+          data:
+            flatten: true
+            flattenDeep: false
+          outgoingConnections:
+            - output->"Subgraph" 9EugXiJiZnRFS_N7k6vmV/model
+          visualData: 1333.9123637843588/795.0890432099627/230/119//
+    g3ucQ0XcMCTbpI3_CXj7X:
+      metadata:
+        description: ""
+        id: g3ucQ0XcMCTbpI3_CXj7X
+        name: Other graphs/Get new model
+      nodes:
+        '[-i7kRZboYmGJlbnPAZD3r]:text "Text"':
+          data:
+            text: orca2
+          outgoingConnections:
+            - output->"Pull Model to Ollama" GqLsadXAKJIy532TAGFvU/modelName
+          visualData: 146/444/330/15//
+        '[9FHsGHb0nOEXgIUAKnRw-]:raiseEvent "Raise Event"':
+          data:
+            eventName: toast
+            useEventNameInput: false
+          visualData: 1095/430/180/18//
+        '[GqLsadXAKJIy532TAGFvU]:pullModelToOllama "Pull Model to Ollama"':
+          data:
+            insecure: false
+            modelName: ""
+            useModelNameInput: true
+          outgoingConnections:
+            - modelName->"Raise Event" 9FHsGHb0nOEXgIUAKnRw-/data
+          visualData: 674/429/280/17//
+        '[NBlkpDR49rQuKq0iYWfCW]:comment "Comment"':
+          data:
+            backgroundColor: rgba(0,0,0,0.05)
+            color: rgba(255,255,255,1)
+            height: 465
+            text: >-
+              #### How to use
+
+              1. Go to https://ollama.ai/library
+
+              2. Pick a model you are interested interested
+
+              3. Add the name to the text field below
+
+              4. Make sure that "node" executor is selected in Rivet (... in the top right corner)
+
+              5. Run this graph
+
+
+              Note: Be patient. Models can easily be multiple GBs large. This can take a while.
+          visualData: 125/171/492/4//
+    qk8Ud3diRFmGYwxvhXvrc:
+      metadata:
+        description: ""
+        id: qk8Ud3diRFmGYwxvhXvrc
+        name: Subgraphs/ollama_chat
+      nodes:
+        '[22ib07mquF6nUPzdwhFXv]:text "Text"':
+          data:
+            text: |-
+              Response by {{model}}
+
+              {{response}}
+          outgoingConnections:
+            - output->"Graph Output" BSrE7znW63jF32zJ2Pze_/value
+          visualData: 1970.2921566507966/758.1909148773123/330/106//
+        '[5osCVxxxa1eRwLt9kOyRQ]:number "Number"':
+          data:
+            round: false
+            roundTo: 0
+            value: 0.8
+          outgoingConnections:
+            - value->"Graph Input" 6ZBGmoMlAeMeiis79lBuj/default
+          visualData: -54.21511975078268/1151.073929274458/230/65//
+        '[5yH4vedNX9pRkE73E5qlF]:httpCall "Http Call"':
+          data:
+            body: ""
+            errorOnNon200: true
+            headers: ""
+            method: POST
+            url: http://localhost:11434/api/show
+            useBodyInput: true
+          outgoingConnections:
+            - json->"Extract Object Path" ET1h65cXyxt_vjwPYqCgO/object
+            - json->"Extract Object Path" FR7j--mWJ409y7lztg5iY/object
+            - json->"Extract Object Path" hBhBIbOUy8qGE2Npp9ZTi/object
+          visualData: 709.8107525737424/559.8746524189618/290.47092066068217/33//
+        '[6ZBGmoMlAeMeiis79lBuj]:graphInput "Graph Input"':
+          data:
+            dataType: number
+            id: temperature (optional)
+            useDefaultValueInput: true
+          outgoingConnections:
+            - data->"Ollama Chat" m8VewyWaqd9Hey-eWc2eW/temperature
+          visualData: 332.8189251075573/1137.0943818150133/330/64/var(--node-color-3)/var(--grey-darkish)
+        '[8nm6agjkJZ1FjPaOa2GwY]:text "Text"':
+          data:
+            text: System test
+          outgoingConnections:
+            - output->"Graph Input" kP5lN0Y2QWrigWAqzxxuc/default
+          visualData: -82.27801122087386/574.6153669930029/330/54//
+        '[BSrE7znW63jF32zJ2Pze_]:graphOutput "Graph Output"':
+          data:
+            dataType: string
+            id: response
+          visualData: 2456.722499660594/410.0324962245946/330/107/var(--node-color-4)/var(--grey-darkish)
+        '[ET1h65cXyxt_vjwPYqCgO]:extractObjectPath "Extract Object Path"':
+          data:
+            path: $.parameters
+            usePathInput: false
+          outgoingConnections:
+            - match->"Ollama Chat" m8VewyWaqd9Hey-eWc2eW/stop
+          visualData: 1180.6902192765192/733.6105761906871/280/34//
+        '[FR7j--mWJ409y7lztg5iY]:extractObjectPath "Extract Object Path"':
+          data:
+            path: $.template
+            usePathInput: false
+          outgoingConnections:
+            - match->"Code" LfttWSvd-peSilJc6Ow6e/template
+          visualData: 1180.6902192765192/479.12201355636194/280/36//
+        '[KNQUFVapMSgistNNqGk3J]:text "Text"':
+          data:
+            text: phi
+          outgoingConnections:
+            - output->"Graph Input" QUqrKZkoAtUQxlzv9RRZV/default
+          visualData: -83.21767406015856/338.8879885176668/330/37//
+        '[LfttWSvd-peSilJc6Ow6e]:code "Code"':
+          data:
+            code: >
+              const template = inputs.template.value;
+
+              const systemPrompt = inputs.system_prompt.value;
+
+              const userPrompt = inputs.user_prompt.value;
+
+
+              const replacedTemplate = template.replace("{{ .System }}", systemPrompt).replace("{{ .Prompt }}", userPrompt);
+
+
+              return {
+                  output: {
+                      type: 'string',
+                      value: replacedTemplate
+                  }
+              };
+            inputNames:
+              - template
+              - system_prompt
+              - user_prompt
+            outputNames:
+              - output
+          outgoingConnections:
+            - output->"Ollama Chat" m8VewyWaqd9Hey-eWc2eW/system-prompt
+          visualData: 1588.5875002925366/232.79518638969603/230/47//
+        '[NdBObEXOU4ntCgN5iKfUh]:graphInput "Graph Input"':
+          data:
+            dataType: number
+            id: context_window_size (optional)
+            useDefaultValueInput: true
+          outgoingConnections:
+            - data->"Ollama Chat" m8VewyWaqd9Hey-eWc2eW/numCtx
+          visualData: 331.6496379629702/969.8344218634528/330/62/var(--node-color-3)/var(--grey-darkish)
+        '[Nwf4C6yvgpnHtKt9KX2pb]:text "Text"':
+          data:
+            text: User test
+          outgoingConnections:
+            - output->"Graph Input" m5HGdTSJFHG0XPv9jza1H/default
+          visualData: -78.77014978711243/772.2248944282278/330/55//
+        '[QUqrKZkoAtUQxlzv9RRZV]:graphInput "Graph Input"':
+          data:
+            dataType: string
+            id: model
+            useDefaultValueInput: true
+          outgoingConnections:
+            - data->"Object" cczD6-SqxGr7-hV8_K4CJ/model
+            - data->"Ollama Chat" m8VewyWaqd9Hey-eWc2eW/model
+            - data->"Text" 22ib07mquF6nUPzdwhFXv/model
+          visualData: 326.66540084464657/323.60247284968875/330/23/var(--node-color-3)/var(--grey-darkish)
+        '[cczD6-SqxGr7-hV8_K4CJ]:object "Object"':
+          data:
+            jsonTemplate: |-
+              {
+                "name": "{{model}}"
+              }
+          outgoingConnections:
+            - output->"Http Call" 5yH4vedNX9pRkE73E5qlF/req_body
+          visualData: 744.2712077190115/307.5438507296688/230/32//
+        '[hBhBIbOUy8qGE2Npp9ZTi]:extractObjectPath "Extract Object Path"':
+          data:
+            path: $.modelfile
+            usePathInput: false
+          visualData: 1177.3541848295195/236.86557722770152/280/34//
+        '[kP5lN0Y2QWrigWAqzxxuc]:graphInput "Graph Input"':
+          data:
+            dataType: string
+            id: system_prompt
+            useDefaultValueInput: true
+          outgoingConnections:
+            - data->"Code" LfttWSvd-peSilJc6Ow6e/system_prompt
+          visualData: 333.9122009092117/555.5507914385607/330/50/var(--node-color-3)/var(--grey-darkish)
+        '[m5HGdTSJFHG0XPv9jza1H]:graphInput "Graph Input"':
+          data:
+            dataType: string
+            id: user_prompt
+            useDefaultValueInput: true
+          outgoingConnections:
+            - data->"Code" LfttWSvd-peSilJc6Ow6e/user_prompt
+          visualData: 333.9122009092117/755.5507914385607/330/50/var(--node-color-3)/var(--grey-darkish)
+        '[m8VewyWaqd9Hey-eWc2eW]:ollamaChat "Ollama Chat"':
+          data:
+            additionalParameters: []
+            advancedOutputs: false
+            model: ""
+            outputFormat: ""
+            promptFormat: ""
+            stop: ""
+            useModelInput: true
+            useNumCtxInput: true
+            useStopInput: true
+            useTemperatureInput: true
+          outgoingConnections:
+            - output->"Text" 22ib07mquF6nUPzdwhFXv/response
+          visualData: 1967.4823532403645/392.20657243741067/280/59//
+        '[mwcH2all10y0mrCnhZ7g4]:number "Number"':
+          data:
+            round: false
+            roundTo: 0
+            value: 2048
+          outgoingConnections:
+            - value->"Graph Input" NdBObEXOU4ntCgN5iKfUh/default
+          visualData: -54.21511975078263/985.0351547430855/230/69//
+    r6BhxBKRV7O-qjEkyAAIz:
+      metadata:
+        description: ""
+        id: r6BhxBKRV7O-qjEkyAAIz
+        name: Other graphs/List models
+      nodes:
+        '[cMJx2_CjS8wSvrESTOJb8]:listOllamaModels "List Ollama Models"':
+          visualData: 319.77777777777777/309.07070707070704/368.2387408123177/102//
+  metadata:
+    description: ""
+    id: SIZH5qm338ehX14wdlizs
+    title: Ollama Tutorial
+  plugins:
+    - id: rivet-plugin-ollama@latest
+      package: rivet-plugin-ollama
+      tag: latest
+      type: package

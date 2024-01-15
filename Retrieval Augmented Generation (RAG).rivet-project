@@ -1,0 +1,451 @@
+version: 4
+data:
+  attachedData:
+    trivet:
+      testSuites: []
+      version: 1
+  graphs:
+    0atMVAvCYXOS79L58jg3h:
+      metadata:
+        description: ""
+        id: 0atMVAvCYXOS79L58jg3h
+        name: Functions/strip_html
+      nodes:
+        '[93UnYLGJ3pnBFVMYXK-d4]:code "Code"':
+          data:
+            code: >
+              const strippedHtml = inputs.input.value
+                  .replace(/<[^>]*>?/gm, '') // Removes HTML tags
+                  .replace(/\s+/g, ' ')      // Replaces multiple whitespace characters with a single space
+                  .trim();                   // Trims leading and trailing whitespace
+
+              return {
+                  output: {
+                      type: 'string',
+                      value: strippedHtml
+                  }
+              };
+            inputNames:
+              - input
+            outputNames:
+              - output
+          outgoingConnections:
+            - output->"Graph Output" W6AYNURPfb-UG0zRzQLYI/value
+          visualData: 1243.04295661246/132.476555716958/230/84//
+        '[W6AYNURPfb-UG0zRzQLYI]:graphOutput "Graph Output"':
+          data:
+            dataType: string
+            id: text
+          visualData: 1597.925033452507/280.675657949328/330/86/var(--node-color-4)/var(--grey-darkish)
+        '[bsTB1eTL-kU0DrVDQ_oZT]:graphInput "Graph Input"':
+          data:
+            dataType: string
+            id: html
+            useDefaultValueInput: false
+          outgoingConnections:
+            - data->"Extract Regex" z347Fw1iLNYpJ1DoDI7Gh/input
+          visualData: 352/274.58490534230185/330/81/var(--node-color-3)/var(--grey-darkish)
+        '[z347Fw1iLNYpJ1DoDI7Gh]:extractRegex "Extract Regex"':
+          data:
+            errorOnFailed: false
+            regex: <body.*?>([\s\S]*?)<\/body>
+            useRegexInput: false
+          outgoingConnections:
+            - output1->"Code" 93UnYLGJ3pnBFVMYXK-d4/input
+          visualData: 819.3063268092855/290.80863489168604/280/81//
+    0g_T0nh-T4mS9e9ISj2K1:
+      metadata:
+        description: ""
+        id: 0g_T0nh-T4mS9e9ISj2K1
+        name: Functions/store_data
+      nodes:
+        '[mdAbjVY2Q4-LD3e7WLjNT]:graphInput "Graph Input"':
+          data:
+            dataType: string
+            id: chunk
+            useDefaultValueInput: false
+          visualData: 391/526/330/5/var(--node-color-3)/var(--grey-darkish)
+        '[r_uC-CQmdz5hsZOlHHW09]:graphInput "Graph Input"':
+          data:
+            dataType: string
+            id: embedding
+            useDefaultValueInput: false
+          visualData: 391/349/330/2/var(--node-color-3)/var(--grey-darkish)
+    1LkJSpTFO46r7BZT5wgLh:
+      metadata:
+        description: ""
+        id: 1LkJSpTFO46r7BZT5wgLh
+        name: Functions/create_embeddings
+      nodes:
+        '[DpJO--hu2SsJpWc6M584M]:graphOutput "Graph Output"':
+          data:
+            dataType: string
+            id: chunks
+          visualData: 1244.3881206193919/509.7649512632415/330/11/var(--node-color-4)/var(--grey-darkish)
+        '[HHC7lL03goxSB2YzYw_Fn]:graphOutput "Graph Output"':
+          data:
+            dataType: string
+            id: embeddings
+          visualData: 1242.1182196142304/280.5049497419201/330/12/var(--node-color-4)/var(--grey-darkish)
+        '[Ij3r4D_Us3eNZP3dsWt00]:getEmbedding "Get Embedding"':
+          data:
+            integration: openai
+            useIntegrationInput: false
+          outgoingConnections:
+            - embedding->"Graph Output" HHC7lL03goxSB2YzYw_Fn/value
+          visualData: 838.0758406954657/356.5466334148336/280/5//
+        '[MBRV64GavslEFiD8ZFLfM]:graphInput "Graph Input"':
+          data:
+            dataType: string
+            id: chunk
+            useDefaultValueInput: false
+          outgoingConnections:
+            - data->"Get Embedding" Ij3r4D_Us3eNZP3dsWt00/input
+            - data->"Graph Output" DpJO--hu2SsJpWc6M584M/value
+          visualData: 398/341/330/3/var(--node-color-3)/var(--grey-darkish)
+    BVgG7K5DFPauNE0f1sy9F:
+      metadata:
+        description: ""
+        id: BVgG7K5DFPauNE0f1sy9F
+        name: Subgraph/Store data in vector storage
+      nodes:
+        '[7RuSZwCap7D-M51IsesCj]:chunk "Chunk"':
+          data:
+            model: gpt-3.5-turbo
+            numTokensPerChunk: 100
+            overlap: 30
+            useModelInput: false
+          outgoingConnections:
+            - chunks->"Subgraph" Vn_v25I3xSDv4X6W-Kfyj/chunk
+          visualData: 475.7170662802781/344.3554251800383/230/49//
+        '[IJHjpMvfqqosYS9k8jvXa]:appendToDataset "Append to Dataset"':
+          data:
+            datasetId: ""
+            useDatasetIdInput: true
+          isSplitRun: true
+          splitRunMax: 999
+          visualData: 873.3839170728446/594.8452491512639/280/47//
+        '[LKfzFlfbcuzJfoWGw_Qad]:createDataset "Create Dataset"':
+          outgoingConnections:
+            - datasetId_out->"Append to Dataset" IJHjpMvfqqosYS9k8jvXa/datasetId
+            - datasetId_out->"Graph Output" WqNXOneuqXw15yEODGw9i/value
+          visualData: 470.0976144852531/679.0155626232136/280/35//
+        '[Vn_v25I3xSDv4X6W-Kfyj]:subGraph "Subgraph"':
+          data:
+            graphId: 1LkJSpTFO46r7BZT5wgLh
+            useAsGraphPartialOutput: false
+            useErrorOutput: false
+          isSplitRun: true
+          outgoingConnections:
+            - chunks->"Append to Dataset" IJHjpMvfqqosYS9k8jvXa/data
+            - embeddings->"Append to Dataset" IJHjpMvfqqosYS9k8jvXa/embedding
+          splitRunMax: 999
+          visualData: 823.0845977940112/378.85656321100436/330/50/var(--node-color-6)/var(--grey-darkish)
+        '[WqNXOneuqXw15yEODGw9i]:graphOutput "Graph Output"':
+          data:
+            dataType: string
+            id: dataset_id
+          visualData: 826.6666500255038/858.8267273489292/330/48/var(--node-color-4)/var(--grey-darkish)
+        '[am_69HPhA7ejXxISGEFfc]:graphInput "Graph Input"':
+          data:
+            dataType: string
+            id: content
+            useDefaultValueInput: false
+          outgoingConnections:
+            - data->"Chunk" 7RuSZwCap7D-M51IsesCj/input
+          visualData: 25.028916632462796/357.8089039670837/330/19/var(--node-color-3)/var(--grey-darkish)
+        '[fLmIuk8-SPvrdgKssZzsC]:graphInput "Graph Input"':
+          data:
+            dataType: string
+            id: url
+            useDefaultValueInput: false
+          outgoingConnections:
+            - data->"Create Dataset" LKfzFlfbcuzJfoWGw_Qad/datasetName
+          visualData: 25.862295355183313/671.8117466373205/330/35/var(--node-color-3)/var(--grey-darkish)
+    SOm4T16HX7ATFzSBGASrP:
+      metadata:
+        description: ""
+        id: SOm4T16HX7ATFzSBGASrP
+        name: Subgraph/Retrieve data from vector storage
+      nodes:
+        '[FvIFkqsAZj7Pg_kqaX4Zl]:getEmbedding "Get Embedding"':
+          data:
+            integration: openai
+            useIntegrationInput: false
+          outgoingConnections:
+            - embedding->"KNN Dataset" y9a3McRtkMhSl_TVt4pxm/embedding
+          visualData: 812.0451915566465/61.065425052983755/280/12//
+        '[salYtFUbEwjFU3sGqTqJ-]:graphInput "Graph Input"':
+          data:
+            dataType: string
+            defaultValue: ""
+            id: question
+            useDefaultValueInput: false
+          outgoingConnections:
+            - data->"Get Embedding" FvIFkqsAZj7Pg_kqaX4Zl/input
+          visualData: 404.00000000000006/30.86137835371633/330/15/var(--node-color-3)/var(--grey-darkish)
+        '[tKmm_9leyD24DLfsjMevz]:graphInput "Graph Input"':
+          data:
+            dataType: string
+            id: dataset_id
+            useDefaultValueInput: false
+          outgoingConnections:
+            - data->"KNN Dataset" y9a3McRtkMhSl_TVt4pxm/datasetId
+          visualData: 404/288/330/2/var(--node-color-3)/var(--grey-darkish)
+        '[tPwHDRmW_OHaET8ex_BNZ]:extractObjectPath "Extract Object Path"':
+          data:
+            path: $.data
+            usePathInput: false
+          isSplitRun: true
+          outgoingConnections:
+            - match->"Graph Output" yJjohIL0kpgsG43L0Sj3w/value
+          splitRunMax: 999
+          visualData: 806.512307856565/520.2947721597395/280/22//
+        '[y9a3McRtkMhSl_TVt4pxm]:datasetNearestNeighbors "KNN Dataset"':
+          data:
+            datasetId: ""
+            k: 5
+            useDatasetIdInput: true
+          outgoingConnections:
+            - nearestNeighbors->"Extract Object Path"
+              tPwHDRmW_OHaET8ex_BNZ/object
+          visualData: 807.6188845965813/266.88869869601166/280/9//
+        '[yJjohIL0kpgsG43L0Sj3w]:graphOutput "Graph Output"':
+          data:
+            dataType: string
+            id: output
+          visualData: 1212.6259714425398/504.8026977995116/330/24/var(--node-color-4)/var(--grey-darkish)
+    Tt-Gp81JG61ARQRpWdfKi:
+      metadata:
+        description: ""
+        id: Tt-Gp81JG61ARQRpWdfKi
+        name: Main Graph
+      nodes:
+        '[6LJMpClg_K8e04hnuMsWU]:prompt "Prompt"':
+          data:
+            computeTokenCount: true
+            enableFunctionCall: false
+            promptText: "{{input}}"
+            type: user
+            useTypeInput: false
+          outgoingConnections:
+            - tokenCount->"Number" gj-iVVD-NruDcN7zIfiQ2/input
+          visualData: 1096.7611689076036/817.8060721608272/280/73//
+        '[CK6C3tLIQV11_ggwUrXAg]:text "URL (Text)"':
+          data:
+            text: https://moz.com/blog/headless-seo-whiteboard-friday
+          outgoingConnections:
+            - output->"Subgraph" V6Qq5ttqBvsuC_UaSM-jm/url
+            - output->"Subgraph" rJd3ka1BpdooPrgR66j8x/url
+          visualData: 280.97475735454293/448.28930515974633/330/59//
+        '[GrLKT4ZUGaxMQAwjVa7ry]:text "Instructions (Text)"':
+          data:
+            text: |-
+              You are a helpful assistant that answers questions:
+              - ONLY answer questions based on the information provided to you
+              - Answer in Bullet Points
+              - Do NOT answer if you do not know  the answer
+          outgoingConnections:
+            - output->"Chat" w7WCRgeel6JhUntVaTTQD/systemPrompt
+          visualData: 282.4006221979586/810.7787172739514/330/59//
+        '[I1nCq-9VX14Gq3eh_8WoP]:comment "Comment"':
+          data:
+            backgroundColor: rgba(0,0,0,0.05)
+            color: rgba(255,255,255,1)
+            height: 367
+            text: "#### Info: Token count without RAG"
+          visualData: 1053.529256114537/327.25343379205776/702.3897606023659/62//
+        '[MrNmE2qW-OD8h5w7CCouH]:comment "Comment"':
+          data:
+            backgroundColor: rgba(0,0,0,0.05)
+            color: rgba(255,255,255,1)
+            height: 335.8150273503177
+            text: "#### Info: Token count with RAG"
+          visualData: 1055.0683508366287/706.6252239715616/696.3897606023656/72//
+        '[NA5T_UyLNBYqGz64jxkUA]:comment "Comment"':
+          data:
+            backgroundColor: rgba(0,0,0,0.05)
+            color: rgba(255,255,255,1)
+            height: 331.6842456564036
+            text: "#### Answer/result"
+          visualData: 1055.3577173667427/1057.5425523569909/700.0877169562398/101//
+        '[R8MBC1VTO1p9qv0gMnmRy]:comment "Comment"':
+          data:
+            backgroundColor: rgba(0,0,0,0.05)
+            color: rgba(255,255,255,1)
+            height: 224.50969275655336
+            text: >-
+              #### How to use
+
+              1. Change URL
+
+              2. Press on "..." in the top right corner and change the "Executor" to "node"
+
+              3. Run the graph
+
+
+              Note:
+
+              This project is based on the webscraping project. You can find more information here: 
+
+              https://youtu.be/f15kCTlAVn8
+          visualData: 244.55337236499767/97.27834089405057/1512.2337342758585/83//
+        '[V6Qq5ttqBvsuC_UaSM-jm]:subGraph "Subgraph"':
+          data:
+            graphId: BVgG7K5DFPauNE0f1sy9F
+            useAsGraphPartialOutput: false
+            useErrorOutput: false
+          outgoingConnections:
+            - dataset_id->"Subgraph" pdHQI5Qywzud66_o-9sN1/dataset_id
+          visualData: 685.1461244119871/622.7425426645526/330/69/var(--node-color-6)/var(--grey-darkish)
+        '[WI9IFvaTYrNNhvsXGJqhj]:comment "Comment"':
+          data:
+            backgroundColor: rgba(0,0,0,0.05)
+            color: rgba(255,255,255,1)
+            height: 1309.0068419458023
+            text: "#### Main flow"
+          visualData: 650.5116611472956/325.8207914862862/389.4994298378499/82//
+        '[cUC2BsurM_aUWb_BQjhEX]:prompt "Prompt"':
+          data:
+            computeTokenCount: true
+            enableFunctionCall: false
+            promptText: "{{input}}"
+            type: user
+            useTypeInput: false
+          outgoingConnections:
+            - tokenCount->"Number" o_ufAzDF688ByRqf-mjCp/input
+          visualData: 1089.4664172207588/412.40304764870893/280/62//
+        '[gj-iVVD-NruDcN7zIfiQ2]:number "Number"':
+          data:
+            round: false
+            roundTo: 0
+            useValueInput: true
+            value: 0
+          visualData: 1442.8115588966928/873.3964962554601/230/77//
+        '[h1_yHuHK2lYarph6g5zGN]:comment "Comment"':
+          data:
+            backgroundColor: rgba(0,0,0,0.05)
+            color: rgba(255,255,255,1)
+            height: 717.4925878920474
+            text: "#### Inputs"
+          visualData: 245.9792372084133/327.89371290972673/400/78//
+        '[i_jCwxwIKAQRxWeNs1rgF]:prompt "Prompt"':
+          data:
+            enableFunctionCall: false
+            promptText: |-
+              Question:
+              {{question}}
+
+              Information:
+              {{information}}
+            type: user
+            useTypeInput: false
+          outgoingConnections:
+            - output->"Chat" w7WCRgeel6JhUntVaTTQD/prompt
+          visualData: 705.9905651477383/1059.04198219484/280/97//
+        '[kFBboNHB9snmFEbGmitUf]:text "Question (Text)"':
+          data:
+            text: Who is Lidia Infante?
+          outgoingConnections:
+            - output->"Prompt" i_jCwxwIKAQRxWeNs1rgF/question
+            - output->"Subgraph" pdHQI5Qywzud66_o-9sN1/question
+          visualData: 282.4006221979586/636.2072512895795/330/59//
+        '[o_ufAzDF688ByRqf-mjCp]:number "Number"':
+          data:
+            round: false
+            roundTo: 0
+            useValueInput: true
+            value: 0
+          visualData: 1439.5742173454967/470.8836165273123/230/75//
+        '[pdHQI5Qywzud66_o-9sN1]:subGraph "Subgraph"':
+          data:
+            graphId: SOm4T16HX7ATFzSBGASrP
+            useAsGraphPartialOutput: false
+            useErrorOutput: false
+          outgoingConnections:
+            - output->"Prompt" 6LJMpClg_K8e04hnuMsWU/input
+            - output->"Prompt" i_jCwxwIKAQRxWeNs1rgF/information
+          visualData: 686.6697357894931/832.5934268086305/330/68/var(--node-color-6)/var(--grey-darkish)
+        '[rJd3ka1BpdooPrgR66j8x]:subGraph "Subgraph"':
+          data:
+            graphId: hsYNei8LN74hihSs8hJz_
+            useAsGraphPartialOutput: false
+            useErrorOutput: false
+          outgoingConnections:
+            - text->"Prompt" cUC2BsurM_aUWb_BQjhEX/input
+            - text->"Subgraph" V6Qq5ttqBvsuC_UaSM-jm/content
+          visualData: 687.381633022101/445.86874547505226/330/67/var(--node-color-6)/var(--grey-darkish)
+        '[w7WCRgeel6JhUntVaTTQD]:chat "Chat"':
+          data:
+            cache: false
+            enableFunctionUse: false
+            frequencyPenalty: 0
+            maxTokens: 1024
+            model: gpt-3.5-turbo
+            presencePenalty: 0
+            stop: ""
+            temperature: 0.5
+            top_p: 1
+            useAsGraphPartialOutput: true
+            useFrequencyPenaltyInput: false
+            useMaxTokensInput: false
+            useModelInput: false
+            usePresencePenaltyInput: false
+            useStop: false
+            useStopInput: false
+            useTemperatureInput: false
+            useTopP: false
+            useTopPInput: false
+            useUseTopPInput: false
+            useUserInput: false
+          outgoingConnections:
+            - response->"Text" yoTK8UDfFikzW4rp0hWFy/input
+          visualData: 725.4831530397859/1313.9450546293072/230/98//
+        '[yoTK8UDfFikzW4rp0hWFy]:text "Text"':
+          data:
+            text: "{{input}}"
+          visualData: 1082.3474544480391/1175.997509547125/330/102//
+    hsYNei8LN74hihSs8hJz_:
+      metadata:
+        description: ""
+        id: hsYNei8LN74hihSs8hJz_
+        name: Functions/scrape_with_http_call
+      nodes:
+        '[1CmH_8_2rQDvT-WX8iGd3]:subGraph "Subgraph"':
+          data:
+            graphId: 0atMVAvCYXOS79L58jg3h
+            useAsGraphPartialOutput: false
+            useErrorOutput: false
+          outgoingConnections:
+            - text->"Graph Output" 5pvH7mQvNulwOs_a82RmR/value
+          visualData: 830.8728245968855/477.2677922553944/330/75/var(--node-color-6)/var(--grey-darkish)
+        '[5pvH7mQvNulwOs_a82RmR]:graphOutput "Graph Output"':
+          data:
+            dataType: string
+            id: text
+          visualData: 1325.9123014195197/462.9719757210105/330/77/var(--node-color-4)/var(--grey-darkish)
+        '[XXhCYerHUkZdEGBrd7KjO]:graphInput "Graph Input"':
+          data:
+            dataType: string
+            id: url
+            useDefaultValueInput: false
+          outgoingConnections:
+            - data->"Http Call" x0DKDD9uIiNl994Agg8fx/url
+          visualData: 408/218.31730133437145/330/80/var(--node-color-3)/var(--grey-darkish)
+        '[x0DKDD9uIiNl994Agg8fx]:httpCall "Http Call"':
+          data:
+            body: ""
+            errorOnNon200: true
+            headers: ""
+            method: GET
+            url: https://ahrefs.com/blog/b2b-content-marketing/
+            useUrlInput: true
+          outgoingConnections:
+            - res_body->"Subgraph" 1CmH_8_2rQDvT-WX8iGd3/html
+          visualData: 830.8531675963094/218.30620362528657/280/69//
+  metadata:
+    description: How to use retrieval augmented generation in Rivet
+    id: SGyzzKn1EXtIZ4iIUgZpS
+    mainGraphId: Tt-Gp81JG61ARQRpWdfKi
+    title: Retrieval Augmented Generation (RAG)
+  plugins: []

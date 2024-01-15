@@ -1,0 +1,490 @@
+version: 4
+data:
+  attachedData:
+    trivet:
+      testSuites: []
+      version: 1
+  graphs:
+    16PALbGADW4eNyYx8UTgG:
+      metadata:
+        description: ""
+        id: 16PALbGADW4eNyYx8UTgG
+        name: Main Graph
+      nodes:
+        '[EjZXra6e5ySmNTKQs7YvN]:text "Instructions (Text)"':
+          data:
+            text: >-
+              You are a helpful assistant who will be shown British Airways user
+              reviews that match the users interest. 
+
+              - The user will ask you a question and you shall answer that question based on those reviews.
+
+              - Please include at least one quote that is the most relevant to answering the users question
+          outgoingConnections:
+            - output->"Chat" ZHWRBr-elb-1N6Zfe4A-2/systemPrompt
+          visualData: 412.9086844157217/412.52681200465224/330/18//
+        '[HGrQj4T-5V8PAR3Zv_rc4]:text "Question (Text)"':
+          data:
+            text: Is the crew friendly?
+          outgoingConnections:
+            - output->"Subgraph" Y8Tl8GbCqLbXjaoHr3A0B/question
+            - output->"Text" iM0H2dXkVHbWE-jgoDHXw/question
+          visualData: 410.52088585670884/258.5138049483229/330/16//
+        '[SAN2HO6sgoc4xKvVf4xBf]:text "Text"':
+          data:
+            text: "{{input}}"
+          visualData: 1665.3090286179654/149.86897051323785/330/30//
+        '[WHkKKcl9-ByyqpAfid2nF]:text "Seat Type (Text)"':
+          data:
+            text: First Class
+          outgoingConnections:
+            - output->"Subgraph" Y8Tl8GbCqLbXjaoHr3A0B/seat_type
+          visualData: 411.71478513621526/109.32013637536559/330/15//
+        '[Y8Tl8GbCqLbXjaoHr3A0B]:subGraph "Subgraph"':
+          data:
+            graphId: THrrrVccYQCbQTClaIs9A
+            useAsGraphPartialOutput: false
+            useErrorOutput: false
+          outgoingConnections:
+            - items->"Text" iM0H2dXkVHbWE-jgoDHXw/reviews
+          visualData: 873.7538063052032/38.83633751914002/330/17/var(--node-color-6)/var(--grey-darkish)
+        '[ZHWRBr-elb-1N6Zfe4A-2]:chat "Chat"':
+          data:
+            cache: false
+            enableFunctionUse: false
+            frequencyPenalty: 0
+            headers: []
+            maxTokens: 1024
+            model: gpt-3.5-turbo
+            presencePenalty: 0
+            stop: ""
+            temperature: 0.5
+            top_p: 1
+            useAsGraphPartialOutput: true
+            useFrequencyPenaltyInput: false
+            useMaxTokensInput: false
+            useModelInput: false
+            usePresencePenaltyInput: false
+            useStop: false
+            useStopInput: false
+            useTemperatureInput: false
+            useTopP: false
+            useTopPInput: false
+            useUseTopPInput: false
+            useUserInput: false
+          outgoingConnections:
+            - response->"Text" SAN2HO6sgoc4xKvVf4xBf/input
+          visualData: 1310.720942604556/102.11299933298079/230/26//
+        '[iM0H2dXkVHbWE-jgoDHXw]:text "Text"':
+          data:
+            text: |-
+              # Question
+              {{question}}
+
+              # British Airways Reviews
+              {{reviews}}
+          outgoingConnections:
+            - output->"Chat" ZHWRBr-elb-1N6Zfe4A-2/prompt
+          visualData: 873.7538063052033/301.4941790105544/330/29//
+        '[njQ9R1UdBWVEBAoRDnHJZ]:text "Recommended?"':
+          data:
+            text: no
+          outgoingConnections:
+            - output->"Subgraph" Y8Tl8GbCqLbXjaoHr3A0B/recommended
+          visualData: 412.9086844157217/-32.17879892881942/330/14//
+        '[p-L0gsQ-JatSpdwCnHNeF]:comment "Comment"':
+          data:
+            backgroundColor: rgba(0,0,0,0.05)
+            color: rgba(255,255,255,1)
+            height: 805.6644603728535
+            text: "#### Inputs"
+          visualData: 373.51000819200954/-168.9021371149787/443.80610072049365/1//
+    1GFgGu4iDLvr_hfi39xHK:
+      metadata:
+        description: ""
+        id: 1GFgGu4iDLvr_hfi39xHK
+        name: Import data (once)/#2 Process data
+      nodes:
+        '[-WvCEKSkS2przc2z-MQ4c]:comment "Comment"':
+          data:
+            backgroundColor: rgba(0,0,0,0.05)
+            color: rgba(255,255,255,1)
+            height: 550.5021564044736
+            text: "#### Create embedding data"
+          visualData: 728.1389948771179/198.48680362320917/1339/149//
+        '[FbYRJgR5xpkMLQH9eqJEJ]:object "Dataset Example"':
+          data:
+            jsonTemplate: >-
+              {
+                "id": 0,
+                "review_header": "less than a premium experience",
+                "no_of_reviews": 73,
+                "passenger_name": "Rajan Parrikar",
+                "country_of_origin": "Iceland",
+                "date": "4th September 2023",
+                "is_verified": "Trip Verified",
+                "detailed_review": "London Heathrow to Keflavik, Iceland in Business Class on an A321. British Airways provides an unusual Business Class experience for intra-Europe flights. The seating is similar to most airlines - middle seat vacant and little extra space - but on British Airways the Business Class cabin extends to almost half the aircraft. This makes it less than a premium experience at every step, from boarding to onboard. The WiFi worked for only half the flight and there are no refunds. But when it worked it was surprisingly fast. Service on this flight was very good and we got to Keflavik on time.",
+                "rating_dict": {
+                  "Aircraft": "A321",
+                  "Type Of Traveller": "Couple Leisure",
+                  "Seat Type": "Business Class",
+                  "Route": "London to Keflavik",
+                  "Date Flown": "August 2023",
+                  "Seat Comfort": 3,
+                  "Cabin Staff Service": 4,
+                  "Food & Beverages": 3,
+                  "Ground Service": 4,
+                  "Wifi & Connectivity": 3,
+                  "Value For Money": 4,
+                  "Recommended": "yes"
+                }
+              }
+          outgoingConnections:
+            - output->"Graph Input" uWE-HQycz_ilx_9ux-1RU/default
+          visualData: -121/512/387/70//
+        '[Ov_kwSBEzpOMem31vL2Nt]:object "Object"':
+          data:
+            jsonTemplate: |-
+              {
+                "is_verified": "{{verified}}",
+                "year": "{{year}}",
+                "aircraft": "{{aircraft}}",
+                "seat_type": "{{class}}",
+                "route_from": "{{from}}",
+                "route_to": "{{to}}",
+                "recommended": "{{recommended}}"
+              }
+          outgoingConnections:
+            - output->"Subgraph" cq1NbewXnKHot4ifGuZLi/meta_data
+          visualData: 1626.9827621323284/923.9021098508464/384/153//
+        '[QSxSm42KknpSZZdJxj07v]:extractObjectPath "Extract Object Path"':
+          data:
+            path: $.rating_dict.Recommended
+            usePathInput: false
+          outgoingConnections:
+            - match->"Object" Ov_kwSBEzpOMem31vL2Nt/recommended
+          visualData: 768.2624448314223/1634.608247534166/280/153//
+        '[QdYH01RIxeNlHtBvnoEo7]:text "Text"':
+          data:
+            text: |-
+              # {{headline}}
+              {{content}}
+          outgoingConnections:
+            - output->"Subgraph" cq1NbewXnKHot4ifGuZLi/data
+          visualData: 1636.667870998717/432.13273781050367/330/158//
+        '[Z93nDPWfXl68xPct3UTtk]:extractObjectPath "Extract Object Path"':
+          data:
+            path: $.rating_dict.Seat Type
+            usePathInput: false
+          outgoingConnections:
+            - match->"Object" Ov_kwSBEzpOMem31vL2Nt/class
+          visualData: 768.0309593126756/1469.101923360057/280/153//
+        '[cq1NbewXnKHot4ifGuZLi]:subGraph "Subgraph"':
+          data:
+            graphId: cMB2VAdTAh9B3G3rOc_t8
+            useAsGraphPartialOutput: false
+            useErrorOutput: false
+          visualData: 2206.706778699095/861.6550758936582/330/162/var(--node-color-6)/var(--grey-darkish)
+        '[d7lAVOosJYfW64LO-yt5X]:extractObjectPath "Extract Object Path"':
+          data:
+            path: $.rating_dict.Aircraft
+            usePathInput: false
+          outgoingConnections:
+            - match->"Object" Ov_kwSBEzpOMem31vL2Nt/aircraft
+          visualData: 769.9834701943665/1291.3464180725905/280/153//
+        '[ecEZO7YQ_nR8nne5TZMNR]:extractObjectPath "Extract Object Path"':
+          data:
+            path: $.date
+            usePathInput: false
+          outgoingConnections:
+            - match->"Extract Regex" inkcc89V0wsJfBdGD4LPi/input
+          visualData: 768.5782464303174/849.0752162499213/280/153//
+        '[fZDULaxFjxowaw-2LoEe-]:comment "Comment"':
+          data:
+            backgroundColor: rgba(0,0,0,0.05)
+            color: rgba(255,255,255,1)
+            height: 1270.1674097086595
+            text: "#### Create meta data"
+          visualData: 724.6394261580126/754.9182299609474/1340.41244997837/156//
+        '[hDl6lMhWhGpk2rGjWZMFt]:extractObjectPath "Extract Object Path"':
+          data:
+            path: $.detailed_review
+            usePathInput: false
+          outgoingConnections:
+            - match->"Text" QdYH01RIxeNlHtBvnoEo7/content
+          visualData: 769.4465165772958/525.7310480703327/280/159//
+        '[inkcc89V0wsJfBdGD4LPi]:extractRegex "Extract Regex"':
+          data:
+            errorOnFailed: false
+            regex: \b(\d{4})\b
+            useRegexInput: false
+          outgoingConnections:
+            - output1->"Object" Ov_kwSBEzpOMem31vL2Nt/year
+          visualData: 1211.4449501845952/847.8099555408736/280/153//
+        '[nq3Hbz5ZNZfM3uukEm7dY]:extractRegex "Extract Regex"':
+          data:
+            errorOnFailed: false
+            regex: ^(\w+)\s+to\s+(\w+)$
+            useRegexInput: false
+          outgoingConnections:
+            - output1->"Object" Ov_kwSBEzpOMem31vL2Nt/from
+            - output2->"Object" Ov_kwSBEzpOMem31vL2Nt/to
+          visualData: 1212.2517758346587/1081.5947016018363/280/153//
+        '[rYiiKBlWyAqCWUXLtAFS7]:extractObjectPath "Extract Object Path"':
+          data:
+            path: $.rating_dict.Route
+            usePathInput: false
+          outgoingConnections:
+            - match->"Extract Regex" nq3Hbz5ZNZfM3uukEm7dY/input
+          visualData: 767.0379327498772/1072.7068621629217/280/153//
+        '[rrfkkdd55QYLzOmpnAMEP]:extractObjectPath "Extract Object Path"':
+          data:
+            path: $.review_header
+            usePathInput: false
+          outgoingConnections:
+            - match->"Text" QdYH01RIxeNlHtBvnoEo7/headline
+          visualData: 771.8671729748852/292.4023893289768/280/152//
+        '[uWE-HQycz_ilx_9ux-1RU]:graphInput "Graph Input"':
+          data:
+            dataType: object
+            id: input
+            useDefaultValueInput: true
+          outgoingConnections:
+            - data->"Extract Object Path" QSxSm42KknpSZZdJxj07v/object
+            - data->"Extract Object Path" Z93nDPWfXl68xPct3UTtk/object
+            - data->"Extract Object Path" d7lAVOosJYfW64LO-yt5X/object
+            - data->"Extract Object Path" ecEZO7YQ_nR8nne5TZMNR/object
+            - data->"Extract Object Path" hDl6lMhWhGpk2rGjWZMFt/object
+            - data->"Extract Object Path" rYiiKBlWyAqCWUXLtAFS7/object
+            - data->"Extract Object Path" rrfkkdd55QYLzOmpnAMEP/object
+            - data->"Extract Object Path" w5X4MwMuo27EYaGY8ocJj/object
+          visualData: 333/735/330/72/var(--node-color-3)/var(--grey-darkish)
+        '[w5X4MwMuo27EYaGY8ocJj]:extractObjectPath "Extract Object Path"':
+          data:
+            path: $.is_verified
+            usePathInput: false
+          outgoingConnections:
+            - match->"Object" Ov_kwSBEzpOMem31vL2Nt/verified
+          visualData: 771.970028692812/1797.4328478506995/280/153//
+    80-KgnFiRc5C-cs2GgYHk:
+      metadata:
+        description: ""
+        id: 80-KgnFiRc5C-cs2GgYHk
+        name: "!!! INSTRUCTIONS !!!"
+      nodes:
+        '[TYYZf-dDJqYHJuK8yP-Af]:comment "Comment"':
+          data:
+            backgroundColor: rgba(0,0,0,0.05)
+            color: rgba(255,255,255,1)
+            height: 544.9578709718254
+            text: >+
+              #### Instructions
+
+              ##### Installation (once)
+
+              1. Download and install docker: https://www.docker.com/products/docker-desktop/
+
+              1. Open terminal (MacOS) or command line (Windows)
+
+              1. Enter "docker pull chromadb/chroma"
+
+              1. Go to "Images" in docker and press the run icon for the container "chromadb/chroma"
+
+              1. In optional settings add "8000" to field "host port"
+
+              1. In Rivet go to "Plugins" and add the "Chroma" plugin
+
+
+              ##### Adding data (once)
+
+              1. Download "british_airways_reviews.json": https://www.kaggle.com/datasets/okechukwuobiahu/british-airways-reviews?select=british_airways_reviews.json
+
+              2. Extract .json file
+
+              3. Go to "#1 Import data"
+
+              4. Edit "Read File" node and select file: british_airways_reviews.json
+
+              5. Run "#1 Import data" and wait (this will take a while; rivet might not be responsive)
+
+
+              ##### Start Chroma DB + preparing Rivet
+
+              1. Open docker
+
+              2. Go to "containers"
+
+              3. Start the container with image "chromadb/chroma:latest" (container was automatically named)
+
+              4. Press "..." in the top right corner of rivet and select "node" as "executor"
+
+          visualData: 331.01034397205643/102.0276239229292/696.3733429327203/4//
+    MRLYy0RHMrkXZt75H9NUG:
+      metadata:
+        description: ""
+        id: MRLYy0RHMrkXZt75H9NUG
+        name: Import data (once)/# 1 Import data
+      nodes:
+        '[SQJE8X9X93AhKZqP0NPOX]:subGraph "Subgraph"':
+          data:
+            graphId: 1GFgGu4iDLvr_hfi39xHK
+            useAsGraphPartialOutput: false
+            useErrorOutput: false
+          isSplitRun: true
+          splitRunMax: 999999
+          visualData: 1157/512/330/69/var(--node-color-6)/var(--grey-darkish)
+        '[j73C5QSuWX_FsQAocvxtH]:readFile "Read File"':
+          data:
+            asBinary: false
+            errorOnMissingFile: false
+            path: /Users/timk/Downloads/british_airways_reviews.json
+            usePathInput: false
+          outgoingConnections:
+            - content->"Extract JSON" uQxs-418Gyr8ZKFXkFm5U/input
+          visualData: 411.13272850828525/478.0798154883563/280/60//
+        '[uQxs-418Gyr8ZKFXkFm5U]:extractJson "Extract JSON"':
+          outgoingConnections:
+            - output->"Subgraph" SQJE8X9X93AhKZqP0NPOX/input
+          visualData: 796/527/280/68//
+    THrrrVccYQCbQTClaIs9A:
+      metadata:
+        description: ""
+        id: THrrrVccYQCbQTClaIs9A
+        name: Fetch data/#1 Fetch data
+      nodes:
+        '[0Ux7cPSkQFWaAteg0-5O1]:object "Object"':
+          data:
+            jsonTemplate: |-
+              {
+                "$and": [
+                  {
+                    "is_verified": "Trip Verified"
+                  },
+                  {
+                    "seat_type": "{{seat_type}}"
+                  },
+                  {
+                    "recommended": "{{recommended}}"
+                  }
+                ]
+              }
+            whereDocument: ""
+          outgoingConnections:
+            - output->"Chroma Query" TxQ-veRDTIAId8o098Apo/where
+          visualData: 958.6854259560586/152.63990769871472/405.5140180308613/36//
+        '[TxQ-veRDTIAId8o098Apo]:chromaQuery "Chroma Query"':
+          data:
+            collectionName: british_airways_reviews
+            createCollectionIfNotExists: true
+            nResults: 10
+            useCollectionNameInput: false
+            useWhereDocumentInput: false
+            useWhereInput: true
+            where: ""
+            whereDocument: ""
+          outgoingConnections:
+            - items->"Graph Output" __LlHUbz2n2FPmCrhU4KQ/value
+          visualData: 1536.3022001692786/261.77404427007303/230/38//
+        '[__LlHUbz2n2FPmCrhU4KQ]:graphOutput "Graph Output"':
+          data:
+            dataType: string
+            id: items
+          visualData: 1492.8364692696334/611.6141375088974/330/39/var(--node-color-4)/var(--grey-darkish)
+        '[smPF3nZa0i0byJJkD4AVW]:graphInput "Graph Input"':
+          data:
+            dataType: string
+            id: seat_type
+            useDefaultValueInput: false
+          outgoingConnections:
+            - data->"Object" 0Ux7cPSkQFWaAteg0-5O1/seat_type
+          visualData: 445/285/330/1/var(--node-color-3)/var(--grey-darkish)
+        '[unQ4TfEGvfHKmzMtJnkfl]:graphInput "Graph Input"':
+          data:
+            dataType: string
+            defaultValue: ""
+            id: question
+            useDefaultValueInput: false
+          outgoingConnections:
+            - data->"Get Embedding" yfFFuYj0MpS_uJ4tMSFAk/input
+          visualData: 443.0216628025423/637.5199072610155/330/25/var(--node-color-3)/var(--grey-darkish)
+        '[w04z-W8zwjJ4EniUQrzjA]:graphInput "Graph Input"':
+          data:
+            dataType: string
+            id: recommended
+            useDefaultValueInput: false
+          outgoingConnections:
+            - data->"Object" 0Ux7cPSkQFWaAteg0-5O1/recommended
+          visualData: 445/456.3141106368636/330/17/var(--node-color-3)/var(--grey-darkish)
+        '[yfFFuYj0MpS_uJ4tMSFAk]:getEmbedding "Get Embedding"':
+          data:
+            integration: openai
+            useIntegrationInput: false
+          outgoingConnections:
+            - embedding->"Chroma Query" TxQ-veRDTIAId8o098Apo/embedding
+          visualData: 951.0915792832708/631.5840737214213/280/37//
+    cMB2VAdTAh9B3G3rOc_t8:
+      metadata:
+        description: ""
+        id: cMB2VAdTAh9B3G3rOc_t8
+        name: Import data (once)/#3 Save data
+      nodes:
+        '[3dHH7-rdkwoS-59umZQ6t]:randomNumber "RNG"':
+          data:
+            integers: false
+            max: 10000000
+            maxInclusive: false
+            min: 0
+          outgoingConnections:
+            - value->"Hash" VHtrvJnWsPsDAWFjsDQF9/input
+          visualData: 1431.7373703315939/-140.90979377654747/180/17//
+        '[Cp1fInv9hpM6VeVTsXQ-o]:graphInput "Graph Input"':
+          data:
+            dataType: string
+            id: data
+            useDefaultValueInput: false
+          outgoingConnections:
+            - data->"Chroma Add" eahGqTfWAvEJeDIu2MuxK/document
+            - data->"Get Embedding" qXnEotQ98Llcyd434-aXs/input
+          visualData: 529.4373900393633/207.22045438986834/330/13/var(--node-color-3)/var(--grey-darkish)
+        '[VHtrvJnWsPsDAWFjsDQF9]:hash "Hash"':
+          data:
+            algorithm: sha256
+          outgoingConnections:
+            - hash->"Chroma Add" eahGqTfWAvEJeDIu2MuxK/id
+          visualData: 1387.3634699379604/65.42884305384752/280/16//
+        '[eahGqTfWAvEJeDIu2MuxK]:chromaAdd "Chroma Add"':
+          data:
+            collectionName: british_airways_reviews
+            createCollectionIfNotExists: true
+            id: ""
+            metadata: []
+            upsert: true
+            useCollectionNameInput: false
+            useIdInput: true
+            useMetadataInput: true
+          visualData: 1416.3287778230278/275.1754968357695/230/11//
+        '[oeOCfMFiMAiqeYxq7NA8d]:graphInput "Graph Input"':
+          data:
+            dataType: object
+            id: meta_data
+            useDefaultValueInput: false
+          outgoingConnections:
+            - data->"Chroma Add" eahGqTfWAvEJeDIu2MuxK/metadata
+          visualData: 522.2245120815451/458.26463755364836/330/12/var(--node-color-3)/var(--grey-darkish)
+        '[qXnEotQ98Llcyd434-aXs]:getEmbedding "Get Embedding"':
+          data:
+            integration: openai
+            useIntegrationInput: false
+          outgoingConnections:
+            - embedding->"Chroma Add" eahGqTfWAvEJeDIu2MuxK/embedding
+          visualData: 977.4607502876762/145.2336717180676/280/18//
+  metadata:
+    description: How to use retrieval augmented generation in Rivet
+    id: SGyzzKn1EXtIZ4iIUgZpS
+    mainGraphId: Tt-Gp81JG61ARQRpWdfKi
+    title: Retrieval Augmented Generation (RAG)
+  plugins:
+    - id: rivet-plugin-chromadb@latest
+      package: rivet-plugin-chromadb
+      tag: latest
+      type: package

@@ -1,0 +1,479 @@
+version: 4
+data:
+  attachedData:
+    trivet:
+      testSuites: []
+      version: 1
+  graphs:
+    Qg7t3zRhxc7V8R_GwDS0W:
+      metadata:
+        description: ""
+        id: Qg7t3zRhxc7V8R_GwDS0W
+        name: Subgraphs/#3 update_airtable_record
+      nodes:
+        '[3JaWbOixdGBg7RFJTaSTS]:graphInput "Graph Input"':
+          data:
+            dataType: string
+            id: token
+            useDefaultValueInput: false
+          outgoingConnections:
+            - data->"Subgraph" EYQFh-v9F0aavCPQGVPgl/token
+          visualData: 471.15625066128655/531.6421563985543/330/53/var(--node-color-3)/var(--grey-darkish)
+        '[8yJu6HlCQCYHh2YL_jBeE]:graphOutput "Graph Output"':
+          data:
+            dataType: string
+            id: http_status
+          visualData: 1970.5193674722734/558.692521908031/330/58/var(--node-color-4)/var(--grey-darkish)
+        '[EYQFh-v9F0aavCPQGVPgl]:subGraph "Subgraph"':
+          data:
+            graphId: fNdl5uLY2MUKLBhVKSWxo
+            useAsGraphPartialOutput: false
+            useErrorOutput: false
+          outgoingConnections:
+            - headers->"Http Call" jQ5riFTjBfV7qQZvYvwU1/headers
+          visualData: 928.4362390357713/545.811395474947/330/54/var(--node-color-6)/var(--grey-darkish)
+        '[FFP3tIfdNklXSqfaK6vmz]:subGraph "Subgraph"':
+          data:
+            graphId: eQSvLDVU0dWz_8Na9EXxs
+            useAsGraphPartialOutput: false
+            useErrorOutput: false
+          outgoingConnections:
+            - appid->"Text" lTBzyuQhEoFl6iy1zfTYu/appid
+            - tblid->"Text" lTBzyuQhEoFl6iy1zfTYu/tblid
+          visualData: 931.0124643223882/894.8899218115255/330/19/var(--node-color-6)/var(--grey-darkish)
+        '[L3nU5Y1IxNQy4Wrins1rF]:graphInput "Graph Input"':
+          data:
+            dataType: object
+            id: table_object
+            useDefaultValueInput: false
+          outgoingConnections:
+            - data->"Http Call" jQ5riFTjBfV7qQZvYvwU1/req_body
+          visualData: 472.44436330459496/315.5817726099385/331.80260009650567/59/var(--node-color-3)/var(--grey-darkish)
+        '[gUD8PCJbM-MLZr4dtHG6G]:graphInput "Graph Input"':
+          data:
+            dataType: string
+            id: url
+            useDefaultValueInput: false
+          outgoingConnections:
+            - data->"Subgraph" FFP3tIfdNklXSqfaK6vmz/url
+          visualData: 470.01678850315886/876.2196045858691/330/17/var(--node-color-3)/var(--grey-darkish)
+        '[jQ5riFTjBfV7qQZvYvwU1]:httpCall "Http Call"':
+          data:
+            body: ""
+            errorOnNon200: true
+            headers: ""
+            method: PUT
+            url: ""
+            useBodyInput: true
+            useHeadersInput: true
+            useUrlInput: true
+          outgoingConnections:
+            - statusCode->"Graph Output" 8yJu6HlCQCYHh2YL_jBeE/value
+          visualData: 1481.0365630150784/477.5414253796013/280/56//
+        '[lTBzyuQhEoFl6iy1zfTYu]:text "Text"':
+          data:
+            text: https://api.airtable.com/v0/{{appid}}/{{tblid}}/{{recordid}}
+          outgoingConnections:
+            - output->"Http Call" jQ5riFTjBfV7qQZvYvwU1/url
+          visualData: 1428.2239446394337/871.703894231974/463.3035471016633/43//
+        '[mPzuWUQfw21PXPy1l5Id0]:graphInput "Graph Input"':
+          data:
+            dataType: string
+            id: record_id
+            useDefaultValueInput: false
+          outgoingConnections:
+            - data->"Text" lTBzyuQhEoFl6iy1zfTYu/recordid
+          visualData: 472.44436330459496/700.3849126719558/330/45/var(--node-color-3)/var(--grey-darkish)
+        '[mnlbOKAVTslaJNKi5DqJl]:comment "Comment"':
+          data:
+            backgroundColor: rgba(0,0,0,0.05)
+            color: rgba(255,255,255,1)
+            height: 144.42377471338318
+            text: >-
+              #### Note
+
+              Sadly Rivet cannot perform a "patch" request. Then we could only insert the value of the field we need. So we need to use PUT and update the whole row
+          visualData: 1314.8700320282935/292.0532047431905/633.2921747777204/57//
+    Wk_C75nWk-cFcr51Otp6R:
+      metadata:
+        description: ""
+        id: Wk_C75nWk-cFcr51Otp6R
+        name: Subgraphs/#2 handle_airtable_record
+      nodes:
+        '[4xebgx8cJAdByWEWlIjf_]:graphInput "Graph Input"':
+          data:
+            dataType: object
+            id: record
+            useDefaultValueInput: true
+          outgoingConnections:
+            - data->"Extract Object Path" TDXolIOn_rCSbV6LtAREh/object
+            - data->"Extract Object Path" mo8yi57nppr7jcN5MJfd4/object
+          visualData: 557.7150038603753/339.6739453182527/330/61/var(--node-color-3)/var(--grey-darkish)
+        '[BZ1qJdJ78SzSKot-lDoX6]:comment "Comment"':
+          data:
+            backgroundColor: rgba(0,0,0,0.05)
+            color: rgba(255,255,255,1)
+            height: 481.2869231142895
+            text: "#### Rebuild the fields including the field with the new content"
+          visualData: 925.7581456515531/700.0927216650741/1327.2285865389285/26//
+        '[JJeFMDXFQRpCAwIU8vWa6]:text "System Prompt (Text)"':
+          data:
+            text: >-
+              You are a secretary. 
+
+              - Your job is to write e-mails on the behalf of your boss. 
+
+              - Your boss is a very lazy and only gives you very little information. 
+
+              - You are not allowed to ask him questions. 
+
+              - You only reply with the e-mail content.
+
+              - The name of your boss is: "Max Mustermann"
+
+              - Please consider the relationship to find the proper tone (e.g. not formally if writing to the family)
+
+              - Do not include a "Subject" for the e-mail. Just return the content
+          outgoingConnections:
+            - output->"Chat" eYqeI4zKAQ0Y4EGF8Hd7-/systemPrompt
+          visualData: 1167.4467501376623/42.52791354339667/538.7031501891136/48//
+        '[TDXolIOn_rCSbV6LtAREh]:extractObjectPath "Extract Object Path"':
+          data:
+            path: $.fields
+            usePathInput: false
+          outgoingConnections:
+            - match->"Code" hdmopIAfUwjLJUk2NbqOJ/object_input
+            - match->"Prompt" x7YB7C3J90MBZr7BS37gN/input
+          visualData: 998.8872216590771/409.51435439963115/280/55//
+        '[XBGMsOzQV3iThk3iPKHbj]:object "Object"':
+          data:
+            code: ""
+            jsonTemplate: |-
+              {
+                "id": "rechMD28tCHyzXWDD",
+                "createdTime": "2023-12-20T08:35:00.000Z",
+                "fields": {
+                  "Recipient": "Mr. Bossman",
+                  "Relationship": "Boss",
+                  "Letter intent": "Sick leave announcement"
+                }
+              }
+          outgoingConnections:
+            - output->"Graph Input" 4xebgx8cJAdByWEWlIjf_/default
+          visualData: 104.36229979710518/276.2826486712548/230/60//
+        '[eYqeI4zKAQ0Y4EGF8Hd7-]:chat "Chat"':
+          data:
+            cache: true
+            enableFunctionUse: false
+            frequencyPenalty: 0
+            headers: []
+            maxTokens: 1024
+            model: gpt-4-1106-preview
+            presencePenalty: 0
+            stop: ""
+            temperature: 0.7
+            top_p: 1
+            useAsGraphPartialOutput: true
+            useFrequencyPenaltyInput: false
+            useMaxTokensInput: false
+            useModelInput: false
+            usePresencePenaltyInput: false
+            useStop: false
+            useStopInput: false
+            useTemperatureInput: false
+            useTopP: false
+            useTopPInput: false
+            useUseTopPInput: false
+            useUserInput: false
+          outgoingConnections:
+            - response->"Code" hdmopIAfUwjLJUk2NbqOJ/new_item_value
+          visualData: 1789.4218681055472/266.7759169406967/230/27//
+        '[hdmopIAfUwjLJUk2NbqOJ]:code "Code"':
+          data:
+            code: |+
+              let object = inputs.object_input.value;
+              object[inputs.new_item_key.value] = inputs.new_item_value.value;
+
+              return {
+                  object_output: {
+                      type: 'object',
+                      value: {
+                          fields: object
+                      }
+                  }
+              };
+
+            inputNames:
+              - object_input
+              - new_item_key
+              - new_item_value
+            outputNames:
+              - object_output
+          outgoingConnections:
+            - object_output->"Graph Output" iZinkGqWj28s_4MwP_8Ed/value
+          visualData: 1744.5253292668137/778.7745430930607/230/73//
+        '[iZinkGqWj28s_4MwP_8Ed]:graphOutput "Graph Output"':
+          data:
+            dataType: string
+            id: table_object
+          visualData: 2326.343558267999/777.7030778611398/330/50/var(--node-color-4)/var(--grey-darkish)
+        '[lLDiCUjeguVRuxzXmzfD3]:graphOutput "Graph Output"':
+          data:
+            dataType: string
+            id: id
+          visualData: 2325.9460557791867/1020.6819152658978/330/52/var(--node-color-4)/var(--grey-darkish)
+        '[mo8yi57nppr7jcN5MJfd4]:extractObjectPath "Extract Object Path"':
+          data:
+            path: $.id
+            usePathInput: false
+          outgoingConnections:
+            - match->"Graph Output" lLDiCUjeguVRuxzXmzfD3/value
+          visualData: 1083.735996099881/862.0761398990975/280/70//
+        '[oOtb4nzHmU21bmwlynPrL]:comment "Comment"':
+          data:
+            backgroundColor: rgba(0,0,0,0.05)
+            color: rgba(255,255,255,1)
+            height: 695.9244422719051
+            text: "#### Prompt our AI secretary"
+          visualData: 930.1011753620726/-10.716474289964136/1314.9535314034638/25//
+        '[x7YB7C3J90MBZr7BS37gN]:prompt "Prompt"':
+          data:
+            enableFunctionCall: false
+            promptText: "{{input}}"
+            type: user
+            useTypeInput: false
+          outgoingConnections:
+            - output->"Chat" eYqeI4zKAQ0Y4EGF8Hd7-/prompt
+          visualData: 1408.3687786792832/393.8153809675465/280/9//
+        '[xuzxvp7b_oOVVN7xsCTZm]:text "Text"':
+          data:
+            text: E-Mail Content
+          outgoingConnections:
+            - output->"Graph Input" zVOcSEsMcwNcMhYNiPvw5/default
+          visualData: 83.47632863531857/625.2012257269831/330/63//
+        '[zVOcSEsMcwNcMhYNiPvw5]:graphInput "Graph Input"':
+          data:
+            dataType: string
+            id: output_field
+            useDefaultValueInput: true
+          outgoingConnections:
+            - data->"Code" hdmopIAfUwjLJUk2NbqOJ/new_item_key
+          visualData: 560.760784077906/605.580545118618/330/56/var(--node-color-3)/var(--grey-darkish)
+    bBFrt9rq1jSgMQUd9Vlkb:
+      metadata:
+        description: ""
+        id: bBFrt9rq1jSgMQUd9Vlkb
+        name: Subgraphs/#1 list_airtable_records
+      nodes:
+        '[-3r3IG8JgmBICjadkhG3y]:text "Text"':
+          data:
+            text: https://api.airtable.com/v0/{{appid}}/{{tblid}}
+          outgoingConnections:
+            - output->"Http Call" IY5zv2MztkMIorZZn0jgP/url
+          visualData: 1336.081948025655/549.4446215008151/377.7261236982695/34//
+        '[4QvMT-qKBDlWeC27Vhn9l]:graphInput "Graph Input"':
+          data:
+            dataType: string
+            id: airtable_url
+            useDefaultValueInput: false
+          outgoingConnections:
+            - data->"Subgraph" Odii1yI0E2BE4_LUM-87o/url
+          visualData: 447/530/330/4/var(--node-color-3)/var(--grey-darkish)
+        '[IY5zv2MztkMIorZZn0jgP]:httpCall "Http Call"':
+          data:
+            body: ""
+            errorOnNon200: true
+            headers: ""
+            method: GET
+            url: ""
+            useHeadersInput: true
+            useUrlInput: true
+          outgoingConnections:
+            - json->"Extract Object Path" SHEZEDeYxL1j2jdPhb1Pv/object
+          visualData: 1436.1904026122693/223.51011819555995/280/25//
+        '[Odii1yI0E2BE4_LUM-87o]:subGraph "Subgraph"':
+          data:
+            graphId: eQSvLDVU0dWz_8Na9EXxs
+            useAsGraphPartialOutput: false
+            useErrorOutput: false
+          outgoingConnections:
+            - appid->"Text" -3r3IG8JgmBICjadkhG3y/appid
+            - tblid->"Text" -3r3IG8JgmBICjadkhG3y/tblid
+          visualData: 917.0233009188985/543.6243625132212/330/15/var(--node-color-6)/var(--grey-darkish)
+        '[SHEZEDeYxL1j2jdPhb1Pv]:extractObjectPath "Extract Object Path"':
+          data:
+            path: $.records
+            usePathInput: false
+          outgoingConnections:
+            - match->"Graph Output" kI326eu36BlGNrY-ECHIQ/value
+          visualData: 1815.6712886033874/279.3846044764609/280/33//
+        '[_1QxdSo4k4jjKnn6eZ83O]:graphInput "Graph Input"':
+          data:
+            dataType: string
+            id: token
+            useDefaultValueInput: false
+          outgoingConnections:
+            - data->"Subgraph" gKOEd5La-sXmz3mPNUZ7i/token
+          visualData: 444/318/330/null/var(--node-color-3)/var(--grey-darkish)
+        '[gKOEd5La-sXmz3mPNUZ7i]:subGraph "Subgraph"':
+          data:
+            graphId: fNdl5uLY2MUKLBhVKSWxo
+            useAsGraphPartialOutput: false
+            useErrorOutput: false
+          outgoingConnections:
+            - headers->"Http Call" IY5zv2MztkMIorZZn0jgP/headers
+          visualData: 915.8592491213799/335.2590907573618/330/16/var(--node-color-6)/var(--grey-darkish)
+        '[kI326eu36BlGNrY-ECHIQ]:graphOutput "Graph Output"':
+          data:
+            dataType: string
+            id: table_object
+          visualData: 2218.433210544881/263.0878793111983/330/29/var(--node-color-4)/var(--grey-darkish)
+    eQSvLDVU0dWz_8Na9EXxs:
+      metadata:
+        description: ""
+        id: eQSvLDVU0dWz_8Na9EXxs
+        name: Functions/get_ids_from_url
+      nodes:
+        '[2QgMu6Yl7vIgSOlG23uxt]:graphOutput "Graph Output"':
+          data:
+            dataType: string
+            id: appid
+          visualData: 1205/288/330/27/var(--node-color-4)/var(--grey-darkish)
+        '[4J6mAOLnNDx6_xe-98WWU]:graphOutput "Graph Output"':
+          data:
+            dataType: string
+            id: tblid
+          visualData: 1202/515/330/26/var(--node-color-4)/var(--grey-darkish)
+        '[PsqoqmrwHOVzmMhzE8Laz]:graphInput "Graph Input"':
+          data:
+            dataType: string
+            id: url
+            useDefaultValueInput: false
+          outgoingConnections:
+            - data->"Extract Regex" pCkbJl2lTAUP-gjvGoG-P/input
+          visualData: 369/348/330/24/var(--node-color-3)/var(--grey-darkish)
+        '[pCkbJl2lTAUP-gjvGoG-P]:extractRegex "Extract Regex"':
+          data:
+            errorOnFailed: false
+            regex: https:\/\/airtable\.com\/([^\/]+)\/([^\/]+)
+            useRegexInput: false
+          outgoingConnections:
+            - output1->"Graph Output" 2QgMu6Yl7vIgSOlG23uxt/value
+            - output2->"Graph Output" 4J6mAOLnNDx6_xe-98WWU/value
+          visualData: 798/366/280/16//
+    fNdl5uLY2MUKLBhVKSWxo:
+      metadata:
+        description: ""
+        id: fNdl5uLY2MUKLBhVKSWxo
+        name: Functions/create_headers
+      nodes:
+        '[4Phvpu3-UK62yc5DB4wzA]:object "Object"':
+          data:
+            jsonTemplate: |-
+              {
+                "Authorization": "{{bearer_token}}",
+                "Content-Type": "application/json"
+              }
+          outgoingConnections:
+            - output->"Graph Output" n-VcVyp6o1W2gzagpmygv/value
+          visualData: 836/464/316/11//
+        '[WFsI7HdnZDis1bQP1Lw49]:graphInput "Graph Input"':
+          data:
+            dataType: string
+            id: token
+            useDefaultValueInput: false
+          outgoingConnections:
+            - data->"Text" oirP2GSn6YUaaln4-f9bI/token
+          visualData: 361/314/330/9/var(--node-color-3)/var(--grey-darkish)
+        '[n-VcVyp6o1W2gzagpmygv]:graphOutput "Graph Output"':
+          data:
+            dataType: object
+            id: headers
+          visualData: 1255/314/330/8/var(--node-color-4)/var(--grey-darkish)
+        '[oirP2GSn6YUaaln4-f9bI]:text "Text"':
+          data:
+            text: Bearer {{token}}
+          outgoingConnections:
+            - output->"Object" 4Phvpu3-UK62yc5DB4wzA/bearer_token
+          visualData: 833/242/330/13//
+    yQ5xggGzHexDAQo7dO6Zc:
+      metadata:
+        description: ""
+        id: yQ5xggGzHexDAQo7dO6Zc
+        name: Main Graph
+      nodes:
+        '[2NSPOU_KO9K2Id6ry-zXM]:comment "Comment"':
+          data:
+            backgroundColor: rgba(0,0,0,0.05)
+            color: rgba(255,255,255,1)
+            height: 170.93148659558437
+            text: >-
+              #### How to use
+
+              1. Go to "Project" settings and add "airtable_token" to context
+
+              2. Replace "Airtable URL" with your url to the table (just copy from browser)
+
+              3. Adjust name of "Output Field" to match field name in your airtable
+          visualData: 4.360030229433205/1003.0857543772878/602.0315628861886/49//
+        '[Dkyu96hQY_fHCZ87vygta]:text "Airtable URL (Text)"':
+          data:
+            text: https://airtable.com/appYtQk1H8Lv6CNXf/tblYAmwqbfps1aju1/viwjWodgyoQVyO4pz?blocks=hide
+          outgoingConnections:
+            - output->"Subgraph" gNHHcuWrbo1ZjOYxpmyh2/url
+            - output->"Subgraph" tj8EyfRiWiaYLAJ_cnCdI/airtable_url
+          visualData: 3.32096632220163/1387.516131415383/667.2719497148316/42//
+        '[KcAP3cZu24dQI5JuoEjTH]:text "Output field (Text)"':
+          data:
+            text: E-Mail Content
+          outgoingConnections:
+            - output->"Subgraph" iCHLYJHf9LE5fMJMnhxyu/output_field
+          visualData: 2.0633789797743987/1563.7904658719995/330/47//
+        '[TEzv2qkSB_3pJ9vJhmy_x]:text "Text"':
+          data:
+            text: "{{input}}"
+          visualData: 1236.9927638139773/1434.241751272952/330/39//
+        '[gNHHcuWrbo1ZjOYxpmyh2]:subGraph "Subgraph"':
+          data:
+            graphId: Qg7t3zRhxc7V8R_GwDS0W
+            useAsGraphPartialOutput: false
+            useErrorOutput: false
+          isSplitRun: true
+          outgoingConnections:
+            - http_status->"Text" TEzv2qkSB_3pJ9vJhmy_x/input
+          splitRunMax: 10
+          visualData: 782.5797406550664/1431.6316280257415/330/44/var(--node-color-6)/var(--grey-darkish)
+        '[gTlaFt5ysS5OvUY2Ry7TN]:context "Context"':
+          data:
+            dataType: string
+            id: airtable_token
+            useDefaultValueInput: false
+          outgoingConnections:
+            - data->"Subgraph" gNHHcuWrbo1ZjOYxpmyh2/token
+            - data->"Subgraph" tj8EyfRiWiaYLAJ_cnCdI/token
+          visualData: 5.605324039671155/1195.0041839871299/330/50//
+        '[iCHLYJHf9LE5fMJMnhxyu]:subGraph "Subgraph"':
+          data:
+            graphId: Wk_C75nWk-cFcr51Otp6R
+            useAsGraphPartialOutput: false
+            useErrorOutput: false
+          isSplitRun: true
+          outgoingConnections:
+            - id->"Subgraph" gNHHcuWrbo1ZjOYxpmyh2/record_id
+            - table_object->"Subgraph" gNHHcuWrbo1ZjOYxpmyh2/table_object
+          splitRunMax: 10
+          visualData: 784.9382857579677/1219.2053324244657/330/43/var(--node-color-6)/var(--grey-darkish)
+        '[tj8EyfRiWiaYLAJ_cnCdI]:subGraph "Subgraph"':
+          data:
+            graphId: bBFrt9rq1jSgMQUd9Vlkb
+            useAsGraphPartialOutput: false
+            useErrorOutput: false
+          outgoingConnections:
+            - table_object->"Subgraph" iCHLYJHf9LE5fMJMnhxyu/record
+          visualData: 783.4917114281885/1005.426804297526/330/37/var(--node-color-6)/var(--grey-darkish)
+  metadata:
+    description: ""
+    id: HPNwZflpZGVCvqVBksTqV
+    mainGraphId: yQ5xggGzHexDAQo7dO6Zc
+    title: Read and write data to airtable
+  plugins: []

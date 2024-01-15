@@ -1,0 +1,515 @@
+version: 4
+data:
+  attachedData:
+    trivet:
+      testSuites: []
+      version: 1
+  graphs:
+    BDFMQO7XUR0iQgylPCe9e:
+      metadata:
+        description: ""
+        id: BDFMQO7XUR0iQgylPCe9e
+        name: "#1 Session history"
+      nodes:
+        '[5sQip6QmekFCBfguUIwum]:comment "Comment"':
+          data:
+            backgroundColor: rgba(0,0,0,0.05)
+            color: rgba(255,255,255,1)
+            height: 904.3427723581045
+            text: "#### Inputs"
+          visualData: -481.62739386331265/31.652197054474854/410.6440165897553/69//
+        '[E86gskuE7Q-v3Ia4CV0ni]:prompt "Instructions (Prompt)"':
+          data:
+            enableFunctionCall: false
+            promptText: You are "Mandy", a helpful and friendly helper who will assist the
+              user with any needs. You are witty and relatable.
+            type: system
+            useTypeInput: false
+          outgoingConnections:
+            - output->"Loop Controller" TVwEvIs4MgEu30Cs1uTnB/input2Default
+          visualData: -446.2077384258332/394.83028756768374/280/48//
+        '[FWnHtA91rxllFrDmPxoGs]:chat "Chat"':
+          data:
+            cache: false
+            enableFunctionUse: false
+            frequencyPenalty: 0
+            maxTokens: 1024
+            model: gpt-3.5-turbo
+            presencePenalty: 0
+            stop: ""
+            temperature: 0.5
+            top_p: 1
+            useAsGraphPartialOutput: true
+            useFrequencyPenaltyInput: false
+            useMaxTokensInput: false
+            useModelInput: false
+            usePresencePenaltyInput: false
+            useStop: false
+            useStopInput: false
+            useTemperatureInput: false
+            useTopP: false
+            useTopPInput: false
+            useUseTopPInput: false
+            useUserInput: false
+          outgoingConnections:
+            - all-messages->"Loop Controller" TVwEvIs4MgEu30Cs1uTnB/input2
+            - response->"Loop Controller" TVwEvIs4MgEu30Cs1uTnB/input1
+          visualData: 833/198/230/33//
+        '[LgIqkH-ZMsIPmnNOlZrZ7]:text "Default User Input (Text)"':
+          data:
+            text: Enter your message...
+          outgoingConnections:
+            - output->"Loop Controller" TVwEvIs4MgEu30Cs1uTnB/input1Default
+          visualData: -449.0802352789947/226.9707287570215/330/56//
+        '[NuLUWIzS3GK2-juFL50fi]:abortGraph "Abort Graph"':
+          data:
+            errorMessage: ""
+            successfully: true
+          visualData: 418.43601775775903/-113.8885863975996/230/66/var(--node-color-5)/var(--grey-darkish)
+        '[TVwEvIs4MgEu30Cs1uTnB]:loopController "Loop Controller"':
+          data:
+            maxIterations: 100
+          outgoingConnections:
+            - break->"Abort Graph" NuLUWIzS3GK2-juFL50fi/data
+            - output1->"User Input" ZKQba6NXdVnd5gcVsl4wN/questions
+            - output2->"Assemble Prompt" qpyygslCPgBLiZ6I9Q6dU/message1
+          visualData: -3.237030787405697/190.21390090200816/280/10/var(--node-color-2)/var(--grey-darkish)
+        '[ZKQba6NXdVnd5gcVsl4wN]:userInput "User Input"':
+          data:
+            prompt: This is an example question?
+            useInput: true
+          outgoingConnections:
+            - output->"Prompt" lSSyF_m8AodtYxmieQqci/input
+          visualData: 412.2323462209274/219.74306230285032/280/54//
+        '[lSSyF_m8AodtYxmieQqci]:prompt "Prompt"':
+          data:
+            enableFunctionCall: false
+            promptText: "{{input}}"
+            type: user
+            useTypeInput: false
+          outgoingConnections:
+            - output->"Assemble Prompt" qpyygslCPgBLiZ6I9Q6dU/message2
+          visualData: 410.5887596587254/436.7342007102506/280/65//
+        '[qpyygslCPgBLiZ6I9Q6dU]:assemblePrompt "Assemble Prompt"':
+          outgoingConnections:
+            - prompt->"Chat" FWnHtA91rxllFrDmPxoGs/prompt
+          visualData: 412.3098632759229/682.089958750243/280/52//
+        '[u-SeKcjGsKkz5Cva2zAxS]:comment "Comment"':
+          data:
+            backgroundColor: rgba(0,0,0,0.05)
+            color: rgba(255,255,255,1)
+            height: 898.6308055376153
+            text: |-
+              #### Chat Loop
+              - Input (Data 1): last_response
+              - Input (Data 2): chat_history
+          visualData: -66.91722137827148/34.72579401305582/1218.3559834102448/68//
+    HzyQGQrMP70UdjBnOVuSq:
+      metadata:
+        description: ""
+        id: HzyQGQrMP70UdjBnOVuSq
+        name: "#2 Permanent history/Functions/create_dataset"
+      nodes:
+        '[Fi92g7ZcaVXWdmyyWU3Jq]:text "Text"':
+          data:
+            text: chat_history
+          outgoingConnections:
+            - output->"Create Dataset" Zj7sJ1FNz7pZ29Vz3btrt/datasetId
+            - output->"Create Dataset" Zj7sJ1FNz7pZ29Vz3btrt/datasetName
+          visualData: 619.1086541676472/346.32596250294154/330/38//
+        '[Zj7sJ1FNz7pZ29Vz3btrt]:createDataset "Create Dataset"':
+          outgoingConnections:
+            - datasetId_out->"Graph Output" eDNfAA7BePmt_ZAVnUJON/value
+          visualData: 1022.4203352884541/344.3897606023658/280/37//
+        '[eDNfAA7BePmt_ZAVnUJON]:graphOutput "Graph Output"':
+          data:
+            dataType: string
+            id: go
+          visualData: 1394.9578495375588/313.8703201279262/330/41/var(--node-color-4)/var(--grey-darkish)
+    Lie3Z78yiURmkGe9X5Vxu:
+      metadata:
+        description: ""
+        id: Lie3Z78yiURmkGe9X5Vxu
+        name: "#2 Permanent history/Subgraphs/Get chat history"
+      nodes:
+        '[0iNIFJOLtJhZ1aGGOun0F]:subGraph "Subgraph"':
+          data:
+            graphId: HzyQGQrMP70UdjBnOVuSq
+            useAsGraphPartialOutput: false
+            useErrorOutput: false
+          outgoingConnections:
+            - go->"Subgraph" zpoM5hJ29DSL7uCDp2J3m/go
+          visualData: -39.42819049911869/509.6152799795846/330/313/var(--node-color-6)/var(--grey-darkish)
+        '[3CmZs0Kg2AOWBXN4mp5Gv]:extractObjectPath "Extract Object Path"':
+          data:
+            path: $.message
+            usePathInput: false
+          outgoingConnections:
+            - match->"If/Else" p3_LKl7pM-TIyOAqqfjeW/true
+          visualData: 427.17910385289656/1126.2275615160638/280/341//
+        '[BV8lNGyxBL14da_EFZGg_]:graphInput "Graph Input"':
+          data:
+            dataType: string
+            id: instructions
+            useDefaultValueInput: false
+          outgoingConnections:
+            - data->"Prompt" WEylOQCdrreRXcMXIWZ8N/input
+          visualData: -424.7565772052073/926.6632624580042/330/336/var(--node-color-3)/var(--grey-darkish)
+        '[C24-RZky8IN7R7g4rLuFB]:comment "Comment"':
+          data:
+            backgroundColor: rgba(0,0,0,0.05)
+            color: rgba(255,255,255,1)
+            height: 379.96992835487026
+            text: |-
+              #### Check if history exists
+              - True: Return history
+              - False: Return system prompt
+          visualData: 355.36883839263936/386.96105889711765/774.9816058634797/280//
+        '[EIIfg7Ms7bWy3mUZmQhHa]:comment "Comment"':
+          data:
+            backgroundColor: rgba(0,0,0,0.05)
+            color: rgba(255,255,255,1)
+            height: 315.86080375592405
+            text: "#### Log system message if no chat history"
+          visualData: 350.30742816077174/1368.860445740149/794.9908029317398/331//
+        '[LKCecPZQQKiRrwMz4MGqr]:ifElse "If/Else"':
+          data:
+            unconnectedControlFlowExcluded: true
+          outgoingConnections:
+            - output->"Graph Output" RIXvB8DDht9f2x0tV4A5h/value
+          visualData: 813.278290475119/519.8003304289467/205/322//
+        '[RIXvB8DDht9f2x0tV4A5h]:graphOutput "Graph Output"':
+          data:
+            dataType: chat-message[]
+            id: chat_history
+          visualData: 1189.5356068475041/490.07657000868414/330/323/var(--node-color-4)/var(--grey-darkish)
+        '[SAP7BL2BgIay45esG-TwA]:graphOutput "Graph Output"':
+          data:
+            dataType: string
+            id: last_response
+          visualData: 1177.4970933871082/1071.7961801734582/330/341/var(--node-color-4)/var(--grey-darkish)
+        '[UcOMZAayAC08hEjha14rV]:assemblePrompt "Assemble Prompt"':
+          outgoingConnections:
+            - prompt->"If/Else" LKCecPZQQKiRrwMz4MGqr/false
+          visualData: 407.77508973469253/566.3190895200734/280/337//
+        '[WEylOQCdrreRXcMXIWZ8N]:prompt "Prompt"':
+          data:
+            enableFunctionCall: false
+            promptText: "{{input}}"
+            type: system
+            useTypeInput: false
+          outgoingConnections:
+            - output->"Assemble Prompt" UcOMZAayAC08hEjha14rV/message1
+            - output->"If" d3Updvml1ofZRbiIFgAWs/value
+          visualData: -10.620718848382836/911.3377850902272/280/342//
+        '[XMjdGEQkUjz_WkU6qP7an]:subGraph "Log instructions (Subgraph)"':
+          data:
+            graphId: P0T1HjLHGfWkhZkNTVaBZ
+            useAsGraphPartialOutput: false
+            useErrorOutput: false
+          visualData: 710.3908183134112/1464.5504276859956/330/332/var(--node-color-6)/var(--grey-darkish)
+        '[cPBG8uhOJv8c4AfWIeTnd]:if "If"':
+          data:
+            unconnectedControlFlowExcluded: true
+          outgoingConnections:
+            - output->"Pop" uU3QIgibB-ISQghzlEQuD/array
+          visualData: 492.20193879245426/905.8843513741125/155/341//
+        '[d3Updvml1ofZRbiIFgAWs]:if "If"':
+          data:
+            unconnectedControlFlowExcluded: true
+          outgoingConnections:
+            - falseOutput->"Log instructions (Subgraph)"
+              XMjdGEQkUjz_WkU6qP7an/chat_history
+          visualData: 404.718946741412/1487.6266402973913/155/333//
+        '[mOo1W3THphUN1R3Yi12o2]:comment "Comment"':
+          data:
+            backgroundColor: rgba(0,0,0,0.05)
+            color: rgba(255,255,255,1)
+            height: 575.4954014658697
+            text: "#### Fetch last response OR default_user_input"
+          visualData: 352.62494506755996/776.3919495700261/787.5045985341301/325//
+        '[p3_LKl7pM-TIyOAqqfjeW]:ifElse "If/Else"':
+          data:
+            unconnectedControlFlowExcluded: true
+          outgoingConnections:
+            - output->"Graph Output" SAP7BL2BgIay45esG-TwA/value
+          visualData: 796.1665919455179/1102.8089306900515/205/341//
+        '[u-TFo8T8y_6MpuCezlxHx]:graphInput "Graph Input"':
+          data:
+            dataType: string
+            id: default_user_input
+            useDefaultValueInput: false
+          outgoingConnections:
+            - data->"If/Else" p3_LKl7pM-TIyOAqqfjeW/false
+          visualData: -35.666879184918905/1159.3883639655044/330/334/var(--node-color-3)/var(--grey-darkish)
+        '[uU3QIgibB-ISQghzlEQuD]:pop "Pop"':
+          outgoingConnections:
+            - lastItem->"Extract Object Path" 3CmZs0Kg2AOWBXN4mp5Gv/object
+          visualData: 788.7215086192562/893.5266384986695/230/341//
+        '[zpoM5hJ29DSL7uCDp2J3m]:subGraph "Subgraph"':
+          data:
+            graphId: pGetZPtJsJ5MZtkfpSABf
+            useAsGraphPartialOutput: false
+            useErrorOutput: false
+          outgoingConnections:
+            - chat_history->"If" cPBG8uhOJv8c4AfWIeTnd/if
+            - chat_history->"If" cPBG8uhOJv8c4AfWIeTnd/value
+            - chat_history->"If" d3Updvml1ofZRbiIFgAWs/if
+            - chat_history->"If/Else" LKCecPZQQKiRrwMz4MGqr/if
+            - chat_history->"If/Else" LKCecPZQQKiRrwMz4MGqr/true
+            - chat_history->"If/Else" p3_LKl7pM-TIyOAqqfjeW/if
+          visualData: -36.82419162723005/705.826105660438/330/312/var(--node-color-6)/var(--grey-darkish)
+    P0T1HjLHGfWkhZkNTVaBZ:
+      metadata:
+        description: ""
+        id: P0T1HjLHGfWkhZkNTVaBZ
+        name: "#2 Permanent history/Functions/append_mesage"
+      nodes:
+        '[6jifXUhZTRibuhv5px5N2]:toJson "To JSON"':
+          data:
+            indented: true
+          outgoingConnections:
+            - json->"Append to Dataset" Zi5cNQL51XRoI_HKtTAP0/data
+          visualData: 846.4235883910885/317.7995092388172/205/35//
+        '[BEY23Lc6Ce6vJovV6WQqa]:graphOutput "Graph Output"':
+          data:
+            dataType: boolean
+            id: continue
+          visualData: 1577.5259872233678/305.37998580538226/330/47/var(--node-color-4)/var(--grey-darkish)
+        '[Zi5cNQL51XRoI_HKtTAP0]:appendToDataset "Append to Dataset"':
+          data:
+            datasetId: ""
+            useDatasetIdInput: true
+          outgoingConnections:
+            - dataset->"Graph Output" BEY23Lc6Ce6vJovV6WQqa/value
+          visualData: 1175.796851151788/319.18926984118286/280/40//
+        '[e4YACdpHX10PeAmogf6dZ]:graphInput "Graph Input"':
+          data:
+            dataType: chat-message
+            editor: auto
+            id: chat_history
+            useDefaultValueInput: false
+          outgoingConnections:
+            - data->"To JSON" 6jifXUhZTRibuhv5px5N2/data
+          visualData: 417.9695767895807/300.721995715256/330/45/var(--node-color-3)/var(--grey-darkish)
+        '[qj7S1rTp3l8cErDy8WGOc]:text "Text"':
+          data:
+            text: chat_history
+          outgoingConnections:
+            - output->"Append to Dataset" Zi5cNQL51XRoI_HKtTAP0/datasetId
+          visualData: 756.0891492373102/549.8895298339093/330/42//
+    fYE7iJ-pzfOxTwzR3MJZH:
+      metadata:
+        description: ""
+        id: fYE7iJ-pzfOxTwzR3MJZH
+        name: "#2 Permanent history/Main Graph"
+      nodes:
+        '[08HglRLFPIYEHIz1W8Qy0]:loopController "Loop Controller"':
+          data:
+            maxIterations: 100
+          outgoingConnections:
+            - break->"Abort Graph" V8GVZ0d22CkZvv92zuuqO/data
+            - output1->"User Input" m0Ep0Hih0aI2SBziol5W8/questions
+            - output2->"Assemble Prompt" _zKOwl_Y3okDl-mXwuJN_/message1
+          visualData: 18.211902368403393/251.9055205130419/280/309/var(--node-color-2)/var(--grey-darkish)
+        '[HTdLn-3_Vk_OoP3nF-yOf]:subGraph "Log user (Subgraph)"':
+          data:
+            graphId: P0T1HjLHGfWkhZkNTVaBZ
+            useAsGraphPartialOutput: false
+            useErrorOutput: false
+          visualData: 20.148715869424866/905.4424177035294/330/310/var(--node-color-6)/var(--grey-darkish)
+        '[IFszm9ZCy66vcCke4S6-Y]:subGraph "Log AI (Subgraph)"':
+          data:
+            graphId: P0T1HjLHGfWkhZkNTVaBZ
+            useAsGraphPartialOutput: false
+            useErrorOutput: false
+          outgoingConnections:
+            - continue->"Loop Controller" 08HglRLFPIYEHIz1W8Qy0/continue
+          visualData: 761.0254795819311/898.6910013065004/330/312/var(--node-color-6)/var(--grey-darkish)
+        '[L5Po1CR7RRHIFrhf6cvKH]:comment "Comment"':
+          data:
+            backgroundColor: rgba(0,0,0,0.05)
+            color: rgba(255,255,255,1)
+            height: 561.7376398335103
+            text: "#### Inputs"
+          visualData: -518.1689175179816/70.3414003599809/463/254//
+        '[TwJXt_oiNAG0Xf-tGLSiP]:subGraph "Subgraph"':
+          data:
+            graphId: Lie3Z78yiURmkGe9X5Vxu
+            useAsGraphPartialOutput: false
+            useErrorOutput: false
+          outgoingConnections:
+            - chat_history->"Loop Controller" 08HglRLFPIYEHIz1W8Qy0/input2Default
+            - last_response->"Loop Controller"
+              08HglRLFPIYEHIz1W8Qy0/input1Default
+          visualData: -448.5895087781583/663.8325273491921/330/305/var(--node-color-6)/var(--grey-darkish)
+        '[UNagakvUZPuAI25L-CCEy]:text "Default User Input (Text)"':
+          data:
+            text: Enter your message...
+          outgoingConnections:
+            - output->"Subgraph" TwJXt_oiNAG0Xf-tGLSiP/default_user_input
+          visualData: -444.3314463992298/429.50329511363753/330/306//
+        '[V8GVZ0d22CkZvv92zuuqO]:abortGraph "Abort Graph"':
+          data:
+            errorMessage: ""
+            successfully: true
+          visualData: 424.97440025561536/-84.50000790980769/230/308/var(--node-color-5)/var(--grey-darkish)
+        '[_eEwDFavRQlw3FKcUOmWy]:prompt "Prompt"':
+          data:
+            enableFunctionCall: false
+            promptText: "{{input}}"
+            type: assistant
+            useTypeInput: false
+          outgoingConnections:
+            - output->"Log AI (Subgraph)" IFszm9ZCy66vcCke4S6-Y/chat_history
+          visualData: 423.2158974633666/881.6785416454918/280/311//
+        '[_wCnfySXMXE6mudjkYR-x]:comment "Comment"':
+          data:
+            backgroundColor: rgba(0,0,0,0.05)
+            color: rgba(255,255,255,1)
+            height: 704.0544929448577
+            text: |-
+              #### Chat Loop
+              - Input (Data 1): last_response
+              - Input (Data 2): chat_history
+              - Continue: AI response was logged
+          visualData: -39.31690362262725/68.88014278628737/1169/313//
+        '[_zKOwl_Y3okDl-mXwuJN_]:assemblePrompt "Assemble Prompt"':
+          outgoingConnections:
+            - prompt->"Chat" gpENTvRofaalCNzfbqlfc/prompt
+          visualData: 412.9695373380306/562.0948988458811/280/299//
+        '[gpENTvRofaalCNzfbqlfc]:chat "Chat"':
+          data:
+            cache: false
+            enableFunctionUse: false
+            frequencyPenalty: 0
+            maxTokens: 1024
+            model: gpt-3.5-turbo
+            presencePenalty: 0
+            stop: ""
+            temperature: 0.5
+            top_p: 1
+            useAsGraphPartialOutput: true
+            useFrequencyPenaltyInput: false
+            useMaxTokensInput: false
+            useModelInput: false
+            usePresencePenaltyInput: false
+            useStop: false
+            useStopInput: false
+            useTemperatureInput: false
+            useTopP: false
+            useTopPInput: false
+            useUseTopPInput: false
+            useUserInput: false
+          outgoingConnections:
+            - all-messages->"Loop Controller" 08HglRLFPIYEHIz1W8Qy0/input2
+            - response->"Loop Controller" 08HglRLFPIYEHIz1W8Qy0/input1
+            - response->"Prompt" _eEwDFavRQlw3FKcUOmWy/input
+          visualData: 809.1843969513973/264.9701474918867/230/266//
+        '[kgbbMfbSoZ0FXC4enCcE_]:prompt "Prompt"':
+          data:
+            enableFunctionCall: false
+            promptText: "{{input}}"
+            type: user
+            useTypeInput: false
+          outgoingConnections:
+            - output->"Assemble Prompt" _zKOwl_Y3okDl-mXwuJN_/message2
+            - output->"Log user (Subgraph)" HTdLn-3_Vk_OoP3nF-yOf/chat_history
+          visualData: 413.2610008600356/339.7091479722902/280/300//
+        '[lERhe3rh9cCRoTJfoa3EF]:comment "Comment"':
+          data:
+            backgroundColor: rgba(0,0,0,0.05)
+            color: rgba(255,255,255,1)
+            height: 296.0370177276618
+            text: "#### Logging"
+          visualData: -37.458279977683986/804.724233859342/1172.80623235589/315//
+        '[m0Ep0Hih0aI2SBziol5W8]:userInput "User Input"':
+          data:
+            prompt: This is an example question?
+            useInput: true
+          outgoingConnections:
+            - output->"Prompt" kgbbMfbSoZ0FXC4enCcE_/input
+          visualData: 414.9430555571275/125.1384546022646/280/280//
+        '[xF7Cb8c3ZaTbuAq8QaMt_]:prompt "Instructions (Prompt)"':
+          data:
+            enableFunctionCall: false
+            promptText: You are "Mandy", a helpful and friendly helper who will assist the
+              user with any needs. You are witty and relatable.
+            type: system
+            useTypeInput: false
+          outgoingConnections:
+            - output->"Subgraph" TwJXt_oiNAG0Xf-tGLSiP/instructions
+          visualData: -442.3300291189485/181.9506576265199/280/302//
+    j1Kd_pOu619nu0f6ErDDc:
+      metadata:
+        description: ""
+        id: j1Kd_pOu619nu0f6ErDDc
+        name: "#2 Permanent history/Other/clear_permanent_history"
+      nodes:
+        '[PHizqf7EYIBS0vJjujFgo]:replaceDataset "Replace Dataset"':
+          data:
+            datasetId: ""
+            useDatasetIdInput: true
+          visualData: 469/258/280/null//
+        '[aACBxUgb5_qQVjt1Tezk9]:text "Text"':
+          data:
+            text: chat_history
+          outgoingConnections:
+            - output->"Replace Dataset" PHizqf7EYIBS0vJjujFgo/datasetId
+          visualData: 20.418587467815275/282.0038506562191/330/5//
+    pGetZPtJsJ5MZtkfpSABf:
+      metadata:
+        description: ""
+        id: pGetZPtJsJ5MZtkfpSABf
+        name: "#2 Permanent history/Functions/get_messages"
+      nodes:
+        '[CdqJO51xVrw5R5yxn90DF]:text "Text"':
+          data:
+            text: chat_history
+          outgoingConnections:
+            - output->"Load Dataset" ULjXhDSrjLJHLzaEmINDD/datasetId
+          visualData: 795.9856767739968/-1.79286064751021/330/86//
+        '[Pxga1Bo5a_B_KgVguYoz_]:graphOutput "Graph Output"':
+          data:
+            dataType: chat-message[]
+            id: chat_history
+          visualData: 1643.048554177682/161.2838410271331/330/84/var(--node-color-4)/var(--grey-darkish)
+        '[SwQNp-evY4EHGDCqxhkjM]:graphInput "Graph Input"':
+          data:
+            dataType: string
+            id: go
+            useDefaultValueInput: false
+          visualData: 290.3528869135133/186.76186700073808/330/27/var(--node-color-3)/var(--grey-darkish)
+        '[ULjXhDSrjLJHLzaEmINDD]:loadDataset "Load Dataset"':
+          data:
+            datasetId: ""
+            useDatasetIdInput: true
+          outgoingConnections:
+            - dataset->"Code" ZmmDkrDKEnG1vE3C3cp_r/input
+          visualData: 818.8093559631167/174.87159644712196/280/21//
+        '[ZmmDkrDKEnG1vE3C3cp_r]:code "Code"':
+          data:
+            code: >
+              let chatMessages = inputs.input.value.map(item =>
+              JSON.parse(item.data[0]));
+
+
+              return {
+                  output: {
+                      type: 'chat-message[]',
+                      value: chatMessages
+                  }
+              };
+            inputNames:
+              - input
+            outputNames:
+              - output
+          outgoingConnections:
+            - output->"Graph Output" Pxga1Bo5a_B_KgVguYoz_/value
+          visualData: 1288.5945960941199/66.32492185457069/230/85//
+  metadata:
+    description: ""
+    id: oSZc1pEbH1cy9P2uKXKX3
+    mainGraphId: fYE7iJ-pzfOxTwzR3MJZH
+    title: Managing chat history
+  plugins: []

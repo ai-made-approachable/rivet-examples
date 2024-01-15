@@ -1,0 +1,416 @@
+version: 4
+data:
+  attachedData:
+    trivet:
+      testSuites: []
+      version: 1
+  graphs:
+    0QpdnJdotBra1D1pxIuVh:
+      metadata:
+        description: ""
+        id: 0QpdnJdotBra1D1pxIuVh
+        name: Main Graph
+      nodes:
+        '[-QB3NCxlJk065O46r12qv]:comment "Comment"':
+          data:
+            backgroundColor: rgba(0,0,0,0.05)
+            color: rgba(255,255,255,1)
+            height: 537.523358509284
+            text: "#### Function call based routing"
+          visualData: 1697.2582877949183/268.25628427415376/856.5138872042489/49//
+        '[36LA97aJYEetvwdDSiYVq]:userInput "User Input"':
+          data:
+            prompt: This is an example question?
+            useInput: false
+          outgoingConnections:
+            - output->"Chat" TrLlYgKGob86kPuAzfNSa/prompt
+          visualData: 514.3443459331792/996.4062406745411/280/58//
+        '[4e7gUqKXrV7ypmrCAUQIN]:extractObjectPath "Extract Object Path"':
+          data:
+            path: $.arguments
+            usePathInput: false
+          outgoingConnections:
+            - match->"Match" 5Fh_avmLLCtw1Aobms8GW/value
+          visualData: 1256.9723768046865/930.5757284457487/280/107//
+        '[5Fh_avmLLCtw1Aobms8GW]:match "Match"':
+          data:
+            cases:
+              - current_datetime
+              - trigger_toast_event
+            exclusive: true
+          outgoingConnections:
+            - case1->"Subgraph" C5NgEXN5e8-qJRaAYgEwp/arguments
+            - case2->"Subgraph" bxPeSxcAIijO9VE1qwSHX/arguments
+          visualData: 1745.135140309595/375.00923716406345/280/47//
+        '[7S5D-uCRRorhzEQKpIHFc]:array "Functions (Array)"':
+          data:
+            flatten: true
+            flattenDeep: false
+          outgoingConnections:
+            - output->"Chat" TrLlYgKGob86kPuAzfNSa/functions
+          visualData: 920.1373765890658/599.6787985285006/230/105//
+        '[C5NgEXN5e8-qJRaAYgEwp]:subGraph "Subgraph"':
+          data:
+            graphId: AJWD2yeFmZLy_HcFYa1AJ
+            useAsGraphPartialOutput: false
+            useErrorOutput: false
+          outgoingConnections:
+            - datetime->"Prompt" Ll7EFS2Zzo2JEyBnKxJOd/input
+          visualData: 2145.60342984276/366.04552019857454/330/84/var(--node-color-6)/var(--grey-darkish)
+        '[C6BvalF_oOKrm7L9DvEwl]:assemblePrompt "Assemble Prompt"':
+          outgoingConnections:
+            - prompt->"Chat" uzEWpVnRy8xmz5-ZM6JMH/prompt
+          visualData: 2628.3362767568915/604.9325372353401/280/99//
+        '[CnnrBRpUQKzkQOBt2pHzP]:comment "Comment"':
+          data:
+            backgroundColor: rgba(0,0,0,0.05)
+            color: rgba(255,255,255,1)
+            height: 961.4583559148809
+            text: "#### Inputs"
+          visualData: 463.4418158924304/253.74131261614193/432/4//
+        '[J7kAKy_5A5CyxGrgI5Boa]:destructure "Destructure"':
+          data:
+            paths:
+              - $.name
+              - $.id
+          outgoingConnections:
+            - match_0->"Match" 5Fh_avmLLCtw1Aobms8GW/input
+            - match_1->"Prompt" Ll7EFS2Zzo2JEyBnKxJOd/name
+          visualData: 1260.4571494183867/726.9227050912374/280/103//
+        '[J9HHPbFyVyaLfF41PLKqi]:comment "Comment"':
+          data:
+            backgroundColor: rgba(0,0,0,0.05)
+            color: rgba(255,255,255,1)
+            height: 545.4763195136048
+            text: "#### Inform ChatGPT about the results"
+          visualData: 2564.090276011777/265.7638036455472/835.8268938361421/96//
+        '[Ll7EFS2Zzo2JEyBnKxJOd]:prompt "Prompt"':
+          data:
+            enableFunctionCall: false
+            name: ""
+            promptText: "{{input}}"
+            type: function
+            useNameInput: true
+            useTypeInput: false
+          outgoingConnections:
+            - output->"Assemble Prompt" C6BvalF_oOKrm7L9DvEwl/message2
+          visualData: 2633.507187227408/358.04264782337543/280/100//
+        '[TrLlYgKGob86kPuAzfNSa]:chat "Chat"':
+          data:
+            cache: true
+            enableFunctionUse: true
+            frequencyPenalty: 0
+            headers: []
+            maxTokens: 1024
+            model: gpt-3.5-turbo
+            presencePenalty: 0
+            stop: ""
+            temperature: 0.5
+            toolChoice: ""
+            top_p: 1
+            useAsGraphPartialOutput: true
+            useFrequencyPenaltyInput: false
+            useMaxTokensInput: false
+            useModelInput: false
+            usePresencePenaltyInput: false
+            useStop: false
+            useStopInput: false
+            useTemperatureInput: false
+            useTopP: false
+            useTopPInput: false
+            useUseTopPInput: false
+            useUserInput: false
+          outgoingConnections:
+            - all-messages->"Assemble Prompt" C6BvalF_oOKrm7L9DvEwl/message1
+            - function-call->"Destructure" J7kAKy_5A5CyxGrgI5Boa/object
+            - function-call->"Extract Object Path" 4e7gUqKXrV7ypmrCAUQIN/object
+          visualData: 1280.5980821997348/360.77164178916684/230/102//
+        '[Yvtv2ZHl0e3-prcHrFgWM]:comment "Comment"':
+          data:
+            backgroundColor: rgba(0,0,0,0.05)
+            color: rgba(255,255,255,1)
+            height: 198.9841487204559
+            text: >-
+              #### How to run your own functions
+
+              1. Create new "GPT function" nodes ("Ask ChatGPT for functions" graph might help)
+
+              1. Add them as inputs
+
+              1. Create a subgraph per function to handle them
+
+              1. Change the "match" node accordingly
+          visualData: 470.08489384461086/33.521688816654105/620.2131534800326/68//
+        '[bxPeSxcAIijO9VE1qwSHX]:subGraph "Subgraph"':
+          data:
+            graphId: wMmFy2AtBK8rrmBWuZyrk
+            useAsGraphPartialOutput: false
+            useErrorOutput: false
+          visualData: 2145.3858763471085/588.8180502280626/330/90/var(--node-color-6)/var(--grey-darkish)
+        '[naDg2yF_OFh7SjVA4I0SX]:gptFunction "GPT Function"':
+          data:
+            description: Triggers a toast notification with a specified message.
+            name: trigger_toast_event
+            schema: >-
+              {
+                "type": "object",
+                "properties": {
+                  "message": {
+                    "type": "string",
+                    "description": "The text to be displayed in the toast notification."
+                  }
+                }
+              }
+          outgoingConnections:
+            - function->"Functions (Array)" 7S5D-uCRRorhzEQKpIHFc/input2
+          visualData: 515.476641490716/773.5334693209269/280/59//
+        '[rAWLtC-dQeFLh2mp4wXV7]:text "Instructions (Text)"':
+          data:
+            text: >-
+              You are a helpful assistant. 
+
+              - To be capable of tasks you usually cannot do, you have access to different functions. Please use them if needed.
+          outgoingConnections:
+            - output->"Chat" TrLlYgKGob86kPuAzfNSa/systemPrompt
+          visualData: 520.0954305108828/356.89053339852643/330/61//
+        '[uzEWpVnRy8xmz5-ZM6JMH]:chat "Chat"':
+          data:
+            cache: true
+            enableFunctionUse: false
+            frequencyPenalty: 0
+            headers: []
+            maxTokens: 1024
+            model: gpt-3.5-turbo
+            presencePenalty: 0
+            stop: ""
+            temperature: 0.5
+            top_p: 1
+            useAsGraphPartialOutput: true
+            useFrequencyPenaltyInput: false
+            useMaxTokensInput: false
+            useModelInput: false
+            usePresencePenaltyInput: false
+            useStop: false
+            useStopInput: false
+            useTemperatureInput: false
+            useTopP: false
+            useTopPInput: false
+            useUseTopPInput: false
+            useUserInput: false
+          visualData: 3066.4446015853064/402.85925369487893/230/98//
+        '[zi3ufnoinni0V-hWIdmP3]:gptFunction "GPT Function"':
+          data:
+            description: Returns the current date and time.
+            name: current_datetime
+            schema: |-
+              {
+                "type": "object",
+                "properties": {}
+              }
+          outgoingConnections:
+            - function->"Functions (Array)" 7S5D-uCRRorhzEQKpIHFc/input1
+          visualData: 516.9532829814319/562.0568278302108/280/60//
+    AJWD2yeFmZLy_HcFYa1AJ:
+      metadata:
+        description: ""
+        id: AJWD2yeFmZLy_HcFYa1AJ
+        name: Subgraphs/current_datetime
+      nodes:
+        '[L-tkv6zm6t1tm9fKAqPnC]:graphOutput "Graph Output"':
+          data:
+            dataType: string
+            id: datetime
+          visualData: 1329.7450549185528/380.47089201510244/330/7/var(--node-color-4)/var(--grey-darkish)
+        '[OAfU3pnlDkHrObx2viD8q]:graphInput "Graph Input"':
+          data:
+            dataType: string
+            id: arguments
+            useDefaultValueInput: false
+          visualData: 517/332/330/1/var(--node-color-3)/var(--grey-darkish)
+        '[XYtFM51cTOz9IkNEzcFJ1]:code "Code"':
+          data:
+            code: |
+              const currentDatetime = new Date().toISOString();
+              return {
+                  output: {
+                      type: 'datetime',
+                      value: currentDatetime
+                  }
+              };
+            outputNames:
+              - output
+          outgoingConnections:
+            - output->"Graph Output" L-tkv6zm6t1tm9fKAqPnC/value
+          visualData: 974.2387750521867/300.67746044217597/230/4//
+    XQ9MBkXm6tRUW72TIP7Vr:
+      metadata:
+        description: ""
+        id: XQ9MBkXm6tRUW72TIP7Vr
+        name: Create functions/Ask ChatGPT for functions
+      nodes:
+        '[80SqGOU0UvYJ5s0XhCtU3]:chat "Chat"':
+          data:
+            cache: true
+            enableFunctionUse: false
+            frequencyPenalty: 0
+            headers: []
+            maxTokens: 1024
+            model: gpt-4-1106-preview
+            presencePenalty: 0
+            responseFormat: ""
+            stop: ""
+            temperature: 0.5
+            top_p: 1
+            useAsGraphPartialOutput: true
+            useFrequencyPenaltyInput: false
+            useMaxTokensInput: false
+            useModelInput: false
+            usePresencePenaltyInput: false
+            useStop: false
+            useStopInput: false
+            useTemperatureInput: false
+            useTopP: false
+            useTopPInput: false
+            useUseTopPInput: false
+            useUserInput: false
+          outgoingConnections:
+            - response->"Extract JSON" QmnLbtATOHN5dIxAwzLsU/input
+          visualData: 924/452/230/10//
+        '[QmnLbtATOHN5dIxAwzLsU]:extractJson "Extract JSON"':
+          outgoingConnections:
+            - output->"Extract Object Path" lDt-Fmb8Kxuspa7N4K5bl/object
+          visualData: 912.0530902360548/265.32646375536484/280/31//
+        '[ZGL5J3iw5m2Vg60CQ_OFU]:userInput "User Input"':
+          data:
+            prompt: Describe the functions you want to use.
+            useInput: false
+          outgoingConnections:
+            - output->"Chat" 80SqGOU0UvYJ5s0XhCtU3/prompt
+          visualData: 471/634/280/4//
+        '[bahJVRQ4_gZ0WqcgggRHo]:extractObjectPath "Extract Object Path"':
+          data:
+            path: $.description
+            usePathInput: false
+          isSplitRun: true
+          visualData: 1395.4012547210327/336.7320864592285/280/30//
+        '[bqb9F8K0dJ7Ag-p4HbQDn]:extractObjectPath "Extract Object Path"':
+          data:
+            path: $.parameters
+            usePathInput: false
+          isSplitRun: true
+          visualData: 1395.4012547210327/552.7320864592285/280/30//
+        '[lDt-Fmb8Kxuspa7N4K5bl]:extractObjectPath "Extract Object Path"':
+          data:
+            path: $.function
+            usePathInput: false
+          isSplitRun: true
+          outgoingConnections:
+            - match->"Extract Object Path" bahJVRQ4_gZ0WqcgggRHo/object
+            - match->"Extract Object Path" bqb9F8K0dJ7Ag-p4HbQDn/object
+            - match->"Extract Object Path" maC4YUX9Nh8BV4T9GraM0/object
+          visualData: 909.8285781545096/18.481505665239396/280/32//
+        '[maC4YUX9Nh8BV4T9GraM0]:extractObjectPath "Extract Object Path"':
+          data:
+            path: $.name
+            usePathInput: false
+          isSplitRun: true
+          visualData: 1396.4012547210327/125.73208645922853/280/30//
+        '[pLSxdSGYrgk0NOXq8Wctj]:comment "Comment"':
+          data:
+            backgroundColor: rgba(0,0,0,0.05)
+            color: rgba(255,255,255,1)
+            height: 751
+            text: '#### Outputs for "GPT Function" node'
+          visualData: 1335.4012547210327/23.732086459228526/476/30//
+        '[svcxhyBQxMw9_7xinzLfX]:text "Text"':
+          data:
+            text: >-
+              Your task is to create functions to be used in Open AI
+              function_calling. 
+
+              - Create an array that contains one or multiple functions
+
+              - The JSON should at least include the function name, a brief description of each function, and the parameters they require. 
+
+              - ONLY return the JSON object (NO markup or other text)
+
+
+              # Example:
+
+              [
+                  {
+                      "type": "function",
+                      "function": {
+                          "name": "current_datetime",
+                          "description": "Returns the current date and time.",
+                          "parameters": {
+                              "type": "object",
+                              "properties": {},
+                              "required": []
+                          }
+                      }
+                  },
+                  {
+                      "type": "function",
+                      "function": {
+                          "name": "trigger_toast_event",
+                          "description": "Triggers a toast notification with a specified message.",
+                          "parameters": {
+                              "type": "object",
+                              "properties": {
+                                  "message": {
+                                      "type": "string",
+                                      "description": "The text to be displayed in the toast notification."
+                                  }
+                              },
+                              "required": [
+                                  "message"
+                              ]
+                          }
+                      }
+                  }
+              ]
+          outgoingConnections:
+            - output->"Chat" 80SqGOU0UvYJ5s0XhCtU3/systemPrompt
+          visualData: 451/202/330/1//
+    wMmFy2AtBK8rrmBWuZyrk:
+      metadata:
+        description: ""
+        id: wMmFy2AtBK8rrmBWuZyrk
+        name: Subgraphs/trigger_toast_event
+      nodes:
+        '[8sC9DZEfsOpTxglaI2STI]:extractObjectPath "Extract Object Path"':
+          data:
+            path: $.message
+            usePathInput: false
+          outgoingConnections:
+            - match->"Raise Event" wbyU8ch2lneypXg72UaL_/data
+          visualData: 963.1305093225888/377.00737731833283/280/7//
+        '[PUQhIWyyzGBEo02bzv_yO]:graphInput "Graph Input"':
+          data:
+            dataType: object
+            id: arguments
+            useDefaultValueInput: false
+          outgoingConnections:
+            - data->"Extract Object Path" 8sC9DZEfsOpTxglaI2STI/object
+          visualData: 506.9335713041671/378.4472960872017/330/20/var(--node-color-3)/var(--grey-darkish)
+        '[p_iwthuYWrlWi-ulcls3i]:comment "Comment"':
+          data:
+            backgroundColor: rgba(0,0,0,0.05)
+            color: rgba(255,255,255,1)
+            height: 414.8981617369103
+            text: |-
+              #### Note
+              You will only see this with "executor" set to "browser"!
+          visualData: 1315.039236718114/229.57161079482535/332.9761199964373/13//
+        '[wbyU8ch2lneypXg72UaL_]:raiseEvent "Raise Event"':
+          data:
+            eventName: toast
+            useEventNameInput: false
+          visualData: 1375.3049515014457/377.0073773183328/180/12//
+  metadata:
+    description: ""
+    id: 4ljyfCHe5dW5qaEBk78v9
+    mainGraphId: 0QpdnJdotBra1D1pxIuVh
+    title: Function calling example
+  plugins: []

@@ -1,0 +1,148 @@
+version: 4
+data:
+  attachedData:
+    trivet:
+      testSuites: []
+      version: 1
+  graphs:
+    afiiYb__seCi4OWq0s-o5:
+      metadata:
+        description: ""
+        id: afiiYb__seCi4OWq0s-o5
+        name: Full example
+      nodes:
+        '[-mmMsZB2ZJx77RKvtl9Cj]:number "Page (Number)"':
+          data:
+            round: false
+            roundTo: 0
+            value: 1
+          outgoingConnections:
+            - value->"Body (Object)" pIvkGg63jiT7-9vBySMAG/page
+          visualData: 275.7206550884544/1123.8806128214198/325.51194236051424/32//
+        '[2VW5oTMP-O8klKXcQLRm2]:boolean "Autocorrect (Bool)"':
+          data:
+            value: true
+          outgoingConnections:
+            - value->"Body (Object)" pIvkGg63jiT7-9vBySMAG/autocorrect
+          visualData: 275.72065508845435/989.1842838514634/327.75815517167257/32//
+        '[6ixDixOry6P6ylRYoQ91E]:object "Header (Object)"':
+          data:
+            jsonTemplate: |-
+              {
+                "X-API-KEY": "{{serper_api_key}}",
+                "Content-Type": "application/json"
+              }
+          outgoingConnections:
+            - output->"Http Call" gpxEaoDGhiAG4aeDsZY18/headers
+          visualData: 820.4417963283862/665.9261405926484/364.75639960764875/48//
+        '[9DJxQC0S1sZAmTZgq_RIx]:comment "Comment"':
+          data:
+            backgroundColor: rgba(0,0,0,0.05)
+            color: rgba(255,255,255,1)
+            height: 172.65216157784903
+            text: >-
+              #### How to use
+
+              1. Go to https://serper.dev and create an account (you get 2.500 free queries)
+
+              2. Go to "API Key" and copy your key
+
+              3. In Rivet go got "Project" and add "seper_api_key" to your context
+          visualData: 251.30432315569806/108.04351526645291/1047.0915698844633/63//
+        '[ISU1Fj6OGAUYer0iADsfM]:text "Query (Text)"':
+          data:
+            text: chocolate cookie recipies
+          outgoingConnections:
+            - output->"Body (Object)" pIvkGg63jiT7-9vBySMAG/query
+          visualData: 277.9012114849492/562.750194600339/330/32//
+        '[Ii0c3-kIX-6cekhSS4epV]:context "Context"':
+          data:
+            dataType: string
+            id: serper_api_key
+            useDefaultValueInput: false
+          outgoingConnections:
+            - data->"Header (Object)" 6ixDixOry6P6ylRYoQ91E/serper_api_key
+          visualData: 278.92685251059015/404.2048634839088/330/32//
+        '[PFn9LYZztQWFMWCIgIx-9]:extractJson "Extract JSON"':
+          visualData: 1810.129676841525/309.2230491811447/1325.134507307921/62//
+        '[VZ8ZVFZ9Ac1xZnthfLcwX]:text "URL (Text)"':
+          data:
+            text: https://google.serper.dev/search
+          outgoingConnections:
+            - output->"Http Call" gpxEaoDGhiAG4aeDsZY18/url
+          visualData: 820.4417963283862/483.6086587705353/330/47//
+        '[Xtzw8FFfLm9DZRuZsKjGi]:text "Locale (Text)"':
+          data:
+            text: en
+          outgoingConnections:
+            - output->"Body (Object)" pIvkGg63jiT7-9vBySMAG/language
+          visualData: 275.72065508845435/847.5454131003931/330/32//
+        '[Y_DzCKaTQtMgVkdE1pm2R]:comment "Comment"':
+          data:
+            backgroundColor: rgba(0,0,0,0.05)
+            color: rgba(255,255,255,1)
+            height: 1115.5439658349233
+            text: "#### Fetch the data"
+          visualData: 1312.4269503524376/302.6578765240014/485.2510188287715/61//
+        '[bilIXKmEW_zj5XCrxb_v7]:text "Country (Text)"':
+          data:
+            text: us
+          outgoingConnections:
+            - output->"Body (Object)" pIvkGg63jiT7-9vBySMAG/country
+          visualData: 275.72065508845435/705.0974809330107/330/32//
+        '[gpxEaoDGhiAG4aeDsZY18]:httpCall "Http Call"':
+          data:
+            body: ""
+            errorOnNon200: true
+            headers: ""
+            method: POST
+            url: ""
+            useBodyInput: true
+            useHeadersInput: true
+            useUrlInput: true
+          outgoingConnections:
+            - res_body->"Extract JSON" PFn9LYZztQWFMWCIgIx-9/input
+          visualData: 1404.386194628198/611.7593525150642/280/49//
+        '[l3GHGTmrmRQRWi4aPJZ-x]:number "Results (Number)"':
+          data:
+            round: false
+            roundTo: 0
+            value: 10
+          outgoingConnections:
+            - value->"Body (Object)" pIvkGg63jiT7-9vBySMAG/results
+          visualData: 274.3995139158304/1261.7869777080914/325.51194236051424/32//
+        '[pIvkGg63jiT7-9vBySMAG]:object "Body (Object)"':
+          data:
+            jsonTemplate: |-
+              {
+                "q":"{{query}}",
+                "autocorrect":{{autocorrect}},
+                "page": {{page}},
+                "num":{{results}},
+                "gl": {{country}},
+                "hl": {{language}}
+                }
+          outgoingConnections:
+            - output->"Http Call" gpxEaoDGhiAG4aeDsZY18/req_body
+          visualData: 819.1605074283291/917.347502294799/230/57//
+        '[wBJlZoAYaP3BqInj1JOXi]:comment "Comment"':
+          data:
+            backgroundColor: rgba(0,0,0,0.05)
+            color: rgba(255,255,255,1)
+            height: 1116.5486472319196
+            text: "#### Inputs"
+          visualData: 250.53846153846155/299/490.35771765475215/14//
+        '[wZNkW3QOXJ8MNn5zNMC21]:comment "Comment"':
+          data:
+            backgroundColor: rgba(0,0,0,0.05)
+            color: rgba(255,255,255,1)
+            height: 1117.8873396686113
+            text: "#### Create header + body content"
+          visualData: 747.7790318340658/299.9700357757982/556.0160943330557/36//
+  metadata:
+    description: Project that showcases how to retrieve google search results via
+      „serper.dev“ api
+    id: 5_PM-U30ImU-M34_OY-Sk
+    mainGraphId: afiiYb__seCi4OWq0s-o5
+    title: Fetch google search results
+  plugins: []
