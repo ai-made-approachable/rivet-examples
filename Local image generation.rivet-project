@@ -70,6 +70,8 @@ data:
             numTokensPerChunk: 75
             overlap: 0
             useModelInput: false
+          outgoingConnections:
+            - first->"Graph Output" dqf7K61bFshFd3VyOHlRl/value
           visualData: 2049.1980299165693/590.3305558176035/230/78//
         '[RyH9mlEZqBmqz37NVSXOI]:prompt "Prompt"':
           data:
@@ -161,6 +163,8 @@ data:
               - $.width
               - $.height
           outgoingConnections:
+            - match_0->"Chunk" TseDMNFF48zU9WhPmaVEj/input
+            - match_1->"Chunk" Py2bHN08qlvgq8ECeXSCX/input
             - match_2->"Graph Output" D7C-f4lIuTgel21325eM0/value
             - match_3->"Graph Output" yF6RkKgpMGw-kEMI8qxYc/value
           visualData: 1568.2681094528486/659.5459399873919/280/43//
@@ -306,9 +310,10 @@ data:
                 "seed": -1,
                 "batch_size": 1,
                 "steps": 7,
-                "cfg_scale": 1,
+                "cfg_scale": 2,
                 "width": {{width}},
                 "height": {{height}},
+                "sampler_name": "DPM++ SDE Karras",
                 "save_images": true
               }
           outgoingConnections:
