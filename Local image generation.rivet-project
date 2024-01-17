@@ -1,0 +1,649 @@
+version: 4
+data:
+  attachedData:
+    trivet:
+      testSuites: []
+      version: 1
+  graphs:
+    2sig4Wp5EwcBWywx2T2A0:
+      metadata:
+        description: ""
+        id: 2sig4Wp5EwcBWywx2T2A0
+        name: Subgraphs/prompt_optimizer
+      nodes:
+        '[-7EOTQ0BHwKmtIl0oG-tL]:text "Instructions (Text)"':
+          data:
+            text: >-
+              You are a professional prompt designer to generate images with
+              Stable Diffusion.
+
+              - Be creative. The user usually only has a rough idea of what he wants. Use your imagination to fill the gasps and write extensive prompts
+
+              - For the prompts content follow the examples in "Prompt examples"
+
+              - Output only JSON (see JSON output example)
+
+              - You can use the following formats for width/height: 512x512, 512x768, 768x512. Chose the best image size for the given prompt. Please replace he "width" and "height" parameters accordingly.
+
+              - Do not use more than 75 tokens for positive and negative prompt
+          outgoingConnections:
+            - output->"System Prompt (Text)" TqAyINzpfuWbGY0CogOFs/instructions
+          visualData: 327.4292001538595/-230.89412751562804/330/20//
+        '[1sE0YV6z9EOk7NvEXsC7H]:text "JSON example (Text)"':
+          data:
+            text: |-
+              # JSON output example
+              {
+                  "positive_prompts": "PROMPTS go here",
+                  "negative_prompts": "NEGATIVE PROMPTS go here,
+                  "width": 512,
+                  "height": 512
+              }
+          isSplitRun: true
+          outgoingConnections:
+            - output->"System Prompt (Text)" TqAyINzpfuWbGY0CogOFs/json_example
+          splitRunMax: 10
+          visualData: 324.9173804994082/363.151220762127/330/21//
+        '[D7C-f4lIuTgel21325eM0]:graphOutput "Graph Output"':
+          data:
+            dataType: string
+            id: width
+          visualData: 1973.415015780476/865.3164162754938/330/58/var(--node-color-4)/var(--grey-darkish)
+        '[JrYJ5tDPnKdQFRTYV-Oka]:graphInput "Graph Input"':
+          data:
+            dataType: string
+            id: user_prompt
+            useDefaultValueInput: true
+          outgoingConnections:
+            - data->"Prompt" RyH9mlEZqBmqz37NVSXOI/input
+          visualData: 326.03903347639556/617.3196787278514/330/52/var(--node-color-3)/var(--grey-darkish)
+        '[La7kzuTDXITdsULtfwoHW]:comment "Comment"':
+          data:
+            backgroundColor: rgba(0,0,0,0.05)
+            color: rgba(255,255,255,1)
+            height: 691.5022798885714
+            text: "#### Shorten prompts if ChatGPT makes them > 75 tokens"
+          visualData: 1902.749337741488/150.11255714193013/511.4287017079182/76//
+        '[Py2bHN08qlvgq8ECeXSCX]:chunk "Chunk"':
+          data:
+            model: gpt-3.5-turbo
+            numTokensPerChunk: 75
+            overlap: 0
+            useModelInput: false
+          visualData: 2049.1980299165693/590.3305558176035/230/78//
+        '[RyH9mlEZqBmqz37NVSXOI]:prompt "Prompt"':
+          data:
+            enableFunctionCall: false
+            promptText: "{{input}}"
+            type: user
+            useTypeInput: false
+          outgoingConnections:
+            - output->"Chat" xduERozh45OkfdVvWREcL/prompt
+          visualData: 743.1353529655655/603.0299977622354/280/29//
+        '[TBiGMHrQFX_upYL5cGRPV]:extractJson "Extract JSON"':
+          outgoingConnections:
+            - output->"Destructure" valcoSdhNsMGL4RS_DQcl/object
+          visualData: 1572.7574211731278/452.6249532315396/280/54//
+        '[TqAyINzpfuWbGY0CogOFs]:text "System Prompt (Text)"':
+          data:
+            text: |-
+              {{instructions}}
+
+              {{prompt_examples}}
+
+              {{json_example}}
+          outgoingConnections:
+            - output->"Chat" xduERozh45OkfdVvWREcL/systemPrompt
+          visualData: 745.2142232768559/236.2065172874528/330/53//
+        '[TseDMNFF48zU9WhPmaVEj]:chunk "Chunk"':
+          data:
+            model: gpt-3.5-turbo
+            numTokensPerChunk: 75
+            overlap: 0
+            useModelInput: false
+          outgoingConnections:
+            - first->"Graph Output" wBMigDQ2wzizijooIWX2w/value
+          visualData: 2049.1980299165693/338.7047578566035/230/77//
+        '[dqf7K61bFshFd3VyOHlRl]:graphOutput "Graph Output"':
+          data:
+            dataType: string
+            id: negative_prompts
+          visualData: 2535.286912823074/627.0347133713963/330/69/var(--node-color-4)/var(--grey-darkish)
+        '[h3YaheGWNTKrf5dMDldHo]:text "Text"':
+          data:
+            text: I want a watercolor landscape.
+          outgoingConnections:
+            - output->"Graph Input" JrYJ5tDPnKdQFRTYV-Oka/default
+          visualData: -95.81241162120054/631.9159237884264/330/25//
+        '[vWkU_wcdtyvVQJ2H0Mi6Y]:text "Prompt examples (Text)"':
+          data:
+            text: >-
+              # Prompt examples
+
+              ## Positive Prompt
+
+              award winning wildlife (medium long shot:1.4), 35mm film movie still, ultra photorealistic, photorealism,a horse,running, at the water stream  side,water splash, taken with hasselblad H6D 100c, the HCD 24mm lens, hazy mood, cinematic dramatic lighting, cold muted colors, (DOF:1.4), sharp focus, (perfect real extremely details), amazing fine detail, absurdres, hyper realistic lifelike texture, dramatic lighting
+
+              ## Negative Prompt
+
+              (worst quality, low quality, normal quality, lowres, low details, oversaturated, undersaturated, overexposed, underexposed, grayscale, bw, bad photo, bad photography, bad art:1.4), (watermark, signature, text font, username, error, logo, words, letters, digits, autograph, trademark, name:1.2), (blur, blurry, grainy), asymmetrical, mutated malformed,  bad shadow,  (bad animal skin, bad skin texture, bad animal legs, bad animal anatomy, bad animal body, bad animal face, bad animal teeth, bad animal parts, bad animal legs, deformities:1.3)
+
+              ---
+
+              ## Positive Prompt
+
+              African woman, dark skin, wavy black hair, adorned with vibrant pink flowers, rich in detail, showcasing dynamic lighting that highlights her features and the intricate details of the flowers, natural elegance, artistic sophistication, blending human beauty with floral aesthetics, composition hyper-realistic, emphasizing the harmonious relationship between the woman and the natural elements
+
+              ## Negative Prompt
+
+              deformed iris, deformed pupils, semi-realistic, cgi, 3d, render, sketch, cartoon, drawing, anime), text, cropped, out of frame, worst quality, low quality, jpeg artifacts, ugly, duplicate, morbid, mutilated, extra fingers, mutated hands, poorly drawn hands, poorly drawn face, mutation, deformed, blurry, dehydrated, bad anatomy, bad proportions, extra limbs, cloned face, disfigured, gross proportions, malformed limbs, missing arms, missing legs, extra arms, extra legs, fused fingers, too many fingers, long neck
+
+              ---
+
+              ## Positive Prompt
+
+              A bright colorful painting depicting a calm, quiet river running through a meadow with beautiful flowers, a sky with clouds illuminated by the setting sun, in the style of James R. Eads, acrylic, splashes of paint, colorful, fantastic, realistic surrealism, neo-Romanticism, complex details, high detail, octane, 8K
+
+              ---
+
+              ## Negative Prompt
+
+              <lora:badhands:1>ugly, cleavage, extra hands, extra drawn feet, Extra fingers, poorly drawn face, fused fingers,  long neck, big contrast, contrast white burn, white spots overexposed, over saturated, extra limbs, blurry, bad anatomy, blurred, watermark, grainy, signature, cut off, closed eyes, text, logo
+          outgoingConnections:
+            - output->"System Prompt (Text)"
+              TqAyINzpfuWbGY0CogOFs/prompt_examples
+          visualData: 324.9173804994082/-29.948555159516445/330/20//
+        '[valcoSdhNsMGL4RS_DQcl]:destructure "Destructure"':
+          data:
+            paths:
+              - $.positive_prompts
+              - $.negative_prompts
+              - $.width
+              - $.height
+          outgoingConnections:
+            - match_2->"Graph Output" D7C-f4lIuTgel21325eM0/value
+            - match_3->"Graph Output" yF6RkKgpMGw-kEMI8qxYc/value
+          visualData: 1568.2681094528486/659.5459399873919/280/43//
+        '[wBMigDQ2wzizijooIWX2w]:graphOutput "Graph Output"':
+          data:
+            dataType: string
+            id: positive_prompts
+          visualData: 2540.6243993267244/379.2235629854974/330/73/var(--node-color-4)/var(--grey-darkish)
+        '[xduERozh45OkfdVvWREcL]:chat "Chat"':
+          data:
+            cache: true
+            enableFunctionUse: false
+            frequencyPenalty: 0
+            headers: []
+            maxTokens: 1024
+            model: gpt-4-1106-preview
+            presencePenalty: 0
+            responseFormat: json
+            stop: ""
+            temperature: 0.5
+            top_p: 1
+            useAsGraphPartialOutput: true
+            useFrequencyPenaltyInput: false
+            useMaxTokensInput: false
+            useModelInput: false
+            usePresencePenaltyInput: false
+            useStop: false
+            useStopInput: false
+            useTemperatureInput: false
+            useTopP: false
+            useTopPInput: false
+            useUseTopPInput: false
+            useUserInput: false
+          outgoingConnections:
+            - response->"Extract JSON" TBiGMHrQFX_upYL5cGRPV/input
+          visualData: 1196.5188005940422/427.2026219506377/230/48//
+        '[yF6RkKgpMGw-kEMI8qxYc]:graphOutput "Graph Output"':
+          data:
+            dataType: string
+            id: height
+          visualData: 1976.2154683303681/1063.9161900005474/330/59/var(--node-color-4)/var(--grey-darkish)
+    8nHsdRIl559zMXO53jXHO:
+      metadata:
+        description: ""
+        id: 8nHsdRIl559zMXO53jXHO
+        name: Main  Graph
+      nodes:
+        '[94WbqdaE-HlhVwHWNuJ5B]:comment "Comment"':
+          data:
+            backgroundColor: rgba(0,0,0,0.05)
+            color: rgba(255,255,255,1)
+            height: 910.7215444690491
+            text: "#### 2. Generate the image"
+          visualData: 509.015126969018/323.0895333518942/846.0355921439318/275//
+        '[A8drw-VIE8FWieXD33lsD]:comment "Comment"':
+          data:
+            backgroundColor: rgba(0,0,0,0.05)
+            color: rgba(255,255,255,1)
+            height: 380.7215444690488
+            text: >-
+              #### Instructions
+
+              1. Download and install stable-diffusion-webui + a stable diffusion model. Here are some guides:
+                  
+                 a. Macos: https://www.youtube.com/watch?v=Jh-clc4jEvk
+                 
+                 b. Windows: https://www.youtube.com/watch?v=kqXpAKVQDNU
+
+              2. Start stable-diffusion-webui with the API
+
+                 a. MacOS: "./webui.sh --api"
+                 
+                 b. Windows: "webui --api" 
+
+              3. Check if the api is active: http://127.0.0.1:7860/docs#/ (you should find /sdapi/... entries in the list)
+
+
+              4. Copy the path to your "txt2img-images" output folder located in "outputs" in your stable-diffusion-webui folder and enter the path into the "Path" input
+
+
+              5. Run the graph and enjoy
+
+
+              Note: The stable-diffusion-webui-api has far more features than we are using. You can see them all here: http://127.0.0.1:7860/docs#/
+          visualData: -617.1398069110002/-64.40768231294462/1968.3394533165538/281//
+        '[Tqpt-d_4NaCyU74zjCq-F]:subGraph "Subgraph"':
+          data:
+            graphId: WGRKuvH_aIFa2U1gAjyXP
+            useAsGraphPartialOutput: false
+            useErrorOutput: false
+          visualData: 554.3612670936151/428.824458911412/763.7571366129805/282/var(--node-color-6)/var(--grey-darkish)
+        '[XQZeSMPNHshcJoxRZEAYd]:subGraph "Subgraph"':
+          data:
+            graphId: 2sig4Wp5EwcBWywx2T2A0
+            useAsGraphPartialOutput: false
+            useErrorOutput: false
+          outgoingConnections:
+            - height->"Subgraph" Tqpt-d_4NaCyU74zjCq-F/height
+            - negative_prompts->"Subgraph" Tqpt-d_4NaCyU74zjCq-F/negative_prompt
+            - positive_prompts->"Subgraph" Tqpt-d_4NaCyU74zjCq-F/prompt
+            - width->"Subgraph" Tqpt-d_4NaCyU74zjCq-F/width
+          visualData: 30.818861625485827/428.39400894847586/330/272/var(--node-color-6)/var(--grey-darkish)
+        '[YbU1mTEhCNKCWBg7N5WJA]:comment "Comment"':
+          data:
+            backgroundColor: rgba(0,0,0,0.05)
+            color: rgba(255,255,255,1)
+            height: 400.1110252030967
+            text: "#### Inputs"
+          visualData: -616.5342009142161/319.0649231210842/549.5077953837974/267//
+        '[aERsg-8k9gZZdcjU2XNaf]:userInput "User Input"':
+          data:
+            prompt: This is an example question?
+            useInput: false
+          outgoingConnections:
+            - output->"Subgraph" XQZeSMPNHshcJoxRZEAYd/user_prompt
+          visualData: 59.49667405857749/696.2251589745865/280/271//
+        '[qKMyiCpeTX3xdTHCudwyJ]:comment "Comment"':
+          data:
+            backgroundColor: rgba(0,0,0,0.05)
+            color: rgba(255,255,255,1)
+            height: 590.2430958203629
+            text: "#### 1. Optimize prompt + chose dimensions"
+          visualData: -59.79645231881418/321.74799660829086/557.9507795383797/270//
+        '[xgd1-1zKcpHznMMctykd9]:text "Path (Text)"':
+          data:
+            text: /Users/timk/stable-diffusion-webui/outputs/txt2img-images
+          outgoingConnections:
+            - output->"Subgraph"
+              Tqpt-d_4NaCyU74zjCq-F/stable_diffusion_webui_txt2image_path
+          visualData: -567.2240953706531/511.2113006193645/459.3541224065766/261//
+    WGRKuvH_aIFa2U1gAjyXP:
+      metadata:
+        description: ""
+        id: WGRKuvH_aIFa2U1gAjyXP
+        name: Subgraphs/stable-diffusion-webui
+      nodes:
+        '[-7m9Hijj-ImG5ONKa_A0A]:object "Object"':
+          data:
+            jsonTemplate: |-
+              {
+                "prompt": "{{prompt}}",
+                "negative_prompt": "{{negative_prompt}}",
+                "seed": -1,
+                "batch_size": 1,
+                "steps": 7,
+                "cfg_scale": 1,
+                "width": {{width}},
+                "height": {{height}},
+                "save_images": true
+              }
+          outgoingConnections:
+            - output->"Http Call" no9hZvuOfAwtIerA-m0Ei/req_body
+          visualData: 1066.093636408245/148.91254937507148/244/189//
+        '[-KZ7P2mQ6cqZ5mewtN2k5]:readDirectory "Read Directory"':
+          data:
+            filterGlobs: []
+            ignores: []
+            includeDirectories: false
+            path: examples
+            recursive: false
+            relative: false
+            useFilterGlobsInput: true
+            useIgnoresInput: false
+            useIncludeDirectoriesInput: false
+            usePathInput: true
+            useRecursiveInput: false
+            useRelativeInput: false
+          outgoingConnections:
+            - paths->"Read File" aPBaSUXQtUdIdA-DNkid8/path
+          visualData: 1454.7934977265309/1197.9475418527882/230/229//
+        '[189K4i0k94nCdR4j4wRMw]:graphOutput "Graph Output"':
+          data:
+            dataType: image
+            id: image
+          visualData: 2333.7411210786686/-107.76089162148476/330/248/var(--node-color-4)/var(--grey-darkish)
+        '[Bu7qx-j3Lkh-Y7elsqjxA]:image "Image"':
+          data:
+            mediaType: image/png
+            useDataInput: true
+            useMediaTypeInput: false
+          outgoingConnections:
+            - image->"Graph Output" 189K4i0k94nCdR4j4wRMw/value
+          visualData: 1700.143010646056/-94.30145831622775/532.8374771879717/186//
+        '[GWCY-YeUHDSdT872YXegR]:comment "Comment"':
+          data:
+            backgroundColor: rgba(0,0,0,0.05)
+            color: rgba(255,255,255,1)
+            height: 748.5946656151438
+            text: "#### Generate Image via stable-diffusion-webui api"
+          visualData: 1027.2992761991338/-171.92556814957695/1267.6480094637063/193//
+        '[IxHCc8uTlCJsIxWLer3rm]:extractRegex "Extract Regex"':
+          data:
+            errorOnFailed: false
+            regex: ^(\d{4})(\d{2})(\d{2})
+            useRegexInput: false
+          outgoingConnections:
+            - output1->"Text" PJUrZOvDJbkGW-89Srwqs/year
+            - output2->"Text" PJUrZOvDJbkGW-89Srwqs/month
+            - output3->"Text" PJUrZOvDJbkGW-89Srwqs/day
+          visualData: 1053.7846281214356/916.0215909266171/280/184//
+        '[NqzXb-GisoWom9T-Ta0tl]:number "Number"':
+          data:
+            round: false
+            roundTo: 0
+            value: 512
+          outgoingConnections:
+            - value->"Graph Input" R0rbwBYBrQLabCTxeC99M/default
+            - value->"Graph Input" pgwY8G56bJe05TJ5nY2X8/default
+          visualData: 262.5160198876227/875.8290754146592/230/242//
+        '[PJUrZOvDJbkGW-89Srwqs]:text "Text"':
+          data:
+            text: "{{year}}-{{month}}-{{day}}"
+          outgoingConnections:
+            - output->"Text" vI0AV8MgkdWqYPswJfdFX/date
+          visualData: 1388.8180118638068/927.6129960414286/330/184//
+        '[R0rbwBYBrQLabCTxeC99M]:graphInput "Graph Input"':
+          data:
+            dataType: string
+            id: height
+            useDefaultValueInput: true
+          outgoingConnections:
+            - data->"Object" -7m9Hijj-ImG5ONKa_A0A/height
+          visualData: 599.9152162393609/995.1713550746815/330/245/var(--node-color-3)/var(--grey-darkish)
+        '[RADIIcsh2OBv-a9jPdihH]:destructure "Destructure"':
+          data:
+            paths:
+              - $.seed
+              - $.job_timestamp
+          outgoingConnections:
+            - match_0->"Text" njU5S3rxM0CxzajqXx0TT/seed
+            - match_1->"Extract Regex" IxHCc8uTlCJsIxWLer3rm/input
+          visualData: 1771.1611025756279/712.6435596444836/280/184//
+        '[RdySNnFXg2X4FKNTRahvd]:text "Text"':
+          data:
+            text: anime
+          outgoingConnections:
+            - output->"Graph Input" iVhavIYeTsD-XyNfQMAyN/default
+          visualData: 203.28726750798276/359.9327824176523/330/208//
+        '[TTc843GHytgGnJE5GDtGr]:extractJson "Extract JSON"':
+          outgoingConnections:
+            - output->"Destructure" RADIIcsh2OBv-a9jPdihH/object
+          visualData: 1406.4986239714776/711.7457737127711/280/184//
+        '[Y9g_hSYYjZ-Vqbhic646Y]:text "Text"':
+          data:
+            text: tree
+          outgoingConnections:
+            - output->"Graph Input" qYqbIA-9itTGi5njuYl_c/default
+          visualData: 207.9312589437238/161.4129152587319/330/209//
+        '[YRteHBe4vzAy2H2d_71k_]:comment "Comment"':
+          data:
+            backgroundColor: rgba(0,0,0,0.05)
+            color: rgba(255,255,255,1)
+            height: 1117.1728045095824
+            text: >-
+              #### Response example
+
+              Note: No image path returned. Just the code for the image
+
+
+              ```
+
+              {
+                "images": [
+                  ""
+                ],
+                "parameters": {
+                  "prompt": "tree",
+                  "negative_prompt": "anime",
+                  "styles": null,
+                  "seed": -1,
+                  "subseed": -1,
+                  "subseed_strength": 0,
+                  "seed_resize_from_h": -1,
+                  "seed_resize_from_w": -1,
+                  "sampler_name": null,
+                  "batch_size": 1,
+                  "n_iter": 1,
+                  "steps": 1,
+                  "cfg_scale": 2,
+                  "width": 50,
+                  "height": 50,
+                  "restore_faces": null,
+                  "tiling": null,
+                  "do_not_save_samples": false,
+                  "do_not_save_grid": false,
+                  "eta": null,
+                  "denoising_strength": null,
+                  "s_min_uncond": null,
+                  "s_churn": null,
+                  "s_tmax": null,
+                  "s_tmin": null,
+                  "s_noise": null,
+                  "override_settings": null,
+                  "override_settings_restore_afterwards": true,
+                  "refiner_checkpoint": null,
+                  "refiner_switch_at": null,
+                  "disable_extra_networks": false,
+                  "comments": null,
+                  "enable_hr": false,
+                  "firstphase_width": 0,
+                  "firstphase_height": 0,
+                  "hr_scale": 2,
+                  "hr_upscaler": null,
+                  "hr_second_pass_steps": 0,
+                  "hr_resize_x": 0,
+                  "hr_resize_y": 0,
+                  "hr_checkpoint_name": null,
+                  "hr_sampler_name": null,
+                  "hr_prompt": "",
+                  "hr_negative_prompt": "",
+                  "sampler_index": "Euler",
+                  "script_name": null,
+                  "script_args": [],
+                  "send_images": true,
+                  "save_images": false,
+                  "alwayson_scripts": {}
+                },
+                "info": "{\"prompt\": \"tree\", \"all_prompts\": [\"tree\"], \"negative_prompt\": \"anime\", \"all_negative_prompts\": [\"anime\"], \"seed\": 2748858901, \"all_seeds\": [2748858901], \"subseed\": 2327484999, \"all_subseeds\": [2327484999], \"subseed_strength\": 0, \"width\": 50, \"height\": 50, \"sampler_name\": \"Euler\", \"cfg_scale\": 2.0, \"steps\": 1, \"batch_size\": 1, \"restore_faces\": false, \"face_restoration_model\": null, \"sd_model_name\": \"dreamshaperXL_turboDpmppSDE\", \"sd_model_hash\": \"676f0d60c8\", \"sd_vae_name\": null, \"sd_vae_hash\": null, \"seed_resize_from_w\": -1, \"seed_resize_from_h\": -1, \"denoising_strength\": null, \"extra_generation_params\": {}, \"index_of_first_image\": 0, \"infotexts\": [\"tree\\nNegative prompt: anime\\nSteps: 1, Sampler: Euler, CFG scale: 2.0, Seed: 2748858901, Size: 50x50, Model hash: 676f0d60c8, Model: dreamshaperXL_turboDpmppSDE, Version: v1.7.0\"], \"styles\": [], \"job_timestamp\": \"20240116110207\", \"clip_skip\": 1, \"is_using_inpainting_conditioning\": false, \"version\": \"v1.7.0\"}"
+              ```
+          visualData: -362.17656912741796/915.5053614473276/412.97903684329276/228//
+        '[YdQK4dWNdfvXzEWO9LKv-]:comment "Comment"':
+          data:
+            backgroundColor: rgba(0,0,0,0.05)
+            color: rgba(255,255,255,1)
+            height: 1033
+            text: |-
+              #### Options of /sdapi/v1/txt2img
+
+              ```
+              {
+                "prompt": "",
+                "negative_prompt": "",
+                "styles": [
+                  "string"
+                ],
+                "seed": -1,
+                "subseed": -1,
+                "subseed_strength": 0,
+                "seed_resize_from_h": -1,
+                "seed_resize_from_w": -1,
+                "sampler_name": "string",
+                "batch_size": 1,
+                "n_iter": 1,
+                "steps": 50,
+                "cfg_scale": 7,
+                "width": 512,
+                "height": 512,
+                "restore_faces": true,
+                "tiling": true,
+                "do_not_save_samples": false,
+                "do_not_save_grid": false,
+                "eta": 0,
+                "denoising_strength": 0,
+                "s_min_uncond": 0,
+                "s_churn": 0,
+                "s_tmax": 0,
+                "s_tmin": 0,
+                "s_noise": 0,
+                "override_settings": {},
+                "override_settings_restore_afterwards": true,
+                "refiner_checkpoint": "string",
+                "refiner_switch_at": 0,
+                "disable_extra_networks": false,
+                "comments": {},
+                "enable_hr": false,
+                "firstphase_width": 0,
+                "firstphase_height": 0,
+                "hr_scale": 2,
+                "hr_upscaler": "string",
+                "hr_second_pass_steps": 0,
+                "hr_resize_x": 0,
+                "hr_resize_y": 0,
+                "hr_checkpoint_name": "string",
+                "hr_sampler_name": "string",
+                "hr_prompt": "",
+                "hr_negative_prompt": "",
+                "sampler_index": "Euler",
+                "script_name": "string",
+                "script_args": [],
+                "send_images": true,
+                "save_images": false,
+                "alwayson_scripts": {}
+              }
+              ```
+          visualData: -362.0776377932799/-143.99044571944077/408/227//
+        '[ZMoKZmwKAzmbDkpNcOxe8]:extractObjectPath "Extract Object Path"':
+          data:
+            path: $.info
+            usePathInput: false
+          outgoingConnections:
+            - match->"Extract JSON" TTc843GHytgGnJE5GDtGr/input
+          visualData: 1055.6623606365506/692.3124835148961/280/184//
+        '[aPBaSUXQtUdIdA-DNkid8]:readFile "Read File"':
+          data:
+            asBinary: true
+            errorOnMissingFile: false
+            path: ""
+            usePathInput: true
+          outgoingConnections:
+            - content->"Image" Bu7qx-j3Lkh-Y7elsqjxA/data
+          visualData: 1767.4865662958216/1285.4335704256982/280/247//
+        '[iVhavIYeTsD-XyNfQMAyN]:graphInput "Graph Input"':
+          data:
+            dataType: string
+            id: negative_prompt
+            useDefaultValueInput: true
+          outgoingConnections:
+            - data->"Object" -7m9Hijj-ImG5ONKa_A0A/negative_prompt
+          visualData: 600.0036125682616/345.5449131933474/330/207/var(--node-color-3)/var(--grey-darkish)
+        '[kR8HrJPNPAt1-vpXq-iSw]:comment "Comment"':
+          data:
+            backgroundColor: rgba(0,0,0,0.05)
+            color: rgba(255,255,255,1)
+            height: 901.5413217665816
+            text: "#### Piece the path of the generated image together to be able to
+              load/show it"
+          visualData: 1027.2992761991336/587.1352646588625/1269.5946656151436/194//
+        '[njU5S3rxM0CxzajqXx0TT]:text "Text"':
+          data:
+            text: "**/*{{seed}}.png"
+          outgoingConnections:
+            - output->"Read Directory" -KZ7P2mQ6cqZ5mewtN2k5/filterGlobs
+          visualData: 1771.7163234670766/932.1379982377362/330/184//
+        '[no9hZvuOfAwtIerA-m0Ei]:httpCall "Http Call"':
+          data:
+            body: ""
+            errorOnNon200: true
+            headers: ""
+            method: POST
+            url: http://127.0.0.1:7860/sdapi/v1/txt2img
+            useBodyInput: true
+            useHeadersInput: true
+          outgoingConnections:
+            - json->"Extract Object Path" ZMoKZmwKAzmbDkpNcOxe8/object
+          visualData: 1368.017506169625/214.80036088783896/280/188//
+        '[nv8uYWbvN3szuQ5R6mcMt]:text "Text"':
+          data:
+            text: /Users/timk/stable-diffusion-webui/outputs/txt2img-images
+          outgoingConnections:
+            - output->"Graph Input" qq2fc2Ti0_A0mMk6jR9Gb/default
+          visualData: 75.06637786402916/571.2833717956821/459.3541224065766/235//
+        '[pgwY8G56bJe05TJ5nY2X8]:graphInput "Graph Input"':
+          data:
+            dataType: string
+            id: width
+            useDefaultValueInput: true
+          outgoingConnections:
+            - data->"Object" -7m9Hijj-ImG5ONKa_A0A/width
+          visualData: 599.9152162393609/795.1713550746815/330/246/var(--node-color-3)/var(--grey-darkish)
+        '[qYqbIA-9itTGi5njuYl_c]:graphInput "Graph Input"':
+          data:
+            dataType: string
+            id: prompt
+            useDefaultValueInput: true
+          outgoingConnections:
+            - data->"Object" -7m9Hijj-ImG5ONKa_A0A/prompt
+          visualData: 600.0036125682616/145.5449131933474/330/205/var(--node-color-3)/var(--grey-darkish)
+        '[qq2fc2Ti0_A0mMk6jR9Gb]:graphInput "Graph Input"':
+          data:
+            dataType: string
+            id: stable_diffusion_webui_txt2image_path
+            useDefaultValueInput: true
+          outgoingConnections:
+            - data->"Text" vI0AV8MgkdWqYPswJfdFX/folder_path
+          visualData: 601.5027400217934/553.8094875585583/330/219/var(--node-color-3)/var(--grey-darkish)
+        '[vI0AV8MgkdWqYPswJfdFX]:text "Text"':
+          data:
+            text: "{{folder_path}}/{{date}}/"
+          outgoingConnections:
+            - output->"Read Directory" -KZ7P2mQ6cqZ5mewtN2k5/path
+          visualData: 1040.4446590933924/1256.9353929164424/330/184//
+        '[w0DBXFjXNI4M2Dft93s43]:object "Object"':
+          data:
+            jsonTemplate: |-
+              {
+                "Content-Type": "application/json"
+              }
+          outgoingConnections:
+            - output->"Http Call" no9hZvuOfAwtIerA-m0Ei/headers
+          visualData: 1391.7061715087139/-35.79173210940364/230/187//
+  metadata:
+    description: ""
+    id: 0yPRv6h2OxvzVlupSmmzZ
+    mainGraphId: 8nHsdRIl559zMXO53jXHO
+    title: Local image generation
+  plugins: []
