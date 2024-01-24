@@ -1,0 +1,619 @@
+version: 4
+data:
+  attachedData:
+    trivet:
+      testSuites: []
+      version: 1
+  graphs:
+    5XxfzFYLKwkMwGBD6kDjZ:
+      metadata:
+        description: ""
+        id: 5XxfzFYLKwkMwGBD6kDjZ
+        name: "# Main Graph"
+      nodes:
+        '[1pIYKAIffxHoSk8XwiOdT]:subGraph "Subgraph"':
+          data:
+            graphId: k-aBTK59V79zyvSxZFIJS
+            useAsGraphPartialOutput: false
+            useErrorOutput: false
+          outgoingConnections:
+            - output->"List (Text)" h6-96BYM4g0ROkxXivrw5/input
+          visualData: 1819.2571999727152/431.238490542917/330/114/var(--node-color-6)/var(--grey-darkish)
+        '[4p69gkCLjBPppfzDdmm9v]:comment "Comment"':
+          data:
+            backgroundColor: rgba(0,0,0,0.05)
+            color: rgba(255,255,255,1)
+            height: 731.8493229850019
+            text: "#### Inputs"
+          visualData: 395.5081139090693/167.9176252321181/476.5974216374275/91//
+        '[5QN9aYb16ahaqjn573b45]:subGraph "Subgraph"':
+          data:
+            graphId: TlTDY388zxGScQJc72RH-
+            useAsGraphPartialOutput: false
+            useErrorOutput: false
+          outgoingConnections:
+            - output->"Subgraph" u9Ixgjw3ZZAgVGrE6B_5V/response
+          visualData: 913/316/330/76/var(--node-color-6)/var(--grey-darkish)
+        '[6oK2pLXGx4vCGVElbAYBW]:comment "Comment"':
+          data:
+            backgroundColor: rgba(0,0,0,0.05)
+            color: rgba(255,255,255,1)
+            height: 430.02458669375164
+            text: "#### With JSON mode (Chat GPT only)"
+          visualData: 883.781715644867/167.28009219273088/1771.5991804435416/121//
+        '[7MAMRUOl0_wl6dCq2BqWo]:comment "Comment"':
+          data:
+            backgroundColor: rgba(0,0,0,0.05)
+            color: rgba(255,255,255,1)
+            height: 210.62522656767942
+            text: >-
+              #### Information
+
+              - Change Prompt + JSON Example to adjust it to your use-case
+
+              - Use "JSON generator" graph if you need help in creating a JSON example
+
+              - Change "Extract Information" graph as well as "Render as table" or "Render as text" graphs accordingly to your JSON data
+
+              - Only gpt-3.5-1106 + gpt-4-turbo support JSON mode
+          visualData: 398.8799662202165/-51.43316744664577/998.8004557643505/109//
+        '[7l-hgeSjKxQAstBeDWATT]:text "List (Text)"':
+          data:
+            text: "{{input}}"
+          visualData: 2289.93813400364/878.3209080788869/330/111/var(--node-color-2)/var(--grey-darkish)
+        '[C0kdwOE_JvYj86MEF7ZDM]:text "Table (Text)"':
+          data:
+            text: "{{input}}"
+          visualData: 2290.2484649951366/678.5900721155627/330/120/var(--node-color-2)/var(--grey-darkish)
+        '[F8ZheqPDZjnOgSMqVOU9h]:comment "Comment"':
+          data:
+            backgroundColor: rgba(0,0,0,0.05)
+            color: rgba(255,255,255,1)
+            height: 451.16090942550795
+            text: "#### Without JSON mode"
+          visualData: 882.2792878316735/612.968792516717/1774.3686363875358/111//
+        '[LIRT4wSi04eh533UkBs_j]:text "Prompt (Text)"':
+          data:
+            text: I like the Dune books. Give me some book recommendations
+          outgoingConnections:
+            - output->"Subgraph" 5QN9aYb16ahaqjn573b45/prompt
+            - output->"Subgraph" sMI7TNry7LBD-PBTFe-hp/prompt
+          visualData: 478.6334092940584/292.70248785119924/330/106//
+        '[PV0JKOeVXHv1hroNLQh73]:subGraph "Subgraph"':
+          data:
+            graphId: oDYXLA4vU6xFS322AA1jb
+            useAsGraphPartialOutput: false
+            useErrorOutput: false
+          outgoingConnections:
+            - output->"Table (Text)" bIGOedt3uBVArExGxAFj9/input
+          visualData: 1821.53070644486/213.6150142535327/330/112/var(--node-color-6)/var(--grey-darkish)
+        '[YflWbikE5j6R6UW32KfC2]:subGraph "Subgraph"':
+          data:
+            graphId: oDYXLA4vU6xFS322AA1jb
+            useAsGraphPartialOutput: false
+            useErrorOutput: false
+          outgoingConnections:
+            - output->"Table (Text)" C0kdwOE_JvYj86MEF7ZDM/input
+          visualData: 1821.8828783243482/679.1324699926597/330/118/var(--node-color-6)/var(--grey-darkish)
+        '[bIGOedt3uBVArExGxAFj9]:text "Table (Text)"':
+          data:
+            text: "{{input}}"
+          visualData: 2289.3949301157804/210.96870729889787/330/95/var(--node-color-2)/var(--grey-darkish)
+        '[cS8b_Qfmjggdi6AJ8o39G]:subGraph "Subgraph"':
+          data:
+            graphId: k-aBTK59V79zyvSxZFIJS
+            useAsGraphPartialOutput: false
+            useErrorOutput: false
+          outgoingConnections:
+            - output->"List (Text)" 7l-hgeSjKxQAstBeDWATT/input
+          visualData: 1822.316744410562/878.4990706557954/330/122/var(--node-color-6)/var(--grey-darkish)
+        '[d2qgTaICvjL0GJhYEj1ho]:text "JSON Example (Text)"':
+          data:
+            text: |
+              {
+                "reasoning": "<why you recommend the following books>",
+                "recommendations": [
+                  {
+                    "title": "The Great Gatsby",
+                    "author": "F. Scott Fitzgerald",
+                    "genre": "Classic"
+                  },
+                  {
+                    "title": "To Kill a Mockingbird",
+                    "author": "Harper Lee",
+                    "genre": "Historical Fiction"
+                  },
+                  {
+                    "title": "1984",
+                    "author": "George Orwell",
+                    "genre": "Dystopian"
+                  }
+                ]
+              }
+          outgoingConnections:
+            - output->"Subgraph" 5QN9aYb16ahaqjn573b45/json_example
+            - output->"Subgraph" sMI7TNry7LBD-PBTFe-hp/json_example
+          visualData: 473.5160705307125/476.8653832433595/330/105//
+        '[h6-96BYM4g0ROkxXivrw5]:text "List (Text)"':
+          data:
+            text: "{{input}}"
+          visualData: 2292.216828124315/417.9950105666763/330/115/var(--node-color-2)/var(--grey-darkish)
+        '[rhdSdFcpboe00watWW1m2]:subGraph "Subgraph"':
+          data:
+            graphId: PyeylcKjyfMSKAcTwIy2H
+            useAsGraphPartialOutput: false
+            useErrorOutput: false
+          outgoingConnections:
+            - data->"Subgraph" YflWbikE5j6R6UW32KfC2/data
+            - data->"Subgraph" cS8b_Qfmjggdi6AJ8o39G/data
+            - reasoning->"Subgraph" YflWbikE5j6R6UW32KfC2/reasoning
+            - reasoning->"Subgraph" cS8b_Qfmjggdi6AJ8o39G/reasoning
+          visualData: 1352.3156818062319/731.7168071575204/330/111/var(--node-color-6)/var(--grey-darkish)
+        '[sMI7TNry7LBD-PBTFe-hp]:subGraph "Subgraph"':
+          data:
+            graphId: NnfRyF78PAex8giYJWZ2G
+            useAsGraphPartialOutput: false
+            useErrorOutput: false
+          outgoingConnections:
+            - output->"Subgraph" rhdSdFcpboe00watWW1m2/response
+          visualData: 903.6313636124637/732.4011253512886/330/111/var(--node-color-6)/var(--grey-darkish)
+        '[u9Ixgjw3ZZAgVGrE6B_5V]:subGraph "Subgraph"':
+          data:
+            graphId: PyeylcKjyfMSKAcTwIy2H
+            useAsGraphPartialOutput: false
+            useErrorOutput: false
+          outgoingConnections:
+            - data->"Subgraph" 1pIYKAIffxHoSk8XwiOdT/data
+            - data->"Subgraph" PV0JKOeVXHv1hroNLQh73/data
+            - reasoning->"Subgraph" 1pIYKAIffxHoSk8XwiOdT/reasoning
+            - reasoning->"Subgraph" PV0JKOeVXHv1hroNLQh73/reasoning
+          visualData: 1354/316.20023351903365/330/62/var(--node-color-6)/var(--grey-darkish)
+    LEGoB-sIn_t_IyscKOKas:
+      metadata:
+        description: ""
+        id: LEGoB-sIn_t_IyscKOKas
+        name: Tools/JSON generator
+      nodes:
+        '[8qPT96j9Ex4_0yzghRuhQ]:text "Text"':
+          data:
+            text: >-
+              You are a JSON notation expert. Create me examples how to return
+              all the relevant information from the given JSON file in the
+              example format:
+
+
+              # Example format
+
+              - <Information what it returns>: ```$.<object path>```
+
+              - <Information what it returns>: ```$.<object path>```
+          outgoingConnections:
+            - output->"Chat" vzBKsyr7iZrth_AOd0GhI/systemPrompt
+          visualData: 402.1866184031857/707.3204343713285/330/24//
+        '[AumWTAvFeTqQvd3gntGf4]:chat "Chat"':
+          data:
+            cache: true
+            enableFunctionUse: false
+            frequencyPenalty: 0
+            headers: []
+            maxTokens: 1024
+            model: gpt-3.5-turbo
+            presencePenalty: 0
+            stop: ""
+            temperature: 0.5
+            top_p: 1
+            useAsGraphPartialOutput: true
+            useFrequencyPenaltyInput: false
+            useMaxTokensInput: false
+            useModelInput: false
+            usePresencePenaltyInput: false
+            useStop: false
+            useStopInput: false
+            useTemperatureInput: false
+            useTopP: false
+            useTopPInput: false
+            useUseTopPInput: false
+            useUserInput: false
+          outgoingConnections:
+            - response->"Chat" vzBKsyr7iZrth_AOd0GhI/prompt
+            - response->"JSON Example" W1XOOmsqtNrx8IxAEk7XZ/input
+          visualData: 842/242/230/5//
+        '[N0TVkcZNvyAuuGehwpylw]:text "Text"':
+          data:
+            text: >-
+              You are a data scientiest. It is your job to structure data in the
+              best possible manner in JSON.
+
+              - Derive a possible data schema that matches the users request (how should the output data look?)
+
+              - ONLY return the JSON example
+
+              - Do not describe/explain the result
+          outgoingConnections:
+            - output->"Chat" AumWTAvFeTqQvd3gntGf4/systemPrompt
+          visualData: 400.632291320202/213.64086874265706/330/26//
+        '[W1XOOmsqtNrx8IxAEk7XZ]:extractJson "JSON Example"':
+          visualData: 1203.9637819446775/304.7409454861694/320.2897444425796/31/var(--node-color-2)/var(--grey-darkish)
+        '[tYf57XeHfqD5IUh1kVgF6]:userInput "User Input"':
+          data:
+            prompt: Just enter your prompt. ChatGPT will create a possible JSON structure
+              for you.
+            useInput: false
+          outgoingConnections:
+            - output->"Chat" AumWTAvFeTqQvd3gntGf4/prompt
+          visualData: 413.9275638893551/456.008577422455/280/25//
+        '[vTLiIAIFW8-kk09t4YgZi]:comment "Comment"':
+          data:
+            backgroundColor: rgba(0,0,0,0.05)
+            color: rgba(255,255,255,1)
+            height: 357
+            text: >-
+              #### How to use
+
+              1. Enter the prompt as you would ask ChatGPT for the informtation. Mention all the information you want to be able to access later
+
+              2. Copy the JSON Output
+
+              3. Use "Object Paths" if you need help how to access the information
+
+
+              ##### Example input
+
+              Give me a recipie for spaghetti carbonara.
+
+
+              I like the information seperated for:
+
+              - ingredients
+
+              - nutrients
+
+              - steps
+
+              - allergens
+
+              - time split into preperation, cooking, estimated cleaning (by hand)
+          visualData: 403.1664142623942/-181.26019544420964/1101.724361106449/34//
+        '[vzBKsyr7iZrth_AOd0GhI]:chat "Chat"':
+          data:
+            cache: true
+            enableFunctionUse: false
+            frequencyPenalty: 0
+            headers: []
+            maxTokens: 1024
+            model: gpt-3.5-turbo
+            presencePenalty: 0
+            stop: ""
+            temperature: 0.5
+            top_p: 1
+            useAsGraphPartialOutput: true
+            useFrequencyPenaltyInput: false
+            useMaxTokensInput: false
+            useModelInput: false
+            usePresencePenaltyInput: false
+            useStop: false
+            useStopInput: false
+            useTemperatureInput: false
+            useTopP: false
+            useTopPInput: false
+            useUseTopPInput: false
+            useUserInput: false
+          outgoingConnections:
+            - response->"Object Paths" x-eDbBJTC3bxzGwIILmH1/input
+          visualData: 851/608/230/16//
+        '[x-eDbBJTC3bxzGwIILmH1]:text "Object Paths"':
+          data:
+            text: "{{input}}"
+          visualData: 1200/653/330/18/var(--node-color-2)/var(--grey-darkish)
+    NnfRyF78PAex8giYJWZ2G:
+      metadata:
+        description: ""
+        id: NnfRyF78PAex8giYJWZ2G
+        name: Subgraphs/Chat without JSON mode
+      nodes:
+        '[Z4csjanueIYhek912nOcC]:chat "Chat"':
+          data:
+            cache: true
+            enableFunctionUse: false
+            frequencyPenalty: 0
+            headers: []
+            maxTokens: 1024
+            model: gpt-3.5-turbo
+            presencePenalty: 0
+            responseFormat: ""
+            stop: ""
+            temperature: 0.5
+            top_p: 1
+            useAsGraphPartialOutput: true
+            useFrequencyPenaltyInput: false
+            useMaxTokensInput: false
+            useModelInput: false
+            usePresencePenaltyInput: false
+            useStop: false
+            useStopInput: false
+            useTemperatureInput: false
+            useTopP: false
+            useTopPInput: false
+            useUseTopPInput: false
+            useUserInput: false
+          outgoingConnections:
+            - response->"Graph Output" f-oekodmSwwzNfbLqaKhP/value
+          visualData: 777.8577528405743/251.9997327572797/230/45//
+        '[f-oekodmSwwzNfbLqaKhP]:graphOutput "Graph Output"':
+          data:
+            dataType: string
+            id: output
+          visualData: 1112.6514519860775/285.53658049071845/330/48/var(--node-color-4)/var(--grey-darkish)
+        '[krP5DZbOT_xLnwnoj2tpO]:graphInput "Graph Input"':
+          data:
+            dataType: string
+            id: prompt
+            useDefaultValueInput: false
+          outgoingConnections:
+            - data->"Prompt" n5_qKi0Ine8vzH8ADMS4n/input
+          visualData: -110.28486092820168/586.9529389394654/330/51/var(--node-color-3)/var(--grey-darkish)
+        '[n5_qKi0Ine8vzH8ADMS4n]:prompt "Prompt"':
+          data:
+            enableFunctionCall: false
+            promptText: "{{input}}"
+            type: user
+            useTypeInput: false
+          outgoingConnections:
+            - output->"Chat" Z4csjanueIYhek912nOcC/prompt
+          visualData: 354.86007746140626/570.3515668988422/280/38//
+        '[nMpWQEL0L8hjKDBvK6jSU]:graphInput "Graph Input"':
+          data:
+            dataType: string
+            id: json_example
+            useDefaultValueInput: false
+          outgoingConnections:
+            - data->"Text" pmQM1Fyqp6b1NNyotnr_0/json_output_example
+          visualData: -110.28486092820168/283.377720600807/330/50/var(--node-color-3)/var(--grey-darkish)
+        '[pmQM1Fyqp6b1NNyotnr_0]:text "Text"':
+          data:
+            text: |-
+              Use "reasoning" field to explain your choices.
+              ONLY return JSON output
+
+              # JSON output
+              {{json_output_example}}
+          outgoingConnections:
+            - output->"Chat" Z4csjanueIYhek912nOcC/systemPrompt
+          visualData: 348.3749919085275/253.0984619633389/330/39//
+    PyeylcKjyfMSKAcTwIy2H:
+      metadata:
+        description: ""
+        id: PyeylcKjyfMSKAcTwIy2H
+        name: Subgraphs/Extract information
+      nodes:
+        '[1xIaFag_cqF9VUMpbk9K7]:graphOutput "Graph Output"':
+          data:
+            dataType: string
+            id: reasoning
+          visualData: 1614/607/330/21/var(--node-color-4)/var(--grey-darkish)
+        '[CjCea77DybuLAvqhgQezS]:graphOutput "Graph Output"':
+          data:
+            dataType: object
+            id: data
+          visualData: 1613/321/330/19/var(--node-color-4)/var(--grey-darkish)
+        '[TMAYZvgiBBly9cd2XOzdK]:extractJson "Extract JSON"':
+          outgoingConnections:
+            - output->"Destructure" dhuLD_Oj6LGrLd1u2z1Hn/object
+          visualData: 832/349/280/3//
+        '[UQGsAnZssrEhmwIp_TaVp]:graphInput "Graph Input"':
+          data:
+            dataType: string
+            id: response
+            useDefaultValueInput: false
+          outgoingConnections:
+            - data->"Extract JSON" TMAYZvgiBBly9cd2XOzdK/input
+          visualData: 399/318/330/1/var(--node-color-3)/var(--grey-darkish)
+        '[dhuLD_Oj6LGrLd1u2z1Hn]:destructure "Destructure"':
+          data:
+            paths:
+              - $.recommendations
+              - $.reasoning
+          outgoingConnections:
+            - match_0->"Graph Output" CjCea77DybuLAvqhgQezS/value
+            - match_1->"Graph Output" 1xIaFag_cqF9VUMpbk9K7/value
+          visualData: 1235/352/280/17//
+    TlTDY388zxGScQJc72RH-:
+      metadata:
+        description: ""
+        id: TlTDY388zxGScQJc72RH-
+        name: Subgraphs/Chat with JSON mode
+      nodes:
+        '[9Q4O4GBjh4HEWIhCQomp7]:text "Text"':
+          data:
+            text: |-
+              Use "reasoning" field to explain your choices.
+
+              # JSON output
+              {{json_output_example}}
+          outgoingConnections:
+            - output->"Chat" QdStmiRYgK3miO0GTenhK/systemPrompt
+          visualData: 348.3749919085275/253.0984619633389/330/39//
+        '[9uy5F5y1gubBK0pgjr-vS]:graphOutput "Graph Output"':
+          data:
+            dataType: string
+            id: output
+          visualData: 1171.2230945602612/268.4213589836964/330/52/var(--node-color-4)/var(--grey-darkish)
+        '[HXklq12IPP4dTtOp-iFzc]:graphInput "Graph Input"':
+          data:
+            dataType: string
+            id: json_example
+            useDefaultValueInput: false
+          outgoingConnections:
+            - data->"Text" 9Q4O4GBjh4HEWIhCQomp7/json_output_example
+          visualData: -63.29453619719163/251.30699533789192/330/53/var(--node-color-3)/var(--grey-darkish)
+        '[QdStmiRYgK3miO0GTenhK]:chat "Chat"':
+          data:
+            cache: true
+            enableFunctionUse: false
+            frequencyPenalty: 0
+            headers: []
+            maxTokens: 1024
+            model: gpt-3.5-turbo-1106
+            presencePenalty: 0
+            responseFormat: json
+            stop: ""
+            temperature: 0.5
+            top_p: 1
+            useAsGraphPartialOutput: true
+            useFrequencyPenaltyInput: false
+            useMaxTokensInput: false
+            useModelInput: false
+            usePresencePenaltyInput: false
+            useStop: false
+            useStopInput: false
+            useTemperatureInput: false
+            useTopP: false
+            useTopPInput: false
+            useUseTopPInput: false
+            useUserInput: false
+          outgoingConnections:
+            - response->"Graph Output" 9uy5F5y1gubBK0pgjr-vS/value
+          visualData: 772.8661760531692/235.77710819821274/230/15//
+        '[ZyVT1ENjDGWsr_mgHW6AX]:graphInput "Graph Input"':
+          data:
+            dataType: string
+            id: prompt
+            useDefaultValueInput: false
+          outgoingConnections:
+            - data->"Prompt" t1V4ArQPHsLYFJgHqfa6q/input
+          visualData: -73.9360753200869/568.3639256897399/330/49/var(--node-color-3)/var(--grey-darkish)
+        '[t1V4ArQPHsLYFJgHqfa6q]:prompt "Prompt"':
+          data:
+            enableFunctionCall: false
+            promptText: "{{input}}"
+            type: user
+            useTypeInput: false
+          outgoingConnections:
+            - output->"Chat" QdStmiRYgK3miO0GTenhK/prompt
+          visualData: 340.0367540104497/553.0576895393929/280/48//
+    k-aBTK59V79zyvSxZFIJS:
+      metadata:
+        description: ""
+        id: k-aBTK59V79zyvSxZFIJS
+        name: Subgraphs/Render as text
+      nodes:
+        '[D4ZgAPYZfXE1sodMdoQfW]:text "Text"':
+          data:
+            text: "- **{{title}}** by {{author}}
+
+              \  - Genre: {{genre}}
+
+              \  "
+          isSplitRun: true
+          outgoingConnections:
+            - output->"Text" xHnhnVaB4leuJpXZP5P-1/data
+          visualData: 840.1466990193602/176.41459711025766/330/58//
+        '[Pu40k6GQ3oOTy_BBU82QF]:graphInput "Graph Input"':
+          data:
+            dataType: object
+            id: data
+            useDefaultValueInput: false
+          outgoingConnections:
+            - data->"Destructure" WEyRPrVQ2twbG83-sKBVK/object
+          visualData: 398.13863261504866/436.36571238910864/330/3/var(--node-color-3)/var(--grey-darkish)
+        '[W7yVojKfCTVMlSptwIkbU]:graphOutput "Graph Output"':
+          data:
+            dataType: string
+            id: output
+          visualData: 1326.570819613728/484.25474623760186/330/54/var(--node-color-4)/var(--grey-darkish)
+        '[WEyRPrVQ2twbG83-sKBVK]:destructure "Destructure"':
+          data:
+            paths:
+              - $.title
+              - $.author
+              - $.genre
+          isSplitRun: true
+          outgoingConnections:
+            - match_0->"Text" D4ZgAPYZfXE1sodMdoQfW/title
+            - match_1->"Text" D4ZgAPYZfXE1sodMdoQfW/author
+            - match_2->"Text" D4ZgAPYZfXE1sodMdoQfW/genre
+          visualData: 852.9410404642986/484.5037011345274/280/48//
+        '[u9fmTB7AeMtBctQbEmcXZ]:graphInput "Graph Input"':
+          data:
+            dataType: string
+            id: reasoning
+            useDefaultValueInput: false
+          outgoingConnections:
+            - data->"Text" xHnhnVaB4leuJpXZP5P-1/reasoning
+          visualData: 399.5640281046547/185.6784988609403/330/57/var(--node-color-3)/var(--grey-darkish)
+        '[xHnhnVaB4leuJpXZP5P-1]:text "Text"':
+          data:
+            text: |-
+              {{reasoning}}
+
+              # Book Recommendations
+
+              {{data}}
+          outgoingConnections:
+            - output->"Graph Output" W7yVojKfCTVMlSptwIkbU/value
+          visualData: 1323.0965114683718/162.17308297085887/330/60//
+    oDYXLA4vU6xFS322AA1jb:
+      metadata:
+        description: ""
+        id: oDYXLA4vU6xFS322AA1jb
+        name: Subgraphs/Render as table
+      nodes:
+        '[69HBtyZl0waf-6WDD_WEV]:graphOutput "Graph Output"':
+          data:
+            dataType: string
+            id: output
+          visualData: 1419.4260328182509/594.808259320595/330/52/var(--node-color-4)/var(--grey-darkish)
+        '[Q0HtYImL5KVXICGRowXWR]:destructure "Destructure"':
+          data:
+            paths:
+              - $.title
+              - $.author
+              - $.genre
+          isSplitRun: true
+          outgoingConnections:
+            - match_0->"Text" SJw37TtIVCLLMzeTkp8PC/title
+            - match_1->"Text" SJw37TtIVCLLMzeTkp8PC/author
+            - match_2->"Text" SJw37TtIVCLLMzeTkp8PC/genre
+          visualData: 932.8024078492499/579.1379887454187/280/48//
+        '[SJw37TtIVCLLMzeTkp8PC]:text "Text"':
+          data:
+            text: "| {{title}}    | {{author}} | {{genre}}        |"
+          isSplitRun: true
+          outgoingConnections:
+            - output->"Text" SuVNaT4zmJy5-aNoQe7Ex/table_data
+          visualData: 900.3526439433407/313.63783026024583/330/57//
+        '[SuVNaT4zmJy5-aNoQe7Ex]:text "Text"':
+          data:
+            text: |-
+              {{reasoning}}
+
+              # Book Recommendations
+
+              | Title                | Author             | Genre             |
+              |----------------------|--------------------|-------------------|
+              {{table_data}}
+          outgoingConnections:
+            - output->"Graph Output" 69HBtyZl0waf-6WDD_WEV/value
+          visualData: 1428.7493313093948/250.0569628971114/330/56//
+        '[bX6H29S-hLJ9VkwgnaJ-p]:graphInput "Graph Input"':
+          data:
+            dataType: object
+            id: data
+            useDefaultValueInput: false
+          outgoingConnections:
+            - data->"Destructure" Q0HtYImL5KVXICGRowXWR/object
+          visualData: 478/531/330/3/var(--node-color-3)/var(--grey-darkish)
+        '[ybcJc_VcBw2kYj_yj8oGg]:graphInput "Graph Input"':
+          data:
+            dataType: string
+            id: reasoning
+            useDefaultValueInput: false
+          outgoingConnections:
+            - data->"Text" SuVNaT4zmJy5-aNoQe7Ex/reasoning
+          visualData: 470.71190724810447/323.05521053879244/330/55/var(--node-color-3)/var(--grey-darkish)
+  metadata:
+    description: ""
+    id: BHANHqQHt-dcRka5USdCz
+    mainGraphId: 5XxfzFYLKwkMwGBD6kDjZ
+    title: JSON mode
+  plugins: []
