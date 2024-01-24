@@ -8,6 +8,7 @@ Just press on "Code" and "Download Zip" or go to a specific file and press on "D
 There is a corresponding video tutorial on Youtube for each file:
 | Video title | Youtube Link | File/Link |
 | -- | -- | -- |
+| Rivet: Own Your Output: Master Structured Data with ChatGPT Or Other LLMs! - No Code Tutorial | https://youtu.be/KCJvLkX2HwU | JSON mode.rivet-project |
 | Rivet: How To Create A Personalized AI With Self-editing Long-term Memory  - No Code Tutorial | https://youtu.be/_XBHgSCtGts | Personalized agent.rivet-project |
 | Rivet: How To Automate Local Image Generation via stable-diffusion-webui - No Code Tutorial | https://youtu.be/TRf0l2Zvde0 | Local image generation.rivet-project |
 | Rivet: Create A Teachable Agent With Long Term Memory That Learns From You! - No code Tutorial | https://youtu.be/g7dhLpDAnW4 | Teachable Agent.rivet-project |
