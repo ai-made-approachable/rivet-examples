@@ -1,0 +1,976 @@
+version: 4
+data:
+  attachedData:
+    trivet:
+      testSuites: []
+      version: 1
+  graphs:
+    6Sw0jBqaWn8rJcrFDKaZY:
+      metadata:
+        description: ""
+        id: 6Sw0jBqaWn8rJcrFDKaZY
+        name: Chat with finetuned model
+      nodes:
+        '[3wj7Qt6y-i213MdLRKc14]:comment "Comment"':
+          data:
+            backgroundColor: rgba(0,0,0,0.05)
+            color: rgba(255,255,255,1)
+            height: 211.29466973123385
+            text: >-
+              ### How to use
+
+              1. Go to "Create Finetuning Data" graph and follow the instructions
+
+              2. Insert your finetuned model name, e.g. "ft:gpt-3.5-turbo-1106:personal::8kxuvXxy" into the input below
+
+              3. Run this graph and see how your finetuned model acts
+          visualData: -314.89218622667227/-63.71431853287989/651.3660744145815/86//
+        '[BV6jeBg52kj1xUEJVYK7A]:abortGraph "Abort Graph"':
+          data:
+            errorMessage: ""
+            successfully: true
+          visualData: 588.0684057883835/23.57064648159048/230/75/var(--node-color-5)/var(--grey-darkish)
+        '[BYcHKNVsQmGbbKQlBDJC-]:userInput "User Input"':
+          data:
+            prompt: This is an example question?
+            useInput: true
+          outgoingConnections:
+            - output->"Prompt" GSl4-qXLrR3rhWvqTvqMv/input
+          visualData: 579.1325854223887/344.9076254508065/280/54//
+        '[CLA5zqjhNw_xF37YIon9p]:chat "Chat"':
+          data:
+            cache: false
+            enableFunctionUse: false
+            frequencyPenalty: 0
+            headers: []
+            maxTokens: 1024
+            model: gpt-3.5-turbo
+            presencePenalty: 0
+            stop: ""
+            temperature: 0.5
+            top_p: 1
+            useAsGraphPartialOutput: true
+            useFrequencyPenaltyInput: false
+            useMaxTokensInput: false
+            useModelInput: true
+            usePresencePenaltyInput: false
+            useStop: false
+            useStopInput: false
+            useTemperatureInput: false
+            useTopP: false
+            useTopPInput: false
+            useUseTopPInput: false
+            useUserInput: false
+          outgoingConnections:
+            - all-messages->"Loop Controller" aRT_RdcNVxfNlUPItovNW/input2
+            - response->"Loop Controller" aRT_RdcNVxfNlUPItovNW/input1
+          visualData: 999.9002392014613/323.16456314795624/230/33//
+        '[FV6lVdoC9gx67c0vpZlPI]:text "Default User Input (Text)"':
+          data:
+            text: Enter your message...
+          outgoingConnections:
+            - output->"Loop Controller" aRT_RdcNVxfNlUPItovNW/input1Default
+          visualData: -283.21414458555216/518.2927074183333/330/77//
+        '[GSl4-qXLrR3rhWvqTvqMv]:prompt "Prompt"':
+          data:
+            enableFunctionCall: false
+            promptText: "{{input}}"
+            type: user
+            useTypeInput: false
+          outgoingConnections:
+            - output->"Assemble Prompt" INT9B_YpWKvr_cb__N8q9/message2
+          visualData: 577.4889988601867/561.8987638582068/280/65//
+        '[INT9B_YpWKvr_cb__N8q9]:assemblePrompt "Assemble Prompt"':
+          outgoingConnections:
+            - prompt->"Chat" CLA5zqjhNw_xF37YIon9p/prompt
+          visualData: 579.2101024773842/807.2545218981993/280/52//
+        '[SPaVysrnxr6rI0DjZvDZI]:comment "Comment"':
+          data:
+            backgroundColor: rgba(0,0,0,0.05)
+            color: rgba(255,255,255,1)
+            height: 603.4636287920613
+            text: "#### Inputs"
+          visualData: -314.7271546618513/156.81676020243106/405.90177675625534/69//
+        '[VrMLmvupHoFhcGWR_xwBW]:text "Finetuned Model (Text)"':
+          data:
+            text: ft:gpt-3.5-turbo-1106:personal::8kxuvXxy
+          outgoingConnections:
+            - output->"Chat" CLA5zqjhNw_xF37YIon9p/model
+          visualData: -282.71362729580426/321.9955070678722/330/82//
+        '[aRT_RdcNVxfNlUPItovNW]:loopController "Loop Controller"':
+          data:
+            maxIterations: 100
+          outgoingConnections:
+            - break->"Abort Graph" BV6jeBg52kj1xUEJVYK7A/data
+            - output1->"User Input" BYcHKNVsQmGbbKQlBDJC-/questions
+            - output2->"Assemble Prompt" INT9B_YpWKvr_cb__N8q9/message1
+          visualData: 163.6632084140557/315.3784640499644/280/10/var(--node-color-2)/var(--grey-darkish)
+        '[xHcUMPmiOZDJfiS8QarTh]:comment "Comment"':
+          data:
+            backgroundColor: rgba(0,0,0,0.05)
+            color: rgba(255,255,255,1)
+            height: 899.3660744145816
+            text: |-
+              #### Chat Loop
+              - Input (Data 1): last_response
+              - Input (Data 2): chat_history
+          visualData: 99.98301782318993/159.89035716101205/1208.437479097929/68//
+    8eaMpiHbaKMPczoSY8zP1:
+      metadata:
+        description: ""
+        id: 8eaMpiHbaKMPczoSY8zP1
+        name: Training Data/Subgraphs/create_synthetic_data
+      nodes:
+        '[0VishcP814RU_nedqFIB7]:extractObjectPath "Extract Object Path"':
+          data:
+            path: $.responses
+            usePathInput: false
+          visualData: 1180.9949075651857/1278.4275240324062/280/61//
+        '[5ulQkQ2RUn8tHK7G3O6yZ]:extractObjectPath "Extract Object Path"':
+          data:
+            path: $.responses
+            usePathInput: false
+          visualData: 1180.51809028987/1513.8536419541203/280/60//
+        '[9Cn_4ADUzzguTrMjQQQ61]:graphInput "Graph Input"':
+          data:
+            dataType: number
+            id: amount
+            useDefaultValueInput: false
+          outgoingConnections:
+            - data->"Instructions (Text)" S7RYGbhYE-eP2JkXogONt/amount
+          visualData: 311.58385851671557/840.6655482749146/330/12/var(--node-color-3)/var(--grey-darkish)
+        '[FZhF45GGmOje-Ox_UWwTT]:graphInput "Graph Input"':
+          data:
+            dataType: string
+            id: output
+            useDefaultValueInput: false
+          outgoingConnections:
+            - data->"Chat" p6WOuIknTeokuJv61ziqN/prompt
+          visualData: 311.3732175204053/599.8689757086004/330/57/var(--node-color-3)/var(--grey-darkish)
+        '[Oj4ei08jdX_LF_YPqKRWH]:graphOutput "Graph Output"':
+          data:
+            dataType: object
+            id: outputs
+          visualData: 1545.2750548220436/847.4752512903992/330/47/var(--node-color-4)/var(--grey-darkish)
+        '[Qc4d8wBl-I-YbYJhVHBs8]:extractJson "Extract JSON"':
+          outgoingConnections:
+            - output->"Extract Object Path" 0VishcP814RU_nedqFIB7/object
+            - output->"Graph Output" Y9Qf2PEKID6XXJLULWqMG/value
+          visualData: 1171.876339472961/556.9279226297149/280/45//
+        '[QtU0KLxGPqdYbupGtUriV]:extractJson "Extract JSON"':
+          outgoingConnections:
+            - output->"Extract Object Path" 5ulQkQ2RUn8tHK7G3O6yZ/object
+            - output->"Graph Output" Oj4ei08jdX_LF_YPqKRWH/value
+          visualData: 1171.8763394729613/881.5237663678233/280/49//
+        '[S7RYGbhYE-eP2JkXogONt]:text "Instructions (Text)"':
+          data:
+            text: >-
+              You are a professional writer. Look at the following example texts
+              from a chat-application and create {{amount}} similiar texts that
+              have the same purpose/meaning/intention/emotionality.
+
+
+              - Do NOT change the meaning of the in- or output
+
+              - Do NOT change details e.g. if a specific company name is mentioned, use THE SAME ONE!
+
+              - All new examples shall be different from each other, but could be user interchangeably
+
+              - COUNT your responses and check if they sum up to {{amount}} before returning your final response
+
+
+              Return the {{amount}} responses as JSON in "responses"-array:
+
+              {
+                  "responses": [ <add responses here> ]
+              }
+          outgoingConnections:
+            - output->"Chat" p6WOuIknTeokuJv61ziqN/systemPrompt
+            - output->"Chat" ytXVZDZWilqQ4Ub_zYw32/systemPrompt
+          visualData: 825.7164361858173/118.83702863352653/330/18//
+        '[TbLW7BRQCYPJGIZK108ll]:graphInput "Graph Input"':
+          data:
+            dataType: string
+            id: input
+            useDefaultValueInput: false
+          outgoingConnections:
+            - data->"Chat" ytXVZDZWilqQ4Ub_zYw32/prompt
+          visualData: 309.5602962238545/374.024257538712/330/63/var(--node-color-3)/var(--grey-darkish)
+        '[Y9Qf2PEKID6XXJLULWqMG]:graphOutput "Graph Output"':
+          data:
+            dataType: object
+            id: inputs
+          visualData: 1546.4100053246245/524.0143580548715/330/51/var(--node-color-4)/var(--grey-darkish)
+        '[_FR6z-Um1wSxMN7Vc5PAJ]:comment "Comment"':
+          data:
+            backgroundColor: rgba(0,0,0,0.05)
+            color: rgba(255,255,255,1)
+            height: 635.3941117592667
+            text: |-
+              #### Information
+              To check if ChatGPT returned the requested amount
+          visualData: 1134.3059470588034/1133.446629783064/417.7530942590581/62//
+        '[p6WOuIknTeokuJv61ziqN]:chat "Chat"':
+          data:
+            cache: true
+            enableFunctionUse: false
+            frequencyPenalty: 0
+            headers: []
+            maxTokens: 4096
+            model: gpt-3.5-turbo-1106
+            parallelFunctionCalling: true
+            presencePenalty: 0
+            responseFormat: json
+            stop: ""
+            temperature: 0.5
+            top_p: 1
+            useAsGraphPartialOutput: true
+            useFrequencyPenaltyInput: false
+            useMaxTokensInput: false
+            useModelInput: false
+            usePresencePenaltyInput: false
+            useStop: false
+            useStopInput: false
+            useTemperatureInput: false
+            useTopP: false
+            useTopPInput: false
+            useUseTopPInput: false
+            useUserInput: false
+          outgoingConnections:
+            - response->"Extract JSON" QtU0KLxGPqdYbupGtUriV/input
+          visualData: 841.6057432219486/818.2152497690779/230/28//
+        '[ytXVZDZWilqQ4Ub_zYw32]:chat "Chat"':
+          data:
+            cache: true
+            enableFunctionUse: false
+            frequencyPenalty: 0
+            headers: []
+            maxTokens: 4096
+            model: gpt-3.5-turbo-1106
+            parallelFunctionCalling: true
+            presencePenalty: 0
+            responseFormat: json
+            stop: ""
+            temperature: 0.5
+            top_p: 1
+            useAsGraphPartialOutput: true
+            useFrequencyPenaltyInput: false
+            useMaxTokensInput: false
+            useModelInput: false
+            usePresencePenaltyInput: false
+            useStop: false
+            useStopInput: false
+            useTemperatureInput: false
+            useTopP: false
+            useTopPInput: false
+            useUseTopPInput: false
+            useUserInput: false
+          outgoingConnections:
+            - response->"Extract JSON" Qc4d8wBl-I-YbYJhVHBs8/input
+          visualData: 840.4707927193679/489.9658429774478/230/29//
+    PyfiGroILT4VzjeeUhHh2:
+      metadata:
+        description: ""
+        id: PyfiGroILT4VzjeeUhHh2
+        name: Training Data/Subgraphs/create_synthetic_data_new
+      nodes:
+        '[1di0CLhoPrXOE3IAMR8Du]:graphInput "Graph Input"':
+          data:
+            dataType: string
+            id: context
+            useDefaultValueInput: false
+          outgoingConnections:
+            - data->"Instructions (Text)" JRkOj9LWl9T_F8XvKeAYs/context
+          visualData: 451.99133196525815/-63.70438543013841/330/148/var(--node-color-3)/var(--grey-darkish)
+        '[7hG72RznY4hjM4Vp1nXI6]:loopController "Loop Controller"':
+          data:
+            maxIterations: 12
+          outgoingConnections:
+            - break->"Object" EmWWbh4AurYO9Sn-zWka-/input
+            - iteration->"Evaluate" YR6S_a1mcqN679sXSN6Oj/b
+            - output1->"Array" A6zkLOF9kAiLoBMzS5iVc/input1
+            - output1->"If" c0sBpKGRdG8tKWcxgbpPg/value
+            - output1->"Instructions (Text)" JRkOj9LWl9T_F8XvKeAYs/duplicates
+            - output2->"Array" fG0oO8rihcVmSLsfLxpVN/input1
+            - output2->"If" v7SDlmipZMFUR0LjsaJrn/value
+          visualData: 937.5458329401865/524.2492000462041/280/123//
+        '[A6zkLOF9kAiLoBMzS5iVc]:array "Array"':
+          data:
+            flatten: true
+            flattenDeep: false
+          outgoingConnections:
+            - output->"Coalesce" DxFyWMY8YqlbTy-8jjshJ/input1
+          visualData: 1962.8360761833537/1008.1564373511036/230/129//
+        '[DxFyWMY8YqlbTy-8jjshJ]:coalesce "Coalesce"':
+          outgoingConnections:
+            - output->"Loop Controller" 7hG72RznY4hjM4Vp1nXI6/input2
+          visualData: 2582.7475126674435/971.9487457188109/180/162//
+        '[EhdGr2GF4e--Zac_lMFxz]:number "Number"':
+          data:
+            round: false
+            roundTo: 0
+            value: 0
+          outgoingConnections:
+            - value->"Compare" j1DhWaft476V46WP51HYH/b
+          visualData: 1686.5687851122464/985.4315344728918/199.91660637629866/113//
+        '[EmWWbh4AurYO9Sn-zWka-]:object "Object"':
+          data:
+            jsonTemplate: "{{input}}"
+          outgoingConnections:
+            - output->"Extract Object Path" cG9VG_oIRqWoqv1i9DuCV/object
+          visualData: 1346.6771361998012/127.26045254268293/230/165//
+        '[JRkOj9LWl9T_F8XvKeAYs]:text "Instructions (Text)"':
+          data:
+            text: >-
+              You are a professional texter tasked to create synthetic data.
+              Look at the following example texts from a chat-application and
+              create a similiar input/output pair that has the same
+              purpose/meaning/intention/emotionality.
+
+              - Do NOT create any duplicates, see "# Duplicates"
+
+              - KEEP company names/information mentioned in "# Context"
+
+
+              Return the results as JSON only:
+
+              {
+                  "input": "<input text>",
+                  "output": "<output text>"
+              }
+
+
+              # Context
+
+              {{context}}
+
+
+              # Duplicates
+
+              {{duplicates}}
+          outgoingConnections:
+            - output->"If" gstioWygBtC-KeG1kPXDP/value
+          visualData: 1349.2489911989192/374.1710376672604/330/106//
+        '[Xk-UmOgRPABTAn5iOoLlr]:extractJson "Extract JSON"':
+          outgoingConnections:
+            - output->"Loop Controller" 7hG72RznY4hjM4Vp1nXI6/input1Default
+          visualData: 910.1307211100491/144.5290555627628/280/102//
+        '[YR6S_a1mcqN679sXSN6Oj]:evaluate "Evaluate"':
+          data:
+            operation: "-"
+          outgoingConnections:
+            - output->"Compare" j1DhWaft476V46WP51HYH/a
+          visualData: 1352.6532149708985/815.8346328530909/205/143//
+        '[ZVzBcSiwg2gjsJC_PYFTe]:graphInput "Graph Input"':
+          data:
+            dataType: object
+            id: input_output_pair
+            useDefaultValueInput: false
+          outgoingConnections:
+            - data->"Chat" iabiZB-MoT1hqWV5-UdSo/prompt
+          visualData: 456.70946912332363/346.2632719169094/330/87/var(--node-color-3)/var(--grey-darkish)
+        '[c0sBpKGRdG8tKWcxgbpPg]:if "If"':
+          data:
+            unconnectedControlFlowExcluded: true
+          outgoingConnections:
+            - output->"Coalesce" dEcVX7bngZsFYtr-ix1wG/input2
+          visualData: 2346.2722457927202/720.3217164039147/155/156//
+        '[cG9VG_oIRqWoqv1i9DuCV]:extractObjectPath "Extract Object Path"':
+          data:
+            path: $.[0]
+            usePathInput: false
+          outgoingConnections:
+            - match->"Graph Output" xRXL7X9_kzNyPV9r4ZzkU/value
+          visualData: 1674.831092346626/115.6450007385302/280/174//
+        '[dEcVX7bngZsFYtr-ix1wG]:coalesce "Coalesce"':
+          outgoingConnections:
+            - output->"Loop Controller" 7hG72RznY4hjM4Vp1nXI6/input1
+          visualData: 2585.4643315243075/758.6784654549831/180/160//
+        '[e5ck7WkPMQwsQoBp4Svro]:graphInput "Graph Input"':
+          data:
+            dataType: string
+            id: duplicates
+            useDefaultValueInput: false
+          outgoingConnections:
+            - data->"Extract JSON" Xk-UmOgRPABTAn5iOoLlr/input
+          visualData: 456.34007788123415/112.6157463979897/330/86/var(--node-color-3)/var(--grey-darkish)
+        '[fG0oO8rihcVmSLsfLxpVN]:array "Array"':
+          data:
+            flatten: true
+            flattenDeep: false
+          outgoingConnections:
+            - output->"Coalesce" dEcVX7bngZsFYtr-ix1wG/input1
+          visualData: 1961.6660380884941/828.3926809978345/230/141//
+        '[fLRuFdz1ZHcvvT9-pBS4b]:array "Array"':
+          data:
+            flatten: true
+            flattenDeep: false
+          outgoingConnections:
+            - output->"Loop Controller" 7hG72RznY4hjM4Vp1nXI6/input2Default
+          visualData: 544.6326724624788/920.3701007280398/230/125//
+        '[gstioWygBtC-KeG1kPXDP]:if "If"':
+          data:
+            unconnectedControlFlowExcluded: true
+          outgoingConnections:
+            - falseOutput->"If" c0sBpKGRdG8tKWcxgbpPg/if
+            - falseOutput->"If" v7SDlmipZMFUR0LjsaJrn/if
+            - output->"Chat" iabiZB-MoT1hqWV5-UdSo/systemPrompt
+          visualData: 1713.5833948850734/578.0897637969675/155/119//
+        '[iYSaYqN-O1tycQkzkUTZY]:extractJson "Extract JSON"':
+          outgoingConnections:
+            - output->"Array" A6zkLOF9kAiLoBMzS5iVc/input2
+            - output->"Array" fG0oO8rihcVmSLsfLxpVN/input2
+          visualData: 1947.1120242884763/693.1512764067667/280/138//
+        '[iabiZB-MoT1hqWV5-UdSo]:chat "Chat"':
+          data:
+            cache: true
+            enableFunctionUse: false
+            frequencyPenalty: 0
+            headers: []
+            maxTokens: 1024
+            model: gpt-3.5-turbo-1106
+            parallelFunctionCalling: true
+            presencePenalty: 0
+            responseFormat: json
+            stop: ""
+            temperature: 0.5
+            top_p: 1
+            useAsGraphPartialOutput: true
+            useFrequencyPenaltyInput: false
+            useMaxTokensInput: false
+            useModelInput: false
+            usePresencePenaltyInput: false
+            useStop: false
+            useStopInput: false
+            useTemperatureInput: false
+            useTopP: false
+            useTopPInput: false
+            useUseTopPInput: false
+            useUserInput: false
+          outgoingConnections:
+            - response->"Extract JSON" iYSaYqN-O1tycQkzkUTZY/input
+          visualData: 1953.0175235718489/415.36981423564947/230/136//
+        '[is99z5vWZtqnVk3isZrxM]:graphInput "Graph Input"':
+          data:
+            dataType: number
+            id: amount
+            useDefaultValueInput: false
+          outgoingConnections:
+            - data->"Evaluate" YR6S_a1mcqN679sXSN6Oj/a
+          visualData: 450.9898461561264/599.9669680015098/330/84/var(--node-color-3)/var(--grey-darkish)
+        '[j1DhWaft476V46WP51HYH]:compare "Compare"':
+          data:
+            comparisonFunction: ">="
+          outgoingConnections:
+            - output->"If" gstioWygBtC-KeG1kPXDP/if
+            - output->"Loop Controller" 7hG72RznY4hjM4Vp1nXI6/continue
+          visualData: 1689.4338702192656/812.0938854982315/190/116//
+        '[v7SDlmipZMFUR0LjsaJrn]:if "If"':
+          data:
+            unconnectedControlFlowExcluded: true
+          outgoingConnections:
+            - output->"Coalesce" DxFyWMY8YqlbTy-8jjshJ/input2
+          visualData: 2338.5192088805334/941.350063939843/155/157//
+        '[xRXL7X9_kzNyPV9r4ZzkU]:graphOutput "Graph Output"':
+          data:
+            dataType: string
+            id: synthetic_data
+          visualData: 2049.123977300126/117.14818501545187/330/173/var(--node-color-4)/var(--grey-darkish)
+        '[yKfY8V6875-o-a5oOfw9h]:comment "Comment"':
+          data:
+            backgroundColor: rgba(0,0,0,0.05)
+            color: rgba(255,255,255,1)
+            height: 881.0514824804523
+            text: |-
+              #### Chat loop: Do "amount" iterations
+              - Input 1: Duplicates
+              - Input 2: Synthetic data
+          visualData: 906.1184738049824/336.74633763187245/1403.9789488023614/132//
+    SMW5eJQnMQ-7tc7T5n3Pq:
+      metadata:
+        description: ""
+        id: SMW5eJQnMQ-7tc7T5n3Pq
+        name: Training Data/Create Finetuning Data
+      nodes:
+        '[0O_INEqGIJ5dcbYh_Y6Ie]:text "Text"':
+          data:
+            text: I'm here to make your pizza ordering experience with QuickSlice Pizza as
+              easy and enjoyable as possible! I can help you choose from our
+              menu, customize your pizza, take your order, and provide you with
+              updates on delivery status. Plus, I'm here to answer any questions
+              you have about our delicious selections!
+          outgoingConnections:
+            - output->"Object" oaNEPKaaBSHQappoWUBdD/output
+          visualData: 98.67454457483994/425.8316954932573/330/127//
+        '[1UNRQKmxONW7hA74ZCcBV]:array "Array"':
+          data:
+            flatten: true
+            flattenDeep: false
+          outgoingConnections:
+            - output->"Subgraph" QsEsqLS4qLX1Z3ftqcoSP/input_output_pair
+            - output->"To JSON" hDUIJ_8A169WIh6J5_wgd/data
+          visualData: 856.9870541496977/-72.74714791419885/230/184//
+        '[2IlOvPSyNDYlq6EGCA-WW]:subGraph "Subgraph"':
+          data:
+            graphId: fnZppBEcuivu62w87qKrU
+            useAsGraphPartialOutput: false
+            useErrorOutput: false
+          outgoingConnections:
+            - jsonl->"Subgraph" KXLeCijKTNX8h_6XxODo2/jsonl
+          visualData: 2119.429632243537/450.7725196674995/330/257/var(--node-color-6)/var(--grey-darkish)
+        '[2Zn5UsTnl0Mvqn-mucNE9]:comment "Comment"':
+          data:
+            backgroundColor: rgba(218,143,49,0.2)
+            color: rgba(255,255,255,1)
+            height: 839.1605125404203
+            text: "#### Example inputs"
+          visualData: -353.6521282737723/-61.76389987164299/415.98929916397196/182//
+        '[B8PRiXrvGnTX2pe-SsYLN]:comment "Comment"':
+          data:
+            backgroundColor: rgba(0,0,0,0.05)
+            color: rgba(255,255,255,1)
+            height: 390.994649581986
+            text: >-
+              ### Instructions
+
+              1. Edit the "Context". This helps to make sure that all the other inputs/outputs that will be generated follow a certain style, include the correct company name etc. pp.
+
+              2. Edit the input/output examples. You can also remove some or add more. Just make sure to copy an "Object" node per input/output-pair and connect it to the array pair.
+
+              3. Adjust the amount. This is the amount of data generated per input/output-pair. E.g. if you have 4 input/output-pairs and use amount 10, you will generate 40 datasets. Note: 1/3 of those datasets will not be used for training, but for validation.
+
+              4. Run this graph
+
+              5. Go to https://platform.openai.com/finetune
+
+              6. Click on "Create". Chose a model you want to finetune and chose "select existing" for both files.
+
+              7. Copy values from "file id training" and "file id validation" output in the corresponding fields
+
+              8. Submit the form and wait
+
+              9. When the finetuning is done, copy the model name, e.g. "ft:gpt-3.5-turbo-1106:personal::8kxuvXxy" and go to graph "Chat with finetuned model" to give it a go.
+          visualData: -351.2706159833511/-923.3554021797127/843.962547073902/271//
+        '[BMOHE6R7T--wxSFcW51VG]:text "File ID Validation"':
+          data:
+            text: "{{input}}"
+          visualData: 2920.8971547883484/451.48193157523923/330/242/var(--node-color-2)/var(--grey-darkish)
+        '[Bb-5kJZMnyV0FcgvCV-91]:comment "Comment"':
+          data:
+            backgroundColor: rgba(0,0,0,0.32)
+            color: rgba(255,255,255,1)
+            height: 1083.805444856147
+            text: "#### Create objects of input/output pairs"
+          visualData: 525.7380504443735/-295.1133772534213/622/184//
+        '[D_VgichqvxFwq64zQ1MK3]:text "Context (Text)"':
+          data:
+            text: >
+              **Domain**: Customer Service Chatbot for QuickSlice Pizza
+
+
+              **Purpose**: The chatbot is designed to interact with customers inquiring about pizza orders, providing information about QuickSlice Pizza, and assisting with pizza-related queries.
+
+
+              **Key Themes**:
+
+              1. **Pizza Ordering Assistance**: The chatbot helps customers with ordering pizzas, including menu information and customization options.
+
+              2. **Brand Representation**: The chatbot consistently promotes QuickSlice Pizza, highlighting its quality, taste, and special features.
+
+              3. **Friendly and Engaging Tone**: The chatbot communicates in a welcoming, friendly manner, encouraging customers to order and inquire about pizzas.
+
+              4. **Prompt Service Orientation**: Responses are geared towards efficient and helpful service, focusing on customer needs and questions.
+
+
+              **Style and Language**:
+
+              - Conversational and casual, yet professional.
+
+              - Use of specific phrases related to pizza (e.g., "mouth-watering flavors", "crispy crust", "gourmet toppings").
+
+              - Maintains a positive and helpful demeanor throughout interactions.
+
+
+              **Constraints**:
+
+              - All responses must maintain the integrity of the QuickSlice Pizza brand.
+
+              - Do not alter fundamental details like the company name or core service offerings.
+
+              - Responses should be varied in phrasing but consistent in messaging and style.
+          outgoingConnections:
+            - output->"Subgraph" QsEsqLS4qLX1Z3ftqcoSP/context
+          visualData: 105.31426632271786/-456.3949784019076/330/176//
+        '[IFKeC-SiQqatjSAl1_oti]:comment "Comment"':
+          data:
+            backgroundColor: rgba(218,205,53,0.23)
+            color: rgba(255,255,255,1)
+            height: 846.1284100323364
+            text: "#### Example outputs"
+          visualData: 66.82175432387422/-59.795382222692865/413.98394874595806/183//
+        '[JBp5RO3lKjsQesQdBwHzZ]:object "Object"':
+          data:
+            jsonTemplate: |-
+              {
+                "input": "{{input}}",
+                "output": {{output}}
+              }
+          outgoingConnections:
+            - output->"Array" 1UNRQKmxONW7hA74ZCcBV/input1
+          visualData: 550.8761206693279/-190.16405465730088/230/184//
+        '[KXLeCijKTNX8h_6XxODo2]:subGraph "Subgraph"':
+          data:
+            graphId: d6T1X2dAgGPHiak0dkOYP
+            useAsGraphPartialOutput: false
+            useErrorOutput: false
+          outgoingConnections:
+            - file_id->"File ID Validation" BMOHE6R7T--wxSFcW51VG/input
+          visualData: 2532.4609942058314/453.73985625512665/330/245/var(--node-color-6)/var(--grey-darkish)
+        '[QVUu1ho4Izt5mukPCWP-F]:object "Object"':
+          data:
+            jsonTemplate: |-
+              {
+                "input": "{{input}}",
+                "output": {{output}}
+              }
+          outgoingConnections:
+            - output->"Array" 1UNRQKmxONW7hA74ZCcBV/input2
+          visualData: 552.654661543197/54.97356240697087/230/184//
+        '[QsEsqLS4qLX1Z3ftqcoSP]:subGraph "Subgraph"':
+          data:
+            graphId: PyfiGroILT4VzjeeUhHh2
+            useAsGraphPartialOutput: false
+            useErrorOutput: false
+          isSplitRun: true
+          outgoingConnections:
+            - synthetic_data->"Subgraph" eLfVdTMhGNYN-rjJpZEJ-/synthetic_data
+          splitRunMax: 999
+          visualData: 1253.5904503673237/-161.45151034314557/330/186/var(--node-color-6)/var(--grey-darkish)
+        '[RWfaqIBRAFDsnQaWeUyhD]:text "Text"':
+          data:
+            text: Hello! You're chatting with QuickSlice Pizza Bot, your go-to assistant for
+              all things delicious and pizza-related at QuickSlice Pizza. How
+              can I assist you with your order today?
+          outgoingConnections:
+            - output->"Object" JBp5RO3lKjsQesQdBwHzZ/output
+          visualData: 91.71784040266557/62.67149861078768/330/273//
+        '[WotCrP9rSi8v3cOncov7J]:text "Text"':
+          data:
+            text: What can you do for me?
+          outgoingConnections:
+            - output->"Object" oaNEPKaaBSHQappoWUBdD/input
+          visualData: -286.17469836433435/433.59361662807953/330/120//
+        '[XW9HcaXo4QQWcnbO8XScG]:comment "Comment"':
+          data:
+            backgroundColor: rgba(0,0,0,0.05)
+            color: rgba(255,255,255,1)
+            height: 552.1796904592029
+            text: "#### Use 2/3 as training data and 1/3 as validation data"
+          visualData: 1186.0584641549192/147.87501768354042/872.8508528107643/207//
+        '[bUlcXMgeencI5zfQ9VttF]:text "Text"':
+          data:
+            text: I'm all about QuickSlice Pizza, where we pride ourselves on our
+              mouth-watering flavors and top-quality ingredients. Our customers
+              love our signature crispy crust and rich, savory toppings. Want to
+              try one and decide for yourself?
+          outgoingConnections:
+            - output->"Object" QVUu1ho4Izt5mukPCWP-F/output
+          visualData: 91.65471466391215/238.8171517579258/330/127//
+        '[cqGTzc9PKT_keeV1J6nKr]:comment "Comment"':
+          data:
+            backgroundColor: rgba(0,0,0,0.05)
+            color: rgba(255,255,255,1)
+            height: 408.7183974231416
+            text: "#### Create synthethic data"
+          visualData: 1181.3396188737793/-276.5143030252517/877.3367485200984/190//
+        '[e67y7SzQ4MI8W-fQfRhmc]:object "Object"':
+          data:
+            jsonTemplate: |-
+              {
+                "input": "{{input}}",
+                "output": {{output}}
+              }
+          outgoingConnections:
+            - output->"Array" 1UNRQKmxONW7hA74ZCcBV/input4
+          visualData: 548.7284881179781/522.6749200106922/230/184//
+        '[eEsCQo1WgSkky2MO93DFx]:text "Text"':
+          data:
+            text: Hello!
+          outgoingConnections:
+            - output->"Object" e67y7SzQ4MI8W-fQfRhmc/input
+          visualData: -284.73085814834633/622.3145899307348/330/122//
+        '[eLfVdTMhGNYN-rjJpZEJ-]:subGraph "Subgraph"':
+          data:
+            graphId: fCXLOjQIZUVOUKaeTfdZV
+            useAsGraphPartialOutput: false
+            useErrorOutput: false
+          isSplitRun: true
+          outgoingConnections:
+            - json->"Array" xSoIdfn99ta70ZO5DYc1m/input1
+          splitRunMax: 999
+          visualData: 1666.1021269401306/-142.5695635296657/330/186/var(--node-color-6)/var(--grey-darkish)
+        '[hDUIJ_8A169WIh6J5_wgd]:toJson "To JSON"':
+          data:
+            indented: true
+          outgoingConnections:
+            - json->"Subgraph" QsEsqLS4qLX1Z3ftqcoSP/duplicates
+          visualData: 867.721975566074/215.56217012562036/205/184//
+        '[kHrV2D3aDGeT0x9XO85BJ]:subGraph "Subgraph"':
+          data:
+            graphId: d6T1X2dAgGPHiak0dkOYP
+            useAsGraphPartialOutput: false
+            useErrorOutput: false
+          outgoingConnections:
+            - file_id->"File ID Training" qeZtFono4Nh0O3XRThoVL/input
+          visualData: 2514.9648723422347/17.720323960374692/330/237/var(--node-color-6)/var(--grey-darkish)
+        '[kPS2K8CTh8XALXuP6mKTW]:comment "Comment"':
+          data:
+            backgroundColor: rgba(123,161,255,0.24)
+            color: rgba(255,255,255,1)
+            height: 459.17944974051613
+            text: "#### General Inputs"
+          visualData: -352.5840141997857/-525.6906274345599/836.8466031138055/181//
+        '[m0ilQ_nEPQLa9oY76hofg]:number "Amount per Input/Output pair (Number)"':
+          data:
+            round: false
+            roundTo: 0
+            value: 10
+          outgoingConnections:
+            - value->"Subgraph" QsEsqLS4qLX1Z3ftqcoSP/amount
+          visualData: -332.19111066796586/-264.43413180181835/417.7449482287193/248//
+        '[oaNEPKaaBSHQappoWUBdD]:object "Object"':
+          data:
+            jsonTemplate: |-
+              {
+                "input": "{{input}}",
+                "output": {{output}}
+              }
+          outgoingConnections:
+            - output->"Array" 1UNRQKmxONW7hA74ZCcBV/input3
+          visualData: 549.5875411385181/292.0138519492753/230/184//
+        '[qeZtFono4Nh0O3XRThoVL]:text "File ID Training"':
+          data:
+            text: "{{input}}"
+          visualData: 2908.6444214377784/17.440962108397216/330/249/var(--node-color-2)/var(--grey-darkish)
+        '[rH655jrBhIlIGAa5RDRI2]:subGraph "Subgraph"':
+          data:
+            graphId: fnZppBEcuivu62w87qKrU
+            useAsGraphPartialOutput: false
+            useErrorOutput: false
+          outgoingConnections:
+            - jsonl->"Subgraph" kHrV2D3aDGeT0x9XO85BJ/jsonl
+          visualData: 2107.3472033918674/18.216866595912222/330/238/var(--node-color-6)/var(--grey-darkish)
+        '[t6o3gDgOeIELvumJfP_hj]:comment "Comment"':
+          data:
+            backgroundColor: rgba(0,0,0,0.05)
+            color: rgba(255,255,255,1)
+            height: 420
+            text: "#### Upload validation data"
+          visualData: 2075.870275387398/279.90937768422106/1207.9369955360385/217//
+        '[tslJjGmbWfL9S9hXt3NY7]:comment "Comment"':
+          data:
+            backgroundColor: rgba(0,0,0,0.05)
+            color: rgba(255,255,255,1)
+            height: 406.353150223198
+            text: "#### Upload training data"
+          visualData: 2077.5171251642/-140.76849240723826/1203.2306950896427/216//
+        '[uCuIQU-8RpxSWZ6w4mq1X]:text "Text"':
+          data:
+            text: Which pizza delivery's pizza tastes the best?
+          outgoingConnections:
+            - output->"Object" QVUu1ho4Izt5mukPCWP-F/input
+          visualData: -292.06395850216256/239.00013314518267/330/118//
+        '[x1GbNIWjQyCXTXh1Bb4yG]:text "Text"':
+          data:
+            text: Who am I chatting with?
+          outgoingConnections:
+            - output->"Object" JBp5RO3lKjsQesQdBwHzZ/input
+          visualData: -297.58189499478203/59.78147408279907/330/274//
+        '[xSoIdfn99ta70ZO5DYc1m]:array "Array"':
+          data:
+            flatten: true
+            flattenDeep: true
+          outgoingConnections:
+            - output->"Shuffle" yG9J29IN1iYUckrbG08cK/array
+          visualData: 1270.5379420250977/288.6788719009806/230/252//
+        '[xUoBr4752FR6q3GC-NUWk]:text "Text"':
+          data:
+            text: Welcome to QuickSlice Pizza! It’s great to see you. Are you ready to order
+              some delicious pizza today? Let me know what you're craving, or if
+              you'd like to try our new gourmet toppings!
+          outgoingConnections:
+            - output->"Object" e67y7SzQ4MI8W-fQfRhmc/output
+          visualData: 100.32341728960064/615.4215927726361/330/127//
+        '[yG9J29IN1iYUckrbG08cK]:shuffle "Shuffle"':
+          outgoingConnections:
+            - shuffled->"Code" zmQED9CM2EgiGtxqeoZbQ/input
+          visualData: 1285.941353268154/531.2825989791226/205/255//
+        '[zmQED9CM2EgiGtxqeoZbQ]:code "Code"':
+          data:
+            code: |
+              const totalLength = inputs.input.value.length;
+              const trainingLength = Math.floor(totalLength * 2 / 3);
+
+              const trainingData = inputs.input.value.slice(0, trainingLength);
+              const validationData = inputs.input.value.slice(trainingLength);
+
+              return {
+                  training_data: {
+                      type: 'any[]',
+                      value: trainingData
+                  },
+                  validation_data: {
+                      type: 'any[]',
+                      value: validationData
+                  }
+              };
+            inputNames:
+              - input
+            outputNames:
+              - training_data
+              - validation_data
+          outgoingConnections:
+            - training_data->"Subgraph" rH655jrBhIlIGAa5RDRI2/json
+            - validation_data->"Subgraph" 2IlOvPSyNDYlq6EGCA-WW/json
+          visualData: 1724.1116236863465/247.03687883284596/230/256//
+    d6T1X2dAgGPHiak0dkOYP:
+      metadata:
+        description: ""
+        id: d6T1X2dAgGPHiak0dkOYP
+        name: Training Data/Subgraphs/upload_file
+      nodes:
+        '[4tg-zEhRpWms6E3CKQGie]:code "Code"':
+          data:
+            code: |
+              const binary = new TextEncoder().encode(inputs.string.value);
+              return {
+                  binary: {
+                      type: 'binary',
+                      value: binary
+                  }
+              };
+            inputNames:
+              - string
+            outputNames:
+              - binary
+          outgoingConnections:
+            - binary->"Upload File to OpenAI" m16kZH6Ybh1KnBXqLS3jh/data
+          visualData: 815.8393725065747/196.44069853438575/230/7//
+        '[P_E4slemhu6yCM11d7dzo]:graphInput "Graph Input"':
+          data:
+            dataType: string
+            id: jsonl
+            useDefaultValueInput: false
+          outgoingConnections:
+            - data->"Code" 4tg-zEhRpWms6E3CKQGie/string
+          visualData: 375/275/330/4/var(--node-color-3)/var(--grey-darkish)
+        '[Pgr4uPOQzz6myYyZFafPi]:graphOutput "Graph Output"':
+          data:
+            dataType: string
+            id: file_id
+          visualData: 1607.4672669579318/275.3873732714387/330/13/var(--node-color-4)/var(--grey-darkish)
+        '[m16kZH6Ybh1KnBXqLS3jh]:openaiUploadFile "Upload File to OpenAI"':
+          data:
+            purpose: fine-tune
+          outgoingConnections:
+            - fileId->"Graph Output" Pgr4uPOQzz6myYyZFafPi/value
+          visualData: 1158.3678997268623/291.5347662505334/330/9//
+    fCXLOjQIZUVOUKaeTfdZV:
+      metadata:
+        description: ""
+        id: fCXLOjQIZUVOUKaeTfdZV
+        name: Training Data/Subgraphs/format_as_json
+      nodes:
+        '[66DK8dmVkaoG-ygL4YGBE]:destructure "Destructure"':
+          data:
+            paths:
+              - $.input
+              - $.output
+          isSplitRun: true
+          outgoingConnections:
+            - match_0->"Object" gS0sMxR2USK4Iaf-nSotF/input
+            - match_1->"Object" gS0sMxR2USK4Iaf-nSotF/output
+          splitRunMax: 999
+          visualData: 752.811955694831/569.9942395665097/280/55//
+        '[BDABu_8G7Ib2y_MDYDsdY]:graphInput "Graph Input"':
+          data:
+            dataType: object
+            id: synthetic_data
+            useDefaultValueInput: false
+          outgoingConnections:
+            - data->"Destructure" 66DK8dmVkaoG-ygL4YGBE/object
+          visualData: 336.21298517459996/540.5675086669532/330/56/var(--node-color-3)/var(--grey-darkish)
+        '[D47xqZ_GvRFQiw3sQXEBA]:graphOutput "Graph Output"':
+          data:
+            dataType: string
+            id: json
+          visualData: 1801.711679712725/536.7025571340806/330/54/var(--node-color-4)/var(--grey-darkish)
+        '[bPenrTMuCpN5aMB3OYSMb]:toJson "To JSON"':
+          data:
+            indented: false
+          isSplitRun: true
+          outgoingConnections:
+            - json->"Graph Output" D47xqZ_GvRFQiw3sQXEBA/value
+          splitRunMax: 999
+          visualData: 1517.804813624255/550.5608181993831/205/53//
+        '[gS0sMxR2USK4Iaf-nSotF]:object "Object"':
+          data:
+            jsonTemplate: |-
+              {
+                "messages": [
+                  {
+                    "role": "user",
+                    "content": "{{input}}"
+                  },
+                  {
+                    "role": "assistant",
+                    "content": "{{output}}"
+                  }
+                ]
+              }
+          isSplitRun: true
+          outgoingConnections:
+            - output->"To JSON" bPenrTMuCpN5aMB3OYSMb/data
+          splitRunMax: 999
+          visualData: 1148.477675311369/373.56273438271796/281/50//
+    fnZppBEcuivu62w87qKrU:
+      metadata:
+        description: ""
+        id: fnZppBEcuivu62w87qKrU
+        name: Training Data/Subgraphs/convert_to_jsonl
+      nodes:
+        '[27zEy5ziCAHl41G0xMUg0]:graphInput "Graph Input"':
+          data:
+            dataType: string
+            id: json
+            useDefaultValueInput: false
+          outgoingConnections:
+            - data->"Array" a_JOesTk3ybV93Au9Qfyd/input1
+          visualData: 358/267/330/3/var(--node-color-3)/var(--grey-darkish)
+        '[3o46H9QMpnq6dM2WXbXhP]:graphOutput "Graph Output"':
+          data:
+            dataType: string
+            id: jsonl
+          visualData: 1560.349425365185/276.6003403989445/330/11/var(--node-color-4)/var(--grey-darkish)
+        '[a_JOesTk3ybV93Au9Qfyd]:array "Array"':
+          data:
+            flatten: true
+            flattenDeep: true
+          outgoingConnections:
+            - output->"Text" ipOqVD56TsndA1yNKChVX/input
+          visualData: 782/287/230/6//
+        '[ipOqVD56TsndA1yNKChVX]:text "Text"':
+          data:
+            text: "{{input}}"
+          outgoingConnections:
+            - output->"Graph Output" 3o46H9QMpnq6dM2WXbXhP/value
+          visualData: 1110.4226905058779/290/330/8//
+  metadata:
+    description: ""
+    id: mKvXfqN_OmoD_yzuywg15
+    mainGraphId: 6Sw0jBqaWn8rJcrFDKaZY
+    title: Finetuning
+  plugins:
+    - id: openai
+      name: OpenAI
+      type: built-in
