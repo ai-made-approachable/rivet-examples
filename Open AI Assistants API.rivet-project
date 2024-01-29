@@ -40,25 +40,27 @@ data:
           data:
             backgroundColor: rgba(0,0,0,0.05)
             color: rgba(255,255,255,1)
-            height: 336.40645077833005
+            height: 347
             text: >-
               ### Instructions
 
-              1. Create an assistant: https://platform.openai.com/assistants, attach files as needed and activate "code_interpreter" and "retrieval"
+              1. Go to "Plugins" and activate the "OpenAI" plugin
 
-              2. Copy the assistants id, e.g. "asst_pvmWSieC1rdTfVx2ETM30Knb"
+              2. Create an assistant: https://platform.openai.com/assistants, attach files as needed and activate "code_interpreter" and "retrieval"
 
-              3. Replace the Assistant ID in "Run Thread" node with your id
+              3. Copy the assistants id, e.g. "asst_pvmWSieC1rdTfVx2ETM30Knb"
 
-              4. Go to "Create thread" graph and run it
+              4. Replace the Assistant ID in "Run Thread" node with your id
 
-              5. Copy thread id, e.g. "thread_xQzogDoSuTREftwvHXsJg8eF"
+              5. Go to "Create thread" graph and run it
 
-              6. Replace "thread ID" in "Thread ID (Text)" node with your id
+              6. Copy thread id, e.g. "thread_xQzogDoSuTREftwvHXsJg8eF"
+
+              7. Replace "thread ID" in "Thread ID (Text)" node with your id
 
 
               Note: If you want a permanent chat history connect "thread_id (text)" node to "thread_id" graph input instead of "create thread" and insert your thread_id
-          visualData: -1100.7111007917754/-271.0175208498444/751.6925892733329/274//
+          visualData: -1100.7111007917754/-271.0175208498444/753/274//
         '[FV8Qr_zxiTCcg1k6GheOO]:text "Thread ID (Text)"':
           data:
             text: thread_vu9fBFBCamHNo9vQnKwJsAq3
@@ -75,7 +77,7 @@ data:
             color: rgba(255,255,255,1)
             height: 335.40645077832994
             text: "#### Inputs"
-          visualData: -340.97729492672806/-271.01698823440705/722.8268526816669/276//
+          visualData: -340.97729492672806/-271.01698823440705/722.8268526816669/277//
         '[afEASBgQk591p7NP8o8kd]:openaiCreateThreadMessage "Create Thread Message"':
           data:
             file_ids: []
