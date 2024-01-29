@@ -1,0 +1,244 @@
+version: 4
+data:
+  attachedData:
+    trivet:
+      testSuites: []
+      version: 1
+  graphs:
+    P1f3_ba7EV_FRtVLQ0aR7:
+      metadata:
+        description: ""
+        id: P1f3_ba7EV_FRtVLQ0aR7
+        name: Chat Loop
+      nodes:
+        '[-LcfZ5zXq71Z5j2lfX88W]:gptFunction "GPT Function"':
+          data:
+            description: Triggers a toast event in Rivet
+            instructions: ""
+            name: trigger_toast_event
+            schema: >-
+              {
+                "type": "object",
+                "properties": {
+                  "message": {
+                    "type": "string",
+                    "description": "The text to be displayed in the toast notification."
+                  }
+                },
+                "required": []
+              }
+          outgoingConnections:
+            - function->"Array" fyidipPrbH4UyahTLMt1I/input1
+          visualData: -1084.892946834667/696.6205936514067/329.08671147450355/267//
+        '[1SOlhG3NJproQV9oV4E5D]:text "Text"':
+          data:
+            text: asst_Pp14JwgiUS8r3FCUGBuciSql
+          outgoingConnections:
+            - output->"Run Thread" xLCgsIllp_5lTD7RC2QrN/assistantId
+          visualData: -151.2123660118611/-158.8716680329957/330/264/var(--node-color-7)/var(--grey-darkish)
+        '[9KrHi5xXbaYTu2oS_vU_x]:comment "Comment"':
+          data:
+            backgroundColor: rgba(0,0,0,0.05)
+            color: rgba(255,255,255,1)
+            height: 336.40645077833005
+            text: >-
+              ### Instructions
+
+              1. Create an assistant: https://platform.openai.com/assistants, attach files as needed and activate "code_interpreter" and "retrieval"
+
+              2. Copy the assistants id, e.g. "asst_pvmWSieC1rdTfVx2ETM30Knb"
+
+              3. Replace the Assistant ID in "Run Thread" node with your id
+
+              4. Go to "Create thread" graph and run it
+
+              5. Copy thread id, e.g. "thread_xQzogDoSuTREftwvHXsJg8eF"
+
+              6. Replace "thread ID" in "Thread ID (Text)" node with your id
+
+
+              Note: If you want a permanent chat history connect "thread_id (text)" node to "thread_id" graph input instead of "create thread" and insert your thread_id
+          visualData: -1100.7111007917754/-271.0175208498444/751.6925892733329/274//
+        '[FV8Qr_zxiTCcg1k6GheOO]:text "Thread ID (Text)"':
+          data:
+            text: thread_vu9fBFBCamHNo9vQnKwJsAq3
+          visualData: -1497.8633667935512/629.5565313251998/330/273/var(--node-color-5)/var(--grey-darkish)
+        '[VN-DojcQUR71rAkfF80Si]:if "If"':
+          data:
+            unconnectedControlFlowExcluded: true
+          outgoingConnections:
+            - output->"Run Thread" xLCgsIllp_5lTD7RC2QrN/threadId
+          visualData: -227.34665953742285/227.56574769414075/155/228//
+        '[XCqpIDkKWtcgqsiJzLH3_]:comment "Comment"':
+          data:
+            backgroundColor: rgba(0,0,0,0.05)
+            color: rgba(255,255,255,1)
+            height: 335.40645077832994
+            text: "#### Inputs"
+          visualData: -340.97729492672806/-271.01698823440705/722.8268526816669/276//
+        '[afEASBgQk591p7NP8o8kd]:openaiCreateThreadMessage "Create Thread Message"':
+          data:
+            file_ids: []
+            metadata: []
+            threadId: ""
+            useFileIdsInput: false
+            useMetadataInput: false
+            useThreadIdInput: true
+          outgoingConnections:
+            - messageId->"If" VN-DojcQUR71rAkfF80Si/if
+          visualData: -623.5841431830286/352.5974132020216/330/217//
+        '[amcACc-DLH8pn7uM2YfG_]:graphInput "Graph Input"':
+          data:
+            dataType: string
+            id: input
+            useDefaultValueInput: true
+          outgoingConnections:
+            - data->"User Input" tiaLWm1T5SCjDHWDkeIm2/questions
+          visualData: -1087.32986026712/83.93976894070285/330/205/var(--node-color-3)/var(--grey-darkish)
+        '[btfJQlxTzDi16sdrhSDev]:openaiCreateThread "Create Thread"':
+          data:
+            metadata: []
+            useMetadataInput: false
+          outgoingConnections:
+            - threadId->"Graph Input" tsk4pyCS07_2u2Y56fkiR/default
+          visualData: -1443.858975714873/376.6526794310569/255/219//
+        '[fyidipPrbH4UyahTLMt1I]:array "Array"':
+          data:
+            flatten: true
+            flattenDeep: false
+          visualData: -623.9950997534384/712.8091096693818/325.6927524482917/267//
+        '[pHoNvWzEOfaXykqLXEQxy]:comment "Comment"':
+          data:
+            backgroundColor: rgba(0,0,0,0.05)
+            color: rgba(255,255,255,1)
+            height: 409.6760975136144
+            text: "#### Optionally: Connect functions"
+          visualData: -1110.5008665039284/564.5527326368174/966.4410945761595/267//
+        '[pKGEBPsqXNJko9vBdOnEr]:text "Text"':
+          data:
+            text: What can I do for you today?
+          outgoingConnections:
+            - output->"Graph Input" amcACc-DLH8pn7uM2YfG_/default
+          visualData: -1485.3912439462697/100.23207356965602/330/205//
+        '[tiaLWm1T5SCjDHWDkeIm2]:userInput "User Input"':
+          data:
+            prompt: This is an example question?
+            useInput: true
+          outgoingConnections:
+            - output->"Create Thread Message" afEASBgQk591p7NP8o8kd/content
+          visualData: -622.4174132705559/101.15968575817763/327.501111024166/233//
+        '[tsk4pyCS07_2u2Y56fkiR]:graphInput "Graph Input"':
+          data:
+            dataType: string
+            id: thread_id
+            useDefaultValueInput: true
+          outgoingConnections:
+            - data->"Create Thread Message" afEASBgQk591p7NP8o8kd/threadId
+            - data->"If" VN-DojcQUR71rAkfF80Si/value
+          visualData: -1083.520627012/361.264564895703/330/218/var(--node-color-3)/var(--grey-darkish)
+        '[xLCgsIllp_5lTD7RC2QrN]:openaiRunThread "Run Thread"':
+          data:
+            assistantId: ""
+            createThread: false
+            instructions: ""
+            metadata: []
+            model: ""
+            onMessageCreationSubgraphId: VDkCxqLNWcnduWOseKpdK
+            threadId: ""
+            toolCallHandlers: []
+            tools: []
+            useAssistantIdInput: true
+            useCodeInterpreterTool: true
+            useInstructionsInput: false
+            useMetadataInput: false
+            useModelInput: false
+            useRetrievalTool: true
+            useThreadIdInput: true
+          visualData: 7.592730517946627/148.11358283561788/430/272/var(--node-color-2)/var(--grey-darkish)
+    VDkCxqLNWcnduWOseKpdK:
+      metadata:
+        description: ""
+        id: VDkCxqLNWcnduWOseKpdK
+        name: Subgraphs/handle_response
+      nodes:
+        '[9GCv9L325fY-jr3oALr4L]:subGraph "Subgraph"':
+          data:
+            graphId: P1f3_ba7EV_FRtVLQ0aR7
+            useAsGraphPartialOutput: false
+            useErrorOutput: false
+          visualData: 1230.2466204197647/372.6307776728145/330/35/var(--node-color-6)/var(--grey-darkish)
+        '[9l49xhjQou4uK0YbcO8c0]:graphInput "Graph Input"':
+          data:
+            dataType: object
+            id: message
+            path: ""
+            useDefaultValueInput: false
+          outgoingConnections:
+            - data->"Extract Object Path" LP03IM1HotIc-kl42GqEA/object
+          visualData: 443.99895185547734/632.4172001792999/330/31/var(--node-color-3)/var(--grey-darkish)
+        '[LP03IM1HotIc-kl42GqEA]:extractObjectPath "Extract Object Path"':
+          data:
+            path: $.thread_id
+            usePathInput: false
+          outgoingConnections:
+            - match->"Subgraph" 9GCv9L325fY-jr3oALr4L/thread_id
+          visualData: 840.0966772561761/650.5764082205926/280/37//
+        '[OhJkibYzatgKHUqB1lvZB]:extractObjectPath "Extract Object Path"':
+          data:
+            path: $.[0].text.value
+            usePathInput: false
+          outgoingConnections:
+            - match->"Subgraph" 9GCv9L325fY-jr3oALr4L/input
+          visualData: 846.3083497698881/356.9140432047504/280/33//
+        '[_QgpxdunMFgMelGhDxPx7]:graphInput "Graph Input"':
+          data:
+            dataType: object
+            id: input
+            useDefaultValueInput: false
+          outgoingConnections:
+            - data->"Extract Object Path" OhJkibYzatgKHUqB1lvZB/object
+          visualData: 449.7543565335504/358.1592080412928/330/34/var(--node-color-3)/var(--grey-darkish)
+    oPi3O-n7vgjdRujV-PwKf:
+      metadata:
+        description: ""
+        id: oPi3O-n7vgjdRujV-PwKf
+        name: Optional Functions/trigger_toast_event
+      nodes:
+        '[6FBJ2rCPMvtbaeQsvdkzf]:comment "Comment"':
+          data:
+            backgroundColor: rgba(0,0,0,0.05)
+            color: rgba(255,255,255,1)
+            height: 414.8981617369103
+            text: |-
+              #### Note
+              You will only see this with "executor" set to "browser"!
+          visualData: 1315.039236718114/229.57161079482535/332.9761199964373/13//
+        '[6q9r-qc4arR5apDZSM3dp]:extractObjectPath "Extract Object Path"':
+          data:
+            path: $.message
+            usePathInput: false
+          outgoingConnections:
+            - match->"Raise Event" egebGJGGCh07otp4OHdxI/data
+          visualData: 963.1305093225888/377.00737731833283/280/7//
+        '[C0_P-2KMCIZwU9jFHQt3O]:graphInput "Graph Input"':
+          data:
+            dataType: object
+            id: arguments
+            useDefaultValueInput: false
+          outgoingConnections:
+            - data->"Extract Object Path" 6q9r-qc4arR5apDZSM3dp/object
+          visualData: 525.7392734846834/362.19559086311546/330/24/var(--node-color-3)/var(--grey-darkish)
+        '[egebGJGGCh07otp4OHdxI]:raiseEvent "Raise Event"':
+          data:
+            eventName: toast
+            useEventNameInput: false
+          visualData: 1375.3049515014457/360.6534400987687/180/26//
+  metadata:
+    description: ""
+    id: F14UJizTak_ZYKjhVxzDe
+    mainGraphId: P1f3_ba7EV_FRtVLQ0aR7
+    title: Open AI Assistants API
+  plugins:
+    - id: openai
+      name: OpenAI
+      type: built-in
