@@ -8,6 +8,7 @@ Just press on "Code" and "Download Zip" or go to a specific file and press on "D
 There is a corresponding video tutorial on Youtube for each file:
 | Video title | Youtube Link | File/Link |
 | -- | -- | -- |
+| Rivet: How To Use OpenAI's Assistants API Including Retrieval And Code Execution - No Code Tutorial | https://youtu.be/mAQT8KMg2Zw | Open AI Assistants API.rivet-project |
 | Rivet: Fine-Tune ChatGPT in Just 5 Minutes with Synthetic Data - Easy, No Code Tutorial! | https://youtu.be/a45y5bmLPY8 | Finetuning_example.rivet-project |
 | Rivet: Own Your Output: Master Structured Data with ChatGPT Or Other LLMs! - No Code Tutorial | https://youtu.be/KCJvLkX2HwU | JSON mode.rivet-project |
 | Rivet: How To Create A Personalized AI With Self-editing Long-term Memory  - No Code Tutorial | https://youtu.be/_XBHgSCtGts | Personalized agent.rivet-project |
