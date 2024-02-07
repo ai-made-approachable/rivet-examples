@@ -1,0 +1,498 @@
+version: 4
+data:
+  attachedData:
+    trivet:
+      testSuites: []
+      version: 1
+  graphs:
+    73oXPT85j5KpPwLgdK9XT:
+      metadata:
+        description: ""
+        id: 73oXPT85j5KpPwLgdK9XT
+        name: "#main"
+      nodes:
+        '[2vJSdn30Ej5O4rmVnwLrr]:graphInput "Graph Input"':
+          data:
+            dataType: chat-message[]
+            id: input
+            useDefaultValueInput: false
+          outgoingConnections:
+            - data->"Match" _6T0WyolIqY3bGsf6BOmc/value
+            - data->"Subgraph" 43x9XkdZkIytZ9OrwUtCg/messages
+          visualData: 758.6705535392847/669.4444214133524/330/164/var(--node-color-3)/var(--grey-darkish)
+        '[43x9XkdZkIytZ9OrwUtCg]:subGraph "Subgraph"':
+          data:
+            graphId: ygGPRrngNh3-TxptPGnvG
+            useAsGraphPartialOutput: false
+            useErrorOutput: false
+          outgoingConnections:
+            - '@mention->"Match" _6T0WyolIqY3bGsf6BOmc/input'
+          visualData: 772.2070248703653/382.63010588772727/330/159/var(--node-color-6)/var(--grey-darkish)
+        '[9vpxQgknRhSba5rM2_qbb]:subGraph "Subgraph"':
+          data:
+            graphId: eS-v42zv_onqeFr3OkMa6
+            useAsGraphPartialOutput: false
+            useErrorOutput: false
+          visualData: 1639.467780036365/667.011773547968/330/153/var(--node-color-6)/var(--grey-darkish)
+        '[ToyO8G9s7DrHwyE2HJgfz]:comment "Comment"':
+          data:
+            backgroundColor: rgba(0,0,0,0.05)
+            color: rgba(255,255,255,1)
+            height: 647.4952154382659
+            text: "#### Redirect messages to mentioned AI assistant"
+          visualData: 1184.9471562444735/195.8480314027808/846.7606615407944/140//
+        '[_6T0WyolIqY3bGsf6BOmc]:match "Match"':
+          data:
+            cases:
+              - youtube_title_creator
+              - youtube_description_creator
+              - linkedin_post_creator
+          outgoingConnections:
+            - case1->"Subgraph" uKp2NzBHRvbiXODM3qExp/messages
+            - case2->"Subgraph" o7_W4itlM1fYCfH6qhsUG/messages
+            - case3->"Subgraph" 9vpxQgknRhSba5rM2_qbb/messages
+            - unmatched->"Subgraph" gnk8UKF6tUVLDcU6hdOwc/messages
+          visualData: 1221.9598920228025/545.6153340740807/280/138//
+        '[cd9sEn_I3TqJd9oQdHe0b]:comment "Comment"':
+          data:
+            backgroundColor: rgba(0,0,0,0.05)
+            color: rgba(255,255,255,1)
+            height: 415.2393384592058
+            text: "#### Check for @ mention and extract it"
+          visualData: 683.9378279886686/198.54183596816375/496.0330770397086/163//
+        '[gnk8UKF6tUVLDcU6hdOwc]:subGraph "Subgraph"':
+          data:
+            graphId: EOgDMKDT8Jfrkru4xnGux
+            useAsGraphPartialOutput: false
+            useErrorOutput: false
+          visualData: 1641.5987890371969/943.9555090446304/330/166/var(--node-color-6)/var(--grey-darkish)
+        '[mgL11bhwcWxTeYEh3BQKg]:comment "Comment"':
+          data:
+            backgroundColor: rgba(0,0,0,0.05)
+            color: rgba(255,255,255,1)
+            height: 283.36114007439664
+            text: "#### Or talk to standard AI assistant"
+          visualData: 1181.0689090926155/857.3313719299827/848.553922590861/154//
+        '[o7_W4itlM1fYCfH6qhsUG]:subGraph "Subgraph"':
+          data:
+            graphId: qpEhxOt58lKu568b3IRgX
+            useAsGraphPartialOutput: false
+            useErrorOutput: false
+          visualData: 1639.7749471261548/468.7443040072137/330/150/var(--node-color-6)/var(--grey-darkish)
+        '[uKp2NzBHRvbiXODM3qExp]:subGraph "Subgraph"':
+          data:
+            graphId: GXtFEhdvjrUyzh_LGf4T9
+            useAsGraphPartialOutput: false
+            useErrorOutput: false
+          visualData: 1642.766854355594/298.3469531574535/330/149/var(--node-color-6)/var(--grey-darkish)
+    EOgDMKDT8Jfrkru4xnGux:
+      metadata:
+        description: ""
+        id: EOgDMKDT8Jfrkru4xnGux
+        name: Assistants/main_assistant
+      nodes:
+        '[ZFgm17NhzCH8Lhm4GsETp]:chat "Output (Chat)"':
+          data:
+            cache: false
+            enableFunctionUse: false
+            frequencyPenalty: 0
+            headers: []
+            maxTokens: 1024
+            model: gpt-3.5-turbo
+            parallelFunctionCalling: true
+            presencePenalty: 0
+            stop: ""
+            temperature: 0.5
+            top_p: 1
+            useAsGraphPartialOutput: true
+            useFrequencyPenaltyInput: false
+            useMaxTokensInput: false
+            useModelInput: false
+            usePresencePenaltyInput: false
+            useStop: false
+            useStopInput: false
+            useTemperatureInput: false
+            useTopP: false
+            useTopPInput: false
+            useUseTopPInput: false
+            useUserInput: false
+          visualData: 959.9563256255865/450.32786660060674/230/74//
+        '[pHtmEHNra-uhuKefF4Zf9]:graphInput "Graph Input"':
+          data:
+            dataType: chat-message[]
+            id: messages
+            useDefaultValueInput: false
+          outgoingConnections:
+            - data->"Output (Chat)" ZFgm17NhzCH8Lhm4GsETp/prompt
+          visualData: 501.04359568839646/504.7438275358575/330/73/var(--node-color-3)/var(--grey-darkish)
+    GXtFEhdvjrUyzh_LGf4T9:
+      metadata:
+        description: ""
+        id: GXtFEhdvjrUyzh_LGf4T9
+        name: Assistants/youtube_title_creator
+      nodes:
+        '[0AajMGhLmz0fl98-x_eqF]:text "Text"':
+          data:
+            text: gpt-4-0125-preview
+          outgoingConnections:
+            - output->"Output (Chat)" 5e0aBwXZ7UIDGeoH7P0VL/model
+          visualData: 550.3608238218611/881.2455649252347/330/91//
+        '[4KD5dQt3V4dpxOLlVlUGQ]:graphInput "Graph Input"':
+          data:
+            dataType: chat-message[]
+            id: messages
+            useDefaultValueInput: false
+          outgoingConnections:
+            - data->"Output (Chat)" 5e0aBwXZ7UIDGeoH7P0VL/prompt
+          visualData: 551.5382533679447/651.9596616954942/330/88/var(--node-color-3)/var(--grey-darkish)
+        '[5e0aBwXZ7UIDGeoH7P0VL]:chat "Output (Chat)"':
+          data:
+            cache: false
+            enableFunctionUse: false
+            frequencyPenalty: 0
+            headers: []
+            maxTokens: 1024
+            model: gpt-4-1106-preview
+            parallelFunctionCalling: true
+            presencePenalty: 0
+            stop: ""
+            temperature: 0.5
+            top_p: 1
+            useAsGraphPartialOutput: true
+            useFrequencyPenaltyInput: false
+            useMaxTokensInput: false
+            useModelInput: true
+            usePresencePenaltyInput: false
+            useStop: false
+            useStopInput: false
+            useTemperatureInput: false
+            useTopP: false
+            useTopPInput: false
+            useUseTopPInput: false
+            useUserInput: false
+          visualData: 968.6195613541724/571.1853550638425/230/87//
+        '[MRRZRaV5B3xPExWpTXNLr]:text "Text"':
+          data:
+            text: >-
+              You are a professional texter specialized in the creation of
+              YouTube titles that will catch the users attention. 
+
+              - Create 5 recommendations for the Youtube titles based on the users information
+
+              - Titles can have a max. of 100 characters; Add the amount of characters after each title in brackets, e.g. (99 characters)
+
+              - Make use of the characters available
+
+              - Return titles as a numbered list
+
+              - Follow the reference titles schema, so new titles will fit. Schema roughly is: "Rivet: TITLE - SIMPLICITY HINT"
+
+              - For the "SIMPLICITY HINT" include things like "No Code Solution", "No Code Tutorial", "Low Code Solution" etc. based on the context
+
+              - At the end give a short recommendation which title is best
+
+
+              # Start your response like this: 
+
+              ```**Youtube Title Creator:**  
+
+              <<RESPONSE>>```
+
+
+              # Existing reference titles:
+
+              - Rivet: Chatbot Brand Safety - How To Stop Negative AI Outputs, No Code Solution!
+
+              - Rivet: How To Add A Beautiful Chat-Interface To All Your Projects - Low Code Tutorial
+
+              - Rivet: How To Use OpenAI's Assistants API Including Retrieval And Code Execution - No Code Tutorial
+
+              - Rivet: Fine-Tune ChatGPT in Just 5 Minutes with Synthetic Data - Easy, No Code Tutorial!
+
+              - Rivet: Own Your Output: Master Structured Data with ChatGPT Or Other LLMs! - No Code Tutorial
+
+              - Rivet: How To Create A Personalized AI With Self-editing Long-term Memory - No Code Tutorial
+
+              - Rivet: How To Automate Local Image Generation via stable-diffusion-webui - No Code Tutorial
+
+              - Rivet: Create A Teachable Agent With Long Term Memory That Learns From You! - No code Tutorial
+
+              - Rivet: How To Run Your Project/Graph As A Node.js Application - Low Code Tutorial
+
+              - Rivet: How To Use Function Calling And Extend ChatGPTs Abilities! - No Code Tutorial
+
+              - Rivet: Empower Your Chatbot With Semantic Routing! - no code tutorial
+
+              - Rivet: How To Create A Knowledge Base (ChromaDB + Retrieval Augemented Generation)- no code tutorial
+
+              - Rivet: How To Use "Retrieval Augmented Generation" (RAG) - No Code Tutorial
+
+              - Rivet: How To Handle Chat History With ChatGPT/Local LLMs - No Plugins Or Coding Required
+
+              - Rivet: How To Run Multiple Local LLMs In Your Projects With Ollama! Easy Comparison - No Code
+
+              - Rivet: How To Use Local LLMs & ChatGPT At The Same Time (LM Studio tutorial)
+
+              - Rivet: Merge Web Content & ChatGPT - Pt. 1: 3 Easy Methods to Access Websites, No Coding!
+
+              - Rivet: Automate Your AI Tasks With Airtable For Free - No Code Tutorial
+
+              - Rivet: How To Use Google Search Results (SERPs) - No Code Tutorial!
+
+              - Rivet: How To NOT Use The Loop-Controller: Solution 1 "Splitting"
+
+
+              # About the Youtube Channel
+
+              Welcome to 'AI Made Approachable' – your go-to destination where complex AI concepts are simplified! As a seasoned product manager with a knack for demystifying tech, I'm here to guide you through the fascinating world of AI, minus the intimidating jargon. Whether you're a curious learner, a professional seeking efficient solutions, or just AI-enthusiastic, this channel is tailored for you. We'll explore tools like Rivet, offering powerful AI capabilities without the coding complexity. Expect practical tutorials, real-world applications, and easy-to-digest content that makes AI not just understandable, but also fun and engaging. 
+          outgoingConnections:
+            - output->"Output (Chat)" 5e0aBwXZ7UIDGeoH7P0VL/systemPrompt
+          visualData: 553/218/330/86//
+    eS-v42zv_onqeFr3OkMa6:
+      metadata:
+        description: ""
+        id: eS-v42zv_onqeFr3OkMa6
+        name: Assistants/linkedin_post_creator
+      nodes:
+        '[92lTJglKRLbJY4-_j7eSQ]:text "Text"':
+          data:
+            text: >-
+              You are a professional texter specialized in the creation of
+              catchy LinkedIn posts.
+
+              - Create 3 LinkedIn post variations
+
+              - Return them as numbered list
+
+              - Make sure you include relevant hashtags at the end
+
+
+              # Start your response like this: 
+
+              ```**LinkedIn Post Creator:**  
+
+              <<RESPONSE>>```
+
+
+              # About the Youtube Channel
+
+              Welcome to 'AI Made Approachable' – your go-to destination where complex AI concepts are simplified! As a seasoned product manager with a knack for demystifying tech, I'm here to guide you through the fascinating world of AI, minus the intimidating jargon. Whether you're a curious learner, a professional seeking efficient solutions, or just AI-enthusiastic, this channel is tailored for you. We'll explore tools like Rivet, offering powerful AI capabilities without the coding complexity. Expect practical tutorials, real-world applications, and easy-to-digest content that makes AI not just understandable, but also fun and engaging. 
+          outgoingConnections:
+            - output->"Output (Chat)" Ik15GX9GDkvtK7VWUzQ8A/systemPrompt
+          visualData: 553/218/330/92//
+        '[GYGbVW_j0Ar2cvdAQl7fK]:text "Text"':
+          data:
+            text: gpt-4-0125-preview
+          outgoingConnections:
+            - output->"Output (Chat)" Ik15GX9GDkvtK7VWUzQ8A/model
+          visualData: 550.3608238218611/881.2455649252347/330/91//
+        '[Ik15GX9GDkvtK7VWUzQ8A]:chat "Output (Chat)"':
+          data:
+            cache: false
+            enableFunctionUse: false
+            frequencyPenalty: 0
+            headers: []
+            maxTokens: 1024
+            model: gpt-4-1106-preview
+            parallelFunctionCalling: true
+            presencePenalty: 0
+            stop: ""
+            temperature: 0.5
+            top_p: 1
+            useAsGraphPartialOutput: true
+            useFrequencyPenaltyInput: false
+            useMaxTokensInput: false
+            useModelInput: true
+            usePresencePenaltyInput: false
+            useStop: false
+            useStopInput: false
+            useTemperatureInput: false
+            useTopP: false
+            useTopPInput: false
+            useUseTopPInput: false
+            useUserInput: false
+          visualData: 968.6195613541724/571.1853550638425/230/87//
+        '[JurbMbkS3KqsaHJUaZ-Le]:graphInput "Graph Input"':
+          data:
+            dataType: chat-message[]
+            id: messages
+            useDefaultValueInput: false
+          outgoingConnections:
+            - data->"Output (Chat)" Ik15GX9GDkvtK7VWUzQ8A/prompt
+          visualData: 551.5382533679447/651.9596616954942/330/88/var(--node-color-3)/var(--grey-darkish)
+    qpEhxOt58lKu568b3IRgX:
+      metadata:
+        description: ""
+        id: qpEhxOt58lKu568b3IRgX
+        name: Assistants/youtube_description_creator
+      nodes:
+        '[1eEoIKr2xsEPM3TVGM89e]:text "Text"':
+          data:
+            text: gpt-4-0125-preview
+          outgoingConnections:
+            - output->"Output (Chat)" Fm10DAO_BLboql7pI3vpj/model
+          visualData: 999/1026.2455649252347/330/91//
+        '[Fm10DAO_BLboql7pI3vpj]:chat "Output (Chat)"':
+          data:
+            cache: false
+            enableFunctionUse: false
+            frequencyPenalty: 0
+            headers: []
+            maxTokens: 1024
+            model: gpt-4-1106-preview
+            parallelFunctionCalling: true
+            presencePenalty: 0
+            stop: ""
+            temperature: 0.5
+            top_p: 1
+            useAsGraphPartialOutput: true
+            useFrequencyPenaltyInput: false
+            useMaxTokensInput: false
+            useModelInput: true
+            usePresencePenaltyInput: false
+            useStop: false
+            useStopInput: false
+            useTemperatureInput: false
+            useTopP: false
+            useTopPInput: false
+            useUseTopPInput: false
+            useUserInput: false
+          visualData: 1417.2587375323114/716.1853550638425/230/87//
+        '[VvKC8ysupFmtJS8FolKZd]:text "Text"':
+          data:
+            text: >-
+              You are a professional texter specialized in the creation of
+              YouTube descriptions that will properly describe the contents of
+              the video as well as contain important keywords that users could
+              be searching for related to that topic.
+
+              - Create 3 recommendations for the Youtube descriptons based on the chosen youtube video title and additional information from the user
+
+              - Do not write more than up to 2-3 sentences. Keep it short and sweet
+
+              - Return descriptions as a numbered list
+
+              - At the end give a short recommendation which title is best
+
+
+              # Start your response like this: 
+
+              ```**Youtube Description Creator:**
+
+              *Video Title: <VIDEO TITLE>*  
+
+              <<RESPONSE>>```
+
+
+              # Existing reference titles:
+
+              1. In this video you will learn how to connect any Rivet project/graph to the beautiful, state-of-the-art chat-interface of "Chatbot-UI". Now you can build complex LLM workflows in a visual tool and interact with it via a chat-interface. Takes some steps to install it for the first time, but after that everything is a breeze!
+
+              1. Learn how to finetune ChatGPT in just 5 minutes and use my synthetic data pipeline to automatically create the finetuning data for you! No code or special konwledge required!
+
+              1. This video shows you how (and why) to use structured JSON output even if you are working with an LLM. We will take a look at JSON mode (ChatGPT) but also at instructions that work with any LLM.
+
+              1. In this tutorial, we guide viewers through the process of running a Rivet graph as a Node.js backend application, focusing on simplifying the setup for non-developers. Key steps include configuring Visual Studio Code, using Node.js and npm, and utilizing a remote debugger for monitoring the graph. The tutorial is designed to make Rivet's integration into web applications accessible and straightforward.
+
+              1. This video shows how to use function calling to enhance ChatGPT with capabilities it would usually not have (e.g. search the web).
+
+
+              # About the Youtube Channel
+
+              Welcome to 'AI Made Approachable' – your go-to destination where complex AI concepts are simplified! As a seasoned product manager with a knack for demystifying tech, I'm here to guide you through the fascinating world of AI, minus the intimidating jargon. Whether you're a curious learner, a professional seeking efficient solutions, or just AI-enthusiastic, this channel is tailored for you. We'll explore tools like Rivet, offering powerful AI capabilities without the coding complexity. Expect practical tutorials, real-world applications, and easy-to-digest content that makes AI not just understandable, but also fun and engaging. 
+          outgoingConnections:
+            - output->"Output (Chat)" Fm10DAO_BLboql7pI3vpj/systemPrompt
+          visualData: 1001.6391761781389/363/330/86//
+        '[zK2jupu-JcExyIIBwDJgP]:graphInput "Graph Input"':
+          data:
+            dataType: chat-message[]
+            id: messages
+            useDefaultValueInput: false
+          outgoingConnections:
+            - data->"Output (Chat)" Fm10DAO_BLboql7pI3vpj/prompt
+          visualData: 1000.1774295460835/796.9596616954942/330/88/var(--node-color-3)/var(--grey-darkish)
+    ygGPRrngNh3-TxptPGnvG:
+      metadata:
+        description: ""
+        id: ygGPRrngNh3-TxptPGnvG
+        name: Subgraphs/extract_@_mention
+      nodes:
+        '[9eYwcZmdJOfQIHi41grwn]:extractObjectPath "Extract Object Path"':
+          data:
+            path: $.message
+            usePathInput: false
+          outgoingConnections:
+            - match->"Extract Regex" u71kBdSTmYcvBHEbbLTue/input
+          visualData: 920.1637127643635/607.7908725781838/280/75//
+        '[HSSUP2URuVRmCVENut8mo]:pop "Pop"':
+          outgoingConnections:
+            - lastItem->"Extract Object Path" 9eYwcZmdJOfQIHi41grwn/object
+          visualData: 918.6970939876894/395.7753848473169/230/80//
+        '[XRbhiOVHpy970iDx4Uv3B]:if "If"':
+          data:
+            unconnectedControlFlowExcluded: true
+          outgoingConnections:
+            - output->"Code" yQKeXXjPQgDvs8yVooQBM/input
+          visualData: 1690.1546383853154/407.5850616206443/155/101//
+        '[hAuZBSCfJo4m3IFchprMM]:graphInput "Graph Input"':
+          data:
+            dataType: chat-message[]
+            id: messages
+            useDefaultValueInput: false
+          outgoingConnections:
+            - data->"Pop" HSSUP2URuVRmCVENut8mo/array
+          visualData: 456/383/330/1/var(--node-color-3)/var(--grey-darkish)
+        '[iIqbDm-H7eXAse9oRpXSK]:coalesce "Coalesce"':
+          outgoingConnections:
+            - output->"Graph Output" w0ZY_VM9YiTknDBGP9M8N/value
+          visualData: 2255.8381558277024/433.56635052196486/180/99//
+        '[sFO5lTwTXCi4juCURwsqM]:text "Text"':
+          data:
+            text: ""
+          outgoingConnections:
+            - output->"If" uljDv5VpEVzxsHPSAWaN2/value
+          visualData: 1458.6849736280967/733.5321405644831/148.13097769075648/105//
+        '[u71kBdSTmYcvBHEbbLTue]:extractRegex "Extract Regex"':
+          data:
+            errorOnFailed: false
+            regex: "@([^:]+):"
+            useRegexInput: false
+          outgoingConnections:
+            - failed->"If" uljDv5VpEVzxsHPSAWaN2/if
+            - output1->"If" XRbhiOVHpy970iDx4Uv3B/value
+            - succeeded->"If" XRbhiOVHpy970iDx4Uv3B/if
+          visualData: 1305.8999605309596/393.7952784174111/280/81//
+        '[uljDv5VpEVzxsHPSAWaN2]:if "If"':
+          data:
+            unconnectedControlFlowExcluded: true
+          outgoingConnections:
+            - output->"Coalesce" iIqbDm-H7eXAse9oRpXSK/input2
+          visualData: 1691.3356060626484/621.3402112178719/155/103//
+        '[w0ZY_VM9YiTknDBGP9M8N]:graphOutput "Graph Output"':
+          data:
+            dataType: string
+            id: "@mention"
+          visualData: 2538.0894307102294/402.8611909113136/330/100/var(--node-color-4)/var(--grey-darkish)
+        '[yQKeXXjPQgDvs8yVooQBM]:code "Code"':
+          data:
+            code: |
+              return {
+                  output: {
+                      type: 'string',
+                      value: inputs.input.value.toLowerCase()
+                  }
+              };
+            inputNames:
+              - input
+            outputNames:
+              - output
+          outgoingConnections:
+            - output->"Coalesce" iIqbDm-H7eXAse9oRpXSK/input1
+          visualData: 1955.8723657851842/308.38377672469346/230/94//
+  metadata:
+    description: "Needs to be used with Chatbot-UI to work:
+      https://github.com/ai-made-approachable/rivet-chat-api"
+    id: rmdGTQwf7rcibNo1vDt2I
+    mainGraphId: 73oXPT85j5KpPwLgdK9XT
+    title: "@mentions for ai_assistants"
+  plugins: []
