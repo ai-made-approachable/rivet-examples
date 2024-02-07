@@ -9,7 +9,7 @@ There is a corresponding video tutorial on Youtube for each file:
 | Video title | Youtube Link | File/Link |
 | -- | -- | -- |
 | Rivet: Unlock Specialized AI Assistants in ChatGPT with @Mentions! - Easy No Code Tutorial | https://youtu.be/XNfTCxF-CU4 | @mentions_for_ai_assistants.rivet-project* |
-| Rivet: Chatbot Brand Safety - How To Stop Negative AI Outputs, No Code Solution! | https://youtu.be/Vxd64MDjW20 |  |
+| Rivet: Chatbot Brand Safety - How To Stop Negative AI Outputs, No Code Solution! | https://youtu.be/Vxd64MDjW20 | - |
 | Rivet: How To Add A Beautiful Chat-Interface To All Your Projects - Low Code Tutorial | https://youtu.be/dM8hiOMnMzU | https://github.com/ai-made-approachable/rivet-chat-api |
 | Rivet: How To Use OpenAI's Assistants API Including Retrieval And Code Execution - No Code Tutorial | https://youtu.be/mAQT8KMg2Zw | Open AI Assistants API.rivet-project |
 | Rivet: Fine-Tune ChatGPT in Just 5 Minutes with Synthetic Data - Easy, No Code Tutorial! | https://youtu.be/a45y5bmLPY8 | Finetuning_example.rivet-project |
