@@ -1,0 +1,77 @@
+version: 4
+data:
+  attachedData:
+    trivet:
+      testSuites: []
+      version: 1
+  graphs:
+    -vujwcoXWXSnPBE-qBlWZ:
+      metadata:
+        description: ""
+        id: -vujwcoXWXSnPBE-qBlWZ
+        name: Subgraphs
+      nodes: {}
+    7csOhbXu44Jps1V4znQpl:
+      metadata:
+        description: ""
+        id: 7csOhbXu44Jps1V4znQpl
+        name: "#main"
+      nodes:
+        '[NOaDQSTgVr8lJoGjPetSo]:graphInput "Graph Input"':
+          data:
+            dataType: chat-message[]
+            id: input
+            useDefaultValueInput: false
+          outgoingConnections:
+            - data->"Pop" jXYT5BxcfZLZ2UPn4-9MU/array
+          visualData: 232.45681228281683/475.00085401812333/330/69/var(--node-color-3)/var(--grey-darkish)
+        '[S0jele8g5l-qhmOGuPLC4]:text "Text"':
+          data:
+            text: You are a robot. You make random robot noises like *bleep* all the time.
+          outgoingConnections:
+            - output->"output" t3d6sXbFk0i9EkAgvd37R/systemPrompt
+          visualData: 640.2733214423242/293.77911314520105/330/79//
+        '[jXYT5BxcfZLZ2UPn4-9MU]:pop "Pop"':
+          data:
+            fromFront: true
+          outgoingConnections:
+            - restOfArray->"output" t3d6sXbFk0i9EkAgvd37R/prompt
+          visualData: 663.1773290599529/491.94857035859644/230/77//
+        '[t3d6sXbFk0i9EkAgvd37R]:chat "output"':
+          data:
+            cache: false
+            enableFunctionUse: false
+            frequencyPenalty: 0
+            headers: []
+            maxTokens: 1024
+            model: gpt-3.5-turbo
+            parallelFunctionCalling: true
+            presencePenalty: 0
+            stop: ""
+            temperature: 0.5
+            top_p: 1
+            useAsGraphPartialOutput: true
+            useFrequencyPenaltyInput: false
+            useMaxTokensInput: false
+            useModelInput: false
+            usePresencePenaltyInput: false
+            useStop: false
+            useStopInput: false
+            useTemperatureInput: false
+            useTopP: false
+            useTopPInput: false
+            useUseTopPInput: false
+            useUserInput: false
+          visualData: 1037.2625528410258/399.50281012428803/230/78//
+    xqINlV58AgfMKdZkBOc38:
+      metadata:
+        description: ""
+        id: xqINlV58AgfMKdZkBOc38
+        name: Subgraphs2
+      nodes: {}
+  metadata:
+    description: Example to run via rivet-node
+    id: vHpwmvjUYbE-MQJ7H_sV_
+    mainGraphId: 7csOhbXu44Jps1V4znQpl
+    title: Example project
+  plugins: []

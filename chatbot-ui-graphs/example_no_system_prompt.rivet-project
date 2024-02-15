@@ -1,0 +1,65 @@
+version: 4
+data:
+  attachedData:
+    trivet:
+      testSuites: []
+      version: 1
+  graphs:
+    -vujwcoXWXSnPBE-qBlWZ:
+      metadata:
+        description: ""
+        id: -vujwcoXWXSnPBE-qBlWZ
+        name: Subgraphs
+      nodes: {}
+    7csOhbXu44Jps1V4znQpl:
+      metadata:
+        description: ""
+        id: 7csOhbXu44Jps1V4znQpl
+        name: "#main"
+      nodes:
+        '[NOaDQSTgVr8lJoGjPetSo]:graphInput "Graph Input"':
+          data:
+            dataType: chat-message[]
+            id: input
+            useDefaultValueInput: false
+          outgoingConnections:
+            - data->"output" t3d6sXbFk0i9EkAgvd37R/prompt
+          visualData: 232.45681228281683/475.00085401812333/330/69/var(--node-color-3)/var(--grey-darkish)
+        '[t3d6sXbFk0i9EkAgvd37R]:chat "output"':
+          data:
+            cache: false
+            enableFunctionUse: false
+            frequencyPenalty: 0
+            headers: []
+            maxTokens: 1024
+            model: gpt-3.5-turbo
+            parallelFunctionCalling: true
+            presencePenalty: 0
+            stop: ""
+            temperature: 0.5
+            top_p: 1
+            useAsGraphPartialOutput: true
+            useFrequencyPenaltyInput: false
+            useMaxTokensInput: false
+            useModelInput: false
+            usePresencePenaltyInput: false
+            useStop: false
+            useStopInput: false
+            useTemperatureInput: false
+            useTopP: false
+            useTopPInput: false
+            useUseTopPInput: false
+            useUserInput: false
+          visualData: 760.4228085931668/420.4151649056011/230/73//
+    xqINlV58AgfMKdZkBOc38:
+      metadata:
+        description: ""
+        id: xqINlV58AgfMKdZkBOc38
+        name: Subgraphs2
+      nodes: {}
+  metadata:
+    description: Example to run via rivet-node
+    id: vHpwmvjUYbE-MQJ7H_sV_
+    mainGraphId: 7csOhbXu44Jps1V4znQpl
+    title: Example project
+  plugins: []

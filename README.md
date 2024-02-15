@@ -8,7 +8,8 @@ Just press on "Code" and "Download Zip" or go to a specific file and press on "D
 There is a corresponding video tutorial on Youtube for each file:
 | Video title | Youtube Link | File/Link |
 | -- | -- | -- |
-| Rivet: Unlock Specialized AI Assistants in your Rivet Chats with @Mentions! - Easy No Code Tutorial| https://youtu.be/XNfTCxF-CU4 | @mentions_for_ai_assistants.rivet-project* |
+| Rivet: Launch Rivet Graphs with Chatbot UI on Railway.app - Quick, Simple & Free Cloud Deployment!| https://youtu.be/WY2t1wFg50M | chatbot-ui-graphs/example_no_system_prompt.rivet-project + chatbot-ui-graphs/example_system_prompt.rivet-project |
+| Rivet: Unlock Specialized AI Assistants in your Rivet Chats with @Mentions! - Easy No Code Tutorial| https://youtu.be/XNfTCxF-CU4 | chatbot-ui-graphs/@mentions_for_ai_assistants.rivet-project* |
 | Rivet: Chatbot Brand Safety - How To Stop Negative AI Outputs, No Code Solution! | https://youtu.be/Vxd64MDjW20 | - |
 | Rivet: How To Add A Beautiful Chat-Interface To All Your Projects - Low Code Tutorial | https://youtu.be/dM8hiOMnMzU | https://github.com/ai-made-approachable/rivet-chat-api |
 | Rivet: How To Use OpenAI's Assistants API Including Retrieval And Code Execution - No Code Tutorial | https://youtu.be/mAQT8KMg2Zw | Open AI Assistants API.rivet-project |

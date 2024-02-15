@@ -17,9 +17,9 @@ data:
             id: input
             useDefaultValueInput: false
           outgoingConnections:
-            - data->"Match" _6T0WyolIqY3bGsf6BOmc/value
+            - data->"Pop" VpJTx9jAmVQAvYlqM4SQA/array
             - data->"Subgraph" 43x9XkdZkIytZ9OrwUtCg/messages
-          visualData: 758.6705535392847/669.4444214133524/330/164/var(--node-color-3)/var(--grey-darkish)
+          visualData: 277.43730549207794/671.8934455764426/330/167/var(--node-color-3)/var(--grey-darkish)
         '[43x9XkdZkIytZ9OrwUtCg]:subGraph "Subgraph"':
           data:
             graphId: ygGPRrngNh3-TxptPGnvG
@@ -41,6 +41,12 @@ data:
             height: 647.4952154382659
             text: "#### Redirect messages to mentioned AI assistant"
           visualData: 1184.9471562444735/195.8480314027808/846.7606615407944/140//
+        '[VpJTx9jAmVQAvYlqM4SQA]:pop "Pop"':
+          data:
+            fromFront: true
+          outgoingConnections:
+            - restOfArray->"Match" _6T0WyolIqY3bGsf6BOmc/value
+          visualData: 778.924463322147/686.4124372157818/230/170//
         '[_6T0WyolIqY3bGsf6BOmc]:match "Match"':
           data:
             cases:
@@ -91,7 +97,7 @@ data:
         id: EOgDMKDT8Jfrkru4xnGux
         name: Assistants/main_assistant
       nodes:
-        '[ZFgm17NhzCH8Lhm4GsETp]:chat "Output (Chat)"':
+        '[ZFgm17NhzCH8Lhm4GsETp]:chat "output"':
           data:
             cache: false
             enableFunctionUse: false
@@ -116,14 +122,14 @@ data:
             useTopPInput: false
             useUseTopPInput: false
             useUserInput: false
-          visualData: 959.9563256255865/450.32786660060674/230/74//
+          visualData: 959.9563256255865/450.32786660060674/230/75//
         '[pHtmEHNra-uhuKefF4Zf9]:graphInput "Graph Input"':
           data:
             dataType: chat-message[]
             id: messages
             useDefaultValueInput: false
           outgoingConnections:
-            - data->"Output (Chat)" ZFgm17NhzCH8Lhm4GsETp/prompt
+            - data->"output" ZFgm17NhzCH8Lhm4GsETp/prompt
           visualData: 501.04359568839646/504.7438275358575/330/73/var(--node-color-3)/var(--grey-darkish)
     GXtFEhdvjrUyzh_LGf4T9:
       metadata:
@@ -135,7 +141,7 @@ data:
           data:
             text: gpt-4-0125-preview
           outgoingConnections:
-            - output->"Output (Chat)" 5e0aBwXZ7UIDGeoH7P0VL/model
+            - output->"output" 5e0aBwXZ7UIDGeoH7P0VL/model
           visualData: 550.3608238218611/881.2455649252347/330/91//
         '[4KD5dQt3V4dpxOLlVlUGQ]:graphInput "Graph Input"':
           data:
@@ -143,9 +149,9 @@ data:
             id: messages
             useDefaultValueInput: false
           outgoingConnections:
-            - data->"Output (Chat)" 5e0aBwXZ7UIDGeoH7P0VL/prompt
+            - data->"output" 5e0aBwXZ7UIDGeoH7P0VL/prompt
           visualData: 551.5382533679447/651.9596616954942/330/88/var(--node-color-3)/var(--grey-darkish)
-        '[5e0aBwXZ7UIDGeoH7P0VL]:chat "Output (Chat)"':
+        '[5e0aBwXZ7UIDGeoH7P0VL]:chat "output"':
           data:
             cache: false
             enableFunctionUse: false
@@ -170,7 +176,7 @@ data:
             useTopPInput: false
             useUseTopPInput: false
             useUserInput: false
-          visualData: 968.6195613541724/571.1853550638425/230/87//
+          visualData: 968.6195613541724/571.1853550638425/230/92//
         '[MRRZRaV5B3xPExWpTXNLr]:text "Text"':
           data:
             text: >-
@@ -246,7 +252,7 @@ data:
 
               Welcome to 'AI Made Approachable' – your go-to destination where complex AI concepts are simplified! As a seasoned product manager with a knack for demystifying tech, I'm here to guide you through the fascinating world of AI, minus the intimidating jargon. Whether you're a curious learner, a professional seeking efficient solutions, or just AI-enthusiastic, this channel is tailored for you. We'll explore tools like Rivet, offering powerful AI capabilities without the coding complexity. Expect practical tutorials, real-world applications, and easy-to-digest content that makes AI not just understandable, but also fun and engaging. 
           outgoingConnections:
-            - output->"Output (Chat)" 5e0aBwXZ7UIDGeoH7P0VL/systemPrompt
+            - output->"output" 5e0aBwXZ7UIDGeoH7P0VL/systemPrompt
           visualData: 553/218/330/86//
     eS-v42zv_onqeFr3OkMa6:
       metadata:
@@ -278,15 +284,15 @@ data:
 
               Welcome to 'AI Made Approachable' – your go-to destination where complex AI concepts are simplified! As a seasoned product manager with a knack for demystifying tech, I'm here to guide you through the fascinating world of AI, minus the intimidating jargon. Whether you're a curious learner, a professional seeking efficient solutions, or just AI-enthusiastic, this channel is tailored for you. We'll explore tools like Rivet, offering powerful AI capabilities without the coding complexity. Expect practical tutorials, real-world applications, and easy-to-digest content that makes AI not just understandable, but also fun and engaging. 
           outgoingConnections:
-            - output->"Output (Chat)" Ik15GX9GDkvtK7VWUzQ8A/systemPrompt
+            - output->"output" Ik15GX9GDkvtK7VWUzQ8A/systemPrompt
           visualData: 553/218/330/92//
         '[GYGbVW_j0Ar2cvdAQl7fK]:text "Text"':
           data:
             text: gpt-4-0125-preview
           outgoingConnections:
-            - output->"Output (Chat)" Ik15GX9GDkvtK7VWUzQ8A/model
+            - output->"output" Ik15GX9GDkvtK7VWUzQ8A/model
           visualData: 550.3608238218611/881.2455649252347/330/91//
-        '[Ik15GX9GDkvtK7VWUzQ8A]:chat "Output (Chat)"':
+        '[Ik15GX9GDkvtK7VWUzQ8A]:chat "output"':
           data:
             cache: false
             enableFunctionUse: false
@@ -311,14 +317,14 @@ data:
             useTopPInput: false
             useUseTopPInput: false
             useUserInput: false
-          visualData: 968.6195613541724/571.1853550638425/230/87//
+          visualData: 968.6195613541724/571.1853550638425/230/93//
         '[JurbMbkS3KqsaHJUaZ-Le]:graphInput "Graph Input"':
           data:
             dataType: chat-message[]
             id: messages
             useDefaultValueInput: false
           outgoingConnections:
-            - data->"Output (Chat)" Ik15GX9GDkvtK7VWUzQ8A/prompt
+            - data->"output" Ik15GX9GDkvtK7VWUzQ8A/prompt
           visualData: 551.5382533679447/651.9596616954942/330/88/var(--node-color-3)/var(--grey-darkish)
     qpEhxOt58lKu568b3IRgX:
       metadata:
@@ -330,9 +336,9 @@ data:
           data:
             text: gpt-4-0125-preview
           outgoingConnections:
-            - output->"Output (Chat)" Fm10DAO_BLboql7pI3vpj/model
+            - output->"output" Fm10DAO_BLboql7pI3vpj/model
           visualData: 999/1026.2455649252347/330/91//
-        '[Fm10DAO_BLboql7pI3vpj]:chat "Output (Chat)"':
+        '[Fm10DAO_BLboql7pI3vpj]:chat "output"':
           data:
             cache: false
             enableFunctionUse: false
@@ -357,7 +363,7 @@ data:
             useTopPInput: false
             useUseTopPInput: false
             useUserInput: false
-          visualData: 1417.2587375323114/716.1853550638425/230/87//
+          visualData: 1417.2587375323114/716.1853550638425/230/92//
         '[VvKC8ysupFmtJS8FolKZd]:text "Text"':
           data:
             text: >-
@@ -401,7 +407,7 @@ data:
 
               Welcome to 'AI Made Approachable' – your go-to destination where complex AI concepts are simplified! As a seasoned product manager with a knack for demystifying tech, I'm here to guide you through the fascinating world of AI, minus the intimidating jargon. Whether you're a curious learner, a professional seeking efficient solutions, or just AI-enthusiastic, this channel is tailored for you. We'll explore tools like Rivet, offering powerful AI capabilities without the coding complexity. Expect practical tutorials, real-world applications, and easy-to-digest content that makes AI not just understandable, but also fun and engaging. 
           outgoingConnections:
-            - output->"Output (Chat)" Fm10DAO_BLboql7pI3vpj/systemPrompt
+            - output->"output" Fm10DAO_BLboql7pI3vpj/systemPrompt
           visualData: 1001.6391761781389/363/330/86//
         '[zK2jupu-JcExyIIBwDJgP]:graphInput "Graph Input"':
           data:
@@ -409,7 +415,7 @@ data:
             id: messages
             useDefaultValueInput: false
           outgoingConnections:
-            - data->"Output (Chat)" Fm10DAO_BLboql7pI3vpj/prompt
+            - data->"output" Fm10DAO_BLboql7pI3vpj/prompt
           visualData: 1000.1774295460835/796.9596616954942/330/88/var(--node-color-3)/var(--grey-darkish)
     ygGPRrngNh3-TxptPGnvG:
       metadata:
