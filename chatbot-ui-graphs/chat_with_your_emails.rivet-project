@@ -1,0 +1,1143 @@
+version: 4
+data:
+  attachedData:
+    trivet:
+      testSuites: []
+      version: 1
+  graphs:
+    12B8qNj5aLnDTndI9bDIz:
+      metadata:
+        description: ""
+        id: 12B8qNj5aLnDTndI9bDIz
+        name: Subgraphs/get_emails
+      nodes:
+        '[0IaX4Hi2jGANefN9Q9kBf]:comment "Comment"':
+          data:
+            backgroundColor: rgba(0,0,0,0.05)
+            color: rgba(255,255,255,1)
+            height: 581.442611842472
+            text: "#### Authorization"
+          visualData: 431.6441080996117/-209.6397463017139/439.00317998824426/162//
+        '[1j81DWw5jIbCnVRQML0lo]:number "Number"':
+          data:
+            round: false
+            roundTo: 0
+            value: 0
+          outgoingConnections:
+            - value->"Compare" msFXKsZmI5hfHS5ZiC7Mk/b
+          visualData: 491.9524912952096/827.8475279776078/230/154//
+        '[2uWoEimFdaS6kkYeMxXSt]:subGraph "Subgraph"':
+          data:
+            graphId: vQU0sb3qt4VkQkFETMidY
+            useAsGraphPartialOutput: false
+            useErrorOutput: false
+          isSplitRun: true
+          outgoingConnections:
+            - output->"Coalesce" 3HSEisMJL8KewHzt-YjXM/input1
+          splitRunMax: 100
+          visualData: 1159.0387009749163/482.7121465668511/330/157/var(--node-color-6)/var(--grey-darkish)
+        '[3HSEisMJL8KewHzt-YjXM]:coalesce "Coalesce"':
+          outgoingConnections:
+            - output->"Graph Output" qDbXS86325Q3_UVFX5F4y/value
+          visualData: 1617.9021202674546/505.4529717152283/180/133//
+        '[6LmmxmqvMmbtbRC9Mdud_]:text "Text"':
+          data:
+            text: There are currently no unread e-mails
+          outgoingConnections:
+            - output->"Coalesce" 3HSEisMJL8KewHzt-YjXM/input2
+          visualData: 1160.972038475608/819.011263434256/330/156//
+        '[7nLo4jS_yljbsj1NyynGX]:if "If"':
+          data:
+            unconnectedControlFlowExcluded: true
+          outgoingConnections:
+            - output->"Subgraph" 2uWoEimFdaS6kkYeMxXSt/message_ids
+          visualData: 882.9521232633114/488.9842798932174/155/147//
+        '[_eRNKBAvJOioPTt6v9bNR]:comment "Comment"':
+          data:
+            backgroundColor: rgba(0,0,0,0.05)
+            color: rgba(255,255,255,1)
+            height: 706.3278355274163
+            text: "#### Fetch E-Mails from gmail API"
+          visualData: 427.6860378504856/372.77736945446236/1119.0063599764885/109//
+        '[aDKXmOeMXhnyPUxtV457_]:graphInput "Graph Input"':
+          data:
+            dataType: string
+            id: arguments
+            useDefaultValueInput: false
+          outgoingConnections:
+            - data->"Subgraph" u7b6Ofa1znUjZXqjxp7Sz/arguments
+          visualData: -3.874750534476446/390.5589861649873/330/158/var(--node-color-3)/var(--grey-darkish)
+        '[cOlUy9lgm5XmscNk_IF4l]:graphInput "Graph Input"':
+          data:
+            dataType: string
+            id: gmail_query
+            useDefaultValueInput: false
+          outgoingConnections:
+            - data->"Subgraph" u7b6Ofa1znUjZXqjxp7Sz/gmail_query
+          visualData: -14.37433862162706/1102.3678697689495/330/159/var(--node-color-3)/var(--grey-darkish)
+        '[lR5Jzzhj9JyH9pXYmND-Y]:subGraph "Subgraph"':
+          data:
+            graphId: Xj1v74Jt7L-LwL2eJmKL6
+            useAsGraphPartialOutput: false
+            useErrorOutput: false
+          outgoingConnections:
+            - output->"Subgraph" sMeRYDneII3YLjzOllDIT/input
+          visualData: 478.40176815139296/-86.92676771815343/330/163/var(--node-color-6)/var(--grey-darkish)
+        '[msFXKsZmI5hfHS5ZiC7Mk]:compare "Compare"':
+          data:
+            comparisonFunction: ">"
+          outgoingConnections:
+            - output->"If" 7nLo4jS_yljbsj1NyynGX/if
+          visualData: 863.4918281266425/802.3840528526946/190/155//
+        '[qDbXS86325Q3_UVFX5F4y]:graphOutput "Graph Output"':
+          data:
+            dataType: object
+            id: output
+          visualData: 1858.9180751282354/491.3199711983122/330/141/var(--node-color-4)/var(--grey-darkish)
+        '[sMeRYDneII3YLjzOllDIT]:subGraph "Subgraph"':
+          data:
+            graphId: c4GZCzYtoRj8O_yEz0FXq
+            useAsGraphPartialOutput: false
+            useErrorOutput: false
+          outgoingConnections:
+            - output->"Subgraph" 2uWoEimFdaS6kkYeMxXSt/headers_with_authorization
+            - output->"Subgraph" u7b6Ofa1znUjZXqjxp7Sz/headers_with_authorization
+          visualData: 481.1578836274466/144.17711087926276/330/164/var(--node-color-6)/var(--grey-darkish)
+        '[u7b6Ofa1znUjZXqjxp7Sz]:subGraph "Subgraph"':
+          data:
+            graphId: GHGyRwecBj_oWkFkJqoz0
+            useAsGraphPartialOutput: false
+            useErrorOutput: false
+          outgoingConnections:
+            - output->"If" 7nLo4jS_yljbsj1NyynGX/value
+            - resultSizeEstimate->"Compare" msFXKsZmI5hfHS5ZiC7Mk/a
+          visualData: 477.56914085844596/494.82123732165303/330/140/var(--node-color-6)/var(--grey-darkish)
+        '[xBN-D3CXSUUiuMqdFpVZA]:graphInput "Graph Input"':
+          data:
+            dataType: string
+            id: gmail_includesspamtrash
+            useDefaultValueInput: false
+          outgoingConnections:
+            - data->"Subgraph" u7b6Ofa1znUjZXqjxp7Sz/gmail_includeSpamTrash
+          visualData: -4.430835298438914/627.3972479366465/330/161/var(--node-color-3)/var(--grey-darkish)
+        '[xzusaDR4ws7MG2FO0GNlQ]:graphInput "Graph Input"':
+          data:
+            dataType: string
+            id: gmail_maxresults
+            useDefaultValueInput: false
+          outgoingConnections:
+            - data->"Subgraph" u7b6Ofa1znUjZXqjxp7Sz/gmail_maxResults
+          visualData: -9.064171618035536/873.2951019866688/330/160/var(--node-color-3)/var(--grey-darkish)
+    5CkuNh1XCPp_olySGpda3:
+      metadata:
+        description: ""
+        id: 5CkuNh1XCPp_olySGpda3
+        name: Subgraphs/#1_label_email_as_read
+      nodes:
+        '[-QPVTFbESouegF0R-EKsA]:object "Object"':
+          data:
+            jsonTemplate: |-
+              {
+                "removeLabelIds": ["UNREAD"]
+              }
+          outgoingConnections:
+            - output->"Http Call" jssMjaoTRBZ1iCagL3xlG/req_body
+          visualData: 1062.6033370644802/220.30344573532722/230/101//
+        '[5odXKz-ICAU7ZrUsrqH7l]:graphOutput "Graph Output"':
+          data:
+            dataType: object
+            id: output
+          visualData: 1899.3086694169879/281.13533852116/330/106/var(--node-color-4)/var(--grey-darkish)
+        '[6Ai0aVRSSIpNkO5e88sVZ]:graphInput "Graph Input"':
+          data:
+            dataType: object
+            id: headers_with_authorization
+            useDefaultValueInput: false
+          outgoingConnections:
+            - data->"Http Call" jssMjaoTRBZ1iCagL3xlG/headers
+          visualData: 548.8961846967344/216.89915504804654/330/100/var(--node-color-3)/var(--grey-darkish)
+        '[cPJq9SVNyuRN7O_zwPuYo]:text "Text"':
+          data:
+            text: https://gmail.googleapis.com/gmail/v1/users/me/messages/{{input}}/modify
+          outgoingConnections:
+            - output->"Http Call" jssMjaoTRBZ1iCagL3xlG/url
+          visualData: 964.4185276557679/482.8410882847109/330/93//
+        '[jssMjaoTRBZ1iCagL3xlG]:httpCall "Http Call"':
+          data:
+            body: ""
+            errorOnNon200: true
+            headers: ""
+            method: POST
+            url: ""
+            useBodyInput: true
+            useHeadersInput: true
+            useUrlInput: true
+          outgoingConnections:
+            - json->"Graph Output" 5odXKz-ICAU7ZrUsrqH7l/value
+          visualData: 1501.2333008360117/223.5051243030027/280/94//
+        '[xPzJyKoZyMsFwvZLz3d3l]:graphInput "Graph Input"':
+          data:
+            dataType: string
+            id: id
+            useDefaultValueInput: false
+          outgoingConnections:
+            - data->"Text" cPJq9SVNyuRN7O_zwPuYo/input
+          visualData: 549/464/330/1/var(--node-color-3)/var(--grey-darkish)
+    GHGyRwecBj_oWkFkJqoz0:
+      metadata:
+        description: ""
+        id: GHGyRwecBj_oWkFkJqoz0
+        name: Subgraphs/#1_get_email_list
+      nodes:
+        '[3WsZz2rGoXqVu_iXobBVe]:destructure "Destructure"':
+          data:
+            paths:
+              - $.messages
+              - $.resultSizeEstimate
+          outgoingConnections:
+            - match_0->"Graph Output" UYjHBfX5CX-WC9nGoIMlw/value
+            - match_1->"Graph Output" BdkXgEFwm5sVF5AQQFWJu/value
+          visualData: 1750.7971329335867/291.41250934012277/280/109//
+        '[4EaiD2PpLJ4T5SUsXBqaE]:text "Text"':
+          data:
+            text: https://gmail.googleapis.com/gmail/v1/users/me/messages?q={{query}}&includeSpamTrash={{false}}&maxResults={{maxResults}}
+          outgoingConnections:
+            - output->"Http Call" Ms1-xJZGGtuMd9fTOskcz/url
+          visualData: 1716.3871045933438/568.915905977564/330/133//
+        '[4Jd_htf2BupBErkCKy_cs]:graphInput "Graph Input"':
+          data:
+            dataType: object
+            id: headers_with_authorization
+            useDefaultValueInput: false
+          outgoingConnections:
+            - data->"Http Call" Ms1-xJZGGtuMd9fTOskcz/headers
+          visualData: 879.6700773373227/87.19546192802865/330/135/var(--node-color-3)/var(--grey-darkish)
+        '[52ntjFJQFav6nUjFMILtK]:graphInput "Graph Input"':
+          data:
+            dataType: string
+            id: gmail_query
+            useDefaultValueInput: true
+          outgoingConnections:
+            - data->"Code" bFLwLqTyKVjp-QwaoOJwU/input
+          visualData: 879.1875939273091/547.2433118112631/330/135/var(--node-color-3)/var(--grey-darkish)
+        '[70khQbONhPLuhB9X47qSH]:boolean "Bool"':
+          data:
+            value: false
+          outgoingConnections:
+            - value->"Graph Input" KnuYC9Ktj04G3PPyXN98K/default
+          visualData: 445.173855642356/773.5854336175871/160/135//
+        '[AU6KEuXLC5c4jt7C8A-TE]:graphInput "Graph Input"':
+          data:
+            dataType: string
+            id: gmail_maxResults
+            useDefaultValueInput: true
+          outgoingConnections:
+            - data->"Text" 4EaiD2PpLJ4T5SUsXBqaE/maxResults
+          visualData: 880.3814932068157/990.7987648305748/330/135/var(--node-color-3)/var(--grey-darkish)
+        '[BdkXgEFwm5sVF5AQQFWJu]:graphOutput "Graph Output"':
+          data:
+            dataType: number
+            id: resultSizeEstimate
+          visualData: 2119.9503749010214/541.7779723861994/330/136/var(--node-color-4)/var(--grey-darkish)
+        '[KnuYC9Ktj04G3PPyXN98K]:graphInput "Graph Input"':
+          data:
+            dataType: string
+            id: gmail_includeSpamTrash
+            useDefaultValueInput: true
+          outgoingConnections:
+            - data->"Text" 4EaiD2PpLJ4T5SUsXBqaE/false
+          visualData: 882.7692917658285/771.6963763584718/330/135/var(--node-color-3)/var(--grey-darkish)
+        '[Ldggg0dSPul_DKZZrdCx-]:text "Text"':
+          data:
+            text: is:unread label:rivet
+          outgoingConnections:
+            - output->"Graph Input" 52ntjFJQFav6nUjFMILtK/default
+          visualData: 440.4697089418796/557.1829255905714/330/135//
+        '[Ms1-xJZGGtuMd9fTOskcz]:httpCall "Http Call"':
+          data:
+            body: ""
+            errorOnNon200: true
+            headers: ""
+            method: GET
+            url: https://gmail.googleapis.com/gmail/v1/users/me/messages
+            useBodyInput: false
+            useHeadersInput: true
+            useUrlInput: true
+          outgoingConnections:
+            - json->"Destructure" 3WsZz2rGoXqVu_iXobBVe/object
+          visualData: 1353.2958317387702/219.91200415030397/280/107//
+        '[UYjHBfX5CX-WC9nGoIMlw]:graphOutput "Graph Output"':
+          data:
+            dataType: object
+            id: output
+          visualData: 2122.9079467522333/259.01967283693983/330/109/var(--node-color-4)/var(--grey-darkish)
+        '[bFLwLqTyKVjp-QwaoOJwU]:code "Code"':
+          data:
+            code: |
+              const replacedString = inputs.input.value.replace(/\s/g, '+');
+              return {
+                  output: {
+                      type: 'string',
+                      value: replacedString
+                  }
+              };
+            inputNames:
+              - input
+            outputNames:
+              - output
+          outgoingConnections:
+            - output->"Text" 4EaiD2PpLJ4T5SUsXBqaE/query
+          visualData: 1356.4993052481082/568.250146918978/230/134//
+        '[htVRtEezka_VNAu0I5zOq]:text "Text"':
+          data:
+            text: "20"
+          outgoingConnections:
+            - output->"Graph Input" AU6KEuXLC5c4jt7C8A-TE/default
+          visualData: 448.223313827084/1007.3835555147538/330/135//
+        '[y4B9Eqp7b3HgIyDzw-wFV]:graphInput "Graph Input"':
+          data:
+            dataType: string
+            id: arguments
+            useDefaultValueInput: false
+          visualData: 879.0671484759769/330.10361124348833/330/135/var(--node-color-3)/var(--grey-darkish)
+    Inz8-ncT3Cw5RRftb1hDa:
+      metadata:
+        description: ""
+        id: Inz8-ncT3Cw5RRftb1hDa
+        name: "#main"
+      nodes:
+        '[14fezm1Z6WhdxjoizFElH]:comment "Comment"':
+          data:
+            backgroundColor: rgba(0,0,0,0.05)
+            color: rgba(255,255,255,1)
+            height: 723.4431392946663
+            text: "#### Loop to return function calls  to AI; breaks when no more functions
+              are called"
+          visualData: 1336.57589754658/-181.2806020995397/2306.7775913278097/292//
+        '[1sutjgAHbDmOBjC9ghqJw]:number "Max Results"':
+          data:
+            round: false
+            roundTo: 0
+            value: 10
+          outgoingConnections:
+            - value->"Subgraph" woFlch7Y23aEAga60kdzw/gmail_maxresults
+          visualData: 2583.2247127581304/-365.7785346316183/230/328/var(--node-color-4)/var(--node-color-4)
+        '[2fZvh6gxvYU7N_scfpg2U]:abortGraph "Abort Graph"':
+          data:
+            errorMessage: ""
+            successfully: true
+          visualData: 1835.3727295864126/581.9898579413988/230/286//
+        '[580RSlN8KGXpVm_tN4Vos]:text "Text"':
+          data:
+            text: "You are a personal assistant making use of function calls, to assist the
+              user with his gmail account.
+
+              Today is {{datetime}}.
+
+
+              # When the user asks you about his e-mails:
+
+              1. Determine the priorities of the e-mails
+
+              \  - Actual Deadlines vs. Suggested Urgency:
+              Continue to distinguish between emails with actual deadlines
+              (e.g., contract renewals, payment due dates) and those that use
+              urgency as a marketing tactic (e.g., \"limited time offers,\"
+              \"act now to save!\"). Only consider the former urgent.
+
+              \  - Required Action vs. Suggested Engagement:
+              Refine this criterion to specifically include emails that require
+              a direct response from you, such as RSVPs to personal invitations,
+              appointment confirmations, or any direct requests for a reply.
+              These emails should be categorized under \"Action Required\" as
+              they necessitate a personal response. Continue to exclude welcome
+              emails and invitations to explore or engage with new features or
+              platforms, unless they are directly related to an ongoing project
+              or a previously expressed interest. Evaluate whether the email
+              requires you to take immediate action (e.g., updating information,
+              responding to a request) versus merely suggesting you engage with
+              content or offers (e.g., webinars, product launches). Welcome
+              emails and general invitations without a clear, immediate action
+              item or direct relevance to ongoing operations should not be
+              considered urgent.
+
+              \  - Impact on Current Operations or Projects:
+              Assess if the email's content, if ignored, would have a direct
+              negative impact on your current operations, projects, or
+              obligations. Emails that merely suggest potential future benefits
+              or opportunities without a clear, immediate impact should be
+              considered non-urgent.
+
+              \  - Financial and Legal Implications: Maintain the
+              focus on emails that have direct financial or legal implications
+              (e.g., invoices, legal notices) as urgent. Exclude promotional
+              offers, discounts, and welcome messages that do not have immediate
+              financial or legal stakes.
+
+              \  - Clarification on Marketing and Engagement
+              Emails: Explicitly state that emails primarily aimed at marketing,
+              such as welcome messages, invitations to participate in new
+              features or services, and promotional offers, should be
+              deprioritized unless they meet the above criteria for urgency.
+              This includes emails that might suggest potential benefits but do
+              not require immediate action or have a direct impact on current
+              priorities.
+
+              \  - It is of course also possible that there are NO
+              urgent e-mails
+
+              2. Order the emails by priority and categorize them
+              as \"Action Required\" (split into \"Urgent\" and \"Non-urgent\")
+              and \"Informative\".
+
+              3. Derive actions to be taken (only for emails under
+              \"Action Required\")
+
+              \  - If applicable, add links to the actions.
+
+              4. Write a concise summary for the \"Informative\"
+              emails
+
+              - Consolidate all \"Informative\" emails received on
+              the same date into a single summary point to avoid repetition of
+              dates.
+
+              - Ensure that the summary for each date includes a
+              brief overview of all \"Informative\" emails from that day,
+              grouping emails of the same kind with only slightly different
+              contents.
+
+              - Keep the summary concise, focusing on grouping
+              similar emails together without repeating the same information.
+
+              5. Format all dates with: DD.MM.YYYY and Time as
+              HH:MM
+
+              6. Ask the user if you shall label the e-mails as
+              read
+
+
+              ## Answer template
+
+              ## Action Required
+
+
+              ### Urgent
+
+              - **🚨 <<sender>>: <<subject>>** (<<Date + Time>>)
+
+              \  - 📝 <<summary>>
+
+              \  - ✅ **<<action_deadline>>** : <<action>>
+
+              \  - 🔗 [Review Email](<<gmail url>>)
+
+
+              ### Non-urgent
+
+              - **<<sender>>: <<subject>>** (<<Date + Time>>)
+
+              \  - 📝 <<summary>>
+
+              \  - ✅ **<<action_deadline>>** : <<action>>
+
+              \  - 🔗 [Review Email](<<gmail url>>)
+
+
+              ---------------------------------------------------\
+              ------------------------------------------------
+
+
+              ## Informative
+
+              - <<Date sort desc>>: <<Summary of \"Informative\"
+              emails from that date>>
+
+
+              🔗 [Go to
+              inbox](https://mail.google.com/mail/u/0/#inbox)\ 
+
+
+              Email-Ids (do not delete): <<comma seperated list of
+              all email_ids for future reference>>
+
+
+              ---------------------------------------------------\
+              ------------------------------------------------"
+          outgoingConnections:
+            - output->"output" ZgRjbo6M_iYlv2aO8bFob/systemPrompt
+          visualData: 1738.066682546898/-586.15735288389/330/330/var(--node-color-4)/var(--node-color-4)
+        '[A6J6IbDUUlitlpovliX-1]:destructure "Destructure"':
+          data:
+            paths:
+              - $.[0].name
+              - $.[0].arguments
+              - $.[0].id
+          outgoingConnections:
+            - match_0->"If" MUvLt2UFV54o5kEAlfHSd/value
+            - match_1->"Match" _6TzLi2cF_bbpUva-zjWK/value
+            - match_2->"Prompt" tlclzCUg3nP4rfM7v5hN_/name
+          visualData: 2242.0515424468063/-61.1716962939503/280/229//
+        '[Ev8y4In3em-X0I8sFjq2s]:coalesce "Coalesce"':
+          outgoingConnections:
+            - output->"Prompt" tlclzCUg3nP4rfM7v5hN_/input
+          visualData: 3028.3135465167543/17.274460090255204/180/230//
+        '[IW-Put5lMaTEtfJyFBs58]:passthrough "Passthrough"':
+          outgoingConnections:
+            - output1->"output" ZgRjbo6M_iYlv2aO8bFob/functions
+          visualData: 1454.3022997697951/382.2458454337697/205/297//
+        '[K7-n7YdVKmJd6qH2khGM1]:comment "Comment"':
+          data:
+            backgroundColor: rgba(0,0,0,0.05)
+            color: rgba(255,255,255,1)
+            height: 393.0019695787614
+            text: "#### Input from Chatbot-UI/or object if run in Rivet"
+          visualData: 506.83915043852954/-430.41079681730736/824.0531786265583/273//
+        '[MUvLt2UFV54o5kEAlfHSd]:if "If"':
+          data:
+            unconnectedControlFlowExcluded: true
+          outgoingConnections:
+            - output->"Loop Controller" TSPU0krWGMZwSN1kYltg5/continue
+            - output->"Match" _6TzLi2cF_bbpUva-zjWK/input
+          visualData: 1880.3950560814553/321.496595702391/155/289//
+        '[O0PqGPF0uZ2mpO2jZ6BfY]:comment "Comment"':
+          data:
+            backgroundColor: rgba(0,0,0,0.05)
+            color: rgba(255,255,255,1)
+            height: 515.1848439537401
+            text: "#### Gmail inputs"
+          visualData: 2168.1404591310347/-703.8451129017888/1475.067372970008/300//
+        '[TSPU0krWGMZwSN1kYltg5]:loopController "Loop Controller"':
+          data:
+            maxIterations: 100
+          outgoingConnections:
+            - break->"Abort Graph" 2fZvh6gxvYU7N_scfpg2U/data
+            - output1->"output" ZgRjbo6M_iYlv2aO8bFob/prompt
+          visualData: 1419.5088528083713/-55.0416784730859/280/283//
+        '[U4vHJLNHMnPe6jx-1klvT]:code "Code"':
+          data:
+            code: |
+              const currentDatetime = new Date().toISOString();
+              return {
+                  output: {
+                      type: 'datetime',
+                      value: currentDatetime
+                  }
+              };
+            inputNames: []
+            outputNames:
+              - output
+          outgoingConnections:
+            - output->"Text" 580RSlN8KGXpVm_tN4Vos/datetime
+          visualData: 1400.077125077738/-458.11953588563995/230/331//
+        '[YAIoB39q6CfyWgZF8dnzj]:pop "Pop"':
+          data:
+            fromFront: true
+          outgoingConnections:
+            - restOfArray->"Loop Controller" TSPU0krWGMZwSN1kYltg5/input1Default
+          visualData: 1014.8138945415556/-256.2023425952813/230/298//
+        '[Ysl0cQRF0AR0R2qGRmebr]:text "Gmail Query"':
+          data:
+            text: is:unread
+          outgoingConnections:
+            - output->"Subgraph" woFlch7Y23aEAga60kdzw/gmail_query
+          visualData: 2873.062720057211/-367.0442027857627/330/329/var(--node-color-4)/var(--node-color-4)
+        '[ZgRjbo6M_iYlv2aO8bFob]:chat "output"':
+          data:
+            cache: false
+            enableFunctionUse: true
+            frequencyPenalty: 0
+            headers: []
+            maxTokens: 1024
+            model: gpt-3.5-turbo-1106
+            overrideModel: gpt-4-0125-preview
+            parallelFunctionCalling: true
+            presencePenalty: 0
+            stop: ""
+            temperature: 0.5
+            top_p: 1
+            useAsGraphPartialOutput: true
+            useFrequencyPenaltyInput: false
+            useMaxTokensInput: false
+            useModelInput: false
+            usePresencePenaltyInput: false
+            useStop: false
+            useStopInput: false
+            useTemperatureInput: false
+            useTopP: false
+            useTopPInput: false
+            useUseTopPInput: false
+            useUserInput: false
+          outgoingConnections:
+            - all-messages->"Assemble Prompt" k0cw-RIHdCdiDYbw2gcWr/message1
+            - function-calls->"Destructure" A6J6IbDUUlitlpovliX-1/object
+            - function-calls->"If" MUvLt2UFV54o5kEAlfHSd/if
+          visualData: 1803.8399745218046/-45.62367680574417/303.3660378630791/290/var(--node-color-2)/var(--grey-darkish)
+        '[_6TzLi2cF_bbpUva-zjWK]:match "Match"':
+          data:
+            cases:
+              - get_emails
+              - label_emails_as_read
+            exclusive: true
+          outgoingConnections:
+            - case1->"Subgraph" woFlch7Y23aEAga60kdzw/arguments
+            - case2->"Subgraph" xC__9gmoutv7OZaAkCXld/arguments
+          visualData: 2239.7877701343436/255.56790588390123/280/281//
+        '[_Mj6YQVFNWjP8sF5tv33O]:comment "Comment"':
+          data:
+            backgroundColor: rgba(0,0,0,0.05)
+            color: rgba(255,255,255,1)
+            height: 520.5727507531478
+            text: "#### Instructions/System prompt"
+          visualData: 1338.3943530884605/-709.5209808176276/821.1602958876267/296//
+        '[ah-gGj8x3PTYh7Mqzcqaf]:gptFunction "GPT Function"':
+          data:
+            description: Allows you to label emails as read. Do not do this without user
+              consent!
+            name: label_emails_as_read
+            schema: >-
+              {
+                "type": "object",
+                "properties": {
+                  "ids": {
+                    "type": "array",
+                    "items": {
+                      "type": "string"
+                    },
+                    "description": "Array of the email_id that shall be labeled as read"
+                  }
+                },
+                "required": ["ids"]
+              }
+          outgoingConnections:
+            - function->"Array" hMzmBR5IlUZpNzcf1JB8k/input2
+          visualData: 603.6960617190762/286.13986507640817/280/273//
+        '[dOhre404c4YFK5ILWdWyC]:text "Include Spam/Trash"':
+          data:
+            text: "false"
+          outgoingConnections:
+            - output->"Subgraph" woFlch7Y23aEAga60kdzw/gmail_includesspamtrash
+          visualData: 2199.7272620523604/-363.24719832332937/330/325/var(--node-color-4)/var(--node-color-4)
+        '[drOeXhFQVHY_CS2GPyVaU]:gptFunction "GPT Function"':
+          data:
+            description: Retrieves all new e-mails the user has not seen yet
+            name: get_emails
+            schema: |-
+              {
+                "type": "object",
+                "properties": {}
+              }
+          outgoingConnections:
+            - function->"Array" hMzmBR5IlUZpNzcf1JB8k/input1
+          visualData: 603.0707526857336/95.19338757856703/280/332//
+        '[hMzmBR5IlUZpNzcf1JB8k]:array "Array"':
+          data:
+            flatten: true
+            flattenDeep: false
+          outgoingConnections:
+            - output->"Passthrough" IW-Put5lMaTEtfJyFBs58/input1
+          visualData: 1000.1310340986125/258.30945238431786/230/274//
+        '[k0cw-RIHdCdiDYbw2gcWr]:assemblePrompt "Assemble Prompt"':
+          outgoingConnections:
+            - prompt->"Loop Controller" TSPU0krWGMZwSN1kYltg5/input1
+          visualData: 3309.704278466742/253.8638865994438/280/185//
+        '[pX3VQMMAL_3J9BtVvh10L]:graphInput "Graph Input"':
+          data:
+            dataType: chat-message[]
+            id: input
+            useDefaultValueInput: true
+          outgoingConnections:
+            - data->"Pop" YAIoB39q6CfyWgZF8dnzj/array
+          visualData: 593.3145213016596/-272.89558664858015/330/299/var(--node-color-3)/var(--grey-darkish)
+        '[tNE-CoZG1eCVhJxoB5MAF]:object "Object"':
+          data:
+            jsonTemplate: >-
+              [
+                  {
+                    "type": "system",
+                    "message": "Today is 16.2.2024.\n\nUser Instructions:\nYou are a friendly, helpful AI assistant."
+                  },
+                  {
+                    "type": "user",
+                    "message": "Show me my emails"
+                  }
+                ]
+          outgoingConnections:
+            - output->"Graph Input" pX3VQMMAL_3J9BtVvh10L/default
+          visualData: 232.68006732784335/-397.72498049761816/230/273//
+        '[tlclzCUg3nP4rfM7v5hN_]:prompt "Prompt"':
+          data:
+            enableFunctionCall: false
+            promptText: "{{input}}"
+            type: function
+            useNameInput: true
+            useTypeInput: false
+          outgoingConnections:
+            - output->"Assemble Prompt" k0cw-RIHdCdiDYbw2gcWr/message2
+          visualData: 3305.208393567217/-59.74215080816814/280/184//
+        '[uCTmJgS5n-NTFiUXILSuW]:comment "Comment"':
+          data:
+            backgroundColor: rgba(0,0,0,0.05)
+            color: rgba(255,255,255,1)
+            height: 272.5420937462956
+            text: >-
+              #### How to use
+
+              Instructions can be found here: 
+
+
+              ##### In Rivet you can configure/change
+
+              All suggested fields for editing are green
+
+
+              - The system prompt (output format/rules for urgency)
+
+              - Standard values if you want to include spam/trash, the general gmail query (as you would enter it into the gmail search bar) and the maximum amount of results to be returned
+
+              - Note: The more results you return, the more tokens being used = the higher the cost
+          visualData: 509.3304013050348/-711.3218074266822/820.7474375222264/295//
+        '[woFlch7Y23aEAga60kdzw]:subGraph "Subgraph"':
+          data:
+            graphId: 12B8qNj5aLnDTndI9bDIz
+            useAsGraphPartialOutput: false
+            useErrorOutput: false
+          outgoingConnections:
+            - output->"Coalesce" Ev8y4In3em-X0I8sFjq2s/input1
+          visualData: 2608.203101303149/-33.22691765884677/330/272/var(--node-color-6)/var(--grey-darkish)
+        '[x-Ey-U2zqDky1Elp7N5IN]:comment "Comment"':
+          data:
+            backgroundColor: rgba(0,0,0,0.05)
+            color: rgba(255,255,255,1)
+            height: 566
+            text: "#### Functions"
+          visualData: 503.2025427672655/-24.038414601970175/824.0531786265583/273//
+        '[xC__9gmoutv7OZaAkCXld]:subGraph "Subgraph"':
+          data:
+            graphId: QPCP4eNHFRJFotrsoPxkl
+            useAsGraphPartialOutput: false
+            useErrorOutput: false
+          outgoingConnections:
+            - output->"Coalesce" Ev8y4In3em-X0I8sFjq2s/input2
+          visualData: 2612.355265761923/230.36530352949043/330/282/var(--node-color-6)/var(--grey-darkish)
+    QPCP4eNHFRJFotrsoPxkl:
+      metadata:
+        description: ""
+        id: QPCP4eNHFRJFotrsoPxkl
+        name: Subgraphs/label_emails_as_read
+      nodes:
+        '[9RHlUkCdFVieWkUCQlfZr]:subGraph "Subgraph"':
+          data:
+            graphId: c4GZCzYtoRj8O_yEz0FXq
+            useAsGraphPartialOutput: false
+            useErrorOutput: false
+          outgoingConnections:
+            - output->"Subgraph" XF6VKyksqDSCc7gQYA5d_/headers_with_authorization
+          visualData: 256.5920246478555/276.92026904655296/330/128/var(--node-color-6)/var(--grey-darkish)
+        '[G7T9L7CFLJ5PZcene2fS5]:graphInput "Graph Input"':
+          data:
+            dataType: object
+            id: arguments
+            useDefaultValueInput: true
+          outgoingConnections:
+            - data->"Destructure" phjGUOJwSoUmOaGvqHzfC/object
+          visualData: 219.40928950466986/545.530693470976/330/100/var(--node-color-3)/var(--grey-darkish)
+        '[Hs2d7aZOCPmGpvu4ZOrIR]:array "Array"':
+          data:
+            flatten: true
+            flattenDeep: true
+          outgoingConnections:
+            - output->"Subgraph" XF6VKyksqDSCc7gQYA5d_/id
+          visualData: 1105.6164842041192/563.777553509103/230/124//
+        '[RSgKao9dFmW3P0LT61mH7]:graphOutput "Graph Output"':
+          data:
+            dataType: string
+            id: output
+          visualData: 1098.6321734190064/259.9600343567045/330/129/var(--node-color-4)/var(--grey-darkish)
+        '[XF6VKyksqDSCc7gQYA5d_]:subGraph "Subgraph"':
+          data:
+            graphId: 5CkuNh1XCPp_olySGpda3
+            useAsGraphPartialOutput: false
+            useErrorOutput: false
+          isSplitRun: true
+          outgoingConnections:
+            - output->"Graph Output" RSgKao9dFmW3P0LT61mH7/value
+          splitRunMax: 100
+          visualData: 698.1983550725504/276.25675952196724/330/120/var(--node-color-6)/var(--grey-darkish)
+        '[XRNfXgtG4vACR-AK2B7Ce]:comment "Comment"':
+          data:
+            backgroundColor: rgba(0,0,0,0.05)
+            color: rgba(255,255,255,1)
+            height: 562.6947452684947
+            text: "#### Authorization"
+          visualData: 186.01556416429256/-72.9587797336632/436.49215539255624/125//
+        '[bVemzV65IqYzJZbMbnB4n]:subGraph "Subgraph"':
+          data:
+            graphId: Xj1v74Jt7L-LwL2eJmKL6
+            useAsGraphPartialOutput: false
+            useErrorOutput: false
+          outgoingConnections:
+            - output->"Subgraph" 9RHlUkCdFVieWkUCQlfZr/input
+          visualData: 249.2162861818569/50.58899284624545/330/127/var(--node-color-6)/var(--grey-darkish)
+        '[phjGUOJwSoUmOaGvqHzfC]:destructure "Destructure"':
+          data:
+            paths:
+              - $.ids
+          isSplitRun: true
+          outgoingConnections:
+            - match_0->"Array" Hs2d7aZOCPmGpvu4ZOrIR/input1
+          splitRunMax: 100
+          visualData: 698.1983550725505/577.746175079328/280/123//
+        '[t4vYOhHwyjav-17EtSm5B]:object "Object"':
+          data:
+            jsonTemplate: |-
+              {
+                  "ids": [
+                    "18db7f22e7965acb",
+                    "18db6aef3d536a60"
+                  ]
+                }
+          outgoingConnections:
+            - output->"Graph Input" G7T9L7CFLJ5PZcene2fS5/default
+          visualData: -115.47385139306851/484.62203127782675/230/6//
+    Xj1v74Jt7L-LwL2eJmKL6:
+      metadata:
+        description: ""
+        id: Xj1v74Jt7L-LwL2eJmKL6
+        name: Functions/get_google_access_token
+      nodes:
+        '[2Wk1gSUXF5fNSJi0F757_]:graphOutput "Graph Output"':
+          data:
+            dataType: string
+            id: output
+          visualData: 1426.854288049706/508.05193605542553/330/35/var(--node-color-4)/var(--grey-darkish)
+        '[XTndrbuDaVgaLdQruR3DJ]:context "Context"':
+          data:
+            dataType: string
+            id: GOOGLE_CLIENT_SECRET
+            useDefaultValueInput: false
+          outgoingConnections:
+            - data->"Object" aHDh449JP8DKFXMU-lg46/client_secret
+          visualData: -81/605/330/28//
+        '[_1jZ_TLgOC7ckWNDZFQAw]:context "Context"':
+          data:
+            dataType: string
+            id: GOOGLE_CLIENT_ID
+            useDefaultValueInput: false
+          outgoingConnections:
+            - data->"Object" aHDh449JP8DKFXMU-lg46/client_id
+          visualData: -81/412/330/27//
+        '[aHDh449JP8DKFXMU-lg46]:object "Object"':
+          data:
+            body: ""
+            jsonTemplate: |-
+              {
+                "client_id": "{{client_id}}",
+                "client_secret": "{{client_secret}}",
+                "refresh_token": "{{refresh_token}}",
+                "grant_type": "refresh_token"
+              }
+          outgoingConnections:
+            - output->"Http Call" uPepuQfXDToA6I_03akWg/req_body
+          visualData: 385/534/230/24//
+        '[hrxrsFGbzSOMUqBJjfUMJ]:destructure "Destructure"':
+          data:
+            paths:
+              - $.access_token
+          outgoingConnections:
+            - match_0->"Graph Output" 2Wk1gSUXF5fNSJi0F757_/value
+          visualData: 1083.8154986446598/540.1426615158978/280/33//
+        '[pwFnZ8hGfbz9v6QS8gdKG]:object "Object"':
+          data:
+            jsonTemplate: |-
+              {
+                "Content-Type": "application/json"
+              }
+          outgoingConnections:
+            - output->"Http Call" uPepuQfXDToA6I_03akWg/headers
+          visualData: 387/278/230/25//
+        '[uPepuQfXDToA6I_03akWg]:httpCall "Http Call"':
+          data:
+            body: ""
+            errorOnNon200: true
+            headers: ""
+            method: POST
+            url: https://accounts.google.com/o/oauth2/token
+            useBodyInput: true
+            useHeadersInput: true
+          outgoingConnections:
+            - json->"Destructure" hrxrsFGbzSOMUqBJjfUMJ/object
+          visualData: 730/435/280/26//
+        '[vjvtYr74588IUoCvv1Klc]:context "Context"':
+          data:
+            dataType: string
+            id: GOOGLE_REFRESH_TOKEN
+            useDefaultValueInput: false
+          outgoingConnections:
+            - data->"Object" aHDh449JP8DKFXMU-lg46/refresh_token
+          visualData: -86/793/330/29//
+    c4GZCzYtoRj8O_yEz0FXq:
+      metadata:
+        description: ""
+        id: c4GZCzYtoRj8O_yEz0FXq
+        name: Functions/create_auth_header
+      nodes:
+        '[5oQf79_NBC1sxBj-R6IzG]:text "Text"':
+          data:
+            text: Bearer {{input}}
+          outgoingConnections:
+            - output->"Object" BuK-prO_w3Szgpcp4N6AT/input
+          visualData: 716/457.7975681056171/330/81//
+        '[BuK-prO_w3Szgpcp4N6AT]:object "Object"':
+          data:
+            jsonTemplate: |-
+              {
+                "Authorization": "{{input}}",
+                "Accept": "application/json"
+              }
+          outgoingConnections:
+            - output->"Graph Output" Zt43Ogi5JBn7GHe_ipTch/value
+          visualData: 1132.610836409082/395/230/82//
+        '[Zt43Ogi5JBn7GHe_ipTch]:graphOutput "Graph Output"':
+          data:
+            dataType: string
+            id: output
+          visualData: 1448/443/330/85/var(--node-color-4)/var(--grey-darkish)
+        '[zaGn_pMuWIGgTOG5eV3eh]:graphInput "Graph Input"':
+          data:
+            dataType: string
+            id: input
+            useDefaultValueInput: false
+          outgoingConnections:
+            - data->"Text" 5oQf79_NBC1sxBj-R6IzG/input
+          visualData: 259/440/330/80/var(--node-color-3)/var(--grey-darkish)
+    vQU0sb3qt4VkQkFETMidY:
+      metadata:
+        description: ""
+        id: vQU0sb3qt4VkQkFETMidY
+        name: Subgraphs/#2_get_email_content
+      nodes:
+        '[2WHiAyyIgS5VHjhEflduo]:text "Text"':
+          data:
+            text: https://gmail.googleapis.com/gmail/v1/users/me/messages/{{input}}
+          isSplitRun: true
+          outgoingConnections:
+            - output->"Http Call" MDUWi3BjOQ5YYWUc6LGFv/url
+          splitRunMax: 100
+          visualData: 510.5098873110843/847.1515258425956/330/82//
+        '[6hh3Qj8wNz90iE8djtTEK]:destructure "Destructure"':
+          data:
+            paths:
+              - $.id
+              - $.threadId
+          isSplitRun: true
+          outgoingConnections:
+            - match_0->"Text" 2WHiAyyIgS5VHjhEflduo/input
+          splitRunMax: 100
+          visualData: 519.8247405137048/590.4968147251732/280/86//
+        '[7BCgudCY52irLsV4jMPdX]:code "Code"':
+          data:
+            code: |
+              const combinedObject = {
+                  ...inputs.object1.value,
+                  ...inputs.object2.value,
+                  ...inputs.object3.value
+              };
+
+              return {
+                  output: {
+                      type: 'object',
+                      value: combinedObject
+                  }
+              };
+            inputNames:
+              - object1
+              - object2
+              - object3
+            outputNames:
+              - output
+          outgoingConnections:
+            - output->"Graph Output" WsTRyd368Fslpsaa0YmG2/value
+          visualData: 2027.1407372463482/712.3971774854309/230/118//
+        '[GOHuL6-02fYhw8mzVJhGw]:code "Code"':
+          data:
+            code: >
+              // This example assumes an alternativeBase64Decode function is
+              available
+
+              // For demonstration, this function needs to be implemented based on your environment
+
+              function alternativeBase64Decode(str) {
+                  // Replace base64url characters to base64 characters
+                  const base64 = str.replace(/-/g, '+').replace(/_/g, '/');
+                  // Decode base64 (this part depends on your environment, `atob` for browsers as example)
+                  const decodedData = atob(base64); // atob is available in browser environments
+                  return decodedData;
+              }
+
+
+              const textPart = inputs.payload.value.parts.find(part => part.mimeType === 'text/plain');
+
+
+              if (textPart && textPart.body && textPart.body.data) {
+                  const decodedText = alternativeBase64Decode(textPart.body.data);
+                  return {
+                      output: {
+                          type: 'string',
+                          value: decodedText
+                      }
+                  };
+              } else {
+                  return {
+                      output: {
+                          type: 'string',
+                          value: 'No text/plain content found.'
+                      }
+                  };
+              }
+            inputNames:
+              - payload
+            outputNames:
+              - output
+          outgoingConnections:
+            - output->"Object" RVHn-9UBQDasSDweNt6An/input
+          visualData: 1351.1360611591747/1115.0527835897524/230/103//
+        '[MDUWi3BjOQ5YYWUc6LGFv]:httpCall "Http Call"':
+          data:
+            body: ""
+            errorOnNon200: true
+            headers: ""
+            method: GET
+            url: ""
+            useHeadersInput: true
+            useMethodInput: false
+            useUrlInput: true
+          outgoingConnections:
+            - json->"Destructure" OC8Dz724c4ICrV0EnAuy9/object
+          visualData: 911.2681827414598/253.39523688061618/280/87//
+        '[OC8Dz724c4ICrV0EnAuy9]:destructure "Destructure"':
+          data:
+            paths:
+              - $.id
+              - $.labelIds
+              - $.payload
+          outgoingConnections:
+            - match_0->"Object" QCOIgMzW96x4cR0TIYEP6/id
+            - match_0->"Text" X-Vepknw-NZG36pIRnfmR/id
+            - match_1->"Object" QCOIgMzW96x4cR0TIYEP6/labels
+            - match_2->"Code" GOHuL6-02fYhw8mzVJhGw/payload
+            - match_2->"Code" jrdaSbjx3xj3Xs1lDB2-F/payload
+          visualData: 1319.3830631889682/325.7918398771006/280/125//
+        '[QCOIgMzW96x4cR0TIYEP6]:object "Object"':
+          data:
+            jsonTemplate: |-
+              {
+                "email_id": "{{id}}",
+                "labels": "{{labels}}",
+                "gmailUrl": "{{gmailUrl}}"
+              }
+          outgoingConnections:
+            - output->"Code" 7BCgudCY52irLsV4jMPdX/object1
+          visualData: 1690.6991812923445/358.30719845558986/230/128//
+        '[RVHn-9UBQDasSDweNt6An]:object "Object"':
+          data:
+            jsonTemplate: |-
+              {
+                "content": "{{input}}"
+              }
+          outgoingConnections:
+            - output->"Code" 7BCgudCY52irLsV4jMPdX/object3
+          visualData: 1674.3087263483433/1289.842668653155/230/106//
+        '[TnMExyDOqJ4963eOdr0aH]:graphInput "Graph Input"':
+          data:
+            dataType: object
+            id: message_ids
+            useDefaultValueInput: false
+          outgoingConnections:
+            - data->"Destructure" 6hh3Qj8wNz90iE8djtTEK/object
+          visualData: 72.27769346507183/556.2910179212427/330/81/var(--node-color-3)/var(--grey-darkish)
+        '[WsTRyd368Fslpsaa0YmG2]:graphOutput "Graph Output"':
+          data:
+            dataType: string
+            id: output
+          visualData: 2370.9852944300883/872.484352879787/330/117/var(--node-color-4)/var(--grey-darkish)
+        '[X-Vepknw-NZG36pIRnfmR]:text "Text"':
+          data:
+            text: https://mail.google.com/mail/u/0/#all/{{id}}
+          outgoingConnections:
+            - output->"Object" QCOIgMzW96x4cR0TIYEP6/gmailUrl
+          visualData: 1631.8872839450316/78.8064537579266/330/119//
+        '[_0AmxdSBq3N3HTHQ2YCdy]:graphInput "Graph Input"':
+          data:
+            dataType: object
+            id: headers_with_authorization
+            useDefaultValueInput: false
+          outgoingConnections:
+            - data->"Http Call" MDUWi3BjOQ5YYWUc6LGFv/headers
+          visualData: 70.98877524787753/290.77386517924674/330/80/var(--node-color-3)/var(--grey-darkish)
+        '[h3hMs-gmjxgpTyk1KNkJ6]:object "Object"':
+          data:
+            jsonTemplate: "{{input}}"
+          outgoingConnections:
+            - output->"Code" 7BCgudCY52irLsV4jMPdX/object2
+          visualData: 1673.051245160837/857.2691401509213/230/109//
+        '[jrdaSbjx3xj3Xs1lDB2-F]:code "Code"':
+          data:
+            code: >
+              // Initialize the result object
+
+              let result = {};
+
+
+              // Extract the headers and body from the payload
+
+              let headers = inputs.payload.value.headers;
+
+              let body = inputs.payload.value.body;
+
+
+              // Iterate over the keys array
+
+              inputs.keys.value.forEach(key => {
+                  // Find the header with the matching key
+                  let header = headers.find(header => header.name === key);
+                  if (header) {
+                      // If a matching header is found, add it to the result object
+                      result[key] = header.value;
+                  }
+
+                  // If the key is in the body, add it to the result object
+                  if (body[key]) {
+                      result[key] = body[key];
+                  }
+              });
+
+
+              // Return the result object
+
+              return {
+                  extractedValues: {
+                      type: 'object',
+                      value: result
+                  }
+              };
+            inputNames:
+              - payload
+              - keys
+            outputNames:
+              - extractedValues
+          outgoingConnections:
+            - extractedValues->"Object" h3hMs-gmjxgpTyk1KNkJ6/input
+          visualData: 1349.878579971668/632.1800075872593/230/102//
+        '[qYRlf_Xr5tRlEIsCic8qi]:object "Object"':
+          data:
+            jsonTemplate: '["From", "Subject", "Date"]'
+          outgoingConnections:
+            - output->"Code" jrdaSbjx3xj3Xs1lDB2-F/keys
+          visualData: 1040.538207845071/864.8140272759604/230/94//
+  metadata:
+    description: ""
+    id: j-Rnql-Pohiy9gmtkmWjH
+    mainGraphId: Inz8-ncT3Cw5RRftb1hDa
+    title: E-Mail-Assistant
+  plugins: []
