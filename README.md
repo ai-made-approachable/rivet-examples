@@ -8,6 +8,7 @@ Just press on "Code" and "Download Zip" or go to a specific file and press on "D
 There is a corresponding video tutorial on Youtube for each file:
 | Video title | Youtube Link | File/Link |
 | -- | -- | -- |
+| Rivet: Break Free from Chat: AI-Powered Interactivity on Websites - Low Code Prototyping with Anvil| https://youtu.be/FbyPw7AcNEo | chatbot-ui-graphs/frontend_prototype_shopping.rivet-project |
 | Rivet: Chat with Your Emails! - Build an AI Email-Assistant with GPT-4 and Gmail - No Code Solution | https://youtu.be/n3Cp_xQcN2s | chatbot-ui-graphs/chat_with_your_emails.rivet-project + chatbot-ui-graphs/chat_with_your_emails.md |
 | Rivet: Launch Rivet Graphs with Chatbot UI on Railway.app - Quick, Simple & Free Cloud Deployment!| https://youtu.be/WY2t1wFg50M | chatbot-ui-graphs/example_no_system_prompt.rivet-project + chatbot-ui-graphs/example_system_prompt.rivet-project |
 | Rivet: Unlock Specialized AI Assistants in your Rivet Chats with @Mentions! - Easy No Code Tutorial| https://youtu.be/XNfTCxF-CU4 | chatbot-ui-graphs/@mentions_for_ai_assistants.rivet-project* |

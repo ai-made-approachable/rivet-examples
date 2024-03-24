@@ -1,0 +1,2900 @@
+version: 4
+data:
+  attachedData:
+    trivet:
+      testSuites: []
+      version: 1
+  graphs:
+    9xZtrxYTC4kPibvx_P8UX:
+      metadata:
+        description: ""
+        id: 9xZtrxYTC4kPibvx_P8UX
+        name: Functions/remove_highlights
+      nodes:
+        '[GUSnQRcsmNiG2ZMLjne_O]:object "Object"':
+          data:
+            jsonTemplate: |-
+              {
+                "highlightedProducts": []
+              }
+          outgoingConnections:
+            - output->"Subgraph" _CtyHxm9XmegEZx9Vjj0_/body
+          visualData: 1047/547/230/101//
+        '[Uol6-BdNciJCFNvg2tTiw]:graphOutput "Graph Output"':
+          data:
+            dataType: string
+            id: context
+          visualData: 1808.4190900048889/559.3441730305635/330/105/var(--node-color-4)/var(--grey-darkish)
+        '[_CtyHxm9XmegEZx9Vjj0_]:subGraph "Subgraph"':
+          data:
+            graphId: XdJilU7aYfVmv3dxp-4z6
+            useAsGraphPartialOutput: false
+            useErrorOutput: false
+          outgoingConnections:
+            - context->"Graph Output" Uol6-BdNciJCFNvg2tTiw/value
+          visualData: 1414.3487246919203/575.5510544682144/330/95/var(--node-color-6)/var(--grey-darkish)
+        '[xUzcYGl4U55lcOcYHeB-e]:text "Text"':
+          data:
+            text: PATCH
+          outgoingConnections:
+            - output->"Subgraph" _CtyHxm9XmegEZx9Vjj0_/method
+          visualData: 1017/361/330/102//
+        '[yGzDUp8Xr-gsevvYz_4tN]:graphInput "Graph Input"':
+          data:
+            dataType: string
+            id: go
+            useDefaultValueInput: true
+          visualData: 599/606/330/97/var(--node-color-3)/var(--grey-darkish)
+    F5o7IRqn0luNLmYe7Imig:
+      metadata:
+        description: ""
+        id: F5o7IRqn0luNLmYe7Imig
+        name: Subgraphs/generate_context
+      nodes:
+        '[ElS1jmg-2-E6O8DfXfTh5]:ifElse "If/Else"':
+          data:
+            unconnectedControlFlowExcluded: true
+          outgoingConnections:
+            - output->"Coalesce" km8vF7SHrMGcLR6r2keo6/input2
+          visualData: 958.0157280505256/525.4350348803252/205/33//
+        '[FPMkUV_PsJ_mmOk_fhzfe]:graphOutput "Graph Output"':
+          data:
+            dataType: string
+            id: context
+          visualData: 2085.430119425999/403.9515773869926/330/17/var(--node-color-4)/var(--grey-darkish)
+        '[I26yqnCdmYkCHcjCyxu64]:code "Code"':
+          data:
+            code: >
+              let filteredObject = {...inputs.originalObject.value}; // Create a
+              copy of the original object
+
+
+              inputs.keysToRemove.value.forEach(key => {
+                  delete filteredObject[key]; // Remove the key from the copied object
+              });
+
+
+              return {
+                  filteredObject: {
+                      type: 'object',
+                      value: filteredObject
+                  }
+              };
+            inputNames:
+              - keysToRemove
+              - originalObject
+            outputNames:
+              - filteredObject
+          outgoingConnections:
+            - filteredObject->"Coalesce" km8vF7SHrMGcLR6r2keo6/input1
+          visualData: 953.8162522594174/694.2257359804786/230/29//
+        '[PGYosVKd8RD3_vs9GDB0c]:text "Text"':
+          data:
+            text: >-
+              The user sees the following products and information in the order
+              given:
+
+              {{products}}
+
+
+              Hidden products: {{hidden_products}}
+
+              Highlighted products: {{highlighted_products}}
+          outgoingConnections:
+            - output->"Graph Output" FPMkUV_PsJ_mmOk_fhzfe/value
+          visualData: 1671.9818555657278/355.43873620793585/330/14//
+        '[bCGCdt_SrKoprWFZx1_U8]:destructure "Destructure"':
+          data:
+            paths:
+              - $.hiddenProducts
+              - $.highlightedProducts
+              - $.products
+          outgoingConnections:
+            - match_0->"If/Else" ElS1jmg-2-E6O8DfXfTh5/if
+            - match_0->"If/Else" wWQynZoirCHx85_bmdttb/if
+            - match_0->"If/Else" wWQynZoirCHx85_bmdttb/true
+            - match_0->"Text" PGYosVKd8RD3_vs9GDB0c/hidden_products
+            - match_1->"Text" PGYosVKd8RD3_vs9GDB0c/highlighted_products
+            - match_2->"Code" I26yqnCdmYkCHcjCyxu64/originalObject
+            - match_2->"If/Else" ElS1jmg-2-E6O8DfXfTh5/false
+          visualData: 899.0583779549987/150.02034278821418/280/31//
+        '[km8vF7SHrMGcLR6r2keo6]:coalesce "Coalesce"':
+          outgoingConnections:
+            - output->"Code" up40Ry1T6xWH_E_NOcdko/input
+          visualData: 1271.4628853920533/410.42650619388985/180/37//
+        '[pfm9TsJdPHUAuiCe0pzcI]:graphInput "Graph Input"':
+          data:
+            dataType: object
+            id: data
+            useDefaultValueInput: true
+          outgoingConnections:
+            - data->"Destructure" bCGCdt_SrKoprWFZx1_U8/object
+          visualData: 497/427/330/4/var(--node-color-3)/var(--grey-darkish)
+        '[up40Ry1T6xWH_E_NOcdko]:code "Code"':
+          data:
+            code: |
+              const modifiedObject = { ...inputs.input.value };
+              Object.keys(modifiedObject).forEach(key => {
+                  delete modifiedObject[key].image;
+                  delete modifiedObject[key].url;
+              });
+              return {
+                  output: {
+                      type: 'object',
+                      value: modifiedObject
+                  }
+              };
+            inputNames:
+              - input
+            outputNames:
+              - output
+          outgoingConnections:
+            - output->"Text" PGYosVKd8RD3_vs9GDB0c/products
+          visualData: 1429.3285698830614/636.0189428953402/230/35//
+        '[wWQynZoirCHx85_bmdttb]:ifElse "If/Else"':
+          data:
+            unconnectedControlFlowExcluded: true
+          outgoingConnections:
+            - output->"Code" I26yqnCdmYkCHcjCyxu64/keysToRemove
+          visualData: 961.3583672349378/362.75992790560827/205/32//
+        '[wdct_FA7Ehn0SAv8GOlA0]:object "Object"':
+          data:
+            jsonTemplate: >-
+              {
+                "highlightedProducts": [],
+                "hiddenProducts": ["0Q95535GJ5", "6ORR83R5GP"],
+                "products": {
+                  "0Q95535GJ5": {
+                    "image": "https://cdn.idealo.com/folder/Product/200840/8/200840891/s1_produktbild_gross/apple-macbook-air-13-2020-m1-mgn63d-a.jpg",
+                    "name": "Apple MacBook Air 2020",
+                    "price": 879,
+                    "url": "https://www.idealo.de/relocator/relocate?categoryId=3751&offerKey=6265f98cfbfeab42f7afe27acbdb3d93&offerListId=200840891-BA6CDBF73EE2AAA72E79D7A01FF5C0A5&pos=1&price=849.00&productid=200840891&sid=6980&type=offer"
+                  },
+                  "6ORR83R5GP": {
+                    "image": "https://cdn.idealo.com/folder/Product/203430/2/203430296/s1_produktbild_mittelgross/apple-macbook-pro-14-m3-mtl73d-a.jpg",
+                    "name": "Apple MacBook Air",
+                    "price": 1783,
+                    "url": "https://www.idealo.de/relocator/relocate?categoryId=3751&offerKey=ca749ff67b2ceb640dbf64eb7445c1b7&offerListId=203430296-8C88335ABF0D964BBB6C488DD2BF98DD&pos=1&price=1738.93&productid=203429744&sid=21830&type=offer"
+                  },
+                  "E72EXCFK7C": {
+                    "image": "https://cdn.idealo.com/folder/Product/201987/6/201987663/s1_produktbild_max/apple-macbook-air-13-2022-m2-mlxw3d-a.jpg",
+                    "name": "Apple MacBook Air 2022",
+                    "price": 1020,
+                    "url": "https://www.idealo.de/relocator/relocate?categoryId=3751&offerKey=a585ba86d08498ddc76c3ad21e2fcbd0&offerListId=201987663-9347E95A0E319A1B21E6BB4EE6C62868&pos=1&price=1029.99&productid=201987663&sid=9701&type=offer"
+                  },
+                  "EFLEC214MQ": {
+                    "image": "https://cdn.idealo.com/folder/Product/202850/5/202850560/s1_produktbild_max/apple-macbook-air-15-2023-m2-mqkw3d-a.jpg",
+                    "name": "Apple MacBook Air 2023 - 15.3 inch",
+                    "price": 1263,
+                    "url": "https://www.idealo.de/relocator/relocate?categoryId=3751&offerKey=5dcb017615d3c138e42a88e6902b8882&offerListId=202850560-87BA5F0D8CAB331F3C7EABF2C1837D99&pos=1&price=1263.99&productid=202850560&sid=9701&type=offer"
+                  },
+                  "HWZ9RW4YNQ": {
+                    "image": "https://cdn.idealo.com/folder/Product/201987/6/201987663/s1_produktbild_mittelgross/apple-macbook-air-13-2022-m2-mlxw3d-a.jpg",
+                    "name": "Apple MacBook Pro 2023",
+                    "price": 1029,
+                    "url": "https://www.idealo.de/relocator/relocate?categoryId=3751&offerKey=1fcd33e83b78674226b46dd421a5280c&offerListId=201987664-FD6206B3D8C36B8DE11A864F35DFDE1B&pos=1&price=1029.00&productid=201981788&sid=317105&type=offer"
+                  },
+                  "N9O1YEP7JI": {
+                    "image": "https://cdn.idealo.com/folder/Product/201987/6/201987669/s1_produktbild_max/apple-macbook-air-13-2022-m2-mly33d-a.jpg",
+                    "name": "Apple MacBook Air 2022",
+                    "price": 1029,
+                    "url": "https://www.idealo.de/relocator/relocate?categoryId=3751&offerKey=d53fc94a3651ddc8c0c8d3745bc9c051&offerListId=201987669-155AFB84BA4FA86F4706938AE213A34E&pos=1&price=1029.99&productid=201987669&sid=9701&type=offer"
+                  },
+                  "QQ5M9EYZKS": {
+                    "image": "https://cdn.idealo.com/folder/Product/203431/5/203431556/s1_produktbild_max/apple-macbook-pro-14-m3-mrx33d-a.jpg",
+                    "name": "Apple MacBook Pro 2023",
+                    "price": 2158,
+                    "url": "https://www.idealo.de/relocator/relocate?categoryId=3751&offerKey=87b6adc9d430688e0949b68b82cc52c5&price=2158.95&productid=203431556&sid=295945&type=offer&pos=-2"
+                  },
+                  "UBPUJQOH20": {
+                    "image": "https://cdn.idealo.com/folder/Product/202850/4/202850441/s1_produktbild_max/apple-macbook-air-15-2023-m2-mqkp3d-a.jpg",
+                    "name": "Apple MacBook Air 2023 - 15.3 inch",
+                    "price": 1279,
+                    "url": "https://www.idealo.de/relocator/relocate?categoryId=3751&offerKey=28828a54b3b87b62262a3b976eb9cc39&offerListId=202850441-E63EA1A79891E660D5FD73A933CADC22&pos=1&price=1279.00&productid=202850441&sid=9701&type=offer"
+                  }
+                }
+              }
+          outgoingConnections:
+            - output->"Graph Input" pfm9TsJdPHUAuiCe0pzcI/default
+          visualData: 145/92/230/3//
+    PwT8NnSVno8aQrDJgbbin:
+      metadata:
+        description: ""
+        id: PwT8NnSVno8aQrDJgbbin
+        name: "#main"
+      nodes:
+        '[-gI3DV0oD644FKSZe6pRy]:replaceDataset "Replace Dataset"':
+          data:
+            datasetId: ""
+            useDatasetIdInput: true
+          visualData: 1009.9370814159178/-36.28116626282686/280/305//
+        '[-mcyuAoXp4vJYJ8MqXteI]:coalesce "Coalesce"':
+          outgoingConnections:
+            - output->"Output" yMGkC05ju5JVQKx1_njSU/systemPrompt
+          visualData: 772.8092334417267/273.7184545168583/180/281//
+        '[1Ts7YjNeQFNiLczUhp-R-]:chat "Output"':
+          data:
+            cache: false
+            enableFunctionUse: false
+            headers: []
+            maxTokens: 1024
+            model: gpt-3.5-turbo
+            parallelFunctionCalling: true
+            stop: ""
+            temperature: 0.5
+            top_p: 1
+            useAsGraphPartialOutput: true
+            useFrequencyPenaltyInput: false
+            useMaxTokensInput: false
+            useModelInput: true
+            usePresencePenaltyInput: false
+            useStop: false
+            useStopInput: false
+            useTemperatureInput: false
+            useTopP: false
+            useTopPInput: false
+            useUseTopPInput: false
+            useUserInput: false
+          visualData: 2387.6129901084046/571.5648464251574/230/280/var(--node-color-2)/var(--grey-darkish)
+        '[5S5T0mvSPtbMB5meLYBlM]:comment "Comment"':
+          data:
+            backgroundColor: rgba(0,0,0,0.05)
+            color: rgba(255,255,255,1)
+            height: 558
+            text: "#### Delete old context if this is a fresh interaction"
+          visualData: 385.16728701221285/-376.9137468450256/1106.7564536772172/273//
+        '[6LXiNvQIoi6N-eHJDe2e6]:subGraph "Subgraph"':
+          data:
+            graphId: oQ_7oLcxLpvDEvrdSp6uH
+            useAsGraphPartialOutput: false
+            useErrorOutput: false
+          outgoingConnections:
+            - context->"Coalesce" i4i_CtSCST1mXIwNKtKH_/input1
+          visualData: 1539.6360151206472/265.5355756723773/330/106/var(--node-color-6)/var(--grey-darkish)
+        '[6c805IlCNdddS1W-gRr8Z]:createDataset "Create Dataset"':
+          outgoingConnections:
+            - datasetId_out->"Load Dataset" Dnchuo1R7wd-Ww_yVcrym/datasetId
+          visualData: 1670.5557013901473/-258.3008098954651/280/313//
+        '[7IkzdsvmrULV7g83dLpt1]:if "If"':
+          data:
+            unconnectedControlFlowExcluded: true
+          outgoingConnections:
+            - output->"Append to Dataset" K_g2adWfhdxEInXoE9Boz/datasetId
+          visualData: 1708.7128202553622/1543.3082720635757/155/278//
+        '[7Qb6NmwjHeP_Zc8hPDpm6]:prompt "Prompt"':
+          data:
+            enableFunctionCall: false
+            promptText: Succesfully called {{function_name}}
+            type: function
+            useNameInput: true
+            useTypeInput: false
+          outgoingConnections:
+            - output->"Assemble Prompt" ZUjMjeXvSqzieVtIr55BX/message2
+          visualData: 2037.4603221603531/818.0467613799599/280/147//
+        '[7XibCw4TseF0nTuzTaJK-]:pop "Pop"':
+          data:
+            fromFront: true
+          outgoingConnections:
+            - restOfArray->"Array" 7f2wYKc7Q9-t-vjAEg0mW/input1
+            - restOfArray->"Array" G1chOqRYD41VGk-SN_HUn/input1
+            - restOfArray->"Output" yMGkC05ju5JVQKx1_njSU/prompt
+          visualData: 413.3221262232364/363.19330894453543/230/22//
+        '[7f2wYKc7Q9-t-vjAEg0mW]:array "Array"':
+          data:
+            flatten: true
+            flattenDeep: false
+          outgoingConnections:
+            - length->"Compare" eKy52pv7wXbkHIczI7XTx/b
+          visualData: 422.60393373724554/-252.8621163113878/230/237//
+        '[8re9Ns6ipkLexzubgMbIT]:text "Text"':
+          data:
+            text: >-
+              You are the perfect shopping assistant. If you search for products
+              those products will be shown to the user in a UI and you will be
+              informed about what the user sees. You also have multiple
+              functions to highlight products for the user or remove unwanted
+              products from the view, as well as functions to reset those.
+
+
+              You can use the tools to give the user a fantastic shopping experience! Make sure you do only add complementary information in your responses (e.g. inform the user what you did for him). Or tell him about things he cannot see that are related to the users inquiries.
+
+
+              Notes:
+
+              - Do NOT use the "search_products" function if you can already see products in the context!
+
+              - Do NOT use the "search_products" function to filter products, use "hide_products" instead
+
+              - The User can NOT see the product ids. If products have the same name, refer to them with their position they are being shown in, as the user can see a number for each product tile
+
+              - Only call ONE tool/function at a time!
+
+              - Only call a tool/function if applicable. You can also just reply!
+          outgoingConnections:
+            - output->"Coalesce" -mcyuAoXp4vJYJ8MqXteI/input2
+            - output->"Text" PXFzADuamhBm6SLB1HOZg/system_prompt
+            - output->"Text" j8jSsDqlSBz1kf7D2Smzl/system_prompt
+          visualData: -70.89013320189324/-301.1670592090825/330/324//
+        '[9PXHrAVP6xTV641K5yW0o]:gptFunction "GPT Function"':
+          data:
+            description: Shows all products/shows hidden products again
+            name: show_all_products
+            schema: |-
+              {
+                "type": "object",
+                "properties": {}
+              }
+          outgoingConnections:
+            - function->"Array" Ci8jzrfzKl2OjdCb0hVV9/input4
+          visualData: -59.65619843438996/1313.5804200824793/280/298//
+        '[Ci8jzrfzKl2OjdCb0hVV9]:array "Array"':
+          data:
+            flatten: true
+            flattenDeep: false
+          outgoingConnections:
+            - output->"Output" yMGkC05ju5JVQKx1_njSU/functions
+          visualData: 421.2428852030791/625.8984817759814/230/55//
+        '[Dnchuo1R7wd-Ww_yVcrym]:loadDataset "Load Dataset"':
+          data:
+            datasetId: ""
+            useDatasetIdInput: true
+          outgoingConnections:
+            - dataset->"Destructure" X5NsUCvqr6iAXH05aoTcv/object
+          visualData: 2024.0867252022254/-277.0294661109454/280/265//
+        '[EH2yyjoFvwsEwIzRXs9P0]:gptFunction "GPT Function"':
+          data:
+            description: Removes all highlighted products
+            name: remove_highlights
+            schema: |-
+              {
+                "type": "object",
+                "properties": {}
+              }
+          outgoingConnections:
+            - function->"Array" Ci8jzrfzKl2OjdCb0hVV9/input3
+          visualData: -58.967552767304/1105.2307990495863/280/299//
+        '[EgjpiX1UFORRWROGy_jEM]:destructure "Destructure"':
+          data:
+            paths:
+              - $.name
+              - $.arguments
+              - $.id
+          outgoingConnections:
+            - match_0->"Text" olPrnm2S7ZjbSzuXnMSI1/input
+            - match_1->"Match" xaiLk-fEP2zyvHKuAQxnx/value
+            - match_2->"Prompt" 7Qb6NmwjHeP_Zc8hPDpm6/name
+          visualData: 750.0697479722805/892.117795889435/280/76//
+        '[FiuDSntB4wTsttlcrZH9p]:comment "Comment"':
+          data:
+            backgroundColor: rgba(191,182,133,0.15)
+            color: rgba(255,255,255,1)
+            height: 960.5473803381685
+            text: "#### Interaction before function-call"
+          visualData: 387.7191800929451/186.2657502675039/676.4070885583783/317//
+        '[G1chOqRYD41VGk-SN_HUn]:array "Array"':
+          data:
+            flatten: true
+            flattenDeep: false
+          visualData: 426.25587827136707/1465.044609754679/230/198//
+        '[GfT9WtI765l4hBorfqvTI]:number "Number"':
+          data:
+            round: false
+            roundTo: 0
+            value: 1
+          outgoingConnections:
+            - value->"Compare" eKy52pv7wXbkHIczI7XTx/a
+          visualData: 706.8451403532373/-254.24865878268545/148.19399419344631/252//
+        '[HiK6_lSDCMazdqtmBmSTH]:subGraph "Subgraph"':
+          data:
+            graphId: heT-kIJ8Ws5PR7h5oWZyh
+            useAsGraphPartialOutput: false
+            useErrorOutput: false
+          outgoingConnections:
+            - context->"Coalesce" i4i_CtSCST1mXIwNKtKH_/input4
+          visualData: 1536.0029622392556/770.0472746525203/330/102/var(--node-color-6)/var(--grey-darkish)
+        '[HvCJLGoxYV7ntjGqYeSYJ]:graphInput "Graph Input"':
+          data:
+            dataType: chat-message[]
+            id: input
+            useDefaultValueInput: false
+          outgoingConnections:
+            - data->"Pop" 7XibCw4TseF0nTuzTaJK-/array
+          visualData: -68.87802896502905/488.2328154739754/330/303/var(--node-color-3)/var(--grey-darkish)
+        '[JS99uXSVSdFhH7ziusU59]:text "Text"':
+          data:
+            text: context
+          outgoingConnections:
+            - output->"If" 7IkzdsvmrULV7g83dLpt1/value
+            - output->"If" _PD0mtLk6cAPP53hthKWl/value
+          visualData: 416.9648260980906/1271.1510166787257/237.1823232487949/178//
+        '[K_g2adWfhdxEInXoE9Boz]:appendToDataset "Append to Dataset"':
+          data:
+            datasetId: ""
+            useDatasetIdInput: true
+          visualData: 2003.4852785124713/1315.799081061175/280/275//
+        '[KgKrx0evCA_zIQyyBZyno]:comment "Comment"':
+          data:
+            backgroundColor: rgba(0,0,0,0.05)
+            color: rgba(255,255,255,1)
+            height: 2130.2314672942325
+            text: "#### Inputs"
+          visualData: -129.74507109343978/-373.0601028480983/507/304//
+        '[KjRGXO0IMbSJOtsR8UmeT]:comment "Comment"':
+          data:
+            backgroundColor: rgba(138,130,104,0.23)
+            color: rgba(255,255,255,1)
+            height: 953.894551858019
+            text: "#### Handle function calls"
+          visualData: 1077.5641670367543/190.96338351410807/882.6134616931995/315//
+        '[PXFzADuamhBm6SLB1HOZg]:text "Text"':
+          data:
+            text: |-
+              {{system_prompt}}
+              {{context}}
+          outgoingConnections:
+            - output->"Coalesce" -mcyuAoXp4vJYJ8MqXteI/input1
+          visualData: 2017.9495455175163/-64.74140819858167/330/265//
+        '[Q2kLLxbO67RELiyLe_zjy]:text "Text"':
+          data:
+            text: context
+          outgoingConnections:
+            - output->"If" qX2K0wFnU9FOqvhR6v7BX/value
+          visualData: 1324.1391382018078/-230.70717184082235/223.0053158606504/318//
+        '[QmpyUEs2suOoVreqcT7bo]:text "Text"':
+          data:
+            text: |-
+              # Context
+              {{context}}
+
+              # All product information
+              {{products}}
+          outgoingConnections:
+            - output->"Append to Dataset" K_g2adWfhdxEInXoE9Boz/data
+            - output->"If" 7IkzdsvmrULV7g83dLpt1/if
+            - output->"If" _PD0mtLk6cAPP53hthKWl/if
+            - output->"Text" j8jSsDqlSBz1kf7D2Smzl/context
+          visualData: 1526.3800859024577/1203.2469634572772/330/165//
+        '[RjnEcB1VNvlxLEmRbjX7H]:gptFunction "GPT Function"':
+          data:
+            description: Searches products based on a query provided
+            name: search_products
+            schema: >-
+              {
+                "type": "object",
+                "properties": {
+                    "query": {
+                        "type": "string",
+                        "description": "The search query to find matching products"
+                    }
+                },
+                "required": ["query"]
+              }
+          outgoingConnections:
+            - function->"Array" Ci8jzrfzKl2OjdCb0hVV9/input5
+          visualData: -56.36540966571073/1528.717861895338/280/327//
+        '[VaJVJCvD32iNHU_eQKIZX]:subGraph "Subgraph"':
+          data:
+            graphId: 9xZtrxYTC4kPibvx_P8UX
+            useAsGraphPartialOutput: false
+            useErrorOutput: false
+          outgoingConnections:
+            - context->"Coalesce" i4i_CtSCST1mXIwNKtKH_/input3
+          visualData: 1537.2139798663861/598.9296061801963/330/105/var(--node-color-6)/var(--grey-darkish)
+        '[VubJTIdTzxmOuzJ1oFyR6]:gptFunction "GPT Function"':
+          data:
+            description: Highlightes one or more products by IDs. Replaces previously
+              highlighted products.
+            name: highlight_products
+            schema: |-
+              {
+                "type": "object",
+                "properties": {
+                    "ids": {
+                        "type": "array",
+                        "items": {
+                            "type": "string"
+                        },
+                        "description": "Array of product IDs to highlight"
+                    }
+                },
+                "required": ["ids"]
+              }
+          outgoingConnections:
+            - function->"Array" Ci8jzrfzKl2OjdCb0hVV9/input2
+          visualData: -59.230960847442546/902.5911126302027/280/326//
+        '[X5NsUCvqr6iAXH05aoTcv]:destructure "Destructure"':
+          data:
+            paths:
+              - $.[0].data
+          outgoingConnections:
+            - match_0->"Text" PXFzADuamhBm6SLB1HOZg/context
+          visualData: 1680.1208207510335/-9.760446761077521/280/265//
+        '[ZUjMjeXvSqzieVtIr55BX]:assemblePrompt "Assemble Prompt"':
+          outgoingConnections:
+            - prompt->"Output" 1Ts7YjNeQFNiLczUhp-R-/prompt
+          visualData: 2036.691544646192/575.7257016829611/280/163//
+        '[_PD0mtLk6cAPP53hthKWl]:if "If"':
+          data:
+            unconnectedControlFlowExcluded: true
+          outgoingConnections:
+            - output->"Append to Dataset" K_g2adWfhdxEInXoE9Boz/id
+          visualData: 1479.9040463445242/1544.8916264650782/155/277//
+        '[aEr5UbfeQ4qjPW4iJT1Tm]:subGraph "Subgraph"':
+          data:
+            graphId: Z6YcIWxAp2GUZgmD1LHmp
+            useAsGraphPartialOutput: false
+            useErrorOutput: false
+          outgoingConnections:
+            - context->"Coalesce" i4i_CtSCST1mXIwNKtKH_/input2
+          visualData: 1538.4249974935167/430.41606448559105/330/104/var(--node-color-6)/var(--grey-darkish)
+        '[bC6oaMtBDqAATvTJTfoyO]:comment "Comment"':
+          data:
+            backgroundColor: rgba(0,0,0,0.05)
+            color: rgba(255,255,255,1)
+            height: 559.2371342309062
+            text: "#### Load context so LLM knows what the user is looking at"
+          visualData: 1499.1876462877137/-378.6638665318043/1165.4228053854372/269//
+        '[bNJiQs2CJQzSlq85o_b9m]:gptFunction "GPT Function"':
+          data:
+            description: Hides one or more products by IDs. Replaces previously hidden
+              products.
+            name: hide_products
+            schema: |-
+              {
+                "type": "object",
+                "properties": {
+                    "ids": {
+                        "type": "array",
+                        "items": {
+                            "type": "string"
+                        },
+                        "description": "Array of product IDs to hide"
+                    }
+                },
+                "required": ["ids"]
+              }
+          outgoingConnections:
+            - function->"Array" Ci8jzrfzKl2OjdCb0hVV9/input1
+          visualData: -64.93361832500351/702.0298392480836/280/325//
+        '[dNjwDLLHqym4ospXLcWEt]:text "Text"':
+          data:
+            text: gpt-4-1106-preview
+          outgoingConnections:
+            - output->"Output" 1Ts7YjNeQFNiLczUhp-R-/model
+          visualData: 2396.4633541726676/358.327862657095/182.31593265275296/149//
+        '[eKy52pv7wXbkHIczI7XTx]:compare "Compare"':
+          data:
+            comparisonFunction: ==
+          outgoingConnections:
+            - output->"If" qX2K0wFnU9FOqvhR6v7BX/if
+          visualData: 439.2424433928162/-18.536438662106985/190/254//
+        '[foL7Yu49UxAvc-wlOCLKL]:object "Object"':
+          data:
+            jsonTemplate: >-
+              {
+                "products": [
+                  {
+                    "id": "0Q95535GJ5",
+                    "name": "Apple MacBook Air 2020",
+                    "price": 879.00,
+                    "image": "https://cdn.idealo.com/folder/Product/200840/8/200840891/s1_produktbild_gross/apple-macbook-air-13-2020-m1-mgn63d-a.jpg",
+                    "url": "https://www.idealo.de/relocator/relocate?categoryId=3751&offerKey=6265f98cfbfeab42f7afe27acbdb3d93&offerListId=200840891-BA6CDBF73EE2AAA72E79D7A01FF5C0A5&pos=1&price=849.00&productid=200840891&sid=6980&type=offer",
+                    "type": "Multimedia Notebook",
+                    "series": "Apple MacBook Air",
+                    "display": {
+                      "size": "13.3 inches",
+                      "diagonal": "33.78 cm",
+                      "technologies": [
+                        "Retina",
+                        "WQXGA"
+                      ],
+                      "resolution": "2560 x 1600 pixels",
+                      "features": [
+                        "Widescreen",
+                        "LED-Backlight",
+                        "IPS"
+                      ],
+                      "aspectRatio": "16:10",
+                      "brightness": "400 cd/m²"
+                    },
+                    "processor": {
+                      "manufacturer": "Apple",
+                      "model": "Apple M1"
+                    },
+                    "memory": {
+                      "RAM": "8 GB"
+                    },
+                    "storage": {
+                      "drivesInstalled": 1,
+                      "type": "SSD",
+                      "capacity": "256 GB"
+                    },
+                    "graphics": {
+                      "videoOutput": "Thunderbolt 3",
+                      "externalResolution": "6K (6016 x 3384)"
+                    },
+                    "operatingSystem": "macOS Big Sur",
+                    "connectivity": {
+                      "ports": [
+                        "Headphone output",
+                        "2 x USB 3.1"
+                      ],
+                      "cardReader": "None",
+                      "communication": [
+                        "WLAN",
+                        "Bluetooth"
+                      ],
+                      "mobileCommunication": "None",
+                      "bluetoothVersion": "Bluetooth 5.0",
+                      "WLANStandards": [
+                        "IEEE 802.11ac",
+                        "IEEE 802.11a",
+                        "IEEE 802.11b",
+                        "IEEE 802.11g",
+                        "IEEE 802.11n",
+                        "IEEE 802.11ax"
+                      ]
+                    },
+                    "drives": {
+                      "opticalDrive": "None"
+                    },
+                    "camera": {
+                      "webcam": "Integrated",
+                      "function": "HD-capable",
+                      "resolution": "1280 x 720 pixels"
+                    },
+                    "keyboard": {
+                      "type": "Island",
+                      "keyCount": 79,
+                      "additionalKeys": [
+                        "Function keys",
+                        "Cursor keys"
+                      ]
+                    },
+                    "sound": {
+                      "speakerCount": 2,
+                      "systems": [
+                        "Stereo",
+                        "Dolby Atmos"
+                      ]
+                    },
+                    "power": {
+                      "battery": "Lithium-Polymer",
+                      "batteryLife": "15 hours",
+                      "wattHours": "50 Wh",
+                      "charger": "30 Watt",
+                      "batteryReplaceable": "No"
+                    },
+                    "dimensionsWeight": {
+                      "material": "Aluminium",
+                      "formFactor": "Clamshell",
+                      "color": "Grey",
+                      "depth": "21.2 cm",
+                      "height": "16 mm",
+                      "width": "30.4 cm",
+                      "weight": "1.29 kg"
+                    },
+                    "sustainability": "Energy-saving",
+                    "features": {
+                      "equipment": [
+                        "Microphone",
+                        "USB-C",
+                        "Multitouch Touchpad",
+                        "Speakers",
+                        "Touch ID",
+                        "Webcam",
+                        "Force Touch Trackpad"
+                      ],
+                      "securityFeature": "Fingerprint Reader",
+                      "sensor": "Brightness sensor",
+                      "packageContents": [
+                        "Notebook",
+                        "Charger",
+                        "USB Cable"
+                      ],
+                      "marketLaunch": "2020"
+                    }
+                  },
+                  {
+                    "id": "HWZ9RW4YNQ",
+                    "name": "Apple MacBook Pro 2023",
+                    "type": "Multimedia Notebook",
+                    "series": "Apple MacBook Pro",
+                    "price": 1029.00,
+                    "image": "https://cdn.idealo.com/folder/Product/201987/6/201987663/s1_produktbild_mittelgross/apple-macbook-air-13-2022-m2-mlxw3d-a.jpg",
+                    "url": "https://www.idealo.de/relocator/relocate?categoryId=3751&offerKey=1fcd33e83b78674226b46dd421a5280c&offerListId=201987664-FD6206B3D8C36B8DE11A864F35DFDE1B&pos=1&price=1029.00&productid=201981788&sid=317105&type=offer",
+                    "display": {
+                      "size": "14.2 inches",
+                      "brightness": "1000 cd/m²"
+                    },
+                    "graphics": {
+                      "videoOutputs": [
+                        "HDMI 2.1",
+                        "Thunderbolt 4"
+                      ],
+                      "externalResolution": "6K (6016 x 3384)"
+                    },
+                    "operatingSystem": "macOS Sonoma",
+                    "connectivity": {
+                      "ports": [
+                        "3 x USB 4.0",
+                        "Headphone output",
+                        "Microphone input"
+                      ],
+                      "cardReader": "Integrated",
+                      "supportedCardTypes": [
+                        "SDXC"
+                      ]
+                    },
+                    "communication": {
+                      "dataCommunication": [
+                        "Bluetooth",
+                        "WLAN"
+                      ],
+                      "bluetoothVersion": "Bluetooth 5.3",
+                      "WLANStandard": "IEEE 802.11ax"
+                    },
+                    "camera": {
+                      "webcam": "Integrated",
+                      "function": "HD-capable",
+                      "resolution": "1920 x 1080 pixels"
+                    },
+                    "keyboard": {
+                      "keyCount": 79
+                    },
+                    "sound": {
+                      "speakerCount": 6,
+                      "system": "Stereo"
+                    },
+                    "power": {
+                      "battery": "Lithium-Polymer",
+                      "batteryLife": "15 hours",
+                      "wattHours": "70 Wh",
+                      "charger": "67 Watt",
+                      "batteryReplaceable": "No"
+                    },
+                    "dimensionsWeight": {
+                      "material": "Aluminium",
+                      "formFactor": "Clamshell",
+                      "depth": "22.1 cm",
+                      "height": "16 mm",
+                      "width": "31.3 cm",
+                      "weight": "1.6 kg"
+                    },
+                    "features": {
+                      "equipment": [
+                        "USB-C",
+                        "Speakers",
+                        "Touch ID",
+                        "Card reader",
+                        "Webcam",
+                        "Force Touch Trackpad"
+                      ],
+                      "securityFeature": "Fingerprint Reader",
+                      "sensor": "Brightness sensor",
+                      "marketLaunch": "2023"
+                    }
+                  },
+                  {
+                    "id": "6ORR83R5GP",
+                    "name": "Apple MacBook Air",
+                    "type": "Multimedia Notebook",
+                    "series": "Apple MacBook Air",
+                    "price": 1783.93,
+                    "image": "https://cdn.idealo.com/folder/Product/203430/2/203430296/s1_produktbild_mittelgross/apple-macbook-pro-14-m3-mtl73d-a.jpg",
+                    "url": "https://www.idealo.de/relocator/relocate?categoryId=3751&offerKey=ca749ff67b2ceb640dbf64eb7445c1b7&offerListId=203430296-8C88335ABF0D964BBB6C488DD2BF98DD&pos=1&price=1738.93&productid=203429744&sid=21830&type=offer",
+                    "display": {
+                      "size": "13.3 inches",
+                      "diagonal": "33.78 cm",
+                      "technologies": [
+                        "Retina",
+                        "WQXGA"
+                      ],
+                      "resolution": "2560 x 1600 pixels",
+                      "features": [
+                        "Widescreen",
+                        "LED-Backlight",
+                        "IPS"
+                      ],
+                      "aspectRatio": "16:10",
+                      "brightness": "400 cd/m²"
+                    },
+                    "processor": {
+                      "manufacturer": "Apple",
+                      "model": "Apple M1"
+                    },
+                    "memory": {
+                      "RAM": "8 GB"
+                    },
+                    "storage": {
+                      "drivesInstalled": 1,
+                      "type": "SSD",
+                      "capacity": "256 GB"
+                    },
+                    "graphics": {
+                      "videoOutput": "Thunderbolt 3",
+                      "externalResolution": "6K (6016 x 3384)"
+                    },
+                    "operatingSystem": "macOS Big Sur",
+                    "connectivity": {
+                      "ports": [
+                        "Headphone output",
+                        "2 x USB 3.1"
+                      ],
+                      "cardReader": "None",
+                      "communication": [
+                        "WLAN",
+                        "Bluetooth"
+                      ],
+                      "mobileCommunication": "None",
+                      "bluetoothVersion": "Bluetooth 5.0",
+                      "WLANStandards": [
+                        "IEEE 802.11ac",
+                        "IEEE 802.11a",
+                        "IEEE 802.11b",
+                        "IEEE 802.11g",
+                        "IEEE 802.11n",
+                        "IEEE 802.11ax"
+                      ]
+                    },
+                    "drives": {
+                      "opticalDrive": "None"
+                    },
+                    "camera": {
+                      "webcam": "Integrated",
+                      "function": "HD-capable",
+                      "resolution": "1280 x 720 pixels"
+                    },
+                    "keyboard": {
+                      "type": "Island",
+                      "keyCount": 79,
+                      "additionalKeys": [
+                        "Function keys",
+                        "Cursor keys"
+                      ]
+                    },
+                    "sound": {
+                      "speakerCount": 2,
+                      "systems": [
+                        "Stereo",
+                        "Dolby Atmos"
+                      ]
+                    },
+                    "power": {
+                      "battery": "Lithium-Polymer",
+                      "batteryLife": "15 hours",
+                      "wattHours": "50 Wh",
+                      "charger": "30 Watt",
+                      "batteryReplaceable": "No"
+                    },
+                    "dimensionsWeight": {
+                      "material": "Aluminium",
+                      "formFactor": "Clamshell",
+                      "color": "Grey",
+                      "depth": "21.2 cm",
+                      "height": "16 mm",
+                      "width": "30.4 cm",
+                      "weight": "1.29 kg"
+                    },
+                    "sustainability": "Energy-saving",
+                    "features": {
+                      "equipment": [
+                        "Microphone",
+                        "USB-C",
+                        "Multitouch Touchpad",
+                        "Speakers",
+                        "Touch ID",
+                        "Webcam",
+                        "Force Touch Trackpad"
+                      ],
+                      "securityFeature": "Fingerprint Reader",
+                      "sensor": "Brightness sensor",
+                      "packageContents": [
+                        "Notebook",
+                        "Charger",
+                        "USB Cable"
+                      ],
+                      "marketLaunch": "2020"
+                    }
+                  },
+                  {
+                    "id": "E72EXCFK7C",
+                    "name": "Apple MacBook Air 2022",
+                    "type": "Multimedia Notebook",
+                    "series": "Apple MacBook Air",
+                    "price": "1020.99",
+                    "image": "https://cdn.idealo.com/folder/Product/201987/6/201987663/s1_produktbild_max/apple-macbook-air-13-2022-m2-mlxw3d-a.jpg",
+                    "url": "https://www.idealo.de/relocator/relocate?categoryId=3751&offerKey=a585ba86d08498ddc76c3ad21e2fcbd0&offerListId=201987663-9347E95A0E319A1B21E6BB4EE6C62868&pos=1&price=1029.99&productid=201987663&sid=9701&type=offer",
+                    "display": {
+                      "size": "13.6 inches",
+                      "diagonal": "34.544 cm",
+                      "technology": "Retina",
+                      "resolution": "2560 x 1664 pixels",
+                      "features": [
+                        "LED-Backlight",
+                        "IPS"
+                      ],
+                      "pixelDensity": "224.2 ppi",
+                      "brightness": "500 cd/m²"
+                    },
+                    "processor": {
+                      "manufacturer": "Apple",
+                      "model": "Apple M2",
+                      "cores": 8
+                    },
+                    "memory": {
+                      "RAM": "8 GB"
+                    },
+                    "storage": {
+                      "drivesInstalled": 1,
+                      "type": "SSD",
+                      "capacity": "256 GB"
+                    },
+                    "graphics": {
+                      "manufacturer": "Apple",
+                      "model": "Apple M2 Graphics",
+                      "memoryType": "Shared Memory",
+                      "GPU": "8-Core GPU",
+                      "videoOutput": "Thunderbolt 4",
+                      "externalResolution": "6K (6016 x 3384)"
+                    },
+                    "operatingSystem": "macOS Monterey",
+                    "connectivity": {
+                      "ports": [
+                        "Headphone output",
+                        "2 x USB 4.0"
+                      ],
+                      "cardReader": "None"
+                    },
+                    "communication": {
+                      "data": [
+                        "WLAN",
+                        "Bluetooth"
+                      ],
+                      "bluetoothVersion": "Bluetooth 5.0",
+                      "WLANStandards": [
+                        "IEEE 802.11ac",
+                        "IEEE 802.11a",
+                        "IEEE 802.11b",
+                        "IEEE 802.11g",
+                        "IEEE 802.11n",
+                        "IEEE 802.11ax"
+                      ]
+                    },
+                    "camera": {
+                      "webcam": "Integrated",
+                      "function": "HD-capable",
+                      "resolution": "1920 x 1080 pixels"
+                    },
+                    "keyboard": {
+                      "type": "Island",
+                      "keyCount": 79,
+                      "additionalKeys": [
+                        "Function keys",
+                        "Cursor keys"
+                      ]
+                    },
+                    "sound": {
+                      "speakerCount": 4,
+                      "systems": [
+                        "Stereo",
+                        "Dolby Atmos"
+                      ]
+                    },
+                    "power": {
+                      "batteryType": "Lithium-Polymer",
+                      "batteryLife": "15 hours",
+                      "wattHours": "52.6 Wh",
+                      "charger": "30 Watt",
+                      "batteryReplaceable": "No"
+                    },
+                    "dimensionsWeight": {
+                      "material": "Aluminium",
+                      "formFactor": "Clamshell",
+                      "color": "Grey",
+                      "depth": "21.5 cm",
+                      "height": "11 mm",
+                      "width": "30.4 cm",
+                      "weight": "1.24 kg"
+                    },
+                    "sustainability": "Energy-saving",
+                    "features": {
+                      "equipment": [
+                        "Microphone",
+                        "USB-C",
+                        "Multitouch Touchpad",
+                        "Speakers",
+                        "Touch ID",
+                        "Webcam",
+                        "Force Touch Trackpad"
+                      ],
+                      "securityFeature": "Fingerprint Reader",
+                      "sensor": "Brightness sensor",
+                      "packageContents": [
+                        "Notebook",
+                        "Charger",
+                        "USB Cable"
+                      ],
+                      "marketLaunch": "2022"
+                    }
+                  },
+                  {
+                    "id": "QQ5M9EYZKS",
+                    "name": "Apple MacBook Pro 2023",
+                    "type": "Multimedia Notebook",
+                    "series": "Apple MacBook Pro",
+                    "price": "2158.95",
+                    "image": "https://cdn.idealo.com/folder/Product/203431/5/203431556/s1_produktbild_max/apple-macbook-pro-14-m3-mrx33d-a.jpg",
+                    "url": "https://www.idealo.de/relocator/relocate?categoryId=3751&offerKey=87b6adc9d430688e0949b68b82cc52c5&price=2158.95&productid=203431556&sid=295945&type=offer&pos=-2",
+                    "display": {
+                      "size": "14.2 inches",
+                      "diagonal": "36.068 cm",
+                      "technology": "Retina",
+                      "resolution": "3024 x 1964 pixels",
+                      "pixelDensity": "254 ppi",
+                      "brightness": "1000 cd/m²",
+                      "refreshRate": "120 Hz"
+                    },
+                    "processor": {
+                      "manufacturer": "Apple",
+                      "model": "Apple M3 Pro",
+                      "cores": 11
+                    },
+                    "memory": {
+                      "RAM": "18 GB"
+                    },
+                    "storage": {
+                      "drivesInstalled": 1,
+                      "type": "SSD",
+                      "capacity": "512 GB"
+                    },
+                    "graphics": {
+                      "manufacturer": "Apple",
+                      "model": "Apple M3 Pro Graphics",
+                      "memoryType": "Shared Memory",
+                      "GPU": "14-Core GPU",
+                      "videoOutputs": [
+                        "HDMI 2.1",
+                        "Thunderbolt 4"
+                      ],
+                      "externalResolution": "6K (6016 x 3384)"
+                    },
+                    "operatingSystem": "macOS Sonoma",
+                    "connectivity": {
+                      "ports": [
+                        "3x USB 4.0",
+                        "Headphone output",
+                        "Microphone input"
+                      ],
+                      "cardReader": "Integrated",
+                      "supportedCardTypes": [
+                        "SDXC"
+                      ]
+                    },
+                    "communication": {
+                      "data": [
+                        "Bluetooth",
+                        "WLAN"
+                      ],
+                      "bluetoothVersion": "Bluetooth 5.3",
+                      "WLANStandard": "IEEE 802.11ax"
+                    },
+                    "camera": {
+                      "webcam": "Integrated",
+                      "function": "HD-capable",
+                      "resolution": "1920 x 1080 pixels"
+                    },
+                    "keyboard": {
+                      "keyCount": 79
+                    },
+                    "sound": {
+                      "speakerCount": 6,
+                      "system": "Stereo"
+                    },
+                    "power": {
+                      "batteryType": "Lithium-Polymer",
+                      "batteryLife": "15 hours",
+                      "wattHours": "70 Wh",
+                      "charger": "67 Watt",
+                      "batteryReplaceable": "No"
+                    },
+                    "dimensionsWeight": {
+                      "material": "Aluminium",
+                      "formFactor": "Clamshell",
+                      "color": "Black",
+                      "depth": "22.1 cm",
+                      "height": "16 mm",
+                      "width": "31.3 cm",
+                      "weight": "1.6 kg"
+                    },
+                    "features": {
+                      "equipment": [
+                        "USB-C",
+                        "Speakers",
+                        "Touch ID",
+                        "Card reader",
+                        "Webcam",
+                        "Force Touch Trackpad"
+                      ],
+                      "securityFeature": "Fingerprint Reader",
+                      "sensor": "Brightness sensor",
+                      "marketLaunch": "2023"
+                    }
+                  },
+                  {
+                    "id": "N9O1YEP7JI",
+                    "name": "Apple MacBook Air 2022",
+                    "type": "Multimedia Notebook",
+                    "series": "Apple MacBook Air",
+                    "price": "1029.99",
+                    "image": "https://cdn.idealo.com/folder/Product/201987/6/201987669/s1_produktbild_max/apple-macbook-air-13-2022-m2-mly33d-a.jpg",
+                    "url": "https://www.idealo.de/relocator/relocate?categoryId=3751&offerKey=d53fc94a3651ddc8c0c8d3745bc9c051&offerListId=201987669-155AFB84BA4FA86F4706938AE213A34E&pos=1&price=1029.99&productid=201987669&sid=9701&type=offer",
+                    "display": {
+                      "size": "13.6 inches",
+                      "diagonal": "34.544 cm",
+                      "technology": "Retina",
+                      "resolution": "2560 x 1664 pixels",
+                      "features": [
+                        "LED-Backlight",
+                        "IPS"
+                      ],
+                      "pixelDensity": "224.2 ppi",
+                      "brightness": "500 cd/m²"
+                    },
+                    "processor": {
+                      "manufacturer": "Apple",
+                      "model": "Apple M2",
+                      "cores": 8
+                    },
+                    "memory": {
+                      "RAM": "8 GB"
+                    },
+                    "storage": {
+                      "drivesInstalled": 1,
+                      "type": "SSD",
+                      "capacity": "256 GB"
+                    },
+                    "graphics": {
+                      "manufacturer": "Apple",
+                      "model": "Apple M2 Graphics",
+                      "memoryType": "Shared Memory",
+                      "GPU": "8-Core GPU",
+                      "videoOutput": "Thunderbolt 4",
+                      "externalResolution": "6K (6016 x 3384)"
+                    },
+                    "operatingSystem": "macOS Monterey",
+                    "connectivity": {
+                      "ports": [
+                        "Headphone output",
+                        "2 x USB 4.0"
+                      ],
+                      "cardReader": "None"
+                    },
+                    "communication": {
+                      "data": [
+                        "WLAN",
+                        "Bluetooth"
+                      ],
+                      "bluetoothVersion": "Bluetooth 5.0",
+                      "WLANStandards": [
+                        "IEEE 802.11ac",
+                        "IEEE 802.11a",
+                        "IEEE 802.11b",
+                        "IEEE 802.11g",
+                        "IEEE 802.11n",
+                        "IEEE 802.11ax"
+                      ]
+                    },
+                    "camera": {
+                      "webcam": "Integrated",
+                      "function": "HD-capable",
+                      "resolution": "1920 x 1080 pixels"
+                    },
+                    "keyboard": {
+                      "type": "Island",
+                      "keyCount": 79,
+                      "additionalKeys": [
+                        "Function keys",
+                        "Cursor keys"
+                      ]
+                    },
+                    "sound": {
+                      "speakerCount": 4,
+                      "systems": [
+                        "Stereo",
+                        "Dolby Atmos"
+                      ]
+                    },
+                    "power": {
+                      "batteryType": "Lithium-Polymer",
+                      "batteryLife": "15 hours",
+                      "wattHours": "52.6 Wh",
+                      "charger": "30 Watt",
+                      "batteryReplaceable": "No"
+                    },
+                    "dimensionsWeight": {
+                      "material": "Aluminium",
+                      "formFactor": "Clamshell",
+                      "color": "Black",
+                      "depth": "21.5 cm",
+                      "height": "11 mm",
+                      "width": "30.4 cm",
+                      "weight": "1.24 kg"
+                    },
+                    "sustainability": "Energy-saving",
+                    "features": {
+                      "equipment": [
+                        "Microphone",
+                        "USB-C",
+                        "Multitouch Touchpad",
+                        "Speakers",
+                        "Touch ID",
+                        "Webcam",
+                        "Force Touch Trackpad"
+                      ],
+                      "securityFeature": "Fingerprint Reader",
+                      "sensor": "Brightness sensor",
+                      "packageContents": [
+                        "Notebook",
+                        "Charger",
+                        "USB Cable"
+                      ],
+                      "marketLaunch": "2022"
+                    }
+                  },
+                  {
+                    "id": "UBPUJQOH20",
+                    "name": "Apple MacBook Air 2023 - 15.3 inch",
+                    "type": "Multimedia Notebook",
+                    "series": "Apple MacBook Air",
+                    "price": "1279.00",
+                    "image": "https://cdn.idealo.com/folder/Product/202850/4/202850441/s1_produktbild_max/apple-macbook-air-15-2023-m2-mqkp3d-a.jpg",
+                    "url": "https://www.idealo.de/relocator/relocate?categoryId=3751&offerKey=28828a54b3b87b62262a3b976eb9cc39&offerListId=202850441-E63EA1A79891E660D5FD73A933CADC22&pos=1&price=1279.00&productid=202850441&sid=9701&type=offer",
+                    "display": {
+                      "size": "15.3 inches",
+                      "diagonal": "38.862 cm",
+                      "technology": "Retina",
+                      "resolution": "2880 x 1864 pixels",
+                      "features": [
+                        "LED-Backlight",
+                        "IPS"
+                      ],
+                      "pixelDensity": "224 ppi",
+                      "brightness": "500 cd/m²"
+                    },
+                    "processor": {
+                      "manufacturer": "Apple",
+                      "model": "Apple M2",
+                      "cores": 8,
+                      "cacheLevel": "L2",
+                      "cacheSize": "16 MB"
+                    },
+                    "memory": {
+                      "RAM": "8 GB"
+                    },
+                    "storage": {
+                      "drivesInstalled": 1,
+                      "type": "SSD",
+                      "capacity": "256 GB"
+                    },
+                    "graphics": {
+                      "manufacturer": "Apple",
+                      "model": "Apple M2 Graphics",
+                      "memoryType": "Shared Memory",
+                      "GPU": "10-Core GPU",
+                      "videoOutput": "Thunderbolt 4",
+                      "externalResolution": "6K (6016 x 3384)"
+                    },
+                    "operatingSystem": "macOS Ventura",
+                    "connectivity": {
+                      "ports": [
+                        "Headphone output",
+                        "2 x USB 4.0"
+                      ],
+                      "cardReader": "None"
+                    },
+                    "communication": {
+                      "data": [
+                        "WLAN",
+                        "Bluetooth"
+                      ],
+                      "mobileData": "None",
+                      "bluetoothVersion": "Bluetooth 5.3",
+                      "WLANStandard": "IEEE 802.11ax"
+                    },
+                    "camera": {
+                      "webcam": "Integrated",
+                      "function": "HD-capable",
+                      "resolution": "1920 x 1080 pixels"
+                    },
+                    "keyboard": {
+                      "type": "Island",
+                      "keyCount": 79,
+                      "additionalKeys": [
+                        "Function keys",
+                        "Cursor keys"
+                      ]
+                    },
+                    "sound": {
+                      "speakerCount": 6,
+                      "systems": [
+                        "Stereo",
+                        "Dolby Atmos"
+                      ]
+                    },
+                    "power": {
+                      "batteryType": "Lithium-Polymer",
+                      "batteryLife": "15 hours",
+                      "wattHours": "66.5 Wh",
+                      "charger": "35 Watt",
+                      "batteryReplaceable": "No"
+                    },
+                    "dimensionsWeight": {
+                      "material": "Aluminium",
+                      "formFactor": "Clamshell",
+                      "color": "Grey",
+                      "depth": "23.8 cm",
+                      "height": "12 mm",
+                      "width": "34 cm",
+                      "weight": "1.51 kg"
+                    },
+                    "sustainability": "Energy-saving",
+                    "features": {
+                      "equipment": [
+                        "Microphone",
+                        "USB-C",
+                        "Multitouch Touchpad",
+                        "Speakers",
+                        "Touch ID",
+                        "Webcam",
+                        "Force Touch Trackpad"
+                      ],
+                      "securityFeature": "Fingerprint Reader",
+                      "sensor": "Brightness sensor",
+                      "packageContents": [
+                        "Notebook",
+                        "Charger",
+                        "USB Cable"
+                      ],
+                      "marketLaunch": "2023"
+                    }
+                  },
+                  {
+                    "id": "EFLEC214MQ",
+                    "name": "Apple MacBook Air 2023 - 15.3 inch",
+                    "type": "Multimedia Notebook",
+                    "series": "Apple MacBook Air",
+                    "price": "1263.99",
+                    "image": "https://cdn.idealo.com/folder/Product/202850/5/202850560/s1_produktbild_max/apple-macbook-air-15-2023-m2-mqkw3d-a.jpg",
+                    "url": "https://www.idealo.de/relocator/relocate?categoryId=3751&offerKey=5dcb017615d3c138e42a88e6902b8882&offerListId=202850560-87BA5F0D8CAB331F3C7EABF2C1837D99&pos=1&price=1263.99&productid=202850560&sid=9701&type=offer",
+                    "display": {
+                      "size": "15.3 inches",
+                      "brightness": "500 cd/m²"
+                    },
+                    "graphics": {
+                      "videoOutput": "Thunderbolt 4",
+                      "externalResolution": "6K (6016 x 3384)"
+                    },
+                    "connectivity": {
+                      "ports": [
+                        "Headphone output",
+                        "2 x USB 4.0"
+                      ],
+                      "cardReader": "None"
+                    },
+                    "communication": {
+                      "data": [
+                        "WLAN",
+                        "Bluetooth"
+                      ],
+                      "bluetoothVersion": "Bluetooth 5.3",
+                      "WLANStandard": "IEEE 802.11ax"
+                    },
+                    "camera": {
+                      "webcam": "Integrated",
+                      "function": "HD-capable",
+                      "resolution": "1920 x 1080 pixels"
+                    },
+                    "keyboard": {
+                      "type": "Island",
+                      "keyCount": 79,
+                      "additionalKeys": [
+                        "Function keys",
+                        "Cursor keys"
+                      ]
+                    },
+                    "sound": {
+                      "speakerCount": 6,
+                      "systems": [
+                        "Stereo",
+                        "Dolby Atmos"
+                      ]
+                    },
+                    "power": {
+                      "batteryType": "Lithium-Polymer",
+                      "batteryLife": "15 hours",
+                      "wattHours": "66.5 Wh",
+                      "charger": "35 Watt",
+                      "batteryReplaceable": "No"
+                    },
+                    "dimensionsWeight": {
+                      "material": "Aluminium",
+                      "formFactor": "Clamshell",
+                      "depth": "23.8 cm",
+                      "height": "12 mm",
+                      "width": "34 cm",
+                      "weight": "1.51 kg"
+                    },
+                    "sustainability": "Energy-saving",
+                    "features": {
+                      "equipment": [
+                        "Microphone",
+                        "USB-C",
+                        "Multitouch Touchpad",
+                        "Speakers",
+                        "Touch ID",
+                        "Webcam",
+                        "Force Touch Trackpad"
+                      ],
+                      "securityFeature": "Fingerprint Reader",
+                      "sensor": "Brightness sensor",
+                      "packageContents": [
+                        "Notebook",
+                        "Charger",
+                        "USB Cable"
+                      ],
+                      "marketLaunch": "2023"
+                    }
+                  }
+                ]
+              }
+          outgoingConnections:
+            - output->"Text" QmpyUEs2suOoVreqcT7bo/products
+          visualData: -72.11883544634924/15.306540228955196/291.7809152872444/319//
+        '[i4i_CtSCST1mXIwNKtKH_]:coalesce "Coalesce"':
+          outgoingConnections:
+            - output->"Text" QmpyUEs2suOoVreqcT7bo/context
+          visualData: 1198.6610659170256/1269.8485285441998/180/166//
+        '[j8jSsDqlSBz1kf7D2Smzl]:text "Text"':
+          data:
+            text: |-
+              {{system_prompt}}
+              {{context}}
+          outgoingConnections:
+            - output->"Output" 1Ts7YjNeQFNiLczUhp-R-/systemPrompt
+          visualData: 2034.616556055601/324.9955123214865/330/162//
+        '[k83_Et4LPgDGWl1SzyGPl]:createDataset "Create Dataset"':
+          outgoingConnections:
+            - datasetId_out->"Replace Dataset" -gI3DV0oD644FKSZe6pRy/datasetId
+          visualData: 993.7708572745537/-240.55482342793673/280/306//
+        '[lAcFONeipluiXj94ps3rn]:if "If"':
+          data:
+            unconnectedControlFlowExcluded: true
+          outgoingConnections:
+            - output->"Match" xaiLk-fEP2zyvHKuAQxnx/input
+            - output->"Prompt" 7Qb6NmwjHeP_Zc8hPDpm6/function_name
+          visualData: 1318.7819056076385/887.2342201158567/155/204//
+        '[mIROUpmoc1MU9vx-zdKOj]:text "Text"':
+          data:
+            text: gpt-4-1106-preview
+          outgoingConnections:
+            - output->"Output" yMGkC05ju5JVQKx1_njSU/model
+          visualData: 421.90525508306365/952.6537136326698/182.31593265275296/270//
+        '[olPrnm2S7ZjbSzuXnMSI1]:text "Text"':
+          data:
+            text: "{{input}}"
+          outgoingConnections:
+            - output->"If" lAcFONeipluiXj94ps3rn/if
+            - output->"If" lAcFONeipluiXj94ps3rn/value
+          visualData: 1107.427368236352/888.5229672949498/149.57539492695014/205//
+        '[pCaZ5JadwMpOmQwuDAav-]:comment "Comment"':
+          data:
+            backgroundColor: rgba(186,182,158,0.21)
+            color: rgba(255,255,255,1)
+            height: 947.7735766523456
+            text: "#### Interaction after function call"
+          visualData: 1967.345079099278/196.71877725229254/698.5183711106083/316//
+        '[qX2K0wFnU9FOqvhR6v7BX]:if "If"':
+          data:
+            unconnectedControlFlowExcluded: true
+          outgoingConnections:
+            - falseOutput->"Create Dataset" 6c805IlCNdddS1W-gRr8Z/datasetId
+            - output->"Create Dataset" k83_Et4LPgDGWl1SzyGPl/datasetId
+          visualData: 723.9204014654621/-14.825299335843383/155/267//
+        '[quIBQFczhINwZzKs7D8or]:subGraph "Subgraph"':
+          data:
+            graphId: b4M7oHEl7F7x1zWZc9Chm
+            useAsGraphPartialOutput: false
+            useErrorOutput: false
+          outgoingConnections:
+            - context->"Coalesce" i4i_CtSCST1mXIwNKtKH_/input5
+          visualData: 1537.2139798663861/929.7638208374734/330/185/var(--node-color-6)/var(--grey-darkish)
+        '[uvZI_olJuFXJhCHsD5oBv]:comment "Comment"':
+          data:
+            backgroundColor: rgba(0,0,0,0.05)
+            color: rgba(255,255,255,1)
+            height: 599.8971240532242
+            text: "#### Create and store context"
+          visualData: 1073.0529971502058/1150.1178432404824/1593.058615830775/328//
+        '[wNRfslbhfIveFYMfDGXEJ]:comment "Comment"':
+          data:
+            backgroundColor: rgba(0,0,0,0.05)
+            color: rgba(255,255,255,1)
+            height: 605.0613194199743
+            text: "#### Create dataset for context storage"
+          visualData: 385.2114103674152/1157.5714911805408/692/174//
+        '[xaiLk-fEP2zyvHKuAQxnx]:match "Match"':
+          data:
+            cases:
+              - hide_products
+              - highlight_products
+              - remove_highlights
+              - show_all_products
+              - search_products
+          outgoingConnections:
+            - case1->"Subgraph" 6LXiNvQIoi6N-eHJDe2e6/id
+            - case2->"Subgraph" aEr5UbfeQ4qjPW4iJT1Tm/id
+            - case3->"Subgraph" VaJVJCvD32iNHU_eQKIZX/go
+            - case4->"Subgraph" HiK6_lSDCMazdqtmBmSTH/go
+            - case5->"Subgraph" quIBQFczhINwZzKs7D8or/data
+            - case5->"Subgraph" quIBQFczhINwZzKs7D8or/query
+          visualData: 1141.1788019383027/539.1209309151982/280/201//
+        '[yMGkC05ju5JVQKx1_njSU]:chat "Output"':
+          data:
+            cache: false
+            enableFunctionUse: true
+            headers: []
+            maxTokens: 1024
+            model: gpt-3.5-turbo
+            parallelFunctionCalling: false
+            stop: ""
+            temperature: 0.5
+            top_p: 1
+            useAsGraphPartialOutput: true
+            useFrequencyPenaltyInput: false
+            useMaxTokensInput: false
+            useModelInput: true
+            usePresencePenaltyInput: false
+            useStop: false
+            useStopInput: false
+            useTemperatureInput: false
+            useTopP: false
+            useTopPInput: false
+            useUseTopPInput: false
+            useUserInput: false
+          outgoingConnections:
+            - all-messages->"Assemble Prompt" ZUjMjeXvSqzieVtIr55BX/message1
+            - function-call->"Destructure" EgjpiX1UFORRWROGy_jEM/object
+          visualData: 767.3074909142236/538.8294691592056/230/282/var(--node-color-2)/var(--grey-darkish)
+        '[zue_ySjiWSoSTU3Dnth2C]:comment "Comment"':
+          data:
+            backgroundColor: rgba(0,0,0,0.05)
+            color: rgba(255,255,255,1)
+            height: 553.0062186460527
+            text: >-
+              ### Instructions
+
+
+              #### Preperations
+
+              1. Setup "rivet-chat-api" + "Chatbot-UI" either locally or in the cloud: https://github.com/ai-made-approachable/rivet-chat-api/tree/main
+
+              2. Register at firebase: https://firebase.google.com/
+
+              3. Create a project and add a "real-time-database" (when asked select "test-mode" as I did not add the authentification neccessary to run it otherwise)
+
+              4. Copy the firebase database URL
+
+              5. Set this value as "FIREBASE_URL" in environment variables for rivet-chat-api
+
+              6. Use this link to clone my anvil project: https://anvil.works/build#clone:C2B5MLPRXVU6CUW4=IK6BEOCGC2DLIA6TG4LDJ3J5
+
+              7. Go to secrets and add your firebase database url as the value of "firebase_url"
+
+
+              #### Running the graph
+
+              1. Run "rivet-chat-api"
+
+              2. Run "Chatbot-UI" and open it in a browser
+
+              3. Run or publish the anvil app
+
+              4. Start chatting via Chatbot-UI
+          visualData: -885.7913215923884/-370.4285628325359/749.3637776965011/323//
+    VNxLcZIFMa2BG0juauuc0:
+      metadata:
+        description: ""
+        id: VNxLcZIFMa2BG0juauuc0
+        name: Subgraphs/add_products
+      nodes:
+        '[5d6WeqW5rC3bXy7RWl_7a]:subGraph "Subgraph"':
+          data:
+            graphId: XdJilU7aYfVmv3dxp-4z6
+            useAsGraphPartialOutput: false
+            useErrorOutput: false
+          outgoingConnections:
+            - context->"Graph Output" FXm4RJC_WYs-9BdFFO6Qh/value
+          visualData: 1951.459301150019/392.9789039085491/330/60/var(--node-color-6)/var(--grey-darkish)
+        '[ESbDYZxsq2y9un3LXMNVy]:text "Text"':
+          data:
+            text: PUT
+          outgoingConnections:
+            - output->"Subgraph" 5d6WeqW5rC3bXy7RWl_7a/method
+          visualData: 1577.629700755746/131.29818363255805/330/59//
+        '[FXm4RJC_WYs-9BdFFO6Qh]:graphOutput "Graph Output"':
+          data:
+            dataType: string
+            id: context
+          visualData: 2356.4839046831/379.3869186252606/330/73/var(--node-color-4)/var(--grey-darkish)
+        '[GcJmYP7GrnUEMo9gKKGO0]:destructure "Destructure"':
+          data:
+            paths:
+              - $.name
+              - $.url
+              - $.image
+              - $.price
+              - $.id
+          isSplitRun: true
+          outgoingConnections:
+            - match_0->"Object" z3HKbmVYqbcEeA_CqF1OI/name
+            - match_1->"Object" z3HKbmVYqbcEeA_CqF1OI/url
+            - match_2->"Object" z3HKbmVYqbcEeA_CqF1OI/image
+            - match_3->"Code" q6TMuQFFCA0XkHAkoCKyg/values
+            - match_4->"Object" z3HKbmVYqbcEeA_CqF1OI/id
+          splitRunMax: 999
+          visualData: 595.2378088869646/401.02628245217363/280/52//
+        '[MIJdo0soz7IAzlDFo9WjX]:graphInput "Graph Input"':
+          data:
+            dataType: object
+            id: data
+            useDefaultValueInput: true
+          outgoingConnections:
+            - data->"Destructure" QRCJYz1lXYfiizv6O2shT/object
+          visualData: 221.79199312393382/155.2193420618015/330/69/var(--node-color-3)/var(--grey-darkish)
+        '[QRCJYz1lXYfiizv6O2shT]:destructure "Destructure"':
+          data:
+            paths:
+              - $.products
+          outgoingConnections:
+            - match_0->"Destructure" GcJmYP7GrnUEMo9gKKGO0/object
+          visualData: 625/183/280/11//
+        '[m_qCo7kcNk7VYUAc7FPXL]:object "Object"':
+          data:
+            jsonTemplate: |-
+              {
+                "products": {{input}},
+                "highlightedProducts": [],
+                "hiddenProducts": []
+              }
+          outgoingConnections:
+            - output->"Code" n0r4Hg-SpKaI1yrz3mliM/input
+          visualData: 1315/427/230/50//
+        '[n0r4Hg-SpKaI1yrz3mliM]:code "Code"':
+          data:
+            code: |
+              const restructuredObject = {
+                  products: Object.assign({}, ...inputs.input.value.products),
+                  highlightedProducts: [],
+                  hiddenProducts: []
+              };
+              return {
+                  output: {
+                      type: 'object',
+                      value: restructuredObject
+                  }
+              };
+            inputNames:
+              - input
+            outputNames:
+              - output
+          outgoingConnections:
+            - output->"Subgraph" 5d6WeqW5rC3bXy7RWl_7a/body
+          visualData: 1610/331/230/49//
+        '[pzyWTGzgLsrIAVACiaxRN]:object "Object"':
+          data:
+            jsonTemplate: >-
+              {
+                "products": [
+                  {
+                    "id": "0Q95535GJ5",
+                    "name": "Apple MacBook Air 2020",
+                    "price": 879.00,
+                    "image": "https://cdn.idealo.com/folder/Product/200840/8/200840891/s1_produktbild_gross/apple-macbook-air-13-2020-m1-mgn63d-a.jpg",
+                    "url": "https://www.idealo.de/relocator/relocate?categoryId=3751&offerKey=6265f98cfbfeab42f7afe27acbdb3d93&offerListId=200840891-BA6CDBF73EE2AAA72E79D7A01FF5C0A5&pos=1&price=849.00&productid=200840891&sid=6980&type=offer",
+                    "type": "Multimedia Notebook",
+                    "series": "Apple MacBook Air",
+                    "display": {
+                      "size": "13.3 inches",
+                      "diagonal": "33.78 cm",
+                      "technologies": [
+                        "Retina",
+                        "WQXGA"
+                      ],
+                      "resolution": "2560 x 1600 pixels",
+                      "features": [
+                        "Widescreen",
+                        "LED-Backlight",
+                        "IPS"
+                      ],
+                      "aspectRatio": "16:10",
+                      "brightness": "400 cd/m²"
+                    },
+                    "processor": {
+                      "manufacturer": "Apple",
+                      "model": "Apple M1"
+                    },
+                    "memory": {
+                      "RAM": "8 GB"
+                    },
+                    "storage": {
+                      "drivesInstalled": 1,
+                      "type": "SSD",
+                      "capacity": "256 GB"
+                    },
+                    "graphics": {
+                      "videoOutput": "Thunderbolt 3",
+                      "externalResolution": "6K (6016 x 3384)"
+                    },
+                    "operatingSystem": "macOS Big Sur",
+                    "connectivity": {
+                      "ports": [
+                        "Headphone output",
+                        "2 x USB 3.1"
+                      ],
+                      "cardReader": "None",
+                      "communication": [
+                        "WLAN",
+                        "Bluetooth"
+                      ],
+                      "mobileCommunication": "None",
+                      "bluetoothVersion": "Bluetooth 5.0",
+                      "WLANStandards": [
+                        "IEEE 802.11ac",
+                        "IEEE 802.11a",
+                        "IEEE 802.11b",
+                        "IEEE 802.11g",
+                        "IEEE 802.11n",
+                        "IEEE 802.11ax"
+                      ]
+                    },
+                    "drives": {
+                      "opticalDrive": "None"
+                    },
+                    "camera": {
+                      "webcam": "Integrated",
+                      "function": "HD-capable",
+                      "resolution": "1280 x 720 pixels"
+                    },
+                    "keyboard": {
+                      "type": "Island",
+                      "keyCount": 79,
+                      "additionalKeys": [
+                        "Function keys",
+                        "Cursor keys"
+                      ]
+                    },
+                    "sound": {
+                      "speakerCount": 2,
+                      "systems": [
+                        "Stereo",
+                        "Dolby Atmos"
+                      ]
+                    },
+                    "power": {
+                      "battery": "Lithium-Polymer",
+                      "batteryLife": "15 hours",
+                      "wattHours": "50 Wh",
+                      "charger": "30 Watt",
+                      "batteryReplaceable": "No"
+                    },
+                    "dimensionsWeight": {
+                      "material": "Aluminium",
+                      "formFactor": "Clamshell",
+                      "color": "Grey",
+                      "depth": "21.2 cm",
+                      "height": "16 mm",
+                      "width": "30.4 cm",
+                      "weight": "1.29 kg"
+                    },
+                    "sustainability": "Energy-saving",
+                    "features": {
+                      "equipment": [
+                        "Microphone",
+                        "USB-C",
+                        "Multitouch Touchpad",
+                        "Speakers",
+                        "Touch ID",
+                        "Webcam",
+                        "Force Touch Trackpad"
+                      ],
+                      "securityFeature": "Fingerprint Reader",
+                      "sensor": "Brightness sensor",
+                      "packageContents": [
+                        "Notebook",
+                        "Charger",
+                        "USB Cable"
+                      ],
+                      "marketLaunch": "2020"
+                    }
+                  },
+                  {
+                    "id": "HWZ9RW4YNQ",
+                    "name": "Apple MacBook Pro 2023",
+                    "type": "Multimedia Notebook",
+                    "series": "Apple MacBook Pro",
+                    "price": 1029.00,
+                    "image": "https://cdn.idealo.com/folder/Product/201987/6/201987663/s1_produktbild_mittelgross/apple-macbook-air-13-2022-m2-mlxw3d-a.jpg",
+                    "url": "https://www.idealo.de/relocator/relocate?categoryId=3751&offerKey=1fcd33e83b78674226b46dd421a5280c&offerListId=201987664-FD6206B3D8C36B8DE11A864F35DFDE1B&pos=1&price=1029.00&productid=201981788&sid=317105&type=offer",
+                    "display": {
+                      "size": "14.2 inches",
+                      "brightness": "1000 cd/m²"
+                    },
+                    "graphics": {
+                      "videoOutputs": [
+                        "HDMI 2.1",
+                        "Thunderbolt 4"
+                      ],
+                      "externalResolution": "6K (6016 x 3384)"
+                    },
+                    "operatingSystem": "macOS Sonoma",
+                    "connectivity": {
+                      "ports": [
+                        "3 x USB 4.0",
+                        "Headphone output",
+                        "Microphone input"
+                      ],
+                      "cardReader": "Integrated",
+                      "supportedCardTypes": [
+                        "SDXC"
+                      ]
+                    },
+                    "communication": {
+                      "dataCommunication": [
+                        "Bluetooth",
+                        "WLAN"
+                      ],
+                      "bluetoothVersion": "Bluetooth 5.3",
+                      "WLANStandard": "IEEE 802.11ax"
+                    },
+                    "camera": {
+                      "webcam": "Integrated",
+                      "function": "HD-capable",
+                      "resolution": "1920 x 1080 pixels"
+                    },
+                    "keyboard": {
+                      "keyCount": 79
+                    },
+                    "sound": {
+                      "speakerCount": 6,
+                      "system": "Stereo"
+                    },
+                    "power": {
+                      "battery": "Lithium-Polymer",
+                      "batteryLife": "15 hours",
+                      "wattHours": "70 Wh",
+                      "charger": "67 Watt",
+                      "batteryReplaceable": "No"
+                    },
+                    "dimensionsWeight": {
+                      "material": "Aluminium",
+                      "formFactor": "Clamshell",
+                      "depth": "22.1 cm",
+                      "height": "16 mm",
+                      "width": "31.3 cm",
+                      "weight": "1.6 kg"
+                    },
+                    "features": {
+                      "equipment": [
+                        "USB-C",
+                        "Speakers",
+                        "Touch ID",
+                        "Card reader",
+                        "Webcam",
+                        "Force Touch Trackpad"
+                      ],
+                      "securityFeature": "Fingerprint Reader",
+                      "sensor": "Brightness sensor",
+                      "marketLaunch": "2023"
+                    }
+                  },
+                  {
+                    "id": "6ORR83R5GP",
+                    "name": "Apple MacBook Air",
+                    "type": "Multimedia Notebook",
+                    "series": "Apple MacBook Air",
+                    "price": 1783.93,
+                    "image": "https://cdn.idealo.com/folder/Product/203430/2/203430296/s1_produktbild_mittelgross/apple-macbook-pro-14-m3-mtl73d-a.jpg",
+                    "url": "https://www.idealo.de/relocator/relocate?categoryId=3751&offerKey=ca749ff67b2ceb640dbf64eb7445c1b7&offerListId=203430296-8C88335ABF0D964BBB6C488DD2BF98DD&pos=1&price=1738.93&productid=203429744&sid=21830&type=offer",
+                    "display": {
+                      "size": "13.3 inches",
+                      "diagonal": "33.78 cm",
+                      "technologies": [
+                        "Retina",
+                        "WQXGA"
+                      ],
+                      "resolution": "2560 x 1600 pixels",
+                      "features": [
+                        "Widescreen",
+                        "LED-Backlight",
+                        "IPS"
+                      ],
+                      "aspectRatio": "16:10",
+                      "brightness": "400 cd/m²"
+                    },
+                    "processor": {
+                      "manufacturer": "Apple",
+                      "model": "Apple M1"
+                    },
+                    "memory": {
+                      "RAM": "8 GB"
+                    },
+                    "storage": {
+                      "drivesInstalled": 1,
+                      "type": "SSD",
+                      "capacity": "256 GB"
+                    },
+                    "graphics": {
+                      "videoOutput": "Thunderbolt 3",
+                      "externalResolution": "6K (6016 x 3384)"
+                    },
+                    "operatingSystem": "macOS Big Sur",
+                    "connectivity": {
+                      "ports": [
+                        "Headphone output",
+                        "2 x USB 3.1"
+                      ],
+                      "cardReader": "None",
+                      "communication": [
+                        "WLAN",
+                        "Bluetooth"
+                      ],
+                      "mobileCommunication": "None",
+                      "bluetoothVersion": "Bluetooth 5.0",
+                      "WLANStandards": [
+                        "IEEE 802.11ac",
+                        "IEEE 802.11a",
+                        "IEEE 802.11b",
+                        "IEEE 802.11g",
+                        "IEEE 802.11n",
+                        "IEEE 802.11ax"
+                      ]
+                    },
+                    "drives": {
+                      "opticalDrive": "None"
+                    },
+                    "camera": {
+                      "webcam": "Integrated",
+                      "function": "HD-capable",
+                      "resolution": "1280 x 720 pixels"
+                    },
+                    "keyboard": {
+                      "type": "Island",
+                      "keyCount": 79,
+                      "additionalKeys": [
+                        "Function keys",
+                        "Cursor keys"
+                      ]
+                    },
+                    "sound": {
+                      "speakerCount": 2,
+                      "systems": [
+                        "Stereo",
+                        "Dolby Atmos"
+                      ]
+                    },
+                    "power": {
+                      "battery": "Lithium-Polymer",
+                      "batteryLife": "15 hours",
+                      "wattHours": "50 Wh",
+                      "charger": "30 Watt",
+                      "batteryReplaceable": "No"
+                    },
+                    "dimensionsWeight": {
+                      "material": "Aluminium",
+                      "formFactor": "Clamshell",
+                      "color": "Grey",
+                      "depth": "21.2 cm",
+                      "height": "16 mm",
+                      "width": "30.4 cm",
+                      "weight": "1.29 kg"
+                    },
+                    "sustainability": "Energy-saving",
+                    "features": {
+                      "equipment": [
+                        "Microphone",
+                        "USB-C",
+                        "Multitouch Touchpad",
+                        "Speakers",
+                        "Touch ID",
+                        "Webcam",
+                        "Force Touch Trackpad"
+                      ],
+                      "securityFeature": "Fingerprint Reader",
+                      "sensor": "Brightness sensor",
+                      "packageContents": [
+                        "Notebook",
+                        "Charger",
+                        "USB Cable"
+                      ],
+                      "marketLaunch": "2020"
+                    }
+                  },
+                  {
+                    "id": "E72EXCFK7C",
+                    "name": "Apple MacBook Air 2022",
+                    "type": "Multimedia Notebook",
+                    "series": "Apple MacBook Air",
+                    "price": "1020.99",
+                    "image": "https://cdn.idealo.com/folder/Product/201987/6/201987663/s1_produktbild_max/apple-macbook-air-13-2022-m2-mlxw3d-a.jpg",
+                    "url": "https://www.idealo.de/relocator/relocate?categoryId=3751&offerKey=a585ba86d08498ddc76c3ad21e2fcbd0&offerListId=201987663-9347E95A0E319A1B21E6BB4EE6C62868&pos=1&price=1029.99&productid=201987663&sid=9701&type=offer",
+                    "display": {
+                      "size": "13.6 inches",
+                      "diagonal": "34.544 cm",
+                      "technology": "Retina",
+                      "resolution": "2560 x 1664 pixels",
+                      "features": [
+                        "LED-Backlight",
+                        "IPS"
+                      ],
+                      "pixelDensity": "224.2 ppi",
+                      "brightness": "500 cd/m²"
+                    },
+                    "processor": {
+                      "manufacturer": "Apple",
+                      "model": "Apple M2",
+                      "cores": 8
+                    },
+                    "memory": {
+                      "RAM": "8 GB"
+                    },
+                    "storage": {
+                      "drivesInstalled": 1,
+                      "type": "SSD",
+                      "capacity": "256 GB"
+                    },
+                    "graphics": {
+                      "manufacturer": "Apple",
+                      "model": "Apple M2 Graphics",
+                      "memoryType": "Shared Memory",
+                      "GPU": "8-Core GPU",
+                      "videoOutput": "Thunderbolt 4",
+                      "externalResolution": "6K (6016 x 3384)"
+                    },
+                    "operatingSystem": "macOS Monterey",
+                    "connectivity": {
+                      "ports": [
+                        "Headphone output",
+                        "2 x USB 4.0"
+                      ],
+                      "cardReader": "None"
+                    },
+                    "communication": {
+                      "data": [
+                        "WLAN",
+                        "Bluetooth"
+                      ],
+                      "bluetoothVersion": "Bluetooth 5.0",
+                      "WLANStandards": [
+                        "IEEE 802.11ac",
+                        "IEEE 802.11a",
+                        "IEEE 802.11b",
+                        "IEEE 802.11g",
+                        "IEEE 802.11n",
+                        "IEEE 802.11ax"
+                      ]
+                    },
+                    "camera": {
+                      "webcam": "Integrated",
+                      "function": "HD-capable",
+                      "resolution": "1920 x 1080 pixels"
+                    },
+                    "keyboard": {
+                      "type": "Island",
+                      "keyCount": 79,
+                      "additionalKeys": [
+                        "Function keys",
+                        "Cursor keys"
+                      ]
+                    },
+                    "sound": {
+                      "speakerCount": 4,
+                      "systems": [
+                        "Stereo",
+                        "Dolby Atmos"
+                      ]
+                    },
+                    "power": {
+                      "batteryType": "Lithium-Polymer",
+                      "batteryLife": "15 hours",
+                      "wattHours": "52.6 Wh",
+                      "charger": "30 Watt",
+                      "batteryReplaceable": "No"
+                    },
+                    "dimensionsWeight": {
+                      "material": "Aluminium",
+                      "formFactor": "Clamshell",
+                      "color": "Grey",
+                      "depth": "21.5 cm",
+                      "height": "11 mm",
+                      "width": "30.4 cm",
+                      "weight": "1.24 kg"
+                    },
+                    "sustainability": "Energy-saving",
+                    "features": {
+                      "equipment": [
+                        "Microphone",
+                        "USB-C",
+                        "Multitouch Touchpad",
+                        "Speakers",
+                        "Touch ID",
+                        "Webcam",
+                        "Force Touch Trackpad"
+                      ],
+                      "securityFeature": "Fingerprint Reader",
+                      "sensor": "Brightness sensor",
+                      "packageContents": [
+                        "Notebook",
+                        "Charger",
+                        "USB Cable"
+                      ],
+                      "marketLaunch": "2022"
+                    }
+                  },
+                  {
+                    "id": "QQ5M9EYZKS",
+                    "name": "Apple MacBook Pro 2023",
+                    "type": "Multimedia Notebook",
+                    "series": "Apple MacBook Pro",
+                    "price": "2158.95",
+                    "image": "https://cdn.idealo.com/folder/Product/203431/5/203431556/s1_produktbild_max/apple-macbook-pro-14-m3-mrx33d-a.jpg",
+                    "url": "https://www.idealo.de/relocator/relocate?categoryId=3751&offerKey=87b6adc9d430688e0949b68b82cc52c5&price=2158.95&productid=203431556&sid=295945&type=offer&pos=-2",
+                    "display": {
+                      "size": "14.2 inches",
+                      "diagonal": "36.068 cm",
+                      "technology": "Retina",
+                      "resolution": "3024 x 1964 pixels",
+                      "pixelDensity": "254 ppi",
+                      "brightness": "1000 cd/m²",
+                      "refreshRate": "120 Hz"
+                    },
+                    "processor": {
+                      "manufacturer": "Apple",
+                      "model": "Apple M3 Pro",
+                      "cores": 11
+                    },
+                    "memory": {
+                      "RAM": "18 GB"
+                    },
+                    "storage": {
+                      "drivesInstalled": 1,
+                      "type": "SSD",
+                      "capacity": "512 GB"
+                    },
+                    "graphics": {
+                      "manufacturer": "Apple",
+                      "model": "Apple M3 Pro Graphics",
+                      "memoryType": "Shared Memory",
+                      "GPU": "14-Core GPU",
+                      "videoOutputs": [
+                        "HDMI 2.1",
+                        "Thunderbolt 4"
+                      ],
+                      "externalResolution": "6K (6016 x 3384)"
+                    },
+                    "operatingSystem": "macOS Sonoma",
+                    "connectivity": {
+                      "ports": [
+                        "3x USB 4.0",
+                        "Headphone output",
+                        "Microphone input"
+                      ],
+                      "cardReader": "Integrated",
+                      "supportedCardTypes": [
+                        "SDXC"
+                      ]
+                    },
+                    "communication": {
+                      "data": [
+                        "Bluetooth",
+                        "WLAN"
+                      ],
+                      "bluetoothVersion": "Bluetooth 5.3",
+                      "WLANStandard": "IEEE 802.11ax"
+                    },
+                    "camera": {
+                      "webcam": "Integrated",
+                      "function": "HD-capable",
+                      "resolution": "1920 x 1080 pixels"
+                    },
+                    "keyboard": {
+                      "keyCount": 79
+                    },
+                    "sound": {
+                      "speakerCount": 6,
+                      "system": "Stereo"
+                    },
+                    "power": {
+                      "batteryType": "Lithium-Polymer",
+                      "batteryLife": "15 hours",
+                      "wattHours": "70 Wh",
+                      "charger": "67 Watt",
+                      "batteryReplaceable": "No"
+                    },
+                    "dimensionsWeight": {
+                      "material": "Aluminium",
+                      "formFactor": "Clamshell",
+                      "color": "Black",
+                      "depth": "22.1 cm",
+                      "height": "16 mm",
+                      "width": "31.3 cm",
+                      "weight": "1.6 kg"
+                    },
+                    "features": {
+                      "equipment": [
+                        "USB-C",
+                        "Speakers",
+                        "Touch ID",
+                        "Card reader",
+                        "Webcam",
+                        "Force Touch Trackpad"
+                      ],
+                      "securityFeature": "Fingerprint Reader",
+                      "sensor": "Brightness sensor",
+                      "marketLaunch": "2023"
+                    }
+                  },
+                  {
+                    "id": "N9O1YEP7JI",
+                    "name": "Apple MacBook Air 2022",
+                    "type": "Multimedia Notebook",
+                    "series": "Apple MacBook Air",
+                    "price": "1029.99",
+                    "image": "https://cdn.idealo.com/folder/Product/201987/6/201987669/s1_produktbild_max/apple-macbook-air-13-2022-m2-mly33d-a.jpg",
+                    "url": "https://www.idealo.de/relocator/relocate?categoryId=3751&offerKey=d53fc94a3651ddc8c0c8d3745bc9c051&offerListId=201987669-155AFB84BA4FA86F4706938AE213A34E&pos=1&price=1029.99&productid=201987669&sid=9701&type=offer",
+                    "display": {
+                      "size": "13.6 inches",
+                      "diagonal": "34.544 cm",
+                      "technology": "Retina",
+                      "resolution": "2560 x 1664 pixels",
+                      "features": [
+                        "LED-Backlight",
+                        "IPS"
+                      ],
+                      "pixelDensity": "224.2 ppi",
+                      "brightness": "500 cd/m²"
+                    },
+                    "processor": {
+                      "manufacturer": "Apple",
+                      "model": "Apple M2",
+                      "cores": 8
+                    },
+                    "memory": {
+                      "RAM": "8 GB"
+                    },
+                    "storage": {
+                      "drivesInstalled": 1,
+                      "type": "SSD",
+                      "capacity": "256 GB"
+                    },
+                    "graphics": {
+                      "manufacturer": "Apple",
+                      "model": "Apple M2 Graphics",
+                      "memoryType": "Shared Memory",
+                      "GPU": "8-Core GPU",
+                      "videoOutput": "Thunderbolt 4",
+                      "externalResolution": "6K (6016 x 3384)"
+                    },
+                    "operatingSystem": "macOS Monterey",
+                    "connectivity": {
+                      "ports": [
+                        "Headphone output",
+                        "2 x USB 4.0"
+                      ],
+                      "cardReader": "None"
+                    },
+                    "communication": {
+                      "data": [
+                        "WLAN",
+                        "Bluetooth"
+                      ],
+                      "bluetoothVersion": "Bluetooth 5.0",
+                      "WLANStandards": [
+                        "IEEE 802.11ac",
+                        "IEEE 802.11a",
+                        "IEEE 802.11b",
+                        "IEEE 802.11g",
+                        "IEEE 802.11n",
+                        "IEEE 802.11ax"
+                      ]
+                    },
+                    "camera": {
+                      "webcam": "Integrated",
+                      "function": "HD-capable",
+                      "resolution": "1920 x 1080 pixels"
+                    },
+                    "keyboard": {
+                      "type": "Island",
+                      "keyCount": 79,
+                      "additionalKeys": [
+                        "Function keys",
+                        "Cursor keys"
+                      ]
+                    },
+                    "sound": {
+                      "speakerCount": 4,
+                      "systems": [
+                        "Stereo",
+                        "Dolby Atmos"
+                      ]
+                    },
+                    "power": {
+                      "batteryType": "Lithium-Polymer",
+                      "batteryLife": "15 hours",
+                      "wattHours": "52.6 Wh",
+                      "charger": "30 Watt",
+                      "batteryReplaceable": "No"
+                    },
+                    "dimensionsWeight": {
+                      "material": "Aluminium",
+                      "formFactor": "Clamshell",
+                      "color": "Black",
+                      "depth": "21.5 cm",
+                      "height": "11 mm",
+                      "width": "30.4 cm",
+                      "weight": "1.24 kg"
+                    },
+                    "sustainability": "Energy-saving",
+                    "features": {
+                      "equipment": [
+                        "Microphone",
+                        "USB-C",
+                        "Multitouch Touchpad",
+                        "Speakers",
+                        "Touch ID",
+                        "Webcam",
+                        "Force Touch Trackpad"
+                      ],
+                      "securityFeature": "Fingerprint Reader",
+                      "sensor": "Brightness sensor",
+                      "packageContents": [
+                        "Notebook",
+                        "Charger",
+                        "USB Cable"
+                      ],
+                      "marketLaunch": "2022"
+                    }
+                  },
+                  {
+                    "id": "UBPUJQOH20",
+                    "name": "Apple MacBook Air 2023 - 15.3 inch",
+                    "type": "Multimedia Notebook",
+                    "series": "Apple MacBook Air",
+                    "price": "1279.00",
+                    "image": "https://cdn.idealo.com/folder/Product/202850/4/202850441/s1_produktbild_max/apple-macbook-air-15-2023-m2-mqkp3d-a.jpg",
+                    "url": "https://www.idealo.de/relocator/relocate?categoryId=3751&offerKey=28828a54b3b87b62262a3b976eb9cc39&offerListId=202850441-E63EA1A79891E660D5FD73A933CADC22&pos=1&price=1279.00&productid=202850441&sid=9701&type=offer",
+                    "display": {
+                      "size": "15.3 inches",
+                      "diagonal": "38.862 cm",
+                      "technology": "Retina",
+                      "resolution": "2880 x 1864 pixels",
+                      "features": [
+                        "LED-Backlight",
+                        "IPS"
+                      ],
+                      "pixelDensity": "224 ppi",
+                      "brightness": "500 cd/m²"
+                    },
+                    "processor": {
+                      "manufacturer": "Apple",
+                      "model": "Apple M2",
+                      "cores": 8,
+                      "cacheLevel": "L2",
+                      "cacheSize": "16 MB"
+                    },
+                    "memory": {
+                      "RAM": "8 GB"
+                    },
+                    "storage": {
+                      "drivesInstalled": 1,
+                      "type": "SSD",
+                      "capacity": "256 GB"
+                    },
+                    "graphics": {
+                      "manufacturer": "Apple",
+                      "model": "Apple M2 Graphics",
+                      "memoryType": "Shared Memory",
+                      "GPU": "10-Core GPU",
+                      "videoOutput": "Thunderbolt 4",
+                      "externalResolution": "6K (6016 x 3384)"
+                    },
+                    "operatingSystem": "macOS Ventura",
+                    "connectivity": {
+                      "ports": [
+                        "Headphone output",
+                        "2 x USB 4.0"
+                      ],
+                      "cardReader": "None"
+                    },
+                    "communication": {
+                      "data": [
+                        "WLAN",
+                        "Bluetooth"
+                      ],
+                      "mobileData": "None",
+                      "bluetoothVersion": "Bluetooth 5.3",
+                      "WLANStandard": "IEEE 802.11ax"
+                    },
+                    "camera": {
+                      "webcam": "Integrated",
+                      "function": "HD-capable",
+                      "resolution": "1920 x 1080 pixels"
+                    },
+                    "keyboard": {
+                      "type": "Island",
+                      "keyCount": 79,
+                      "additionalKeys": [
+                        "Function keys",
+                        "Cursor keys"
+                      ]
+                    },
+                    "sound": {
+                      "speakerCount": 6,
+                      "systems": [
+                        "Stereo",
+                        "Dolby Atmos"
+                      ]
+                    },
+                    "power": {
+                      "batteryType": "Lithium-Polymer",
+                      "batteryLife": "15 hours",
+                      "wattHours": "66.5 Wh",
+                      "charger": "35 Watt",
+                      "batteryReplaceable": "No"
+                    },
+                    "dimensionsWeight": {
+                      "material": "Aluminium",
+                      "formFactor": "Clamshell",
+                      "color": "Grey",
+                      "depth": "23.8 cm",
+                      "height": "12 mm",
+                      "width": "34 cm",
+                      "weight": "1.51 kg"
+                    },
+                    "sustainability": "Energy-saving",
+                    "features": {
+                      "equipment": [
+                        "Microphone",
+                        "USB-C",
+                        "Multitouch Touchpad",
+                        "Speakers",
+                        "Touch ID",
+                        "Webcam",
+                        "Force Touch Trackpad"
+                      ],
+                      "securityFeature": "Fingerprint Reader",
+                      "sensor": "Brightness sensor",
+                      "packageContents": [
+                        "Notebook",
+                        "Charger",
+                        "USB Cable"
+                      ],
+                      "marketLaunch": "2023"
+                    }
+                  },
+                  {
+                    "id": "EFLEC214MQ",
+                    "name": "Apple MacBook Air 2023 - 15.3 inch",
+                    "type": "Multimedia Notebook",
+                    "series": "Apple MacBook Air",
+                    "price": "1263.99",
+                    "image": "https://cdn.idealo.com/folder/Product/202850/5/202850560/s1_produktbild_max/apple-macbook-air-15-2023-m2-mqkw3d-a.jpg",
+                    "url": "https://www.idealo.de/relocator/relocate?categoryId=3751&offerKey=5dcb017615d3c138e42a88e6902b8882&offerListId=202850560-87BA5F0D8CAB331F3C7EABF2C1837D99&pos=1&price=1263.99&productid=202850560&sid=9701&type=offer",
+                    "display": {
+                      "size": "15.3 inches",
+                      "brightness": "500 cd/m²"
+                    },
+                    "graphics": {
+                      "videoOutput": "Thunderbolt 4",
+                      "externalResolution": "6K (6016 x 3384)"
+                    },
+                    "connectivity": {
+                      "ports": [
+                        "Headphone output",
+                        "2 x USB 4.0"
+                      ],
+                      "cardReader": "None"
+                    },
+                    "communication": {
+                      "data": [
+                        "WLAN",
+                        "Bluetooth"
+                      ],
+                      "bluetoothVersion": "Bluetooth 5.3",
+                      "WLANStandard": "IEEE 802.11ax"
+                    },
+                    "camera": {
+                      "webcam": "Integrated",
+                      "function": "HD-capable",
+                      "resolution": "1920 x 1080 pixels"
+                    },
+                    "keyboard": {
+                      "type": "Island",
+                      "keyCount": 79,
+                      "additionalKeys": [
+                        "Function keys",
+                        "Cursor keys"
+                      ]
+                    },
+                    "sound": {
+                      "speakerCount": 6,
+                      "systems": [
+                        "Stereo",
+                        "Dolby Atmos"
+                      ]
+                    },
+                    "power": {
+                      "batteryType": "Lithium-Polymer",
+                      "batteryLife": "15 hours",
+                      "wattHours": "66.5 Wh",
+                      "charger": "35 Watt",
+                      "batteryReplaceable": "No"
+                    },
+                    "dimensionsWeight": {
+                      "material": "Aluminium",
+                      "formFactor": "Clamshell",
+                      "depth": "23.8 cm",
+                      "height": "12 mm",
+                      "width": "34 cm",
+                      "weight": "1.51 kg"
+                    },
+                    "sustainability": "Energy-saving",
+                    "features": {
+                      "equipment": [
+                        "Microphone",
+                        "USB-C",
+                        "Multitouch Touchpad",
+                        "Speakers",
+                        "Touch ID",
+                        "Webcam",
+                        "Force Touch Trackpad"
+                      ],
+                      "securityFeature": "Fingerprint Reader",
+                      "sensor": "Brightness sensor",
+                      "packageContents": [
+                        "Notebook",
+                        "Charger",
+                        "USB Cable"
+                      ],
+                      "marketLaunch": "2023"
+                    }
+                  }
+                ]
+              }
+          outgoingConnections:
+            - output->"Graph Input" MIJdo0soz7IAzlDFo9WjX/default
+          visualData: -230.45940786291905/-118.08058515287902/291.7809152872444/70//
+        '[q6TMuQFFCA0XkHAkoCKyg]:code "Code"':
+          data:
+            code: |
+              const numbers = inputs.values.value.map(val => parseInt(val));
+              return {
+                  numbers: {
+                      type: 'number[]',
+                      value: numbers
+                  }
+              };
+            inputNames:
+              - values
+            outputNames:
+              - numbers
+          outgoingConnections:
+            - numbers->"Object" z3HKbmVYqbcEeA_CqF1OI/price
+          visualData: 878.4259072176521/716.100062539087/230/53//
+        '[z3HKbmVYqbcEeA_CqF1OI]:object "Object"':
+          data:
+            jsonTemplate: |-
+              {
+                "{{id}}": {
+                  "name": "{{name}}",
+                  "price": {{price}},
+                  "image": "{{image}}",
+                  "url": "{{url}}"
+                }
+              }
+          isSplitRun: true
+          outgoingConnections:
+            - output->"Object" m_qCo7kcNk7VYUAc7FPXL/input
+          splitRunMax: 99
+          visualData: 1017/266/230/13//
+    XdJilU7aYfVmv3dxp-4z6:
+      metadata:
+        description: ""
+        id: XdJilU7aYfVmv3dxp-4z6
+        name: Subgraphs/query_firebase
+      nodes:
+        '[1SHWlvj24zJDRa_YEjbab]:context "Context"':
+          data:
+            dataType: string
+            id: FIREBASE_URL
+            useDefaultValueInput: false
+          outgoingConnections:
+            - data->"Text" ZymSF3cDjiX6o2yqv-ksB/input
+          visualData: 452.34559904488583/41.7834282352564/330/100//
+        '[7Afn9cVamQ071KV8fviF8]:if "If"':
+          data:
+            unconnectedControlFlowExcluded: true
+          outgoingConnections:
+            - output->"Subgraph" eXIjlbLBWzV0MtADCzq_y/data
+          visualData: 1438.30547439939/166.82659985709608/155/112//
+        '[9FShKHBlD20_8NfBogBNe]:graphInput "Graph Input"':
+          data:
+            dataType: string
+            id: method
+            useDefaultValueInput: false
+          outgoingConnections:
+            - data->"Http Call" td-IVjZYOH2KATcgj8nw7/method
+          visualData: 454/294/330/2/var(--node-color-3)/var(--grey-darkish)
+        '[LhMoWmtIOiPhTJvGB7dD2]:graphOutput "Graph Output"':
+          data:
+            dataType: string
+            id: context
+          visualData: 2230.6144202510463/330.59995737950527/330/107/var(--node-color-4)/var(--grey-darkish)
+        '[PmqHLnVbI5hqSqwr2yZSN]:graphInput "Graph Input"':
+          data:
+            dataType: object
+            id: body
+            useDefaultValueInput: false
+          outgoingConnections:
+            - data->"Http Call" td-IVjZYOH2KATcgj8nw7/req_body
+          visualData: 454/490.6802697799512/330/3/var(--node-color-3)/var(--grey-darkish)
+        '[YJet51lXr3oEYDx9cuWIW]:httpCall "Http Call"':
+          data:
+            body: ""
+            errorOnNon200: true
+            headers: ""
+            method: GET
+            url: ""
+            useUrlInput: true
+          outgoingConnections:
+            - json->"If" 7Afn9cVamQ071KV8fviF8/value
+          visualData: 1418.3870930790972/335.02626433957045/280/113//
+        '[ZymSF3cDjiX6o2yqv-ksB]:text "Text"':
+          data:
+            text: "{{input}}/products.json"
+          outgoingConnections:
+            - output->"Http Call" YJet51lXr3oEYDx9cuWIW/url
+            - output->"Http Call" td-IVjZYOH2KATcgj8nw7/url
+          visualData: 944.1506591263835/64.52946541537035/330/115//
+        '[eXIjlbLBWzV0MtADCzq_y]:subGraph "Subgraph"':
+          data:
+            graphId: F5o7IRqn0luNLmYe7Imig
+            useAsGraphPartialOutput: false
+            useErrorOutput: false
+          outgoingConnections:
+            - context->"Graph Output" LhMoWmtIOiPhTJvGB7dD2/value
+          visualData: 1828.9270636251367/344.9854549997169/330/107/var(--node-color-6)/var(--grey-darkish)
+        '[td-IVjZYOH2KATcgj8nw7]:httpCall "Http Call"':
+          data:
+            body: ""
+            errorOnNon200: true
+            headers: ""
+            method: GET
+            url: ""
+            useBodyInput: true
+            useMethodInput: true
+            useUrlInput: true
+          outgoingConnections:
+            - json->"If" 7Afn9cVamQ071KV8fviF8/if
+          visualData: 948.0919785721791/274.164543638675/280/107//
+    Z6YcIWxAp2GUZgmD1LHmp:
+      metadata:
+        description: ""
+        id: Z6YcIWxAp2GUZgmD1LHmp
+        name: Functions/highlight_products
+      nodes:
+        '[9ZRJCvQoPjP2YqteTK1cB]:subGraph "Subgraph"':
+          data:
+            graphId: XdJilU7aYfVmv3dxp-4z6
+            useAsGraphPartialOutput: false
+            useErrorOutput: false
+          outgoingConnections:
+            - context->"Graph Output" CCDINPCLlbWMMUQbX1D0I/value
+          visualData: 1121.3487246919203/423.5510544682144/330/95/var(--node-color-6)/var(--grey-darkish)
+        '[CCDINPCLlbWMMUQbX1D0I]:graphOutput "Graph Output"':
+          data:
+            dataType: string
+            id: context
+          visualData: 1557.0640734175822/407.98915644325683/330/98/var(--node-color-4)/var(--grey-darkish)
+        '[K6godED3AXTn0zvKldUXw]:object "Object"':
+          data:
+            jsonTemplate: |-
+              {
+                "ids": [
+                  "0Q95535GJ5"
+                ]
+              }
+          outgoingConnections:
+            - output->"Graph Input" Y4t_FmxDfTPbdlLg9yOcB/default
+          visualData: -342.3146237351962/411.06147941262026/230/102//
+        '[Nft4ABUNMAfHQV7-M2s5m]:text "Text"':
+          data:
+            text: PATCH
+          outgoingConnections:
+            - output->"Subgraph" 9ZRJCvQoPjP2YqteTK1cB/method
+          visualData: 735/237/330/70//
+        '[Y4t_FmxDfTPbdlLg9yOcB]:graphInput "Graph Input"':
+          data:
+            dataType: object
+            id: id
+            useDefaultValueInput: true
+          outgoingConnections:
+            - data->"Destructure" inE1LqnJA0eTaMxQQiQ-3/object
+          visualData: -15.138931191682047/458.44983412693324/330/99/var(--node-color-3)/var(--grey-darkish)
+        '[inE1LqnJA0eTaMxQQiQ-3]:destructure "Destructure"':
+          data:
+            paths:
+              - $.ids
+          outgoingConnections:
+            - match_0->"Object" lD3NL8rA1bstYGJV3V4f_/input
+          visualData: 398.87944952155505/489.6524414764074/280/103//
+        '[lD3NL8rA1bstYGJV3V4f_]:object "Object"':
+          data:
+            jsonTemplate: |-
+              {
+                "highlightedProducts": {{input}}
+              }
+          outgoingConnections:
+            - output->"Subgraph" 9ZRJCvQoPjP2YqteTK1cB/body
+          visualData: 766/438/230/66//
+    b4M7oHEl7F7x1zWZc9Chm:
+      metadata:
+        description: ""
+        id: b4M7oHEl7F7x1zWZc9Chm
+        name: Functions/search_products
+      nodes:
+        '[-dPp069F1pZVuj_k6VFv6]:subGraph "Subgraph"':
+          data:
+            graphId: VNxLcZIFMa2BG0juauuc0
+            useAsGraphPartialOutput: false
+            useErrorOutput: false
+          outgoingConnections:
+            - context->"Graph Output" 3YkHbfkgzjKFA4Ih_IkGQ/value
+          visualData: 755.4464576654918/481.5078446074437/330/6/var(--node-color-6)/var(--grey-darkish)
+        '[3YkHbfkgzjKFA4Ih_IkGQ]:graphOutput "Graph Output"':
+          data:
+            dataType: string
+            id: context
+          visualData: 1171.3724314045046/465.9942102689527/330/13/var(--node-color-4)/var(--grey-darkish)
+        '[jA1AMLMsh9Wn3w3y_Kjqm]:graphInput "Graph Input"':
+          data:
+            dataType: string
+            id: query
+            useDefaultValueInput: false
+          visualData: 326.2708264058789/465.9942102689528/330/10/var(--node-color-3)/var(--grey-darkish)
+    heT-kIJ8Ws5PR7h5oWZyh:
+      metadata:
+        description: ""
+        id: heT-kIJ8Ws5PR7h5oWZyh
+        name: Functions/show_all_products
+      nodes:
+        '[GB6Xgm-FnXPrKrUjPYE-t]:graphOutput "Graph Output"':
+          data:
+            dataType: string
+            id: context
+          visualData: 1734.8227110724126/576.387792386201/330/92/var(--node-color-4)/var(--grey-darkish)
+        '[HeSCvnXjA9pJH2xn_oEIu]:subGraph "Subgraph"':
+          data:
+            graphId: XdJilU7aYfVmv3dxp-4z6
+            useAsGraphPartialOutput: false
+            useErrorOutput: false
+          outgoingConnections:
+            - context->"Graph Output" GB6Xgm-FnXPrKrUjPYE-t/value
+          visualData: 1322.2368841323232/591.1925388133827/330/91/var(--node-color-6)/var(--grey-darkish)
+        '[QGbc4fzY5mym1AL2zh3bu]:object "Object"':
+          data:
+            jsonTemplate: |-
+              {
+                "hiddenProducts": []
+              }
+          outgoingConnections:
+            - output->"Subgraph" HeSCvnXjA9pJH2xn_oEIu/body
+          visualData: 995.8952274987778/561.2639289266508/230/95//
+        '[ly4qD5Sif2qQUONtJwceE]:text "Text"':
+          data:
+            text: PATCH
+          outgoingConnections:
+            - output->"Subgraph" HeSCvnXjA9pJH2xn_oEIu/method
+          visualData: 980/384/330/70//
+        '[oFkwgM7jU7EG2lRkZEB8E]:graphInput "Graph Input"':
+          data:
+            dataType: string
+            id: go
+            useDefaultValueInput: true
+          visualData: 568.262597144254/602.8163151772619/330/93/var(--node-color-3)/var(--grey-darkish)
+    oQ_7oLcxLpvDEvrdSp6uH:
+      metadata:
+        description: ""
+        id: oQ_7oLcxLpvDEvrdSp6uH
+        name: Functions/hide_products
+      nodes:
+        '[89yTmMusA81Z_hZEo2R_i]:object "Object"':
+          data:
+            jsonTemplate: |-
+              {
+                "ids": [
+                  "0Q95535GJ5"
+                ]
+              }
+          outgoingConnections:
+            - output->"Graph Input" iDxWCU6sHEp8vPwipfW_m/default
+          visualData: -399.1890671594887/424.12848678617576/230/105//
+        '[FxmuC9fB27bsntn23CXkt]:graphOutput "Graph Output"':
+          data:
+            dataType: string
+            id: context
+          visualData: 1492.916317131784/461.8706560095987/330/95/var(--node-color-4)/var(--grey-darkish)
+        '[GFKAS5TqwBAZdLBJB9FWk]:subGraph "Subgraph"':
+          data:
+            graphId: XdJilU7aYfVmv3dxp-4z6
+            useAsGraphPartialOutput: false
+            useErrorOutput: false
+          outgoingConnections:
+            - context->"Graph Output" FxmuC9fB27bsntn23CXkt/value
+          visualData: 1060.2220508057815/478.22220546646605/330/94/var(--node-color-6)/var(--grey-darkish)
+        '[hDT934SpRdvzHL3gOsx8R]:text "Text"':
+          data:
+            text: PATCH
+          outgoingConnections:
+            - output->"Subgraph" GFKAS5TqwBAZdLBJB9FWk/method
+          visualData: 735/237/330/70//
+        '[iDxWCU6sHEp8vPwipfW_m]:graphInput "Graph Input"':
+          data:
+            dataType: object
+            id: id
+            useDefaultValueInput: true
+          outgoingConnections:
+            - data->"Destructure" qkzVadEHBVV6A2VlVF4fu/object
+          visualData: -72.01337461597454/471.51684150048874/330/105/var(--node-color-3)/var(--grey-darkish)
+        '[qkzVadEHBVV6A2VlVF4fu]:destructure "Destructure"':
+          data:
+            paths:
+              - $.ids
+          outgoingConnections:
+            - match_0->"Object" sKcP-IMGdDgFO2cWX-g-4/input
+          visualData: 342.0050060972626/502.7194488499629/280/105//
+        '[sKcP-IMGdDgFO2cWX-g-4]:object "Object"':
+          data:
+            jsonTemplate: |-
+              {
+                "hiddenProducts": {{input}}
+              }
+          outgoingConnections:
+            - output->"Subgraph" GFKAS5TqwBAZdLBJB9FWk/body
+          visualData: 730.4235303172311/455.01483332654163/230/93//
+  metadata:
+    description: ""
+    id: sfUnYatMkP6PcJoy3ZITt
+    mainGraphId: PwT8NnSVno8aQrDJgbbin
+    title: Frontend_Prototype_Shopping
+  plugins: []
